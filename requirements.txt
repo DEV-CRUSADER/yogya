@@ -1,0 +1,3 @@
+django
+djangorestframework==3.14.0
+django-hosts==6.0
