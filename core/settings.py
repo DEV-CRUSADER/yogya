@@ -1,15 +1,28 @@
 from pathlib import Path
 import os
+import sys
+from dotenv import load_dotenv
+import logging.config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+APP_ENV = os.getenv('APP_ENV', 'dev')
+env_path = ''
+env_path = ''
+if APP_ENV == 'dev':
+    env_path = 'env/.dev'
+elif APP_ENV == 'prod':
+    env_path = 'env/.prod'
+
+env_path = os.path.join(BASE_DIR, env_path)
+
+load_dotenv(env_path) # take environment variables from .env.
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9pef5q*c3&ml!sb%6h7la=$hz7)igq##4_=gqutn(oi$c7_t8z'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -22,7 +35,22 @@ ALLOWED_HOSTS = [
     "http://*.localhost"
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "https://127.0.0.1",
+    "http://*.127.0.0.1",
+    "https://*.127.0.0.1",
+    "http://localhost",
+    "https://localhost",
+    "http://*.localhost"
+    "https://*.localhost"
+    "http://dashboard.localhost",
+    "https://dashboard.localhost",
+]
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 INSTALLED_APPS = [
@@ -34,11 +62,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'django_hosts',
+    "softdelete",
 ]
 
 MIDDLEWARE = [
+    "log_request_id.middleware.RequestIDMiddleware",
     'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,12 +83,23 @@ ROOT_URLCONF = "core.urls"
 ROOT_HOSTCONF = "core.hosts"
 DEFAULT_HOST = "core"
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'core.custom_exception_handler.custom_exception_handler',
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+DASHBOARD_TEMPLATES = os.path.join(BASE_DIR, 'dashboard', 'templates')
+CORE_TEMPALTES = os.path.join(BASE_DIR, 'core', 'templates', 'core')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates",
-            BASE_DIR / "core/templates/core",
+            DASHBOARD_TEMPLATES,
+            CORE_TEMPALTES,
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,19 +113,79 @@ TEMPLATES = [
     },
 ]
 
+# Logger
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": "{levelname} {asctime} request_id=%(request_id)s {pathname} - line {lineno}: {message}",
+            "style": "{",
+        },
+        "json": {
+            "()": "core.json_logger.CustomisedJSONFormatter",
+        },
+    },
+    "filters": {
+        "request_id": {
+            '()': 'log_request_id.filters.RequestIDFilter'
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "filters": ["request_id"],
+            "formatter": "json",
+            "stream": sys.stdout,
+        },
+    },
+    "loggers": {
+        # "django.db.backends": {
+        #     "level": "DEBUG",
+        #     "handlers": ["console"],
+        #     "propagate": False,
+        # },
+        "": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": True,
+        },
+    },
+}
+
+logging.config.dictConfig(LOGGING)
+
 WSGI_APPLICATION = 'core.wsgi.application'
+
+SITE_URL = os.getenv('SITE_URL')
+PROTOCOL = os.getenv('PROTOCOL', 'http')
+BASE_URL = f"{PROTOCOL}://{SITE_URL}"
+DASHBOARD_URL = f"{PROTOCOL}://dashboard.{SITE_URL}"
+PARENT_HOST = SITE_URL
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+DB_ENGINE = os.getenv('DB_ENGINE', None)
+DB_USERNAME = os.getenv('DB_USERNAME', None)
+DB_PASS = os.getenv('DB_PASS', None)
+DB_HOST = os.getenv('DB_HOST', None)
+DB_PORT = os.getenv('DB_PORT', None)
+DB_NAME = os.getenv('DB_NAME', None)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.' + DB_ENGINE,
+        'NAME': DB_NAME,
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASS,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -126,3 +228,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DASHBOARD_LOGIN_REDIRECT_URL = 'dashboard'
+
+ASGI_APPLICATION = "core.asgi.application"
+THREAD_POOL_SIZE = 2
