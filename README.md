@@ -12,7 +12,8 @@ Assuming the following, after installation is complete.
 + PSQL is installed
 + `Username : root`
 + `Password : root`
-+ `Database Created via terminal : koffee_local`
++ `Database Created via terminal : yogya`
+- make sure that user has the permission to the database
 
 #### Install PyCharm and/or VSCode
 I personally prefer PyCharm for python, and use VSCode for React / FE Development.
@@ -61,6 +62,10 @@ Comment out, all the other EMAIL_BACKEND, and just use the below one.
 This will make sure that all emails are shown on the console, and not actually sent to someone's inbox. This will help in local dev and testing.
 
  + `EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"`
+
+### If you are a developer
+- Kindly note the below commande before perfoming the migrate command
+``` python manage.py makemigrations ```
 
 #### Run Migrations
 ``` python manage.py migrate ```

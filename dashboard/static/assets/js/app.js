@@ -8,8 +8,6 @@ import { CoreApp } from './apps/CoreApp';
 
 function App() {
 
-    console.log('window.location.host', window.location.host);
-
     // Extract the subdomain from the URL
     const subdomain = window.location.host.split('.')[0];
 
