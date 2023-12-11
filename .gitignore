@@ -1,6 +1,7 @@
 *.pyc
 *.DS_Store
 *.egg*
+*.vscode
 /dist/
 /.idea
 /docs/_build/
@@ -13,6 +14,6 @@ aws
 #src
 *.sqlite*
 venv
-env/.dev
+#env/.dev
 #dashboard/static/assets/js/dist/bundle.js
 dashboard/static/assets/js/dist/bundle.js.LICENSE.txt
