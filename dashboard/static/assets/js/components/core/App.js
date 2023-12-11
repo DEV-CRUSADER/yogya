@@ -1,9 +1,12 @@
 import React from 'react';
+import { App } from './clientForm.js';
 
 export function HomeView()  {
     return (
-        <div className="container">
-            <h1>Core Home View</h1>
-        </div>
+       <>
+       <h1>Hello </h1>
+       <App />
+        
+       </>
     );
 }
