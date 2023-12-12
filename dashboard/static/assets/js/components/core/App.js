@@ -1,12 +1,12 @@
 import React from 'react';
-import { App } from './clientForm.js';
+import { ReactDOM } from 'react';
+import ClientData from './coreCpmonents/clientForm.js';
 
-export function HomeView()  {
+export function HomeView() {
     return (
-       <>
-       <h1>Hello </h1>
-       <App />
-        
-       </>
+        <>
+            <ClientData />
+            
+        </>
     );
 }

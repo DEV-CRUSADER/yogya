@@ -31,7 +31,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
     "react-use-websocket": "^4.3.1",
-    "react-websocket": "^1.1.2"
+    "react-websocket": "^1.1.2",
+    "rsuite": "^5.47.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
