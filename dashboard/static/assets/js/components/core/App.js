@@ -1,9 +1,12 @@
 import React from 'react';
+import Navbar from './components/navbar';
 
 export function HomeView()  {
     return (
         <div className="container">
-            <h1>Core Home View</h1>
-        </div>
-    );
+            <Navbar/>
+            <h1>Core View</h1>
+            
+        </div> 
+        );
 }
