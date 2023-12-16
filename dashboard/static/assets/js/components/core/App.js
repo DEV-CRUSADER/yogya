@@ -1,10 +1,9 @@
 import React from 'react';
-import { HomeView } from './coreComponents/home';
 
-export function HomePageView()  {
+export function HomeView()  {
     return (
-        <>
-            <HomeView />
-        </>
+        <div className="container">
+            <h1>Core Home View</h1>
+        </div>
     );
 }
