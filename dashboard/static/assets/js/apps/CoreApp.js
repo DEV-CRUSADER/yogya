@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter , Route, Routes, HashRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import { HomePageView } from '../components/core/App';
+import { HomePageView, ResourcesPageView } from '../components/core/App';
 import Navbar from '../components/core/coreComponents/navbar';
 
 export function CoreApp() {
@@ -10,6 +10,7 @@ export function CoreApp() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomePageView />} />
+                <Route path="/resources" element={<ResourcesPageView />} />
             </Routes>
         </>
     );

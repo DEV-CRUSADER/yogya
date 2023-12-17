@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
 
 
 import { Dashboard } from './apps/Dashboard';
@@ -12,14 +12,15 @@ function App() {
     const subdomain = window.location.host.split('.')[0];
 
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
                 {/* Define routes based on subdomain */}
-                {subdomain === 'dashboard' && <Route path="/" element={<Dashboard />} />}
+                {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
+
                 {/* Default route */}
-                <Route path="/" element={<CoreApp />} />
+                <Route path="*" element={<CoreApp />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 };
 

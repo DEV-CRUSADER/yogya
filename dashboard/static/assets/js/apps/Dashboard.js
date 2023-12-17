@@ -7,6 +7,7 @@ export function Dashboard() {
     return (
         <Routes>
             <Route path="/" element={<HomeView />} />
+            <Route path="/hello" element={<HomeView />} />
         </Routes>
     );
 };

@@ -1,10 +1,10 @@
 import React from "react";
 
 
-export function Home() {
+export function Resources() {
     return (
         <>
-            <h1>Home</h1>
+            <h1>Resources</h1> 
         </>
     );
 }

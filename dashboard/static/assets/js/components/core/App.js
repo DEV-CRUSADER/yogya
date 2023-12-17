@@ -1,10 +1,20 @@
 import React from 'react';
-import { HomeView } from './coreComponents/home';
+
+import { Home } from './coreComponents/home';
+import { Resources } from './coreComponents/resources';
 
 export function HomePageView()  {
     return (
         <>
-            <HomeView />
+            <Home />
+        </>
+    );
+}
+
+export function ResourcesPageView()  {
+    return (
+        <>
+            <Resources />
         </>
     );
 }
