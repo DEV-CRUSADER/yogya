@@ -33,7 +33,7 @@ function Navbar(props) {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/"> Home </Link>
+                  <Link className="nav-link" to="/"> Home2 </Link>
                 </li>
 
                 <li className="nav-item">
