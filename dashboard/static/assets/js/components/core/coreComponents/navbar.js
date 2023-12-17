@@ -5,8 +5,28 @@ import { BrowserRouter as BrowserRouter, HashRouter, Route, Link } from 'react-r
 import "../../../../../css/navbar.css";
 
 
-
 function Navbar(props) {
+
+  const nav_links = [
+    {
+      to: "/",
+      label: "Home"
+    },
+    {
+      to: "/resources",
+      label: "Resources"
+    },
+    {
+      to: "/",
+      label: "Mutual Funds"
+    },
+    {
+      to: "/",
+      label: "Contact Us"
+    }
+  ]
+
+
   return (
     <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light"
@@ -16,7 +36,7 @@ function Navbar(props) {
           }}
         >
           <div className="container-fluid p-2 px-4">
-            <Link className="nav-brand" to="/"> Yogya </Link>
+            <Link className="navbar-brand" to="/"> Yogya </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -30,21 +50,13 @@ function Navbar(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/"> Home </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/resources"> Resources </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/"> Mutual Funds </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/"> Contact Us </Link>
-                </li>
+                {
+                  nav_links.map(link => (
+                    <Link key={link.to} className="nav-link" to={link.to}>
+                      {link.label}
+                    </Link>
+                  ))
+                }
               </ul>
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-but">
