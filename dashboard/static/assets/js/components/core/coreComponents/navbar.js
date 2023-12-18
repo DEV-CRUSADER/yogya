@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter as BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 
-// importing extra css
-import "../../../../../css/navbar.css";
-
+import {Css} from '../../../../../css/navbar.css';
 
 function Navbar(props) {
 
@@ -17,11 +15,11 @@ function Navbar(props) {
       label: "Resources"
     },
     {
-      to: "/",
+      to: "/mutual",
       label: "Mutual Funds"
     },
     {
-      to: "/",
+      to: "/contact",
       label: "Contact Us"
     }
   ]
@@ -58,12 +56,12 @@ function Navbar(props) {
                   ))
                 }
               </ul>
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li className="nav-but">
-                  <a className="nav-link" href="#">Sign up</a>
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 " >
+                <li className="nav-but px-1">
+                  <a className=" btn btn-primary"  href="#">Sign up</a>
                 </li>
-                <li className="nav-but">
-                  <a className="nav-link" href="#">login</a>
+                <li className="nav-but px-1">
+                  <a className=" btn btn-outline-primary" href="#">login</a>
                 </li>
               </ul>
             </div>

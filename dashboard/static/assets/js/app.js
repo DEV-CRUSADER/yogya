@@ -6,6 +6,7 @@ import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import { Dashboard } from './apps/Dashboard';
 import { CoreApp } from './apps/CoreApp';
 
+
 function App() {
 
     // Extract the subdomain from the URL
