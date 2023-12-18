@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", core.views.CoreView.load_homepage, name="home-page"),
     path("resources", core.views.CoreView.load_homepage, name="resources-page"),
+
+    path("api/v1/", include('dashboard.api_urls')),
 ]
