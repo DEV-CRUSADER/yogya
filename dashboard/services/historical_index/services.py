@@ -5,26 +5,75 @@ import statistics
 import nsepythonserver as nse
 
 
+from dashboard.services.historical_index.serializers import StockDataResponseSerializer
 
 log = logging.getLogger(__name__)
 
 
 class HistoricalIndexServices:
 
+    @staticmethod
+    def get_historical_index_from_and_to_dates(data):
+        log.info(f"Getting historical index from and to dates: {data}")
+        json_data = HistoricalIndexServices.get_historical_nse_index(data)
 
     @staticmethod
-    def get_historical_index_from_and_to_dates(start_date, end_date):
-        pass
+    def get_historical_nse_index(data):
+        log.info("Getting historical nse index")
+        end_date = datetime.datetime.now()
+        end_date = end_date.strftime("%d-%b-%Y")
 
-    @staticmethod
-    def get_historical_nse_index():
+        if data is None:
+            symbol = "NIFTY 50"
+            # start_date = "1-Jan-1990"
+            start_date = "1-Dec-2023"
+            end_date = end_date
+        else:
+            symbol = data["symbol"]
+            start_date = data["start_date"]
+            end_date = data["end_date"]
 
-        current_date = datetime.datetime.now()
+        nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
 
-        symbol = "NIFTY 50"
-        start_date = "1-Jan-1990"
-        formatted_end_date = current_date.strftime("%d-%b-%Y")
+        context = {
+            "symbol": symbol,
+            "date": nse_data['DATE'].to_list(),
+            "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb']),
+            "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe']),
+            "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'])
+        }
 
-        nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=formatted_end_date)
+        serializer = StockDataResponseSerializer(data=context)
+
+        if serializer.is_valid():
+            log.info("Sucess Data")
+        else:
+            log.exception(f"Failed: Exception {serializer.errors}")
 
         return True
+
+    @staticmethod
+    def get_json_for_historical_index(data):
+
+        data = data.replace('-', 0).astype(float)
+
+        population_devation = statistics.pstdev(data)
+        mean = statistics.mean(data)
+
+        df = pd.DataFrame(data)
+
+        df["SDM2"] = mean - (2 * population_devation)
+        df["SDM1"] = mean - population_devation
+        df["SD"] = mean
+        df["SDP1"] = mean + population_devation
+        df["SDP2"] = mean + (2 * population_devation)
+
+        return_context = {
+            "SDM2": df["SDM2"].round(3).to_list(),
+            "SDM1": df["SDM1"].round(3).to_list(),
+            "SD": df["SD"].round(3).to_list(),
+            "SDP1": df["SDP1"].round(3).to_list(),
+            "SDP2": df["SDP2"].round(3).to_list(),
+            "standard": data.round(3).to_list()
+        }
+        return return_context
