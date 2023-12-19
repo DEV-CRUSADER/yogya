@@ -12,11 +12,11 @@ export function Home() {
 
     const [indexData, setIndexData] = useState({});
 
-    useEffect(() => {
-        APICaller.FetchDefaultIndexData().then((res) => {
-            setIndexData(res);
-        });
-    }, []);
+    // useEffect(() => {
+    //     APICaller.FetchDefaultIndexData().then((res) => {
+    //         setIndexData(res);
+    //     });
+    // }, []);
 
 
     return (
