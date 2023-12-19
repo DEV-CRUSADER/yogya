@@ -5,7 +5,7 @@ export function Contact() {
     TabTitle('Yogya | Contact')
     return (
         <>
-            <h1>Contact ME</h1> 
+            <h1>Contact ME resbase</h1> 
         </>
     );
 }
