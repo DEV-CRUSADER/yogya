@@ -1,6 +1,10 @@
 django
 whitenoise
 psycopg2-binary
+statistics
+datetime
+numpy==1.26.2
+pandas==2.14.0
 python-dotenv==1.0.0
 djangorestframework==3.14.0
 django-hosts==6.0
@@ -8,3 +12,4 @@ django-softdelete==0.10.5
 JSON-log-formatter==0.5.2
 gunicorn==20.1.0
 django-log-request-id==2.1.0
+nsepythonserver==2.7.0

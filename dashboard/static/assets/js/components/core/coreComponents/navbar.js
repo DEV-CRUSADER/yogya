@@ -21,7 +21,7 @@ function Navbar(props) {
       label: "Resources",
     },
     {
-      to: "/mutual",
+      to: "/mutual-funds",
       label: "Mutual Funds",
     },
     {
