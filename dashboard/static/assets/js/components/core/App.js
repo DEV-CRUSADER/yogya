@@ -1,9 +1,38 @@
 import React from 'react';
 
-export function HomeView()  {
+import { Home } from './coreComponents/home';
+import { Resources } from './coreComponents/resources';
+import { Mutual } from './coreComponents/mutual';
+import { Contact } from './coreComponents/contact';
+
+export function HomePageView()  {
     return (
-        <div className="container">
-            <h1>Core Home View</h1>
-        </div>
+        <>
+            <Home />
+        </>
+    );
+}
+
+export function ResourcesPageView()  {
+    return (
+        <>
+            <Resources />
+        </>
+    );
+}
+
+export function MutualPageView()  {
+    return (
+        <>
+            <Mutual />
+        </>
+    );
+}
+
+export function ContactPageView()  {
+    return (
+        <>
+            <Contact />
+        </>
     );
 }

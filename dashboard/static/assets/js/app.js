@@ -1,25 +1,26 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
 
 
 import { Dashboard } from './apps/Dashboard';
 import { CoreApp } from './apps/CoreApp';
 
-function App() {
 
-    // Extract the subdomain from the URL
+function App() {
+    // Get subdomain
     const subdomain = window.location.host.split('.')[0];
 
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
                 {/* Define routes based on subdomain */}
-                {subdomain === 'dashboard' && <Route path="/" element={<Dashboard />} />}
+                {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
+
                 {/* Default route */}
-                <Route path="/" element={<CoreApp />} />
+                <Route path="*" element={<CoreApp />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 };
 

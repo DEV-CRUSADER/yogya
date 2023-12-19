@@ -8,7 +8,7 @@ SECRET_KEY='VeryStrongKey'
 DB_ENGINE='postgresql_psycopg2'
 DB_HOST='localhost'
 DB_NAME='yogya'
-DB_USERNAME=root
+DB_USERNAME=postgres
 DB_PASS=root
 DB_PORT=5432
 
