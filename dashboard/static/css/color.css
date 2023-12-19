@@ -1,0 +1,16 @@
+:root {
+  /* main colors */
+  --main-color: #d9d9d9;
+  --secondary-color: #22577a;
+  --black: #000;
+  --white: #fff;
+  --secondary-text: #e7e3d4;
+  --primary-text: #cfefe7;
+  /* Shadows */
+  --line-color: rgba(61, 113, 134, 0);
+
+}
+
+:root{
+    --btn-primary:#22577a;
+}
