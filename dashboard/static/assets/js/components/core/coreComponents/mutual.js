@@ -1,5 +1,5 @@
 import React from "react";
-import { TabTitle } from "./general_function";
+import { TabTitle } from "../scripts/general_function";
 
 export function Mutual() {
 TabTitle('Yogya | Mutual')

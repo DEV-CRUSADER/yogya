@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 
 
@@ -8,8 +8,7 @@ import { CoreApp } from './apps/CoreApp';
 
 
 function App() {
-
-    // Extract the subdomain from the URL
+    // Get subdomain
     const subdomain = window.location.host.split('.')[0];
 
     return (

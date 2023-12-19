@@ -24,6 +24,7 @@
   transition: all 300ms ease-in;
   color: var(--white);
   border: var(--secondary-color);
+  padding: 8px 16px;
 }
 
 .btn-self:hover {
