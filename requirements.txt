@@ -4,7 +4,7 @@ psycopg2-binary
 statistics
 datetime
 numpy==1.26.2
-pandas==2.14.0
+pandas==2.1.4
 python-dotenv==1.0.0
 djangorestframework==3.14.0
 django-hosts==6.0
