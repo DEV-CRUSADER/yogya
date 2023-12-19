@@ -3,6 +3,8 @@
 
 export class APICaller{
 
+    // Refer this for API CALLS
+
     static FetchDefaultIndexData(){
         return fetch("/api/v1/get-index-data", {
             method: "GET",
