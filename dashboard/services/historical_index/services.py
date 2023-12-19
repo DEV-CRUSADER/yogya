@@ -1,8 +1,8 @@
 import logging
-import datetime
 import pandas as pd
 import statistics
 import nsepythonserver as nse
+import datetime
 
 
 from dashboard.services.historical_index.serializers import StockDataResponseSerializer
@@ -14,8 +14,14 @@ class HistoricalIndexServices:
 
     @staticmethod
     def get_historical_index_from_and_to_dates(data):
+
+        log.info(f'Retrieving historical Service')
+        data['start_date'] = data['start_date'].strftime('%d-%b-%Y')
+        data['end_date'] = data['end_date'].strftime('%d-%b-%Y')
+
         log.info(f"Getting historical index from and to dates: {data}")
-        json_data = HistoricalIndexServices.get_historical_nse_index(data)
+        json_response = HistoricalIndexServices.get_historical_nse_index(data)
+        return json_response
 
     @staticmethod
     def get_historical_nse_index(data):
@@ -25,8 +31,7 @@ class HistoricalIndexServices:
 
         if data is None:
             symbol = "NIFTY 50"
-            # start_date = "1-Jan-1990"
-            start_date = "1-Dec-2023"
+            start_date = "1-Jan-1990"
             end_date = end_date
         else:
             symbol = data["symbol"]
@@ -37,20 +42,26 @@ class HistoricalIndexServices:
 
         context = {
             "symbol": symbol,
-            "date": nse_data['DATE'].to_list(),
-            "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb']),
-            "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe']),
-            "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'])
+            "date": nse_data['DATE'][::-1].to_list(),
+            "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'][::-1]),
+            "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'][::-1]),
+            "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'][::-1])
         }
 
         serializer = StockDataResponseSerializer(data=context)
 
+
         if serializer.is_valid():
-            log.info("Sucess Data")
+            return {
+                "status": True,
+                "data": serializer.validated_data
+            }
         else:
             log.exception(f"Failed: Exception {serializer.errors}")
-
-        return True
+            return {
+                "status": False,
+                "data": serializer.errors
+            }
 
     @staticmethod
     def get_json_for_historical_index(data):
