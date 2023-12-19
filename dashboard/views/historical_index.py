@@ -33,7 +33,12 @@ class HistoricalIndexAPIView:
 
                 index_data = HistoricalIndexServices.get_historical_index_from_and_to_dates(data=validated_data)
 
-                return Response({"sucess": index_data['status'], "data": index_data['data']}, status=status.HTTP_200_OK)
+                if index_data["status"]:
+                    return Response({"status": index_data['status'], "data": index_data['data']},
+                                    status=status.HTTP_200_OK)
+                else:
+                    return Response({"status": index_data['status'], "data": index_data['data']},
+                                    status=status.HTTP_400_BAD_REQUEST)
 
             else:
                 return Response({"sucess": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

@@ -4,7 +4,6 @@ import statistics
 import nsepythonserver as nse
 import datetime
 
-
 from dashboard.services.historical_index.serializers import StockDataResponseSerializer
 
 log = logging.getLogger(__name__)
@@ -49,7 +48,6 @@ class HistoricalIndexServices:
         }
 
         serializer = StockDataResponseSerializer(data=context)
-
 
         if serializer.is_valid():
             return {
