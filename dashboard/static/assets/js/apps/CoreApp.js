@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { HomePageView, ResourcesPageView, MutualPageView, ContactPageView  } from '../components/core/App';
 import Navbar from '../components/core/coreComponents/navbar';
+import Footer from '../components/core/coreComponents/footer';  
 
 export function CoreApp() {
     return (
@@ -11,7 +12,7 @@ export function CoreApp() {
             <Routes>
                 <Route path="/" element={<HomePageView />} />
                 <Route path="/resources" element={<ResourcesPageView />} />
-                <Route path="/mutual" element={<MutualPageView />} />
+                <Route path="/mutual-funds" element={<MutualPageView />} />
                 <Route path="/contact" element={<ContactPageView />} />
             </Routes>
         </>
