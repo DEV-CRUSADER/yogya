@@ -30,10 +30,6 @@ function Navbar(props) {
       to: "/contact",
       label: "Contact Us",
     },
-    {
-      to: "/Chart",
-      label: "Chart",
-    },
   ];
 
   return (

@@ -1,50 +1,48 @@
 import React, { useState, useEffect } from 'react'
-import {
-  Chart as ChartJS, CategoryScale,  LinearScale,PointElement, LineElement,Title,  Tooltip, Legend,} from 'chart.js';
+import { MakeChart } from './chart';
 
-import { Line } from 'react-chartjs-2';
-
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+// APICaller
+import { APICaller } from '../scripts/server';
 
 
-const Charts = () => {
-  const [chart, setChart] = useState({})
-  var baseUrl = "";
-  var proxyUrl = "";
-  var apiKey = "";
-
-
+export function Charts() {
+  const [chartData, setChartData] = useState({})
+  const [labels, setLabels] = useState([])
+  const [dataFound, setDataFound] = useState(false)
 
   useEffect(() => {
-    const responseData = async () => {
-      await fetch( "../scripts/server",{
-        method: 'GET',
-        response: {                   
-            data:{status: true, data: {symbol: "NIFTY 50"}}
+    APICaller.FetchDefaultIndexData().then((res) => {
+      if (!res.ok) {
+        if (res.data.status) {
+          setChartData(res.data.data);
+          setLabels(res.data.data.date)
+          setDataFound(true)
+        } else {
+          console.log('Failed to fetch data from NSE')
         }
-      }).then((response) => {
-          if (response.ok) {
-            response.json().then((json) => {
-              console.log(json.data);
-              // setChart(json.data)
-            });
-          }
-        }).catch((error) => {
-          console.log(error);
-        });
-    };
-    responseData()
-  }, [])
+      } else {
+        console.log("Failed")
+      }
+    });
+  }, []);
+
+  return (
+    <>
+      Charts will be displayed here
+      <div className='container-fluid'>
+        {dataFound && (
+          <>
+            <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
+            <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
+            <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
+          </>
+        )}
+      </div>
+    </>
+  );
+
+
+
+
 
 }
-
-export default Charts;

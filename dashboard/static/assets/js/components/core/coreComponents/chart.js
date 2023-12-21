@@ -1,55 +1,121 @@
-// Chart.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
-import APICaller from "../scripts/server"; // Import the fetchData function
 
-const Showchart = () => {
-  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  useEffect(() => {
-    const responseData = async () => {
-      try {
-        const APICaller = await fetchData("../scripts/server"); // Call the fetchData function
-        console.log();
 
-        const updatedChartData = {
-          labels: APICaller.date,
-          datasets: [
-            {
-              label: 'SDM2',
-              data: APICaller.pb.SDM2,
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1,
-            },
-            // Repeat for other datasets...
-          ],
-        };
+export function MakeChart({ labels, data, chartType }) {
+  var data = {
+    labels: labels,
+    datasets: [{
+      label: chartType,
+      data: data.standard,
+      backgroundColor: [
+        'rgba(0,0,0,1)'
+      ],
+      borderColor: [
+        'rgba(0,255,0,1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'SD',
+      data: data.SD,
+      backgroundColor: [
+        'rgba(0, 0, 255, 0.2)'
+      ],
+      borderColor: [
+        'rgba(0, 0, 255, 0.2)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'SD-1',
+      data: data.SDM1,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'SD-2',
+      data: data.SDM2,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'SD+1',
+      data: data.SDP1,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'SD+2',
+      data: data.SDP2,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)'
+      ],
+      borderWidth: 1
+    }
+    ],
+    radius: 0,
+  };
 
-        setChartData(updatedChartData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    responseData();
-  }, []);
-
-  const options = {
+  var options = {
     maintainAspectRatio: false,
-    scales: {},
+    scales: {
+    },
     legend: {
       labels: {
         fontSize: 25,
       },
     },
-  };
+  }
 
   return (
     <div>
-      <Line data={chartData} height={400} options={options} />
-    </div>
-  );
-};
+      <Line
+        data={data}
+        height={1000}
+        options={options}
 
-export default Showchart;
+      />
+    </div>
+  )
+
+}
