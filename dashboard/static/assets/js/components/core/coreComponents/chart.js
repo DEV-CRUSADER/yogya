@@ -29,6 +29,7 @@ export function MakeChart({ labels, data, chartType }) {
     datasets: [{
       label: chartType,
       data: data.standard,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(0,0,0,1)'
       ],
@@ -40,6 +41,7 @@ export function MakeChart({ labels, data, chartType }) {
     {
       label: 'SD',
       data: data.SD,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(0, 0, 255, 0.2)'
       ],
@@ -51,6 +53,7 @@ export function MakeChart({ labels, data, chartType }) {
     {
       label: 'SD-1',
       data: data.SDM1,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
       ],
@@ -62,6 +65,7 @@ export function MakeChart({ labels, data, chartType }) {
     {
       label: 'SD-2',
       data: data.SDM2,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
       ],
@@ -73,6 +77,7 @@ export function MakeChart({ labels, data, chartType }) {
     {
       label: 'SD+1',
       data: data.SDP1,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
       ],
@@ -84,6 +89,7 @@ export function MakeChart({ labels, data, chartType }) {
     {
       label: 'SD+2',
       data: data.SDP2,
+      pointRadius: 0,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
       ],
