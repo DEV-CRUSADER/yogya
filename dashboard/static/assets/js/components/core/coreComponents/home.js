@@ -6,6 +6,11 @@ import { APICaller } from "../scripts/server";
 
 
 
+// For testing
+import { DummyText } from "../dummyText";
+
+
+
 export function Home() {
     TabTitle('Yogya Capital')
 
@@ -21,10 +26,10 @@ export function Home() {
 
     return (
         <>
-        
-            <h1>Home
-                
-            </h1>
+        <section className='container'>
+            <h1>Home</h1>
+            <DummyText />
+        </section>
 
         </>
     );
