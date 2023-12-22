@@ -34,7 +34,7 @@ export function MakeChart({ labels, data, chartType }) {
         'rgba(0,0,0,1)'
       ],
       borderColor: [
-        'rgba(0,255,0,1)'
+        '#7E00BD'
       ],
       borderWidth: 1
     },
@@ -60,6 +60,7 @@ export function MakeChart({ labels, data, chartType }) {
       borderColor: [
         'rgba(255, 99, 132, 1)'
       ],
+      borderDash: [10, 5],
       borderWidth: 1
     },
     {
@@ -72,6 +73,7 @@ export function MakeChart({ labels, data, chartType }) {
       borderColor: [
         'rgba(255, 99, 132, 1)'
       ],
+      borderDash: [10, 5],
       borderWidth: 1
     },
     {
@@ -84,6 +86,7 @@ export function MakeChart({ labels, data, chartType }) {
       borderColor: [
         'rgba(255, 99, 132, 1)'
       ],
+      borderDash: [10, 5],
       borderWidth: 1
     },
     {
@@ -96,6 +99,7 @@ export function MakeChart({ labels, data, chartType }) {
       borderColor: [
         'rgba(255, 99, 132, 1)'
       ],
+      borderDash: [10, 5],
       borderWidth: 1
     }
     ],
@@ -104,7 +108,14 @@ export function MakeChart({ labels, data, chartType }) {
 
   var options = {
     maintainAspectRatio: false,
+    x: {
+      ticks: {
+        maxTicksLimit: 25
+      }
+    },
     scales: {
+      x:{grid: {drawOnChartArea: false}},
+      y:{grid: {drawOnChartArea: false}},
     },
     legend: {
       labels: {
