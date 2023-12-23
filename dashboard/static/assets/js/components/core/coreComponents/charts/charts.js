@@ -29,13 +29,9 @@ export function Charts() {
 
   return (
     <>
-<<<<<<< HEAD:dashboard/static/assets/js/components/core/coreComponents/charts.js
       <div className='container-fluid p-2'>
 
       <div className="loader">
-=======
-      <div className='container-fluid'>
->>>>>>> 67a6c4658c7f257a6b74ecac390c24d3a8483e6b:dashboard/static/assets/js/components/core/coreComponents/charts/charts.js
         {dataFound && (
           <>
             <MakeChart labels={labels} data={chartData.pe} chartType="PE" />

@@ -117,7 +117,6 @@ export function MakeChart({ labels, data, chartType }) {
       x: { grid: { drawOnChartArea: false } },
       y: { grid: { drawOnChartArea: false } },
     },
-<<<<<<< HEAD:dashboard/static/assets/js/components/core/coreComponents/chart.js
     plugins: {
       legend: {
         position: 'bottom',
@@ -126,11 +125,6 @@ export function MakeChart({ labels, data, chartType }) {
           usePointStyle: true,
           pointStyle: 'circle'
         },
-=======
-    legend: {
-      labels: {
-        fontSize: 24,
->>>>>>> 67a6c4658c7f257a6b74ecac390c24d3a8483e6b:dashboard/static/assets/js/components/core/coreComponents/charts/chart.js
       },
     },
   }
