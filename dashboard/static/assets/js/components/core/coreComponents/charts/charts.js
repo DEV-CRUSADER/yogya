@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
 
 // APICaller
-import { APICaller } from '../scripts/server';
+import { APICaller } from '../../scripts/server';
 
 
 export function Charts() {
@@ -28,7 +28,6 @@ export function Charts() {
 
   return (
     <>
-      Charts will be displayed here
       <div className='container-fluid'>
         {dataFound && (
           <>
@@ -40,9 +39,4 @@ export function Charts() {
       </div>
     </>
   );
-
-
-
-
-
 }
