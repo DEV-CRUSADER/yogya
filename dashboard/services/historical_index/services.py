@@ -39,9 +39,11 @@ class HistoricalIndexServices:
 
         nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
 
+        year_list = nse_data['DATE'][::-1].apply(HistoricalIndexServices.extract_year).to_list()
+
         context = {
             "symbol": symbol,
-            "date": nse_data['DATE'][::-1].to_list(),
+            "date": year_list,
             "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'][::-1]),
             "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'][::-1]),
             "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'][::-1])
@@ -86,3 +88,8 @@ class HistoricalIndexServices:
             "standard": data.round(3).to_list()
         }
         return return_context
+
+    @staticmethod
+    def extract_year(date_string):
+        date_object = datetime.datetime.strptime(date_string, "%d %b %Y")
+        return date_object.year
