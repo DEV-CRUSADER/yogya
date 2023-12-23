@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 // Icons
-import { IconName } from "react-icons/fa";
 import { FaInstagram, FaLinkedinIn, FaFacebookF, FaPhoneAlt, FaRegEnvelope } from "react-icons/fa";
 
 import { CSS } from "../../../../../css/footer.css";
