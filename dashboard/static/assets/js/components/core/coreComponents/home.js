@@ -30,12 +30,22 @@ export function Home() {
     return (
         <>
         <div className='hero-section'>
-        <section className='container'>
-
-            <h1>Home</h1>
-            <DummyText />
-        </section>
+            <section className='container'>
+                <h1>Home</h1>
+                <DummyText />
+            </section>
         </div>
-        </>
+        <div className='hero-section-2'>
+            <section className='container'>
+                <h1>Home</h1>
+                <DummyText />
+            </section>
+        </div>
+        <div className='hero-section-3'>
+            <section className='container'>
+                <h1>Home</h1>
+            </section>
+        </div>
+    </>
     );
 }

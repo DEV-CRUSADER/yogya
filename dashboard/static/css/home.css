@@ -1,5 +1,57 @@
-.hero-section{
-    background-position: -1000px;
-    background-repeat: no-repeat;
-    background: url(../assets/svg/background.svg) ;
+.hero-section,
+.hero-section-2{
+    height: 100vh;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.hero-section::before,
+.hero-section-2::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../assets/svg/background.svg) no-repeat;
+    background-position: left -30vw top -80vh, left top;
+    background-size: cover;
+    overflow-y: hidden;
+    z-index: -1;
+}
+
+.hero-section-3{
+    background: var(--secondary-color);
+    height: 300px;
+}
+
+.hero-section-2::before{
+    transform: scaleX(-1) scaleY(-1);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .hero-section::before,
+    .hero-section-2::before{
+        background-position: left -25vw top -35vh, right top;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Write media queris for 768px */
+}
+
+@media screen and (max-width: 600px) {
+    .hero-section::before,
+    .hero-section-2::before{
+        background-position: right -50vw top -30vh, right top;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section::before,
+    .hero-section-2::before{
+        background-position: left -120vw top -30vh, left top;
+    }
+    
 }
