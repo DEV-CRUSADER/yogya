@@ -34,7 +34,7 @@ function Navbar(props) {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light bg-light"
+        className="navbar navbar-expand-lg navbar-light bg-light sticky-top"
         style={{
           background: "#000",
           boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
@@ -79,6 +79,7 @@ function Navbar(props) {
           </div>
         </div>
       </nav>
+      
     </>
   );
 }
