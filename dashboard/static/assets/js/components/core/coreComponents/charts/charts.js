@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
-import '../loader.css';
+import '../../../../../../css/loader.css';
 
 // APICaller
 import { APICaller } from '../../scripts/server';
