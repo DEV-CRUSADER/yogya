@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
+import './loader.css';
 
 // APICaller
 import { APICaller } from '../scripts/server';
@@ -28,8 +29,9 @@ export function Charts() {
 
   return (
     <>
-      Charts will be displayed here
-      <div className='container-fluid'>
+      <div className='container-fluid p-2'>
+
+      <div className="loader">
         {dataFound && (
           <>
             <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
@@ -37,6 +39,7 @@ export function Charts() {
             <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
           </>
         )}
+        </div>
       </div>
     </>
   );

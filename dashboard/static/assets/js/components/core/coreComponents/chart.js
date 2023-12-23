@@ -39,14 +39,14 @@ export function MakeChart({ labels, data, chartType }) {
       borderWidth: 1
     },
     {
-      label: 'SD',
+      label: 'Avg',
       data: data.SD,
       pointRadius: 0,
       backgroundColor: [
-        'rgba(0, 0, 255, 0.2)'
+        '#0f99ef'
       ],
       borderColor: [
-        'rgba(0, 0, 255, 0.2)'
+        '#0f99ef'
       ],
       borderWidth: 1
     },
@@ -55,10 +55,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDM1,
       pointRadius: 0,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
+        '#ff0426'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)'
+        '#ff0000'
       ],
       borderDash: [10, 5],
       borderWidth: 1
@@ -68,10 +68,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDM2,
       pointRadius: 0,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
+        '#ff0426'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)'
+        '#ff0000'
       ],
       borderDash: [10, 5],
       borderWidth: 1
@@ -81,10 +81,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDP1,
       pointRadius: 0,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
+        '#ff0426'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)'
+        '#ff0000'
       ],
       borderDash: [10, 5],
       borderWidth: 1
@@ -94,10 +94,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDP2,
       pointRadius: 0,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
+        '#ff0426'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)'
+        '#ff0000'
       ],
       borderDash: [10, 5],
       borderWidth: 1
@@ -110,16 +110,21 @@ export function MakeChart({ labels, data, chartType }) {
     maintainAspectRatio: false,
     x: {
       ticks: {
-        maxTicksLimit: 25
+        maxTicksLimit: 24
       }
     },
     scales: {
-      x:{grid: {drawOnChartArea: false}},
-      y:{grid: {drawOnChartArea: false}},
+      x: { grid: { drawOnChartArea: false } },
+      y: { grid: { drawOnChartArea: false } },
     },
-    legend: {
-      labels: {
-        fontSize: 25,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          fontSize: 25,
+          usePointStyle: true,
+          pointStyle: 'circle'
+        },
       },
     },
   }
