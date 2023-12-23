@@ -16,13 +16,8 @@ ChartJS.register(
 );
 
 
-const Charts = () => {
+export function Charts() {
   const [chart, setChart] = useState({})
-  var baseUrl = "";
-  var proxyUrl = "";
-  var apiKey = "";
-
-
 
   useEffect(() => {
     const responseData = async () => {
@@ -46,5 +41,3 @@ const Charts = () => {
   }, [])
 
 }
-
-export default Charts;
