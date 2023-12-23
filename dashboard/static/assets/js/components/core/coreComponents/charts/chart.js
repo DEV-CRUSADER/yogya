@@ -119,7 +119,7 @@ export function MakeChart({ labels, data, chartType }) {
     },
     legend: {
       labels: {
-        fontSize: 25,
+        fontSize: 24,
       },
     },
   }
