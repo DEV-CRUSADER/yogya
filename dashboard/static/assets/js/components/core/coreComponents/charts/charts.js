@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
-import '../../../../../../css/loader.css';
+import loader from '../../../../../img/loader.gif';
 
 // APICaller
 import { APICaller } from '../../scripts/server';
@@ -31,15 +31,34 @@ export function Charts() {
     <>
       <div className='container-fluid p-2'>
 
-      <div className="loader">
-        {dataFound && (
+        { }
+
+        {dataFound ? (
           <>
             <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
             <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
             <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
           </>
-        )}
-        </div>
+        ) : (
+          <div className="container"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <img
+              src={loader} alt='Loading....'
+              className='p-3' 
+              style={{
+                width: "130px",
+                height: "130px",
+              }}
+            />
+          </div>
+        )
+        }
       </div>
     </>
   );
