@@ -110,7 +110,7 @@ export function MakeChart({ labels, data, chartType }) {
     maintainAspectRatio: false,
     x: {
       ticks: {
-        maxTicksLimit: 25
+        maxTicksLimit: 24
       }
     },
     scales: {
