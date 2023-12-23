@@ -1,11 +1,13 @@
 import React from "react";
 import { TabTitle } from "../scripts/general_function";
 
+import { Charts } from "./charts";
+
 export function Resources() {
     TabTitle('Yogya Capital | Resources')
     return (
         <>
-            <h1>Resources</h1> 
+            <Charts />
         </>
     );
 }

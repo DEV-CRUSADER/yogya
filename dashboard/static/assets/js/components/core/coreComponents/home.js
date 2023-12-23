@@ -9,16 +9,6 @@ import { APICaller } from "../scripts/server";
 export function Home() {
     TabTitle('Yogya Capital')
 
-
-    const [indexData, setIndexData] = useState({});
-
-    useEffect(() => {
-        APICaller.FetchDefaultIndexData().then((res) => {
-            setIndexData(res);
-        });
-    }, []);
-
-
     return (
         <>
         
