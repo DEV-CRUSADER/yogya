@@ -9,6 +9,9 @@ import { APICaller } from "../scripts/server";
 // For testing
 import { DummyText } from "../dummyText";
 
+//importing css
+import {CSS} from "../../../../../css/home.css";
+
 
 
 export function Home() {
@@ -26,11 +29,13 @@ export function Home() {
 
     return (
         <>
+        <div className='hero-section'>
         <section className='container'>
+
             <h1>Home</h1>
             <DummyText />
         </section>
-
+        </div>
         </>
     );
 }
