@@ -6,7 +6,7 @@ import { CSS } from "../../../../../../css/home.css";
 export function Disclaimer() {
   return (
     <>
-      <div className="hero-section-4">
+      <div className="hero-section-4 m-4 p-4">
         <section className="container text-center">
           <p className="span-0 my-2 fs-1">DISCLAIMER</p>
           <p className="span-1 mb-2">

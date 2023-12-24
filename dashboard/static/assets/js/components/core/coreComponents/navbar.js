@@ -10,7 +10,7 @@ import {
 import { Colors } from "../../../../../css/color.css";
 import { Css } from "../../../../../css/navbar.css";
 
-function Navbar(props) {
+export function Navbar(props) {
   const nav_links = [
     {
       to: "/",
@@ -82,4 +82,3 @@ function Navbar(props) {
     </>
   );
 }
-export default Navbar;
