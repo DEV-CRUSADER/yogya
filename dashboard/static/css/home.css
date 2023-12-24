@@ -25,6 +25,10 @@
     height: 300px;
 }
 
+.hero-section-4{
+    color: var(--secondary-color);
+}
+
 .hero-section-2::before{
     transform: scaleX(-1) scaleY(-1);
 }
@@ -55,3 +59,4 @@
     }
     
 }
+
