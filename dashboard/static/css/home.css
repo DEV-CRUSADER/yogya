@@ -20,18 +20,39 @@
     z-index: -1;
 }
 
+.hero-section-2::before{
+    transform: scaleX(-1) scaleY(-1);
+}
+
 .hero-section-3{
     background: var(--secondary-color);
-    height: 300px;
+    height: 400px
+    
 }
+
+.hero-section-3 .main-head{
+ color: var(--white);
+ 
+}
+
+.hero-section-3 .head-text{
+color: var(--white);
+}
+
+.hero-section-3 .hero-section-3i img{
+    height: 150px;
+}
+
+.hero-section-3 .general-text{
+    color: var(--primary-text);
+}
+
+
 
 .hero-section-4{
     color: var(--secondary-color);
 }
 
-.hero-section-2::before{
-    transform: scaleX(-1) scaleY(-1);
-}
 
 
 @media screen and (max-width: 1024px) {
