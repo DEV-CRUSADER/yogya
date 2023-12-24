@@ -47,6 +47,7 @@
     "@types/node": "^20.3.1",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",
