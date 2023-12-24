@@ -30,14 +30,27 @@ export function Charts() {
   return (
     <>
       <div className='container-fluid p-2'>
-
-        { }
-
         {dataFound ? (
           <>
-            <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
-            <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
-            <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
+            <h1 className='text-center'>Nifty 50</h1>
+            <div className='border border-3 border-primary p-4 m-5 '>
+              <div className='d-flex justify-content-center m-2'>
+                <h3>Nifty 50 PE Graph</h3>
+              </div>
+              <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
+            </div>
+            <div className='border border-3 border-primary p-4 m-5 '>
+              <div className='d-flex justify-content-center m-2'>
+                <h3>Nifty 50 PB Graph</h3>
+              </div>
+              <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
+            </div>
+            <div className='border border-3 border-primary p-4 m-5 '>
+              <div className='d-flex justify-content-center m-2'>
+                <h3>Nifty 50 DivYield Graph</h3>
+              </div>
+              <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
+            </div>
           </>
         ) : (
           <div className="container"
@@ -50,7 +63,7 @@ export function Charts() {
           >
             <img
               src={loader} alt='Loading....'
-              className='p-3' 
+              className='p-3'
               style={{
                 width: "130px",
                 height: "130px",

@@ -133,9 +133,8 @@ export function MakeChart({ labels, data, chartType }) {
     <div>
       <Line
         data={data}
-        height={1000}
+        height={800}
         options={options}
-
       />
     </div>
   )

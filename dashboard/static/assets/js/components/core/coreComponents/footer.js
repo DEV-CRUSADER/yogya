@@ -51,7 +51,7 @@ export function Footer() {
               <a>
                 <FaPhoneAlt/>
                 <span  className="ps-1">
-                  +91 00000 00000
+                  +91 75674 73055
                 </span>
               </a>
             </div>
