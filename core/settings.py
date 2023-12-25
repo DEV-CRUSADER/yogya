@@ -178,7 +178,7 @@ DB_PORT = os.getenv('DB_PORT', None)
 DB_NAME = os.getenv('DB_NAME', None)
 
 DATABASES = {
-    "default": dj_database_url.parse("postgres://saurabh_user:DpE2NC297HxWjISVdu1gna9CEXAEUdxk@dpg-cm4v5aa1hbls73agc3mg-a.singapore-postgres.render.com/saurabh")
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
