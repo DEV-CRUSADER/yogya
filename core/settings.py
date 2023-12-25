@@ -3,6 +3,7 @@ import os
 import sys
 from dotenv import load_dotenv
 import logging.config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -177,14 +178,7 @@ DB_PORT = os.getenv('DB_PORT', None)
 DB_NAME = os.getenv('DB_NAME', None)
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.' + DB_ENGINE,
-        'NAME': DB_NAME,
-        'USER': DB_USERNAME,
-        'PASSWORD': DB_PASS,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
-    },
+    "default": dj_database_url.parse("postgres://saurabh_user:DpE2NC297HxWjISVdu1gna9CEXAEUdxk@dpg-cm4v5aa1hbls73agc3mg-a.singapore-postgres.render.com/saurabh")
 }
 
 # Password validation

@@ -94,7 +94,7 @@ class Clients(BaseModel):
 
 class Roles(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField()
+    name = models.CharField(max_length=100)
     description = models.CharField(max_length=200, null=True, blank=True)
     permissions = models.ManyToManyField(Permission, related_name="roles")
 
@@ -102,8 +102,8 @@ class Roles(BaseModel):
 class AuditLogs(models.Model):
     business_member = models.ForeignKey(BusinessMembers, on_delete=models.DO_NOTHING, related_query_name="audit_logs",
                                         null=False)
-    event_type = models.CharField(null=False)
-    entity_name = models.CharField(null=False)
+    event_type = models.CharField(null=False, max_length=1000)
+    entity_name = models.CharField(null=False, max_length=1000)
     entity_id = models.UUIDField(null=False)
     metadata = models.JSONField(default=dict)
     event_time = models.DateTimeField(auto_now=False, auto_now_add=True)

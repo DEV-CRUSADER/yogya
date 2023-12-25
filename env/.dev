@@ -2,6 +2,8 @@
 DEBUG=True
 #DEBUG=False
 
+DATABAE_URL = postgres://saurabh_user:DpE2NC297HxWjISVdu1gna9CEXAEUdxk@dpg-cm4v5aa1hbls73agc3mg-a.singapore-postgres.render.com/saurabh
+
 SECRET_KEY='VeryStrongKey'
 
 # Daraabase settings
