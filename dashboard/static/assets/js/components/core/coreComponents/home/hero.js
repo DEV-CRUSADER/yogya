@@ -16,7 +16,7 @@ export function Hero() {
           <h1
             className="fw-bold"
             style={{
-              fontSize: "20vh",
+              fontSize: "20svh",
               color: "var(--primary-text)",
             }}
           >
@@ -24,7 +24,7 @@ export function Hero() {
           </h1>
           <h1
             style={{
-              fontSize: "7vh",
+              fontSize: "7svh",
               color: "var(--secondary-text)",
               marginTop: "-50px",
             }}

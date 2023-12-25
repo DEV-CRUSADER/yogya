@@ -16,6 +16,7 @@ export function PersonHero() {
       name: "X",
       link: "https://x.com/Chiragjain1097?t=IKywbG_u9so3G1tZkGZdiQ&s=09",
     }
+    
   ]
 
   return (
