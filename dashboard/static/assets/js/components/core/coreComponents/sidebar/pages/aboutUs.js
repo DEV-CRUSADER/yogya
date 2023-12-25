@@ -16,10 +16,4 @@ export const OurAim = () => {
     );
 };
 
-export const OurVision = () => {
-    return (
-        <div className='home m-0'>
-            <h1>Vision</h1>
-        </div>
-    );
-};
+

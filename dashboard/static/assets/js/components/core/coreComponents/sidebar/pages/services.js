@@ -16,11 +16,4 @@ export const ServicesOne = () => {
     );
 };
 
-export const ServicesTwo = () => {
-    return (
-        <div className='services m-0'>
-            <h1>Service 2</h1>
-        </div>
-    );
-};
 

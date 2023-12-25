@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./sidebarData";
 import SubMenu from "./subMenu";
-import { IconContaxt } from "react-icons/lib";
+import pagePath from "../pagePath.js";
 
 const Nav = styled.div`
 background: #15171c;
