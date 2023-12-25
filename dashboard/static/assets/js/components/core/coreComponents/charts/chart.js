@@ -48,7 +48,7 @@ export function MakeChart({ labels, data, chartType }) {
       borderColor: [
         '#0f99ef'
       ],
-      borderWidth: 1
+      borderWidth: 2
     },
     {
       label: 'SD-1',
@@ -61,7 +61,7 @@ export function MakeChart({ labels, data, chartType }) {
         '#ff0000'
       ],
       borderDash: [10, 5],
-      borderWidth: 1
+      borderWidth: 2
     },
     {
       label: 'SD-2',
@@ -74,7 +74,7 @@ export function MakeChart({ labels, data, chartType }) {
         '#ff0000'
       ],
       borderDash: [10, 5],
-      borderWidth: 1
+      borderWidth: 2
     },
     {
       label: 'SD+1',
@@ -87,7 +87,7 @@ export function MakeChart({ labels, data, chartType }) {
         '#ff0000'
       ],
       borderDash: [10, 5],
-      borderWidth: 1
+      borderWidth: 2
     },
     {
       label: 'SD+2',
@@ -100,7 +100,7 @@ export function MakeChart({ labels, data, chartType }) {
         '#ff0000'
       ],
       borderDash: [10, 5],
-      borderWidth: 1
+      borderWidth: 2
     }
     ],
     radius: 0,

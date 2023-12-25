@@ -6,10 +6,15 @@ import loader from '../../../../../img/loader.gif';
 import { APICaller } from '../../scripts/server';
 
 
-export function Charts() {
-  const [chartData, setChartData] = useState({})
-  const [labels, setLabels] = useState([])
-  const [dataFound, setDataFound] = useState(false)
+export function Charts({
+  chartData,
+  setChartData,
+  labels,
+  setLabels,
+  dataFound,
+  setDataFound,
+  indexName,
+}) {
 
   useEffect(() => {
     APICaller.FetchDefaultIndexData().then((res) => {
@@ -32,22 +37,28 @@ export function Charts() {
       <div className='container-fluid p-2'>
         {dataFound ? (
           <>
-            <h1 className='text-center'>Nifty 50</h1>
-            <div className='border border-3 border-primary p-4 m-5 '>
+            <h1 className='text-center'>{indexName}</h1>
+            <div className='p-4 m-5 ' style={{
+              border: "3px solid var(--secondary-color)"
+            }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>Nifty 50 PE Graph</h3>
+                <h3>{indexName} PE Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
             </div>
-            <div className='border border-3 border-primary p-4 m-5 '>
+            <div className=' p-4 m-5 ' style={{
+              border: "3px solid var(--secondary-color)"
+            }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>Nifty 50 PB Graph</h3>
+                <h3>{indexName} PB Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
             </div>
-            <div className='border border-3 border-primary p-4 m-5 '>
+            <div className=' p-4 m-5 ' style={{
+              border: "3px solid var(--secondary-color)"
+            }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>Nifty 50 DivYield Graph</h3>
+                <h3>{indexName} DivYield Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
             </div>
