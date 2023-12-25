@@ -1,14 +1,14 @@
 import React from "react";
 
 import chirag from "../../../../../img/chirag.png";
-import { Proflie } from "./profile.js";
+import { Profile } from "./profile";
 
 export function PersonHero() {
   return (
     <>
     <div className="hero-section-2">
       <div>
-        <Proflie />
+        <Profile />
       </div>
       <div>
         <p>THIS IS </p>
