@@ -4,6 +4,7 @@ import { TabTitle } from "../scripts/general_function";
 import { Hero } from './home/hero';
 import { Disclaimer } from './home/disclaimer';
 import { WhyUs } from './home/whyus';
+import { PersonHero } from './home/personHero';
 
 
 //importing css
@@ -17,6 +18,7 @@ export function Home() {
     return (
         <>
             <Hero />
+            <PersonHero />
             <WhyUs/>
             <Disclaimer />
 

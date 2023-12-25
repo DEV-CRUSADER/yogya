@@ -4,11 +4,13 @@
     border: 2px solid red !important;
 }
 
+.hero-section{
+    height: 70svh;
 
+}
 
 .hero-section,
 .hero-section-2 {
-    height: 100vh;
     overflow-y: hidden;
     position: relative;
 }
