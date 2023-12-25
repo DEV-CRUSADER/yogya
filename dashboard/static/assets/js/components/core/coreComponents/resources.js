@@ -1,6 +1,8 @@
 import React , { useState }from "react";
 import { TabTitle } from "../scripts/general_function";
 import { Charts } from "./charts/charts";
+import { Sidebar } from "./sidebar/sidebar";
+
 
 export function Resources() {
     TabTitle('Yogya Capital | Resources')
@@ -10,17 +12,18 @@ export function Resources() {
     const [indexName, setIndexName] = useState("Nifty 50")
 
     return (
-        <>
+        <div className="d-flex">
+            <Sidebar />
             <Charts 
-            chartData={chartData}
-            setChartData={setChartData}
-            labels={labels}
-            setLabels={setLabels}
-            dataFound={dataFound}
-            setDataFound={setDataFound}
-            indexName={indexName}
-            setIndexName={setIndexName}
+                chartData={chartData}
+                setChartData={setChartData}
+                labels={labels}
+                setLabels={setLabels}
+                dataFound={dataFound}
+                setDataFound={setDataFound}
+                indexName={indexName}
+                setIndexName={setIndexName}
             />
-        </>
+        </div>
     );
 }
