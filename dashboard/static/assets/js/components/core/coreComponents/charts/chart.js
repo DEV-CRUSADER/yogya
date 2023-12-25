@@ -43,10 +43,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SD,
       pointRadius: 0,
       backgroundColor: [
-        '#0f99ef'
+        'red'
       ],
       borderColor: [
-        '#0f99ef'
+        'red'
       ],
       borderWidth: 2
     },
@@ -55,10 +55,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDM1,
       pointRadius: 0,
       backgroundColor: [
-        '#ff0426'
+        '#3a1772'
       ],
       borderColor: [
-        '#ff0000'
+        '#3a1772'
       ],
       borderDash: [10, 5],
       borderWidth: 2
@@ -68,10 +68,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDM2,
       pointRadius: 0,
       backgroundColor: [
-        '#ff0426'
+        '#907AD6'
       ],
       borderColor: [
-        '#ff0000'
+        '#907AD6'
       ],
       borderDash: [10, 5],
       borderWidth: 2
@@ -81,10 +81,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDP1,
       pointRadius: 0,
       backgroundColor: [
-        '#ff0426'
+        '#DE0D92'
       ],
       borderColor: [
-        '#ff0000'
+        '#DE0D92'
       ],
       borderDash: [10, 5],
       borderWidth: 2
@@ -94,10 +94,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDP2,
       pointRadius: 0,
       backgroundColor: [
-        '#ff0426'
+        '#493B2A'
       ],
       borderColor: [
-        '#ff0000'
+        '#493B2A'
       ],
       borderDash: [10, 5],
       borderWidth: 2

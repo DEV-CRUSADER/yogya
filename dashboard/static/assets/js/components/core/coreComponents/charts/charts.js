@@ -37,12 +37,14 @@ export function Charts({
       <div className='container-fluid p-2'>
         {dataFound ? (
           <>
-            <h1 className='text-center'>{indexName}</h1>
+            <h1 className='text-center mt-3 fw-bold fs-1'>{indexName}</h1>
             <div className='p-4 m-5 ' style={{
               border: "3px solid var(--secondary-color)"
             }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>{indexName} PE Graph</h3>
+                <h3 style={{
+                fontSize: "1rem"
+              }}>{indexName} PE Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
             </div>
@@ -50,7 +52,9 @@ export function Charts({
               border: "3px solid var(--secondary-color)"
             }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>{indexName} PB Graph</h3>
+                <h3 style={{
+                fontSize: "1rem"
+              }}>{indexName} PB Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
             </div>
@@ -58,7 +62,9 @@ export function Charts({
               border: "3px solid var(--secondary-color)"
             }}>
               <div className='d-flex justify-content-center m-2'>
-                <h3>{indexName} DivYield Graph</h3>
+                <h3 style={{
+                fontSize: "1rem"
+              }}>{indexName} DivYield Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
             </div>
