@@ -25,16 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "*.127.0.0.1",
-    "dashboard.localhost",
-    "http://127.0.0.1",
-    "http://localhost",
-    "http://*.127.0.0.1",
-    "http://*.localhost"
-]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
@@ -47,6 +38,9 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.localhost"
     "http://dashboard.localhost",
     "https://dashboard.localhost",
+    "yogyacapital.onrender.com",
+    "https://yogyacapital.onrender.com",
+    "http://yogyacapital.onrender.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
