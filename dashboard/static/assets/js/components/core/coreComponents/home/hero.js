@@ -1,14 +1,12 @@
 import React from "react";
 
-import { DummyText } from "../../dummyText";
-
 //importing css
 import { CSS } from "../../../../../../css/home.css";
 
 export function Hero() {
   return (
     <>
-      <div className="hero-section d-flex justify-content-around align-items-center ">
+      <div className="hero-section d-flex justify-content-around align-items-center">
         <div
           className="text-center  "
           style={{
@@ -18,7 +16,7 @@ export function Hero() {
           <h1
             className="fw-bold"
             style={{
-              fontSize: "135px",
+              fontSize: "20vh",
               color: "var(--primary-text)",
             }}
           >
@@ -26,7 +24,7 @@ export function Hero() {
           </h1>
           <h1
             style={{
-              fontSize: "70px",
+              fontSize: "7vh",
               color: "var(--secondary-text)",
               marginTop: "-50px",
             }}
