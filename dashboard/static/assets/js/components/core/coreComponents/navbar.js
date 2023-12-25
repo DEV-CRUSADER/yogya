@@ -5,8 +5,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import responseData from './charts';
-import Showchart from './chart';
+
 
 //importing css
 import { Colors } from "../../../../../css/color.css";
@@ -30,16 +29,12 @@ function Navbar(props) {
       to: "/contact",
       label: "Contact Us",
     },
-    {
-      to: "/Chart",
-      label: "Chart",
-    },
   ];
 
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light bg-light"
+        className="navbar navbar-expand-lg navbar-light bg-light sticky-top"
         style={{
           background: "#000",
           boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
@@ -84,6 +79,7 @@ function Navbar(props) {
           </div>
         </div>
       </nav>
+      
     </>
   );
 }
