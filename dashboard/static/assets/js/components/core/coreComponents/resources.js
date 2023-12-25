@@ -11,20 +11,18 @@ export function Resources() {
     const [indexName, setIndexName] = useState("Nifty 50")
 
     return (
-        <>
-
+        <div className="d-flex">
             <Sidebar />
-
             <Charts 
-            chartData={chartData}
-            setChartData={setChartData}
-            labels={labels}
-            setLabels={setLabels}
-            dataFound={dataFound}
-            setDataFound={setDataFound}
-            indexName={indexName}
-            setIndexName={setIndexName}
+                chartData={chartData}
+                setChartData={setChartData}
+                labels={labels}
+                setLabels={setLabels}
+                dataFound={dataFound}
+                setDataFound={setDataFound}
+                indexName={indexName}
+                setIndexName={setIndexName}
             />
-        </>
+        </div>
     );
 }
