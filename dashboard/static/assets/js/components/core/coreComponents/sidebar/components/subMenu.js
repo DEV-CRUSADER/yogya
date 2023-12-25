@@ -20,7 +20,7 @@ font-size: 18px;
 }
 `;
 
-const SidebaeLabel = styled.span`
+const SidebarLabel = styled.span`
 margin-left: 16px;
 `;
 
@@ -66,7 +66,7 @@ const SubMenu = ({ item }) => {
                     return (
                         <DropdownLink to={item.path} key={index}>
                             {item.icon}
-                            <SidebaeLabel>{item.title}</SidebaeLabel>
+                            <SidebarLabel>{item.title}</SidebarLabel>
                         </DropdownLink>
                     );
                 })}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Style } from "styled-components";
+import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { sidebarData } from "./sidebarData";
-import subMenu from "./subMenu";
+import { SidebarData } from "./sidebarData";
+import SubMenu from "./subMenu";
 import { IconContaxt } from "react-icons/lib";
 
 const Nav = styled.div`
