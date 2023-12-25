@@ -34,16 +34,17 @@ export function Charts({
 
   return (
     <>
-      <div className='container-fluid p-2'
+      <div className='container-fluid p-2 '
         style={{
-          overflow: "scroll",
+          overflow: "scroll"
         }}
       >
         {dataFound ? (
           <>
             <h1 className='text-center mt-3 fw-bold fs-1'>{indexName}</h1>
             <div className='p-4 m-5 ' style={{
-              border: "3px solid var(--secondary-color)"
+              border: "3px solid var(--secondary-color)",
+              // overflow: "scroll"
             }}>
               <div className='d-flex justify-content-center m-2'>
                 <h3 style={{
