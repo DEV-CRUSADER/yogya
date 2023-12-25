@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 // Icons
-import { IconName } from "react-icons/fa";
 import { FaInstagram, FaLinkedinIn, FaFacebookF, FaPhoneAlt, FaRegEnvelope } from "react-icons/fa";
 
 import { CSS } from "../../../../../css/footer.css";
@@ -52,7 +51,7 @@ export function Footer() {
               <a>
                 <FaPhoneAlt/>
                 <span  className="ps-1">
-                  +91 00000 00000
+                  +91 75674 73055
                 </span>
               </a>
             </div>
