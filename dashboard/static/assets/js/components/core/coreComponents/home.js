@@ -14,16 +14,6 @@ import { DummyText } from "../dummyText";
 export function Home() {
     TabTitle('Yogya Capital')
 
-
-    const [indexData, setIndexData] = useState({});
-
-    useEffect(() => {
-        APICaller.FetchDefaultIndexData().then((res) => {
-            setIndexData(res);
-        });
-    }, []);
-
-
     return (
         <>
         <section className='container'>
