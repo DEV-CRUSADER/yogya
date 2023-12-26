@@ -1,11 +1,9 @@
 import logging
 import pandas as pd
-import datetime, time
-import os, sys
+import datetime
+import os
 import requests
 import json
-import random
-import re
 import urllib.parse
 
 log = logging.getLogger(__name__)
@@ -89,16 +87,48 @@ class nsepythonserver():
         payload = pd.DataFrame(payload["data"])
         return payload["indexName"].tolist()
     
+    # @staticmethod
+    # def index_pe_pb_div(symbol,start_date,end_date):
+    #     log.info("index_pe_pb_div called from custom nsepythonserver")
+
+    #     data = "{'name':'"+symbol+"','startDate':'"+start_date+"','endDate':'"+end_date+"'}"
+    #     payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', 
+    #                             headers=nsepythonserver.niftyindices_headers,  
+    #                             data=data
+    #                         )
+        
+    #     payload = json.loads(payload.text)
+    #     return payload
+
     @staticmethod
-    def index_pe_pb_div(symbol,start_date,end_date):
+    def index_pe_pb_div(symbol, start_date, end_date):
         log.info("index_pe_pb_div called from custom nsepythonserver")
 
         data = "{'name':'"+symbol+"','startDate':'"+start_date+"','endDate':'"+end_date+"'}"
-        payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', 
-                                headers=nsepythonserver.niftyindices_headers,  
-                                data=data
-                            ).json()
-        
-        payload = json.loads(payload["d"])
-        payload=pd.DataFrame.from_records(payload)
-        return payload
+        try:
+            response = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString',
+                                    headers=nsepythonserver.niftyindices_headers,
+                                    data=data
+                                    )
+
+            # Check if the response is successful (status code 200)
+            response.raise_for_status()
+
+            # Try to parse the response as JSON
+            payload = json.loads(response.text)
+
+            # Now you can work with the JSON payload
+            # payload = json.loads(payload["d"])
+            # payload = pd.DataFrame.from_records(payload)
+            return payload
+
+        except requests.exceptions.HTTPError as errh:
+            log.error(f"HTTP Error: {errh}")
+        except requests.exceptions.ConnectionError as errc:
+            log.error(f"Error Connecting: {errc}")
+        except requests.exceptions.Timeout as errt:
+            log.error(f"Timeout Error: {errt}")
+        except requests.exceptions.RequestException as err:
+            log.error(f"Request Exception: {err}")
+
+        return None  # Return something indicating an error occurred
