@@ -1,4 +1,5 @@
 import logging
+import json
 
 from rest_framework import status
 
@@ -23,8 +24,13 @@ class HistoricalIndexAPIView:
         log.info(f"get_index_data called : {request.data}")
 
         if request.data == {}:
-            nse_data = HistoricalIndexServices.get_historical_nse_index(data=None)
-            return Response({"sucess": True, "data": nse_data}, status=status.HTTP_200_OK)
+            try:
+                nse_data = HistoricalIndexServices.get_historical_nse_index(data=None)
+                return Response({"success": True, "data": nse_data}, status=status.HTTP_200_OK)
+            except json.decoder.JSONDecodeError:
+                log.exception(f"Failed: Exception {json.decoder.JSONDecodeError}")
+                return Response({"success": False, "error": "Empty response from the external API"},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             serializer = HistoricalIndexFormSerializer(data=request.data)
 
@@ -42,3 +48,4 @@ class HistoricalIndexAPIView:
 
             else:
                 return Response({"sucess": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            

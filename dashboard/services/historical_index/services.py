@@ -29,7 +29,7 @@ class HistoricalIndexServices:
         end_date = end_date.strftime("%d-%b-%Y")
 
         if data is None:
-            symbol = "NIFTY 50"
+            symbol = "Nifty Div Opps 50"
             start_date = "1-Jan-1990"
             end_date = end_date
         else:
@@ -37,7 +37,14 @@ class HistoricalIndexServices:
             start_date = data["start_date"]
             end_date = data["end_date"]
 
-        nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
+        try:
+            nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
+        except Exception as e:
+            log.exception(f"Failed: Exception {e}")
+            return {
+                "status": False,
+                "data": "Error while retrieving data from the external API"
+            }
 
         year_list = nse_data['DATE'][::-1].apply(HistoricalIndexServices.extract_year).to_list()
 
@@ -66,7 +73,7 @@ class HistoricalIndexServices:
     @staticmethod
     def get_json_for_historical_index(data):
 
-        data = data.replace('-', 0).astype(float)
+        data = data.replace('-', 0).replace('', 0).astype(float)
 
         population_devation = statistics.pstdev(data)
         mean = statistics.mean(data)
