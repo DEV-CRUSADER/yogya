@@ -1,4 +1,5 @@
 import React from "react";
+import { AutoSizer } from "rsuite/esm/Windowing";
 
 const socialIcons = {
   LinkedIn: "fa-brands fa-linkedin",
@@ -11,17 +12,17 @@ const socialIcons = {
 
 export function Profile({ image, name, description, socials, direction }) {
   return (
-    <div className={`d-flex ${direction == "left" ? "flex-row-reverse" : ""} mt-5`}>
-      <div>
-        <img src={image} alt="Description of the Image" />
+    <div className={`d-flex ${direction == "left" ? "flex-row-reverse" : ""} mt-5 social-p`}>
+      <div className="image mx-5">
+        <img className="img-fluid mx-5" src={image} alt="Description of the Image"/>
       </div>
-      <div className="d-flex flex-column justify-content-center align-items-center p-3 ">
-        <div className="w-75 p-4">
+      <div className="d-flex flex-column justify-content-center align-items-center p-3 ms-5 ">
+        <div className="description w-75 p-3 m-5">
           <h1>
-            <span style={{ color: "var(--main-color)" }}>This is </span>
+            <span style={{ color: "var(--secondary-text)" }}>This is </span>
             <span style={{ color: "var(--white)" }}>{name}</span>
           </h1>
-          <p className="fs-6" style={{ color: "var(--main-color)" }}>{description}</p>
+          <p className="fs-6 " style={{ color: "var(--black)" }}>{description}</p>
           <div>
             {socials.map((social) => {
               return (

@@ -6,8 +6,10 @@ import { CSS } from "../../../../../../css/home.css";
 export function Hero() {
   return (
     <>
-      <div className="hero-section d-flex justify-content-around align-items-center">
+      <div className="hero-section d-flex justify-content-around align-items-center flex-column flex-sm-column 
+          flex-md-column flex-lg-row flex-xl-row">
         <div
+        id="hero-text"
           className="text-center  "
           style={{
             width: "100%",
@@ -16,7 +18,6 @@ export function Hero() {
           <h1
             className="fw-bold"
             style={{
-              fontSize: "20svh",
               color: "var(--primary-text)",
             }}
           >
@@ -26,13 +27,13 @@ export function Hero() {
             style={{
               fontSize: "7svh",
               color: "var(--secondary-text)",
-              marginTop: "-50px",
+              marginTop: "-45px",
             }}
           >
             CAPITAL
           </h1>
         </div>
-        <div className="p-5 ms-5">
+        <div className="hero-vision p-5 ms-5">
           <h1
             className="fs-1"
             style={{

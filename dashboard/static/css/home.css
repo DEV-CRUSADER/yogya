@@ -6,7 +6,7 @@
 
 .hero-section,
 .hero-section-2 {
-    height: 650px;
+    height: 575px;
     overflow-y: hidden;
     position: relative;
 }
@@ -78,9 +78,17 @@
     color: var(--secondary-color);
 }
 
-
+@media screen and (max-width: 2000px){
+    .fw-bold{
+        font-size: 10rem;
+    }
+}
 
 @media screen and (max-width: 1024px) {
+
+    .fw-bold{
+        font-size: 8rem;
+    }
 
     .hero-section::before,
     .hero-section-2::before {
@@ -89,6 +97,9 @@
 }
 
 @media screen and (max-width: 768px) {
+    .fw-bold{
+        font-size: 7rem;
+    }
     /* Write media queris for 768px */
 }
 
@@ -96,15 +107,40 @@
 
     .hero-section::before,
     .hero-section-2::before {
-        background-position: right -50vw top -30vh, right top;
+        background-position: right -1vw top -30vh, right top;
     }
 }
 
 @media screen and (max-width: 480px) {
+    .hero-vision {
+        padding-top: -80px;
+    }
+    .social-p{
+    flex-direction: column;
+    }
+    .image, .img-fulid{
+        padding-right: 80px;
+    }
+    .description{
+        padding: 150px;
+        
+    }
+    .hero-section-2{
+        height: 700px;
+    }
 
     .hero-section::before,
     .hero-section-2::before {
-        background-position: left -120vw top -30vh, left top;
+        background-position: left -20vw top -25vh, left top;
     }
 
+}
+
+@media screen and (max-width: 360px) {
+    .hero-vision {
+        padding-top: -60px;
+    }
+    .fw-bold{
+        font-size: 5rem;
+    }
 }
