@@ -1,10 +1,14 @@
 import logging
 import pandas as pd
 import statistics
-import nsepythonserver as nse
+# import nsepythonserver as nse
 import datetime
 
+import logging
+
 from dashboard.services.historical_index.serializers import StockDataResponseSerializer
+
+from dashboard.services.historical_index.nseserver import nsepythonserver as nse
 
 log = logging.getLogger(__name__)
 
