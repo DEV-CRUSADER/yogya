@@ -16,7 +16,7 @@ export function Hero() {
           }}
         >
           <h1
-            className="fw-bold"
+            className="fw-bold hero-header"
             style={{
               color: "var(--primary-text)",
             }}
@@ -25,7 +25,6 @@ export function Hero() {
           </h1>
           <h1
             style={{
-              fontSize: "7svh",
               color: "var(--secondary-text)",
               marginTop: "-45px",
             }}
@@ -33,22 +32,21 @@ export function Hero() {
             CAPITAL
           </h1>
         </div>
-        <div className="hero-vision p-5 ms-5">
-          <h1
-            className="fs-1"
+        <div className="p-5 ms-5">
+          <span
+            className="fw-bold display-6"
             style={{
-              color: "var(--secondary-color)",
+              color: "var(--main-color)",
             }}
           >
             Our Vision
-          </h1>
+          </span>
           <p
             className="fs-5 p-3 "
             style={{
               textAlign: "justify",
               marginTop: "-20px",
-              color: "var(--black)",
-              opacity: "0.7",
+              color: "var(--white)",
             }}
           >
             In Yogya capital you are the first priority for us and we are here

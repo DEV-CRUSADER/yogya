@@ -5,9 +5,13 @@
 }
 
 .hero-section {
-    height: 575px;
+    height: 650px;
     overflow-y: hidden;
     position: relative;
+}
+
+.hero-header{
+    font-size: 10rem;
 }
 
 .hero-section::before {
@@ -17,8 +21,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(../assets/svg/background.svg) no-repeat;
-    background-position: left -30vw top -80vh, left top;
+    background: var(--secondary-color);
     background-size: cover;
     overflow-y: hidden;
     z-index: -1;
@@ -33,7 +36,7 @@
     width: 100%;
     height: 80%;
     background: var(--secondary-color);
-    background-position: left -30vw top -80vh, left top;
+    background-position: left -30vw top -100vw, left top;
     background-size: cover;
     overflow-y: hidden;
     z-index: -2;
@@ -47,8 +50,6 @@
     width: 100%;
     height: 50%;
     background: url(../assets/svg/footer.svg) no-repeat center center/cover;
-    /* background-position: left -30vw top -80vh, left top; */
-    /* background: red; */
     background-size: cover;
     overflow-y: hidden;
     z-index: -1;
@@ -76,36 +77,26 @@
     color: var(--secondary-color);
 }
 
-@media screen and (max-width: 2000px){
-    .fw-bold{
-        font-size: 10rem;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-
-    .fw-bold{
-        font-size: 8rem;
-    }
-
+@media screen and (max-width: 1645px) {
     .hero-section::before,
     .hero-section-2::before {
-        background-position: left -25vw top -35vh, right top;
+        background-position: left -30vw top -900px, left top;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .fw-bold{
-        font-size: 7rem;
+
+
+@media screen and (max-width: 1024px) {
+    .hero-section::before,
+    .hero-section-2::before {
+        background: var(--secondary-color);
+        background-position: left 0 top 0, right top;
     }
-    /* Write media queris for 768px */
 }
 
 @media screen and (max-width: 600px) {
-
-    .hero-section::before
-     {
-        background-position: right -1vw top -30vh, right top;
+    .hero-header{
+        font-size: 5.5rem;
     }
 }
 
@@ -113,32 +104,11 @@
     .hero-vision {
         padding-top: -80px;
     }
-    .social-p{
-    flex-direction: column;
-    }
-    .image, .img-fulid{
-        padding-right: 80px;
-    }
-    .description{
-        padding: 150px;
-        
-    }
-    .hero-section-2{
-        height: 700px;
-    }
-
-    .hero-section::before
-    {
-        background-position: left -20vw top -25vh, left top;
-    }
 
 }
 
 @media screen and (max-width: 360px) {
     .hero-vision {
         padding-top: -60px;
-    }
-    .fw-bold{
-        font-size: 5rem;
     }
 }
