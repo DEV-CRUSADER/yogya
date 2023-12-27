@@ -3,9 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
     {% include 'includes/head.html' %}
-
   </head>
   <body>
     <div id="root"></div>
@@ -13,8 +18,8 @@
     {% include 'includes/script.html' %}
 
     <script
-    src="{% static 'assets/js/dist/bundle.js' %}"
-    type="module"
+      src="{% static 'assets/js/dist/bundle.js' %}"
+      type="module"
     ></script>
   </body>
 </html>

@@ -20,7 +20,7 @@ export function Footer() {
         }}
       >
         <div className="d-flex justify-content-center">
-          <Link className="m-2"><FaInstagram className="fs-4 p-2 rounded-circle" 
+          <Link className="m-2"><FaInstagram className="fs-4 p-2 rounded-circle hover-effect" 
             style={{
               background: "var(--main-color)",
               width: "35px",
@@ -28,14 +28,14 @@ export function Footer() {
               fill: "var(--secondary-color)",
             }}
           /></Link>
-          <Link className="m-2"><FaLinkedinIn className="fs-4 p-2 rounded-circle" 
+          <Link className="m-2"><FaLinkedinIn className="fs-4 p-2 rounded-circle  hover-effect" 
             style={{
               background: "var(--main-color)",
               width: "35px",
               height: "35px",
               fill: "var(--secondary-color)",
             }}/></Link>
-          <Link className="m-2"><FaFacebookF className="fs-4 p-2 rounded-circle" 
+          <Link className="m-2"><FaFacebookF className="fs-4 p-2 rounded-circle  hover-effect" 
             style={{
               background: "var(--main-color)",
               width: "35px",

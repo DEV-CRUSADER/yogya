@@ -11,7 +11,7 @@ import {
 import { Colors } from "../../../../../css/color.css";
 import { Css } from "../../../../../css/navbar.css";
 
-function Navbar(props) {
+export function Navbar(props) {
   const nav_links = [
     {
       to: "/",
@@ -21,10 +21,10 @@ function Navbar(props) {
       to: "/resources",
       label: "Resources",
     },
-    {
-      to: "/mutual-funds",
-      label: "Mutual Funds",
-    },
+    // {
+    //   to: "/mutual-funds",
+    //   label: "Mutual Funds",
+    // },
     {
       to: "/contact",
       label: "Contact Us",
@@ -41,9 +41,9 @@ function Navbar(props) {
         }}
       >
         <div className="container-fluid p-2 px-4">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand "  to="/" style={{fontWeight:"bold" ,fontFamily: "Lora"} }>
             {" "}
-            Yogya{" "}
+            Yogya Capital{" "}
           </Link>
           <button
             className="navbar-toggler"
@@ -56,7 +56,7 @@ function Navbar(props) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse " id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {nav_links.map((link) => (
                 <Link key={link.to} className="nav-link" to={link.to}>
@@ -64,7 +64,7 @@ function Navbar(props) {
                 </Link>
               ))}
             </ul>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+            {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-but px-1">
                 <Link className=" btn btn-self" to="#">
                   Sign up
@@ -75,11 +75,10 @@ function Navbar(props) {
                   login
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </nav>
     </>
   );
 }
-export default Navbar;
