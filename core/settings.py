@@ -38,7 +38,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.localhost"
     "http://dashboard.localhost",
     "https://dashboard.localhost",
-    "yogyacapital.onrender.com",
     "https://yogyacapital.onrender.com",
     "http://yogyacapital.onrender.com",
 ]
