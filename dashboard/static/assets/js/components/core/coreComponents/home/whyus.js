@@ -28,7 +28,7 @@ export function WhyUs() {
             width: "75%",
           }}
         >
-          <ServiceCard image={selling} head="Skin in the game"
+          <ServiceCard image={selling} head="No misselling"
             detail="We only suggest products which fulfills your goals." />
           <ServiceCard image={theGame} head="Skin in the game"
             detail="We suggest products where we ourselves would invest own money along
@@ -49,7 +49,7 @@ export function ServiceCard({ image, head, detail }) {
           height: "150px"
         }}
       />
-      <h2 className="head-text  ">{head}</h2>
+      <h2 className="head-text mt-2">{head}</h2>
       <p className="general-text"
         style={{
           width: "300px",

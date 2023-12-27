@@ -21,10 +21,10 @@ export function Navbar(props) {
       to: "/resources",
       label: "Resources",
     },
-    {
-      to: "/mutual-funds",
-      label: "Mutual Funds",
-    },
+    // {
+    //   to: "/mutual-funds",
+    //   label: "Mutual Funds",
+    // },
     {
       to: "/contact",
       label: "Contact Us",

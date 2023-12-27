@@ -34,11 +34,8 @@ export function Profile({ image, name, description, socials, direction }) {
                   target="_blank"
                   key={social.id}
                   className="fs-3 m-2"
-                  style={{
-                    color: "var(--secondary-color)",
-                  }}
                 >
-                  <i className={socialIcons[social.name]}></i>
+                  <i className={`${socialIcons[social.name]} hover-effect`}></i>
                 </a>
               );
             })}

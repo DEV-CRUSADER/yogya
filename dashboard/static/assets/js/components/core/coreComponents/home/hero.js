@@ -24,10 +24,7 @@ export function Hero() {
             YOGYA
           </h1>
           <h1
-            style={{
-              color: "var(--secondary-text)",
-              marginTop: "-45px",
-            }}
+            id="capital-text"
           >
             CAPITAL
           </h1>
