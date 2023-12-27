@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
 import loader from '../../../../../img/loader.gif';
+import Footer from '../footer';
 
 // APICaller
 import { APICaller } from '../../scripts/server';
+
 
 
 export function Charts({
@@ -97,6 +99,9 @@ export function Charts({
         )
         }
       </div>
+
+{/* Footer Component*/}
+
     </>
   );
 }

@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { data } from "./const"
 import { SideBar } from "../../../../../../css/core/sideBar.css";
 
 
 export function Sidebar() {
 
-  const [values, setValues] = useState([])
-  useEffect(() => {
-    fetch("https://iislliveblob.niftyindices.com/assets/json/IndexMapping.json?{}&_=1702015000223").then((data) => data.json()).then((val) => setValues(val))
-    // method:"GET",
-  }, [])
-  console.log(values)
 
   return (
     <div id="wrapper">
@@ -29,13 +24,11 @@ export function Sidebar() {
           style={{
             marginTop: "3%",
           }}
-        >{
-            values.map((Trading_Index_Name, Index_long_name) => <option key={Index_long_name}>{Trading_Index_Name.name}</option>)
-          }
-          {/* <option value="" disabled>Select...</option>
-          {indexOptions.map(option => (
-            <option key={option.value} value={option.value}>{option.label}</option>
-          ))} */}
+        >
+          {data.map((symbol, index) =>(
+            <option key={index} value={symbol.Trading_Index_Name}>{symbol.Trading_Index_Name}</option>
+          ))}
+          
         </select>
       </div>
       {/* <!-- Page Content --> */}
