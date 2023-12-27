@@ -3,7 +3,7 @@ import { TabTitle } from "../scripts/general_function";
 import { Charts } from "./charts/charts";
 
 export function Resources() {
-    TabTitle('Yogya Capital | Resources')
+    TabTitle('YC| Equity Charts')
     const [chartData, setChartData] = useState({})
     const [labels, setLabels] = useState([])
     const [dataFound, setDataFound] = useState(false)
