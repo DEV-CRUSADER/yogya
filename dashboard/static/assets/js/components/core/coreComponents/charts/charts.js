@@ -36,7 +36,9 @@ export function Charts({
     <>
       <div className='container-fluid p-2 '
         style={{
-          overflow: "scroll"
+          overflow: "scroll",
+          overflowX: "hidden",
+          height: "100vh",
         }}
       >
         {dataFound ? (
