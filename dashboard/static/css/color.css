@@ -10,8 +10,6 @@
   /* Shadows */
   --line-color: rgba(61, 113, 134, 0);
 
-}
-
-:root{
-    --btn-primary:#22577a;
+  /* buttons */
+  --btn-primary:#22577a;
 }

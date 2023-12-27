@@ -7,7 +7,7 @@ import {
   MutualPageView,
   ContactPageView,
 } from "../components/core/App";
-import Navbar from "../components/core/coreComponents/navbar";
+import { Navbar } from "../components/core/coreComponents/navbar";
 import { Footer } from "../components/core/coreComponents/footer";
 
 export function CoreApp() {

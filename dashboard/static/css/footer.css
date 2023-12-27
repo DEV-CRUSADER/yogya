@@ -7,3 +7,9 @@
   align-items: end ;
   background: url(../assets/svg/footer.svg) no-repeat center center/cover;
 }
+
+
+.hover-effect:hover {
+  transform: scale(1.1);
+  transition: all 100ms ease-in;
+}
