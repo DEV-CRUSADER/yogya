@@ -25,23 +25,6 @@ class nsepythonserver():
         'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
     }
 
-    niftyindices_headers = {
-        'Connection': 'keep-alive',
-        'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'DNT': '1',
-        'X-Requested-With': 'XMLHttpRequest',
-        'sec-ch-ua-mobile': '?0',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Origin': 'https://niftyindices.com',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Dest': 'empty',
-        'Referer': 'https://niftyindices.com/reports/historical-data',
-        'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
-    }
-
     #Curl headers
     curl_headers = ''' -H "authority: beta.nseindia.com" -H "cache-control: max-age=0" -H "dnt: 1" -H "upgrade-insecure-requests: 1" -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36" -H "sec-fetch-user: ?1" -H "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "sec-fetch-site: none" -H "sec-fetch-mode: navigate" -H "accept-encoding: gzip, deflate, br" -H "accept-language: en-US,en;q=0.9,hi;q=0.8" --compressed'''
 
@@ -87,48 +70,50 @@ class nsepythonserver():
         payload = pd.DataFrame(payload["data"])
         return payload["indexName"].tolist()
     
-    # @staticmethod
-    # def index_pe_pb_div(symbol,start_date,end_date):
-    #     log.info("index_pe_pb_div called from custom nsepythonserver")
-
-    #     data = "{'name':'"+symbol+"','startDate':'"+start_date+"','endDate':'"+end_date+"'}"
-    #     payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', 
-    #                             headers=nsepythonserver.niftyindices_headers,  
-    #                             data=data
-    #                         )
-        
-    #     payload = json.loads(payload.text)
-    #     return payload
-
     @staticmethod
-    def index_pe_pb_div(symbol, start_date, end_date):
+    def index_pe_pb_div(symbol,start_date,end_date):
         log.info("index_pe_pb_div called from custom nsepythonserver")
 
         data = "{'name':'"+symbol+"','startDate':'"+start_date+"','endDate':'"+end_date+"'}"
-        try:
-            response = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString',
-                                    headers=nsepythonserver.niftyindices_headers,
-                                    data=data
-                                    )
+        payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', 
+                                headers=nsepythonserver.get_neifty_indices_headers(),
+                                data=data
+                            )
+        
+        payload = json.loads(payload.text)
+        return payload
+    
 
-            # Check if the response is successful (status code 200)
-            response.raise_for_status()
+    @staticmethod
+    def get_neifty_indices_headers():
 
-            # Try to parse the response as JSON
-            payload = json.loads(response.text)
+        log.info("get_neifty_indices_headers called from custom nsepythonserver")
 
-            # Now you can work with the JSON payload
-            # payload = json.loads(payload["d"])
-            # payload = pd.DataFrame.from_records(payload)
-            return payload
+        niftyindices_headers = {
+            'Connection': 'keep-alive',
+            'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'DNT': '1',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sec-ch-ua-mobile': '?0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Origin': 'https://niftyindices.com',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': 'https://niftyindices.com/reports/historical-data',
+            'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
+        }
 
-        except requests.exceptions.HTTPError as errh:
-            log.error(f"HTTP Error: {errh}")
-        except requests.exceptions.ConnectionError as errc:
-            log.error(f"Error Connecting: {errc}")
-        except requests.exceptions.Timeout as errt:
-            log.error(f"Timeout Error: {errt}")
-        except requests.exceptions.RequestException as err:
-            log.error(f"Request Exception: {err}")
+        
+        session = requests.Session()
 
-        return None  # Return something indicating an error occurred
+        cookie_url = "https://www.niftyindices.com/reports/historical-data"
+        cookies_response = session.get(cookie_url, headers=niftyindices_headers)
+
+        session.cookies.update(cookies_response.cookies)
+
+        niftyindices_headers['Cookie'] = f"ak_bmsc={session.cookies.get_dict().get('ak_bmsc')}"
+        
+        return niftyindices_headers

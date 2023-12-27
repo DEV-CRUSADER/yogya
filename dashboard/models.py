@@ -72,7 +72,7 @@ class BusinessMembers(BaseModel):
     def __str__(self):
         return f"{self.user.__str__()}"
     
-   
+
 class Clients(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -107,3 +107,13 @@ class AuditLogs(models.Model):
     entity_id = models.UUIDField(null=False)
     metadata = models.JSONField(default=dict)
     event_time = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+class NSEIndexData(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    symbol = models.CharField(max_length=100, null=False, blank=False)
+    name = models.CharField(max_length=100, null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
+    pe = models.FloatField(null=True, blank=True)
+    pb = models.FloatField(null=True, blank=True)
+    div_yield = models.FloatField(null=True, blank=True)
