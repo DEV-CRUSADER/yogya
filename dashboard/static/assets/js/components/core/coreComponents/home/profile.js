@@ -1,5 +1,4 @@
 import React from "react";
-import { AutoSizer } from "rsuite/esm/Windowing";
 
 const socialIcons = {
   LinkedIn: "fa-brands fa-linkedin",
@@ -22,7 +21,7 @@ export function Profile({ image, name, description, socials, direction }) {
             <span style={{ color: "var(--secondary-text)" }}>This is </span>
             <span style={{ color: "var(--white)" }}>{name}</span>
           </h1>
-          <p className="fs-6 " style={{ color: "var(--black)" }}>{description}</p>
+          <p className="fs-6 " style={{ color: "var(--primary-text)" }}>{description}</p>
           <div>
             {socials.map((social) => {
               return (

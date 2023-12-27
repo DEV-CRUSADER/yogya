@@ -18,7 +18,7 @@ export function Home() {
     return (
         <>
             <Hero />
-            <div 
+            {/* <div 
                 className="container-fluid d-flex justify-content-center align-items-center"
             >
                 <hr
@@ -27,7 +27,7 @@ export function Home() {
                         width: "80%",
                     }}
                 />
-            </div>
+            </div> */}
             <PersonHero />
             <WhyUs />
             <Disclaimer />
