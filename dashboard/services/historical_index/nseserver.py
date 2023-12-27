@@ -1,11 +1,9 @@
 import logging
 import pandas as pd
-import datetime, time
-import os, sys
+import datetime
+import os
 import requests
 import json
-import random
-import re
 import urllib.parse
 
 log = logging.getLogger(__name__)
@@ -24,23 +22,6 @@ class nsepythonserver():
         'Sec-Fetch-Site': 'none',
         'Sec-Fetch-Mode': 'navigate',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
-    }
-
-    niftyindices_headers = {
-        'Connection': 'keep-alive',
-        'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'DNT': '1',
-        'X-Requested-With': 'XMLHttpRequest',
-        'sec-ch-ua-mobile': '?0',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Origin': 'https://niftyindices.com',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Dest': 'empty',
-        'Referer': 'https://niftyindices.com/reports/historical-data',
         'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
     }
 
@@ -95,10 +76,44 @@ class nsepythonserver():
 
         data = "{'name':'"+symbol+"','startDate':'"+start_date+"','endDate':'"+end_date+"'}"
         payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', 
-                                headers=nsepythonserver.niftyindices_headers,  
+                                headers=nsepythonserver.get_neifty_indices_headers(),
                                 data=data
-                            ).json()
+                            )
         
-        payload = json.loads(payload["d"])
-        payload=pd.DataFrame.from_records(payload)
+        payload = json.loads(payload.text)
         return payload
+    
+
+    @staticmethod
+    def get_neifty_indices_headers():
+
+        log.info("get_neifty_indices_headers called from custom nsepythonserver")
+
+        niftyindices_headers = {
+            'Connection': 'keep-alive',
+            'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
+            'Accept': 'application/json, text/javascript, */*; q=0.01',
+            'DNT': '1',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sec-ch-ua-mobile': '?0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Origin': 'https://niftyindices.com',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': 'https://niftyindices.com/reports/historical-data',
+            'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8',
+        }
+
+        
+        session = requests.Session()
+
+        cookie_url = "https://www.niftyindices.com/reports/historical-data"
+        cookies_response = session.get(cookie_url, headers=niftyindices_headers)
+
+        session.cookies.update(cookies_response.cookies)
+
+        niftyindices_headers['Cookie'] = f"ak_bmsc={session.cookies.get_dict().get('ak_bmsc')}"
+        
+        return niftyindices_headers

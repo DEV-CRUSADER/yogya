@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 import statistics
-# import nsepythonserver as nse
+import json
 import datetime
 
 import logging
@@ -41,14 +41,11 @@ class HistoricalIndexServices:
             start_date = data["start_date"]
             end_date = data["end_date"]
 
-        try:
-            nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
-        except Exception as e:
-            log.exception(f"Failed: Exception {e}")
-            return {
-                "status": False,
-                "data": "Error while retrieving data from the external API"
-            }
+        nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
+
+        nse_data = json.loads(nse_data["d"])
+        nse_data=pd.DataFrame.from_records(nse_data)
+
 
         year_list = nse_data['DATE'][::-1].apply(HistoricalIndexServices.extract_year).to_list()
 
