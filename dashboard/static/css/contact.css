@@ -6,8 +6,8 @@ label {
     width: 100%;
     font-size: 2rem;
     padding: 1.2rem;
-    color: var(--white);
-    background-color: var(--black);
+    color: var(--grey);
+    background-color: var(--white);
     outline: none;
     border: none;
     border-radius: 8px;
@@ -18,7 +18,7 @@ label {
     resize: vertical;
   }
   button[type='submit'] {
-    background-color: var(--black);
+    background-color: var(--grey);
     color: var(--black);
     font-size: 2rem;
     display: inline-block;
@@ -28,3 +28,35 @@ label {
     border-radius: 8px;
     cursor: pointer;
   }
+  input{
+    height: 1svh;
+    padding: 16px 10px ;
+    font-size: 1rem;
+  }
+
+input[type="number"]::-webkit-inner-spin-button{
+  display: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+
+.hero-info{
+  background-color: var(--secondary-color);
+  border-radius: 2% 2% 2% 2%
+}
+.hover-effect:hover {
+  transform: scale(1.1);
+  transition: all 100ms ease-in;
+  color: var(--btn-primary) ;
+  
+}
+.hover-effect{
+  height: 60px;
+  
+}
+
+.contact-color{
+  color: var(--main-color);
+}
+
