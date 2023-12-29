@@ -1,48 +1,91 @@
 import React from "react";
-import { data } from "./const"
-import { SideBar } from "../../../../../../css/core/sideBar.css";
+import { Sidebar, Sidenav, Navbar, Nav } from 'rsuite';
+import AngleLeftIcon from '@rsuite/icons/legacy/AngleLeft';
+import AngleRightIcon from '@rsuite/icons/legacy/AngleRight';
+import MagicIcon from '@rsuite/icons/legacy/Magic';
+
+import { ChartsIndexFrom } from "./form"; 
+
+import "../../../../../../css/core/sidebar.css";
+
+import { data } from "./constants";
 
 
-export function Sidebar() {
+const headerStyles = {
+    padding: 18,
+    fontSize: 16,
+    height: 56,
+    background: "var(--teritary-color)",
+    color: ' #fff',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
+};
 
 
-  return (
-    <div id="wrapper">
-      
-      {/* <!-- Sidebar --> */}
-      <div id="sidebar-wrapper" style={{
-        display: "flex",
-        flexDirection: "column",
+const NavToggle = ({ expand, onChange }) => {
+    return (
+        <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none">
+            <Nav pullRight>
+                <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
+                    {expand ? <AngleLeftIcon /> : <AngleRightIcon />}
+                </Nav.Item>
+            </Nav>
+        </Navbar>
+    );
+};
 
-      }}>
-        <div className="row"><h5 className="column mt-3 text-dark" style={{ textAlign: "center" }}>Historical Data Report</h5></div>
-        <h4 className="text-light" style={{
-          marginTop: "25%",
-          marginLeft: "5px"
-        }}>Select an Index Type</h4>
-        <select
-          className="form-control"
-          aria-label="Default select example"
-          style={{
-            marginTop: "3%",
-          }}
+
+
+export function ResourcesSidebar({ expand, setExpand }) {
+    return (
+        <Sidebar
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+            }}
+            width={expand ? 260 : 56}
+            collapsible
         >
-          {data.map((symbol, index) => (
-            <option key={index} value={symbol.Trading_Index_Name} style={{ maxWidth: "250px", }}>{symbol.Trading_Index_Name}</option>
-          ))}
-
-        </select>
-      </div>
-      {/* <!-- Page Content --> */}
-      <div id="page-content-wrapper">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-12">
-              <a href="#" className="btn " id="menu-toggle"><span className="hamburger">Menu</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+            <Sidenav.Header>
+                <div style={headerStyles}>
+                    <span style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
+                </div>
+            </Sidenav.Header>
+            <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
+                <Sidenav.Body>
+                    <Nav>
+                        <Nav.Menu
+                            eventKey="3"
+                            trigger="hover"
+                            title="Advanced"
+                            icon={<MagicIcon />}
+                            placement="rightStart"
+                        >
+                            <Nav.Item eventKey="3-1">
+                                <ChartsIndexFrom />
+                            </Nav.Item>
+                            {/* <Nav.Item eventKey="3-2">Devices</Nav.Item>
+                            <Nav.Item eventKey="3-3">Brand</Nav.Item>
+                            <Nav.Item eventKey="3-4">Loyalty</Nav.Item>
+                            <Nav.Item eventKey="3-5">Visit Depth</Nav.Item> */}
+                        </Nav.Menu>
+                        {/* <Nav.Menu
+                            eventKey="4"
+                            trigger="hover"
+                            title="Settings"
+                            icon={<GearCircleIcon />}
+                            placement="rightStart"
+                        >
+                            <Nav.Item eventKey="4-1">Applications</Nav.Item>
+                            <Nav.Item eventKey="4-2">Websites</Nav.Item>
+                            <Nav.Item eventKey="4-3">Channels</Nav.Item>
+                            <Nav.Item eventKey="4-4">Tags</Nav.Item>
+                            <Nav.Item eventKey="4-5">Versions</Nav.Item>
+                        </Nav.Menu> */}
+                    </Nav>
+                </Sidenav.Body>
+            </Sidenav>
+            <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
+        </Sidebar>
+    );
 };

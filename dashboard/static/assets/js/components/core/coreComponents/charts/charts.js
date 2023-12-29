@@ -8,8 +8,6 @@ import { Footer } from '../footer';
 import { APICaller } from '../../scripts/server';
 
 
-
-
 export function Charts({
   chartData,
   setChartData,
@@ -39,23 +37,18 @@ export function Charts({
   return (
     <>
     {/* main div */}
-      <div className='container-fluid p-2'
+      <div className='container-fluid m-0 p-0'
         style={{
           overflow: "scroll",
           overflowX: "hidden",
-          height: "100svh",
+          height: "80svh",
           marginLeft: "240px"
         }}
       >
-
-        
         {dataFound ? (
           <>
-            <h1 className='text-center mt-3 fw-bold fs-1'>{indexName}</h1>
-    {/* Charts main div */}
             <div className='p-4 m-5 ' style={{
               border: "3px solid var(--secondary-color)",
-              // overflow: "scroll"
             }}>
               <div className='d-flex justify-content-center m-2'>
                 <h3 style={{
@@ -107,9 +100,6 @@ export function Charts({
         }
         <Footer />
       </div>
-
-{/* Footer Component*/}
-
     </>
   );
 }
