@@ -38,7 +38,7 @@ export function Sidebar() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-12">
-              <a href="#" className="btn " id="menu-toggle"><span className="hamburger">Menu</span></a>
+              <a href="#" className="btn" id="menu-toggle"><span className="hamburger">Menu</span></a>
             </div>
           </div>
         </div>
