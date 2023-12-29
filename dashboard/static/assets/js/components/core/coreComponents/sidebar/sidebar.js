@@ -1,6 +1,5 @@
 import React from "react";
 import { data } from "./const"
-import { SideBar } from "../../../../../../css/core/sideBar.css";
 
 
 export function Sidebar() {
