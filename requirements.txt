@@ -1,3 +1,5 @@
+json
+requests
 django
 whitenoise
 psycopg2-binary
