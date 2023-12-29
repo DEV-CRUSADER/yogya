@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { MakeChart } from './chart';
 import loader from '../../../../../img/loader.gif';
-import Footer from '../footer';
+import { Footer } from '../footer';
+
 
 // APICaller
 import { APICaller } from '../../scripts/server';
+
 
 
 
@@ -36,16 +38,21 @@ export function Charts({
 
   return (
     <>
-      <div className='container-fluid p-2 '
+    {/* main div */}
+      <div className='container-fluid p-2'
         style={{
           overflow: "scroll",
           overflowX: "hidden",
-          height: "100vh",
+          height: "100svh",
+          marginLeft: "240px"
         }}
       >
+
+        
         {dataFound ? (
           <>
             <h1 className='text-center mt-3 fw-bold fs-1'>{indexName}</h1>
+    {/* Charts main div */}
             <div className='p-4 m-5 ' style={{
               border: "3px solid var(--secondary-color)",
               // overflow: "scroll"
@@ -98,6 +105,7 @@ export function Charts({
           </div>
         )
         }
+        <Footer />
       </div>
 
 {/* Footer Component*/}
