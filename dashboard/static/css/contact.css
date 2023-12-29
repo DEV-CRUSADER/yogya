@@ -1,6 +1,30 @@
-.Container{
-    background-color: aqua;
-    color: aliceblue;
-    font-family: 'Courier New', Courier, monospace;
-    padding: auto;
-}
+label {
+    font-size: 1.8rem;
+  }
+  input,
+  textarea {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.2rem;
+    color: var(--white);
+    background-color: var(--black);
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  textarea {
+    min-height: 250px;
+    resize: vertical;
+  }
+  button[type='submit'] {
+    background-color: var(--black);
+    color: var(--black);
+    font-size: 2rem;
+    display: inline-block;
+    outline: none;
+    border: none;
+    padding: 1rem 4rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
