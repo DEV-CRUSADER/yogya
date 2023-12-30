@@ -29,7 +29,8 @@ class HistoricalIndexServices:
         end_date = end_date.strftime("%d-%b-%Y")
 
         if data is None:
-            symbol = "NIFTY 50"
+            # symbol = "NIFTY 50"
+            symbol = "NIFTY SMALLCAP 250"
             start_date = "1-Jan-1990"
             end_date = end_date
         else:
@@ -66,7 +67,7 @@ class HistoricalIndexServices:
     @staticmethod
     def get_json_for_historical_index(data):
 
-        data = data.replace('-', 0).astype(float)
+        data = data.replace('-', 0).replace('', 0).astype(float)
 
         population_devation = statistics.pstdev(data)
         mean = statistics.mean(data)
