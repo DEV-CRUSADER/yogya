@@ -13,109 +13,79 @@ const formattedDate = `${year}-${month}-${day}`;
 
 export function ChartsIndexFrom() {
 
-    const [selectedIndexType, setSelectedIndexType] = useState('')
-    const [selectedSymbol, setSelectedSymbol] = useState('');
+    const [selectedIndexType, setSelectedIndexType] = useState('equity')
+    const [selectIndexValue, setSelectIndexValue] = useState([])
 
     const [formData, setFormData] = useState({
         symbol: '',
         start_date: '1990-01-01',
         end_date: formattedDate,
     })
+    function handleChange(event) {
+        setSelectedIndexType(event.target.value)
+        setSelectIndexValue(selectedIndexType.find(changed => changed.name === event.target.value).setSelectedIndexType)
+    }
+
     console.log(formData)
-
-    const handleIndexTypeChange = (value) => {
-        setSelectedIndexType(value);
-        setSelectedSymbol('');
-    };
-
-    const handleSymbolChange = (value) => {
-        setSelectedSymbol(value);
-    };
-
 
     return (
         <>
             <form className="form">
-
-
-                <h1 className="row fs-6 m-1">Select an Index Type</h1>
-                <select
-                    className="form-control"
-                    value={selectedIndexType}
-                    onChange={(e) => handleIndexTypeChange(e.target.value)}
-                >
-                    {data.index_type.map((item, index) => (
-                        <option key={index} value={item.value}>
-                            {item.name}
-                        </option>
-                    ))}
+                <select className="form-control" onChange={handleChange}>
+                    <option>--Select--</option>
+                    {data.index_type.map((item, index) => {
+                        return (
+                            <option key={index} value={item.value}>{item.name}</option>
+                        )
+                    })}
                 </select>
-                
+                {selectedIndexType === 'equity' ? () => {
+                    return (
+                        <select className="form-control">
+                            {data.equity.map((item, index) => {
+                                return (
+                                    <option key={index} value={item.symbol}>{item.name}</option>
+                                )
+                            })}
+                        </select>
+                    )
+                } : selectedIndexType === 'fix_income' ? () => {
+                    return (
+                        <select className="form-control">
+                            {data.fix_income.map((item, index) => {
+                                return (
+                                    <option key={index} value={item.symbol}>{item.name}</option>
+                                )
+                            })}
+                        </select>
+                    )
+                } : selectedIndexType === 'multi_asset' ? () => {
+                    return (
+                        <select className="form-control">
+                            {data.multi_asset.map((item, index) => {
+                                return (
+                                    <option key={index} value={item.symbol}>{item.name}</option>
+                                )
+                            })}
+                        </select>
+                    )
+                } : null}
+                <div><hr></hr></div>
+                <select className="form-control">
+                    <option>--Select--</option>
+                    {data.selectIndexValue.map((item, index) => {
+                        return (
+                            <option value={item.value}>{item.name}</option>
+                        )
+                    })}
+                </select>
 
-                {selectedIndexType === 'equity' && (
-                    <select
-                        className="form-control"
-                        value={selectedSymbol}
-                        onChange={(e) => handleSymbolChange(e.target.value)}
-                    >
-                        {data.equity.map((item, index) => (
-                            <option key={index} value={item.symbol}>
-                                {item.name}
-                            </option>
-                        ))}
-                    </select>
-                )}
-
-                {selectedIndexType === 'fix_income' && (
-                    <select
-                        className="form-control"
-                        value={selectedSymbol}
-                        onChange={(e) => handleSymbolChange(e.target.value)}
-                    >
-                        {data.fix_income.map((item, index) => (
-                            <option key={index} value={item.symbol}>
-                                {item.name}
-                            </option>
-                        ))}
-                    </select>
-                )}
-
-                {selectedIndexType === 'multi_asset' && (
-                    <select
-                        className="form-control"
-                        value={selectedSymbol}
-                        onChange={(e) => handleSymbolChange(e.target.value)}
-                    >
-                        {data.multi_asset.map((item, index) => (
-                            <option key={index} value={item.symbol}>
-                                {item.name}
-                            </option>
-                        ))}
-                    </select>
-                )}
-
-
-
-                <div className="mt-5">
-                    <h1 className="row fs-6 m-1">Select an Index</h1>
-                    <select className="form-control" value={selectedSymbol} onChange={(e) => handleSymbolChange(e.target.value)}>
-                    </select>
+                <div>
+                <button class="btn" >Submit</button>
                 </div>
+
 
             </form>
-
-            <>
-                <div>
-                    <button type="submit" className="btn m-4 text-light" style={{
-                        background: "var(--teritary-color)"
-                    }}>Submit</button>
-                </div>
-
-            </>
-
         </>
-
-    );
-
-
+    )
 }
