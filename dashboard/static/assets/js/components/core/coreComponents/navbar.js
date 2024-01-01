@@ -42,6 +42,9 @@ export function Navbar(props) {
 
 	const handleLinkClick = (index) => {
 		setActiveTab(index);
+
+		const device_links = document.getElementById("navbarSupportedContent");
+		device_links.classList.remove("show");
 	};
 
 	return (
