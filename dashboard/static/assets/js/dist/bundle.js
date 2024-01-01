@@ -596,7 +596,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"e2b1339796cda1ae7032.svg\";\n\n//# sourceURL=webpack://yogya/./dashboard/static/assets/svg/footer.svg?");
+eval("module.exports = __webpack_require__.p + \"bdbefcc5427af9a0c3cd.svg\";\n\n//# sourceURL=webpack://yogya/./dashboard/static/assets/svg/footer.svg?");
 
 /***/ }),
 
