@@ -1,5 +1,6 @@
 import logging
 import pandas as pd
+import numpy as np
 import statistics
 import nsepythonserver as nse
 import datetime
@@ -43,7 +44,7 @@ class HistoricalIndexServices:
 
         context = {
             "symbol": symbol,
-            "date": year_list,
+            "date": nse_data["DATE"][::-1].to_list(),
             "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'][::-1]),
             "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'][::-1]),
             "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'][::-1])
@@ -66,10 +67,14 @@ class HistoricalIndexServices:
     @staticmethod
     def get_json_for_historical_index(data):
 
-        data = data.replace('-', 0).astype(float)
+        data = data.replace('-', 0).replace('', 0).astype(float)
+        data[data > 200] = 0
 
-        population_devation = statistics.pstdev(data)
-        mean = statistics.mean(data)
+        filtered_data = data[(data != 0) & (data <= 200)]
+
+
+        population_devation = statistics.pstdev(filtered_data)
+        mean = statistics.mean(filtered_data)
 
         df = pd.DataFrame(data)
 

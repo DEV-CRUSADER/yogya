@@ -24,16 +24,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "*.127.0.0.1",
-    "dashboard.localhost",
-    "http://127.0.0.1",
-    "http://localhost",
-    "http://*.127.0.0.1",
-    "http://*.localhost"
-]
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
@@ -63,6 +54,7 @@ INSTALLED_APPS = [
     'dashboard',
     'django_hosts',
     "softdelete",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +77,6 @@ DEFAULT_HOST = "core"
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'core.custom_exception_handler.custom_exception_handler',
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ]
@@ -166,9 +157,6 @@ PARENT_HOST = SITE_URL
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
 DB_ENGINE = os.getenv('DB_ENGINE', None)
 DB_USERNAME = os.getenv('DB_USERNAME', None)
 DB_PASS = os.getenv('DB_PASS', None)
@@ -212,6 +200,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -221,7 +210,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
