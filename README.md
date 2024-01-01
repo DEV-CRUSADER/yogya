@@ -38,10 +38,21 @@ Similarly, PyCharm (intelliJ) in general has a tonne of Keyboard Shrotcuts, that
 ``` cd yogya ```
 
 #### Create a Python Virtual Environment
-``` python -m venv venv ``` or ```python3 -m venv venv```
+  - #### macOS and linux
+    ``` python -m venv venv ``` or ```python3 -m venv venv```
+  - #### Windows
+  ```
+    pip install virtualenv
+    virtualenv venv
+  ```
 
-#### Activate Virtual Environment
-``` source ./venv/bin/activate ```
+#### Activate Virtual Environment (linux and macOS)
+  - ##### maxOS and linux
+    ``` source ./venv/bin/activate ```
+  - ##### Windows
+    * Please run in command prompt <br>
+    ``` \venv\Scripts\activate ```
+
 
 #### Install Dependent Packages via Pip
 ``` pip install -r requirements.txt ```
@@ -78,8 +89,12 @@ This will make sure that all emails are shown on the console, and not actually s
 
 #### Run Server
 ``` python manage.py runserver ```
+#### Run Server with gunicorn
+``` gunicorn core.wsgi:application --bind 0.0.0.0:8000 ```
 
-  Your server would start running on Go to [127.0.0.1:8000](127.0.0.1:8000) .
+  - Your server would start running on Go to [127.0.0.1:8000](127.0.0.1:8000) .
+  - Your server would start running on Go to [localhost:8000](localhost:8000) .
+
 
 #### Disabling Asynchronous EMAILs and Making then Synchronous
 

@@ -8,68 +8,69 @@ import { ChartsIndexFrom } from "./form";
 
 import "../../../../../../css/core/sidebar.css";
 
-import { data } from "./constants";
-
 
 const headerStyles = {
-  padding: 18,
-  fontSize: 16,
-  height: 56,
-  background: "var(--teritary-color)",
-  color: ' #fff',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden'
+    padding: 18,
+    fontSize: 16,
+    height: 56,
+    background: "var(--teritary-color)",
+    color: ' #fff',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
 };
 
 
 const NavToggle = ({ expand, onChange }) => {
-  return (
-    <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none">
-      <Nav pullRight>
-        <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
-          {expand ? <AngleLeftIcon /> : <AngleRightIcon />}
-        </Nav.Item>
-      </Nav>
-    </Navbar>
-  );
+    return (
+        <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none">
+            <Nav pullRight>
+                <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
+                    {expand ? <AngleLeftIcon /> : <AngleRightIcon />}
+                </Nav.Item>
+            </Nav>
+        </Navbar>
+    );
 };
 
 
 
-export function ResourcesSidebar({ expand, setExpand }) {
-  return (
-    <Sidebar
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-      width={expand ? 260 : 56}
-      collapsible
-    >
-      <Sidenav.Header>
-        <div style={headerStyles}>
-          <span style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
-        </div>
-      </Sidenav.Header>
-      <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
-        <Sidenav.Body>
-          <Nav>
-            <Nav.Menu
-              eventKey="3"
-              trigger="hover"
-              title="Select Type"
-              icon={<FunnelTimeIcon />}
-              placement="rightStart"
-            >
-              <Nav.Item eventKey="3-1">
-                <ChartsIndexFrom />
-              </Nav.Item>
-              {/* <Nav.Item eventKey="3-2">Devices</Nav.Item>
+export function ResourcesSidebar({ expand, setExpand, formData, setFormData }) {
+    return (
+        <Sidebar
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+            }}
+            width={expand ? 260 : 56}
+            collapsible
+        >
+            <Sidenav.Header>
+                <div style={headerStyles}>
+                    <span style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
+                </div>
+            </Sidenav.Header>
+            <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
+                <Sidenav.Body>
+                    <Nav>
+                        <Nav.Menu
+                            eventKey="3"
+                            trigger="hover"
+                            title="Select Type"
+                            icon={<FunnelTimeIcon />}
+                            placement="rightStart"
+                        >
+                            <Nav.Item eventKey="3-1">
+                                <ChartsIndexFrom
+                                    formData={formData}
+                                    setFormData={setFormData}
+                                />
+                            </Nav.Item>
+                            {/* <Nav.Item eventKey="3-2">Devices</Nav.Item>
                             <Nav.Item eventKey="3-3">Brand</Nav.Item>
                             <Nav.Item eventKey="3-4">Loyalty</Nav.Item>
                             <Nav.Item eventKey="3-5">Visit Depth</Nav.Item> */}
-            </Nav.Menu>
-            {/* <Nav.Menu
+                        </Nav.Menu>
+                        {/* <Nav.Menu
                             eventKey="4"
                             trigger="hover"
                             title="Settings"
@@ -82,10 +83,10 @@ export function ResourcesSidebar({ expand, setExpand }) {
                             <Nav.Item eventKey="4-4">Tags</Nav.Item>
                             <Nav.Item eventKey="4-5">Versions</Nav.Item>
                         </Nav.Menu> */}
-          </Nav>
-        </Sidenav.Body>
-      </Sidenav>
-      <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
-    </Sidebar>
-  );
+                    </Nav>
+                </Sidenav.Body>
+            </Sidenav>
+            <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
+        </Sidebar>
+    );
 };
