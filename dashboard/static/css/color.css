@@ -4,11 +4,13 @@
   --secondary-color: #3D7186;
   --teritary-color: #2C5464;
   --black: #000;
+  --grey: #888;
+  --grey-2: #ccc;
   --white: #fff;
   --secondary-text: #e7e3d4;
   --primary-text: #cfefe7;
   /* Shadows */
-  --line-color: rgba(61, 113, 134, 0);
+  --line-color: rgba(21, 43, 52, 0);
 
   /* buttons */
   --btn-primary:#22577a;

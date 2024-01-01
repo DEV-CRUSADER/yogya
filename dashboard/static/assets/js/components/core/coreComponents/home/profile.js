@@ -22,10 +22,10 @@ export function Profile({ image, name, description, socials, direction }) {
       <div className={`d-flex flex-column justify-content-center align-items-center w-100 w-md-50 w-lg-50`}>
         <div className="w-75 m-5">
           <h1>
-            <span style={{ color: "var(--black)" }}>This is </span>
-            <span style={{ color: "var(--teritary-color)" }}>{name}</span>
+            <span style={{ color: "var(--black)", opacity:"0.6" }}>This is </span>
+            <span style={{ color: "var(--primary-text)" }}>{name}</span>
           </h1>
-          <p className="fs-6 " style={{ color: "var(--secondary-color)" }}>{description}</p>
+          <p className="fs-6 " style={{ color: "var(--grey-2)" }}>{description}</p>
           <div>
             {socials.map((social) => {
               return (
