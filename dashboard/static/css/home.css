@@ -1,0 +1,119 @@
+.check,
+.check *
+{
+    border: 2px solid red !important;
+}
+
+.hero-section {
+    height: 650px;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.hero-header{
+    font-size: 10rem;
+}
+
+#capital-text{
+    margin-top: -45px;
+    color: var(--secondary-text);
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-color);
+    background-size: cover;
+    overflow-y: hidden;
+    z-index: -1;
+}
+
+
+.hero-section-3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: var(--secondary-color);
+    background-position: left -30vw top -100vw, left top;
+    background-size: cover;
+    overflow-y: hidden;
+    z-index: -2;
+    transform: scaleX(-1) scaleY(-1);
+}
+.hero-section-3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: url(../assets/svg/footer.svg) no-repeat center center/cover;
+    background-size: cover;
+    overflow-y: hidden;
+    z-index: -1;
+    transform: scaleX(-1) scaleY(-1);
+}
+
+.hero-section-3 .main-head {
+    color: var(--white);
+}
+
+.hero-section-3 .head-text {
+    color: var(--white);
+}
+
+.hero-section-3 .general-text {
+    color: var(--primary-text);
+}
+
+.description{
+    background-color: var(--secondary-color);
+    border-radius: 10px 30px 20px 40px;
+}
+
+.hero-section-4 {
+    color: var(--secondary-color);
+}
+
+@media screen and (max-width: 600px) {
+    .hero-header{
+        font-size: 5.5rem;
+    }
+
+    #capital-text{
+        margin-top: -25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-vision {
+        padding-top: -80px;
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+    .hero-vision {
+        padding-top: -60px;
+    }
+}
+
+
+/* icons hover effect  */
+.hover-effect{
+    color: var(--secondary-color);
+    transform: scale(1);
+}
+
+.hover-effect:hover {
+    color: black;
+    transform: scale(5);
+    transition: all 100ms ease-in;
+}

@@ -10,25 +10,29 @@ module.exports = {
   },
   module: {
     rules: [
-     {
-      test: /\.css$/,
-      use: [
-        "style-loader",
-        {
-          loader: "css-loader",
-          options: {
-            importLoaders: 1,
-            modules: true,
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
           },
-        },
-      ],
-      include: /\.module\.css$/,
-    },
-    {
-      test: /\.css$/,
-      use: ["style-loader", "css-loader"],
-      exclude: /\.module\.css$/,
-    },
+        ],
+        include: /\.module\.css$/,
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        exclude: /\.module\.css$/,
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: ["file-loader"],
+      },
       {
         test: /\.?js$/,
         exclude: /node_modules/,
