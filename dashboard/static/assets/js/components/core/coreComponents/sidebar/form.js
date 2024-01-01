@@ -22,7 +22,7 @@ export function ChartsIndexFrom({ formData, setFormData }) {
     return (
         <>
             <form className="form">
-                <select className="form-control" onChange={handleChange} name="selectedIndexType">
+                <select className="form-control mt-4 mb-5" onChange={handleChange} name="selectedIndexType">
                     {data.index_type.map((item, index) => {
                         return (
                             <option key={index} value={item.symbol}>{item.name}</option>
@@ -49,12 +49,17 @@ export function ChartsIndexFrom({ formData, setFormData }) {
                             ))}
                         </select>
                     ) : (
-                        <select className="form-control" name="symbol">
+                        <div style={{
+                            marginTop: "10px"
+                        }}>
+                            <h3>Select Index</h3>
+                        <select className="form-control p-4" name="symbol">
                             <option value="Select" className="form-control disabled">--Select--</option>
                         </select>
+                        </div>
                     )
                 }
-                <div>
+                <div className="p-5">
                 <button className="btn btn-dark" >Submit</button>
                 </div>
 
