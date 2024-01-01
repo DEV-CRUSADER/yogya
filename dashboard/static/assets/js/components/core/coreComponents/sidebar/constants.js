@@ -10,7 +10,7 @@ export const data = {
         },
         {
             name: "Multi Asset",
-            symbol: "mutiAsset"
+            symbol: "multi_asset"
         }
     ],
     equity: [
@@ -400,8 +400,6 @@ export const data = {
         },
 
     ],
-
-
     fix_income: [
         {
             name: "NIFTY 10 YEAR SDL INDEX",

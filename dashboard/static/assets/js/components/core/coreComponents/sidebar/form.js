@@ -22,66 +22,51 @@ export function ChartsIndexFrom() {
         end_date: formattedDate,
     })
     function handleChange(event) {
-        setSelectedIndexType(event.target.value)
-        setSelectIndexValue(selectedIndexType.find(changed => changed.name === event.target.value).setSelectedIndexType)
+        const { name, value } = event.target;
+        setSelectedIndexType(value);
+        // setSelectedIndexType(event.target.value)
+        // setSelectIndexValue(selectedIndexType.find(changed => changed.name === event.target.value).setSelectedIndexType)
     }
 
-    console.log(formData)
+    console.log(selectedIndexType)
 
     return (
         <>
             <form className="form">
-                <select className="form-control" onChange={handleChange}>
-                    <option>--Select--</option>
+                <select className="form-control" onChange={handleChange} name="selectedIndexType">
                     {data.index_type.map((item, index) => {
                         return (
-                            <option key={index} value={item.value}>{item.name}</option>
+                            <option key={index} value={item.symbol}>{item.name}</option>
                         )
                     })}
                 </select>
-                {selectedIndexType === 'equity' ? () => {
-                    return (
-                        <select className="form-control">
-                            {data.equity.map((item, index) => {
-                                return (
-                                    <option key={index} value={item.symbol}>{item.name}</option>
-                                )
-                            })}
+                {
+                    (selectedIndexType === 'equity') ? (
+                        <select className="form-control" name="selectIndexValue">
+                            {data.equity.map((item, index) => (
+                                <option key={index} value={item.symbol}>{item.name}</option>
+                            ))}
+                        </select>
+                    ) : (selectedIndexType === 'fix_income') ? (
+                        <select className="form-control" name="selectIndexValue">
+                            {data.fix_income.map((item, index) => (
+                                <option key={index} value={item.symbol}>{item.name}</option>
+                            ))}
+                        </select>
+                    ) : (selectedIndexType === 'multi_asset') ? (
+                        <select className="form-control" name="selectIndexValue">
+                            {data.multi_asset.map((item, index) => (
+                                <option key={index} value={item.symbol}>{item.name}</option>
+                            ))}
+                        </select>
+                    ) : (
+                        <select className="form-control" name="selectIndexValue">
+                            <option value="Select" className="form-control disabled">--Select--</option>
                         </select>
                     )
-                } : selectedIndexType === 'fix_income' ? () => {
-                    return (
-                        <select className="form-control">
-                            {data.fix_income.map((item, index) => {
-                                return (
-                                    <option key={index} value={item.symbol}>{item.name}</option>
-                                )
-                            })}
-                        </select>
-                    )
-                } : selectedIndexType === 'multi_asset' ? () => {
-                    return (
-                        <select className="form-control">
-                            {data.multi_asset.map((item, index) => {
-                                return (
-                                    <option key={index} value={item.symbol}>{item.name}</option>
-                                )
-                            })}
-                        </select>
-                    )
-                } : null}
-                <div><hr></hr></div>
-                <select className="form-control">
-                    <option>--Select--</option>
-                    {data.selectIndexValue.map((item, index) => {
-                        return (
-                            <option value={item.value}>{item.name}</option>
-                        )
-                    })}
-                </select>
-
+                }
                 <div>
-                <button class="btn" >Submit</button>
+                <button className="btn btn-dark" >Submit</button>
                 </div>
 
 
