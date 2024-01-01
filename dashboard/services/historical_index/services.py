@@ -1,5 +1,6 @@
 import logging
 import pandas as pd
+import numpy as np
 import statistics
 import nsepythonserver as nse
 import datetime
@@ -66,10 +67,14 @@ class HistoricalIndexServices:
     @staticmethod
     def get_json_for_historical_index(data):
 
-        data = data.replace('-', 0).astype(float)
+        data = data.replace('-', 0).replace('', 0).astype(float)
+        data = np.where((data > 200), 0, data)
 
-        population_devation = statistics.pstdev(data)
-        mean = statistics.mean(data)
+        filtered_data = data[(data != 0) & (data <= 200)]
+
+
+        population_devation = statistics.pstdev(filtered_data)
+        mean = statistics.mean(filtered_data)
 
         df = pd.DataFrame(data)
 
