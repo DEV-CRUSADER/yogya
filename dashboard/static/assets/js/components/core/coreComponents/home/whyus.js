@@ -8,8 +8,7 @@ export function WhyUs() {
 
   return (
     <div
-      className="hero-section-2 m-1 mt-md-5 mt-lg-5 mt-xl-5">
-
+      className="hero-section-2 m-1 mt-3 mt-md-5 mt-lg-5 mt-xl-5">
       <div className="d-flex flex-column justify-content-around 
                       align-items-center"
         style={{
