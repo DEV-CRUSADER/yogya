@@ -20,12 +20,12 @@ export function Profile({ image, name, description, socials, direction }) {
         <img className="img-fluid" src={image} alt={name}/>
       </div>
       <div className={`d-flex flex-column justify-content-center align-items-center w-100 w-md-50 w-lg-50`}>
-        <div className="w-75 m-5">
+        <div className="w-75 m-2">
           <h1>
-            <span style={{ color: "var(--black)" }}>This is </span>
-            <span style={{ color: "var(--teritary-color)" }}>{name}</span>
+            <span style={{ color: "var(--black)", opacity:0.7 }}>This is </span>
+            <span style={{ color: "var(--white)" }}>{name}</span>
           </h1>
-          <p className="fs-6 " style={{ color: "var(--secondary-color)" }}>{description}</p>
+          <p className="fs-6 " style={{ color: "var(--primary-text)", opacity:0.8 }}>{description}</p>
           <div>
             {socials.map((social) => {
               return (
