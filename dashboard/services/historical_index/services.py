@@ -70,6 +70,8 @@ class HistoricalIndexServices:
         data = data.replace('-', 0).replace('', 0).astype(float)
         data[data > 200] = 0
 
+        data = data[data != 0].round(3)
+
         filtered_data = data[(data != 0) & (data <= 200)]
 
 
