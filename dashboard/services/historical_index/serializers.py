@@ -48,20 +48,3 @@ class StockDataSerializer(serializers.Serializer):
     pb = serializers.DictField()
     pe = serializers.DictField()
     divYield = serializers.DictField()
-
-
-class StockMetricsSerializer(serializers.Serializer):
-    SDM2 = serializers.ListField(child=serializers.FloatField())
-    SDM1 = serializers.ListField(child=serializers.FloatField())
-    SD = serializers.ListField(child=serializers.FloatField())
-    SDP1 = serializers.ListField(child=serializers.FloatField())
-    SDP2 = serializers.ListField(child=serializers.FloatField())
-    standard = serializers.ListField(child=serializers.FloatField())
-
-
-class StockDataResponseSerializer(serializers.Serializer):
-    symbol = serializers.CharField()
-    date = serializers.ListField(child=serializers.CharField())
-    pb = StockMetricsSerializer()
-    pe = StockMetricsSerializer()
-    divYield = StockMetricsSerializer()
