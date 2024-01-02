@@ -53,11 +53,11 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 60%;
     background: url(../assets/svg/footer.svg) no-repeat center center/cover;
     background-size: cover;
     overflow-y: hidden;
-    z-index: -1;
+    z-index: -5;
     transform: scaleX(-1) scaleY(-1);
 }
 
@@ -83,6 +83,11 @@
 }
 
 @media screen and (max-width: 600px) {
+
+    .hero-section {
+        height: auto;
+    }
+
     .hero-header{
         font-size: 5.5rem;
     }
@@ -108,12 +113,17 @@
 
 /* icons hover effect  */
 .hover-effect{
-    color: var(--secondary-color);
-    transform: scale(1);
+    color: var(--main-color);
+    opacity: 0.7;
+    transition: all 100ms ease-in;
 }
 
 .hover-effect:hover {
-    color: black;
-    transform: scale(5);
-    transition: all 100ms ease-in;
+    opacity: 1;
+}
+
+/* Path: dashboard/static/css/home.css */
+.person-image{
+    position: relative;
+    z-index: -1;
 }

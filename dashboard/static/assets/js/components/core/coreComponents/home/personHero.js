@@ -8,7 +8,7 @@ export function PersonHero() {
     {
       id: 1,
       name: "LinkedIn",
-      link: "https://www.linkedin.com/in/chirag-jain-2b3b781a5/",
+      link: "https://www.linkedin.com/in/chirag-jain-16334483/",
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ export function PersonHero() {
     {
       id: 3,
       name: "Email",
-      link: "mailto:chiragjain@yahoo.com",
+      link: "mailto:chirag.jain@yahoo.com",
     },
     {
       id: 4,
@@ -33,8 +33,7 @@ export function PersonHero() {
   ];
 
   return (
-    <div
-      className="hero-section-2 m-0 mt-md-5 mt-lg-5 mt-xl-5">
+    <div className="hero-section-3  position-relative p-3">
       <Profile
         image={chirag}
         name="Chirag Jain"
@@ -46,3 +45,4 @@ export function PersonHero() {
     </div>
   );
 }
+
