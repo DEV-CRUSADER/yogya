@@ -17,7 +17,13 @@ export function Profile({ image, name, description, socials, direction }) {
     <div className={`d-flex flex-column flex-sm-column ${direction == "left" ? "flex-md-row-reverse" : ""} 
             ${direction == "left" ? "flex-lg-row-reverse" : ""}  ${direction == "left" ? "flex-xl-row-reverse" : ""}`}>
       <div className="p-5">
-        <img className="img-fluid" src={image} alt={name}/>
+        <img 
+          className="img-fluid person-image"
+          src={image} alt={name}
+          style={{
+            filter: "drop-shadow(-7px -7px 13px rgba(0, 0, 0, 0.3))",
+          }}  
+        />
       </div>
       <div className={`d-flex flex-column justify-content-center align-items-center w-100 w-md-50 w-lg-50`}>
         <div className="w-75 m-2">

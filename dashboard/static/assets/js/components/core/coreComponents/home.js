@@ -12,8 +12,6 @@ import { Footer } from './footer';
 import { CSS } from "../../../../../css/home.css";
 
 
-
-
 export function Home() {
     TabTitle('Yogya Capital')
 
@@ -30,8 +28,8 @@ export function Home() {
                     }}
                 />
             </div> */}
-            <PersonHero />
             <WhyUs />
+            <PersonHero />
             <Disclaimer />
 
             <Footer />

@@ -1,11 +1,9 @@
 import logging
 import pandas as pd
-import numpy as np
 import statistics
 import nsepythonserver as nse
 import datetime
 
-from dashboard.services.historical_index.serializers import StockDataResponseSerializer
 
 log = logging.getLogger(__name__)
 
@@ -38,42 +36,41 @@ class HistoricalIndexServices:
             start_date = data["start_date"]
             end_date = data["end_date"]
 
-        nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
+        try:
+            nse_data = nse.index_pe_pb_div(symbol=symbol, start_date=start_date, end_date=end_date)
+        except Exception as e:
+            log.error(f"Error getting nse: {e}")
+            return {
+                "status": False,
+                "data": {}
+            }
 
         year_list = nse_data['DATE'][::-1].apply(HistoricalIndexServices.extract_year).to_list()
 
         context = {
-            "symbol": symbol,
+            "index_name": nse_data['Index Name'][0],
             "date": nse_data["DATE"][::-1].to_list(),
             "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'][::-1]),
             "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'][::-1]),
             "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'][::-1])
         }
 
-        serializer = StockDataResponseSerializer(data=context)
-
-        if serializer.is_valid():
-            return {
-                "status": True,
-                "data": serializer.validated_data
-            }
-        else:
-            log.exception(f"Failed: Exception {serializer.errors}")
-            return {
-                "status": False,
-                "data": serializer.errors
-            }
+        return {
+            "status": True,
+            "data": context
+        }
 
     @staticmethod
     def get_json_for_historical_index(data):
 
         data = data.replace('-', 0).replace('', 0).astype(float)
         data[data > 200] = 0
-
-        data = data[data != 0].round(3)
-
+        data = data[data != 0].round(2)
+        
         filtered_data = data[(data != 0) & (data <= 200)]
 
+        if filtered_data.empty:
+            return {}
 
         population_devation = statistics.pstdev(filtered_data)
         mean = statistics.mean(filtered_data)
@@ -87,12 +84,12 @@ class HistoricalIndexServices:
         df["SDP2"] = mean + (2 * population_devation)
 
         return_context = {
-            "SDM2": df["SDM2"].round(3).to_list(),
-            "SDM1": df["SDM1"].round(3).to_list(),
-            "SD": df["SD"].round(3).to_list(),
-            "SDP1": df["SDP1"].round(3).to_list(),
-            "SDP2": df["SDP2"].round(3).to_list(),
-            "standard": data.round(3).to_list()
+            "SDM2": df["SDM2"].round(2).astype(str).to_list(),
+            "SDM1": df["SDM1"].round(2).astype(str).to_list(),
+            "SD": df["SD"].round(2).astype(str).to_list(),
+            "SDP1": df["SDP1"].round(2).astype(str).to_list(),
+            "SDP2": df["SDP2"].round(2).astype(str).to_list(),
+            "standard": data.round(2).astype(str).to_list()
         }
         return return_context
 
