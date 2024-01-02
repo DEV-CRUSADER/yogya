@@ -3,11 +3,22 @@ import React, { useState } from "react";
 import { data } from "./constants";
 import { APICaller } from "../../scripts/server";
 
-export function ChartsIndexFrom() {
+const date = new Date();
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const day = String(date.getDate()).padStart(2, '0');
+const formattedDate = `${year}-${month}-${day}`;
+
+export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setIndexName }) {
 
     
     const [selectedIndexType, setSelectedIndexType] = useState('equity')
-    const [formData, setFormData] = useState()
+    const [selectedIndexValue, setSelectedIndexValue] = useState([])
+    const [formData, setFormData] = useState({
+        symbol: 'NIFTY 50',
+        start_date: '1990-01-01',
+        end_date: 'formattedDate'
+    })
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -79,16 +90,16 @@ export function ChartsIndexFrom() {
                         </select>
                     ) : (
                         <div style={{
-                            marginTop: "10px"
+                            marginTop: "5px"
                         }}>
                             <h3>Select Index</h3>
-                            <select className="form-control p-4" name="symbol">
+                            <select className="form-control p-1" name="symbol">
                                 <option value="Select" className="form-control disabled">--Select--</option>
                             </select>
                         </div>
                     )
                 }
-                <div className="p-5">
+                <div className="p-3">
                     <button className="btn btn-dark" onClick={handelSubmit}>Submit</button>
                 </div>
 

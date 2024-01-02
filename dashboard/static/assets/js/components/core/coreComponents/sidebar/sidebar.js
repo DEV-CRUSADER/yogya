@@ -62,7 +62,7 @@ export function ResourcesSidebar({ expand, setExpand, formData, setFormData,
                         >
                             <Nav.Item eventKey="3-1">
                                 <ChartsIndexFrom
-                                    formData={console.log(formData)}
+                                    formData={formData}
                                     setFormData={setFormData}
                                     setChartData={setChartData}
                                     setLabels={setLabels}
