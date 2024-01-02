@@ -10,17 +10,18 @@ export function Contact() {
   return (
     <>
       <ContactHead />
-      <div className="d-flex flex-column-reverse p-sm-4 flex-md-column-reverse flex-lg-row flex-xl-row flex-xxl-row justify-content-center align-items-center  ">
-        <ContactInfo />
-        <div
+      <div className="d-flex flex-column p-sm-4 p-2 
+            justify-content-end align-items-center">
+        {/* <div
           className="d-none d-md-none d-lg-block d-xl-block d-xxl-block"
           style={{
             margin: "0 100px",
             border: "1.5px solid black",
             height: "300px",
           }}
-        />
+        /> */}
         <ContactForm />
+        <ContactInfo />
       </div>
     </>
   );

@@ -1,25 +1,64 @@
 import React from "react";
 
+export const icons = {
+  call: "fa-solid fa-phone",
+  location: "fa-solid fa-location-dot",
+  mail: "fa-solid fa-envelope",
+};
+
 export function ContactInfo() {
+  const constactDetails = [
+    {
+      icon: icons.call,
+      head: "Phone",
+      description: "+91 75674 73055",
+    },
+    {
+      icon: icons.location,
+      head: "Our Location",
+      description: "2004-2005 Arihant Market, Ring road, Surat, Gujarat",
+    },
+    {
+      icon: icons.mail,
+      head: "Email US",
+      description: "chirag.jain@yahoo.com",
+    },
+  ];
+
   return (
-    <>
-      <div className="contact-info w-100 w-md-25 w-lg-25">
-        <div className="hero-info fs-3">
-          <a href="tel:+91-7567473055" className="hover-effect text-decoration-none contact-color p-4">
-          <i className={`fa-solid fa-phone `}></i> This is my Phone Number
-          </a>
-        </div>
-        <div className="hero-info fs-3 mt-4">
-          <a href="https://wa.me/917567473055" className="hover-effect  text-decoration-none contact-color p-4">
-          <i className={`fa-brands fa-whatsapp `}></i> This is my Whatsapp
-          </a>
-        </div>
-        <div className="hero-info fs-3 mt-4">
-          <a href="mailto:chiragjain@yahoo.com" className="hover-effect text-decoration-none contact-color p-4">
-          <i className={`fa-solid fa-envelope `}></i> This is my Gmail
-          </a>
-        </div>
-      </div>
-    </>
+    <div className="d-flex flex-wrap justify-content-center w-100 w-md-25 w-lg-25">
+      {constactDetails.map((item, index) => (
+        <ContactCard
+          key={index}
+          icon={item.icon}
+          head={item.head}
+          description={item.description}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function ContactCard({ icon, head, description }) {
+  return (
+    <div
+      className="d-flex flex-column p-4 
+          position-relative justify-content-center 
+          align-items-center m-3 rounded-2 hover-animate-card"
+      style={{
+        width: "300px",
+      }}
+    >
+      <i className={`${icon} fs-3 mb-2 hithere`}></i>
+      <h5>{head}</h5>
+      <p
+        className="text-center mt-3"
+        style={{
+          fontSize: "11px",
+        }}
+      >
+        {description}
+      </p>
+    </div>
   );
 }

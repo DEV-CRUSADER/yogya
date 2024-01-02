@@ -1,39 +1,3 @@
-label {
-    font-size: 1.8rem;
-  }
-  input,
-  textarea {
-    width: 100%;
-    font-size: 2rem;
-    padding: 1.2rem;
-    color: var(--grey);
-    background-color: var(--white);
-    outline: none;
-    border: none;
-    border-radius: 8px;
-    margin-top: 1rem;
-  }
-  textarea {
-    min-height: 250px;
-    resize: vertical;
-  }
-  button[type='submit'] {
-    background-color: var(--grey);
-    color: var(--black);
-    font-size: 2rem;
-    display: inline-block;
-    outline: none;
-    border: none;
-    padding: 1rem 4rem;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  input{
-    height: 1svh;
-    padding: 16px 10px ;
-    font-size: 1rem;
-  }
-
 input[type="number"]::-webkit-inner-spin-button{
   display: none;
 }
@@ -60,3 +24,26 @@ input[type="number"]{
   color: var(--main-color);
 }
 
+.hover-animate-card{
+  background: var(--secondary-color);
+  color: var(--white);
+  transition: all 300ms ease-in;
+  border: 2px solid var(--secondary-color);
+}
+
+.hover-animate-card:hover{
+  background: transparent;
+  color: var(--secondary-color);
+}
+
+.hithere:hover {
+  animation: hithere 1s ease 1;
+}
+
+@keyframes hithere {
+  30% { transform: scale(1.2); }
+  40%, 60% { transform: rotate(-20deg) scale(1.2); }
+  50% { transform: rotate(20deg) scale(1.2); }
+  70% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: scale(1); }
+}
