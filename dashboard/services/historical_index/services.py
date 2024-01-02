@@ -30,8 +30,7 @@ class HistoricalIndexServices:
         end_date = end_date.strftime("%d-%b-%Y")
 
         if data is None:
-            # symbol = "NIFTY 50"
-            symbol = "NIFTY SMALLCAP 250"
+            symbol = "NIFTY 50"
             start_date = "1-Jan-1990"
             end_date = end_date
         else:

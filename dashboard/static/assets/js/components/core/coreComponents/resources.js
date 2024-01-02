@@ -52,6 +52,13 @@ export function Resources() {
                         setExpand={setExpand}
                         formData={formData}
                         setFormData={setFormData}
+                        setDataFound={setDataFound}
+                        indexName={setIndexName}
+                        dataFound={setDataFound}
+                        labels={setLabels}
+                        chartData={setChartData}
+
+
                     />
                     <Container
                         style={{

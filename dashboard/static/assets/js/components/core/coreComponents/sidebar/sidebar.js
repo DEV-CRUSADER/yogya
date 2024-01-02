@@ -34,7 +34,8 @@ const NavToggle = ({ expand, onChange }) => {
 
 
 
-export function ResourcesSidebar({ expand, setExpand, formData, setFormData }) {
+export function ResourcesSidebar({ expand, setExpand, formData, setFormData,
+     setChartData, setLabels, setDataFound, setIndexName}) {
     return (
         <Sidebar
             style={{
@@ -55,34 +56,21 @@ export function ResourcesSidebar({ expand, setExpand, formData, setFormData }) {
                         <Nav.Menu
                             eventKey="3"
                             trigger="hover"
-                            title="Select Type"
+                            title="Charts"
                             icon={<FunnelTimeIcon />}
                             placement="rightStart"
                         >
                             <Nav.Item eventKey="3-1">
                                 <ChartsIndexFrom
-                                    formData={formData}
+                                    formData={console.log(formData)}
                                     setFormData={setFormData}
+                                    setChartData={setChartData}
+                                    setLabels={setLabels}
+                                    setDataFound={setDataFound}
+                                    setIndexName={setIndexName}
                                 />
                             </Nav.Item>
-                            {/* <Nav.Item eventKey="3-2">Devices</Nav.Item>
-                            <Nav.Item eventKey="3-3">Brand</Nav.Item>
-                            <Nav.Item eventKey="3-4">Loyalty</Nav.Item>
-                            <Nav.Item eventKey="3-5">Visit Depth</Nav.Item> */}
                         </Nav.Menu>
-                        {/* <Nav.Menu
-                            eventKey="4"
-                            trigger="hover"
-                            title="Settings"
-                            icon={<GearCircleIcon />}
-                            placement="rightStart"
-                        >
-                            <Nav.Item eventKey="4-1">Applications</Nav.Item>
-                            <Nav.Item eventKey="4-2">Websites</Nav.Item>
-                            <Nav.Item eventKey="4-3">Channels</Nav.Item>
-                            <Nav.Item eventKey="4-4">Tags</Nav.Item>
-                            <Nav.Item eventKey="4-5">Versions</Nav.Item>
-                        </Nav.Menu> */}
                     </Nav>
                 </Sidenav.Body>
             </Sidenav>
