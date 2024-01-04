@@ -20,8 +20,8 @@ export function ContactInfo() {
     },
     {
       icon: icons.mail,
-      head: "Email US",
-      description: "chirag.jain@yahoo.com",
+      head: "Email Us",
+      description: "chirag.jain48@yahoo.com",
     },
   ];
 
