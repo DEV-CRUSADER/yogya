@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import permission_required, login_required
 
-from rest_framework.response import Response
 from dashboard.services.historical_index.serializers import HistoricalIndexFormSerializer
 
 from dashboard.services.historical_index.services import HistoricalIndexServices

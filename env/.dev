@@ -4,7 +4,22 @@ DEBUG=True
 
 SECRET_KEY='VeryStrongKey'
 
-# Daraabase settings
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'sy8502630@gmail.com'
+EMAIL_HOST_PASSWORD = 'hrmusisuzflxjmzz'
+
+SENDER_EMAIL = 'sy8502630@gmail.com'
+DEFAULT_FROM_EMAIL = 'sy8502630@gmail.com'
+
+
+# Database settings
 DB_ENGINE='postgresql_psycopg2'
 DB_HOST='localhost'
 DB_NAME='yogya'
