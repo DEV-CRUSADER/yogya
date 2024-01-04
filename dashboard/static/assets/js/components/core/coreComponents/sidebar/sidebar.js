@@ -34,8 +34,8 @@ const NavToggle = ({ expand, onChange }) => {
 
 
 
-export function ResourcesSidebar({ expand, setExpand, formData, setFormData,
-     setChartData, setLabels, setDataFound, setIndexName}) {
+export function ResourcesSidebar({ expand, setExpand, setDataFound, setIndexName, 
+    setLabels, setChartData, }) {
     return (
         <Sidebar
             style={{
@@ -62,8 +62,6 @@ export function ResourcesSidebar({ expand, setExpand, formData, setFormData,
                         >
                             <Nav.Item eventKey="3-1">
                                 <ChartsIndexFrom
-                                    formData={formData}
-                                    setFormData={setFormData}
                                     setChartData={setChartData}
                                     setLabels={setLabels}
                                     setDataFound={setDataFound}

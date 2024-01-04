@@ -12,12 +12,12 @@ const formattedDate = `${year}-${month}-${day}`;
 export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setIndexName }) {
 
     
-    const [selectedIndexType, setSelectedIndexType] = useState('equity')
-    const [selectedIndexValue, setSelectedIndexValue] = useState([])
+    const [selectedIndexType, setSelectedIndexType] = useState('equity');
+    const [selectedIndexValue, setSelectedIndexValue] = useState();
     const [formData, setFormData] = useState({
         symbol: 'NIFTY 50',
         start_date: '1990-01-01',
-        end_date: 'formattedDate'
+        end_date: formattedDate
     })
 
     function handleChange(event) {
@@ -34,7 +34,7 @@ export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setInde
 
     function handelSubmit(event) {
      event.preventDefault();
-    //  console.log(formData);
+     console.log(formData);
      setDataFound(false);
      APICaller.FetchDefaultIndexData(formData).then((res) =>{
         console.log(res);
@@ -43,16 +43,14 @@ export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setInde
                 setChartData(res.data);
                 setLabels(res.data.date);
                 setDataFound(true);
-
-                const indexName = data.index_type.filter((item) => item.symbol === formData.selectedIndexType);
-                indexName(indexName);
+                setIndexName();
             } else {
                 console.log('Failed to fetch NSE data')
             }
         } else {
             console.log(res)
         }
-     })
+     });
         
     }
 

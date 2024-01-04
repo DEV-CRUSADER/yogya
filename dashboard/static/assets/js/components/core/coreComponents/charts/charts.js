@@ -18,7 +18,7 @@ export function Charts({
   indexName,
 }) {
 
-  
+
   useEffect(() => {
     APICaller.FetchDefaultIndexData().then((res) => {
       if (!res.ok) {
@@ -37,7 +37,7 @@ export function Charts({
 
   return (
     <>
-    {/* main div */}
+      {/* main div */}
       <div className='container-fluid m-0 p-0'
         style={{
           overflow: "scroll",
@@ -53,8 +53,8 @@ export function Charts({
             }}>
               <div className='d-flex justify-content-center m-2'>
                 <h3 style={{
-                fontSize: "1rem"
-              }}>{indexName} PE Graph</h3>
+                  fontSize: "1rem"
+                }}>{indexName} PE Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pe} chartType="PE" />
             </div>
@@ -63,8 +63,8 @@ export function Charts({
             }}>
               <div className='d-flex justify-content-center m-2'>
                 <h3 style={{
-                fontSize: "1rem"
-              }}>{indexName} PB Graph</h3>
+                  fontSize: "1rem"
+                }}>{indexName} PB Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.pb} chartType="PB" />
             </div>
@@ -73,8 +73,8 @@ export function Charts({
             }}>
               <div className='d-flex justify-content-center m-2'>
                 <h3 style={{
-                fontSize: "1rem"
-              }}>{indexName} DivYield Graph</h3>
+                  fontSize: "1rem"
+                }}>{indexName} DivYield Graph</h3>
               </div>
               <MakeChart labels={labels} data={chartData.divYield} chartType="divYield" />
             </div>

@@ -49,13 +49,10 @@ export function Resources() {
                     <ResourcesSidebar 
                         expand={expand}
                         setExpand={setExpand}
-                        formData={formData}
-                        setFormData={setFormData}
                         setDataFound={setDataFound}
                         indexName={setIndexName}
-                        dataFound={setDataFound}
-                        labels={setLabels}
-                        chartData={setChartData}
+                        setLabels={setLabels}
+                        setChartData={setChartData}
 
 
                     />

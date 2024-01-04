@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+// import * as Zoom from "chartjs-plugin-zoom";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -127,6 +129,17 @@ export function MakeChart({ labels, data, chartType }) {
         },
       },
     },
+    // pan: {
+    //   enabled: true,
+    //   mode: "xy",
+    //   speed: 10,
+    // },
+    // zoom: {
+    //   enabled: true,
+    //   drag: false,
+    //   mode: "xy",
+
+    // }
   }
 
   return (
