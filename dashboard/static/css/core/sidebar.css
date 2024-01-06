@@ -4,3 +4,30 @@
 Nav.Menu {
     color: aliceblue;
 }
+
+#tog:hover{
+    color: black;
+}
+/* 
+#sidBar{
+    display: none;
+} */
+
+
+@media screen and (max-width: 768px) {
+    #headerDiv {
+      display: none;
+    }
+    
+  }
+
+  @media screen and (max-width: 768px) {
+    #headerMob {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    #headerMob {
+      display: none;
+    }
+  }

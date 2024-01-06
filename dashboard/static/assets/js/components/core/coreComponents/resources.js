@@ -6,17 +6,6 @@ import { ResourcesSidebar } from "./sidebar/sidebar";
 
 import "../../../../../css/core/sidebar.css";
 
-
-// const headerStyles = {
-//     padding: 18,
-//     fontSize: 16,
-//     height: 56,
-//     background: '#34c3ff',
-//     color: ' #fff',
-//     whiteSpace: 'nowrap',
-//     overflow: 'hidden'
-// };
-
 // CURERNT_DATE
 const date = new Date();
 const year = date.getFullYear();
@@ -50,7 +39,7 @@ export function Resources() {
                         expand={expand}
                         setExpand={setExpand}
                         setDataFound={setDataFound}
-                        indexName={setIndexName}
+                        setIndexName={setIndexName}
                         setLabels={setLabels}
                         setChartData={setChartData}
 

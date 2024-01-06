@@ -20,11 +20,17 @@ const headerStyles = {
 };
 
 
+
 const NavToggle = ({ expand, onChange }) => {
     return (
-        <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none">
+        <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none text-light">
             <Nav pullRight>
-                <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
+                <Nav.Item id="tog" onClick={onChange} style={{
+                    width: 56,
+                    textAlign: 'center',
+                    backgroundColor: "var(--teritary-color)",
+                    borderRadius: "13px"
+                    }}>
                     {expand ? <AngleLeftIcon /> : <AngleRightIcon />}
                 </Nav.Item>
             </Nav>
@@ -34,20 +40,22 @@ const NavToggle = ({ expand, onChange }) => {
 
 
 
-export function ResourcesSidebar({ expand, setExpand, setDataFound, setIndexName, 
-    setLabels, setChartData, }) {
+export function ResourcesSidebar({ expand, setExpand, 
+    setDataFound, setIndexName, setLabels, setChartData, }) {
     return (
         <Sidebar
             style={{
-                display: 'flex',
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
             }}
+            id="sidBar"
             width={expand ? 260 : 56}
             collapsible
         >
             <Sidenav.Header>
                 <div style={headerStyles}>
-                    <span style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
+                    <span id="headerMob" style={{ marginLeft: 12 }}>Charts</span>
+                    <span id="headerDiv" style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
                 </div>
             </Sidenav.Header>
             <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
@@ -60,8 +68,8 @@ export function ResourcesSidebar({ expand, setExpand, setDataFound, setIndexName
                             icon={<FunnelTimeIcon />}
                             placement="rightStart"
                         >
-                            <Nav.Item eventKey="3-1">
-                                <ChartsIndexFrom
+                            <Nav.Item eventKey="3-1" >
+                                <ChartsIndexFrom 
                                     setChartData={setChartData}
                                     setLabels={setLabels}
                                     setDataFound={setDataFound}
@@ -72,7 +80,7 @@ export function ResourcesSidebar({ expand, setExpand, setDataFound, setIndexName
                     </Nav>
                 </Sidenav.Body>
             </Sidenav>
-            <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
+            <NavToggle expand={expand} onChange={() => setExpand(!expand)}/>
         </Sidebar>
     );
 };

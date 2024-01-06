@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DatePicker } from 'rsuite';
 
 import { data } from "./constants";
 import { APICaller } from "../../scripts/server";
@@ -43,7 +44,7 @@ export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setInde
                 setChartData(res.data);
                 setLabels(res.data.date);
                 setDataFound(true);
-                setIndexName();
+                setIndexName(res.data.index_name);
             } else {
                 console.log('Failed to fetch NSE data')
             }
@@ -60,7 +61,7 @@ export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setInde
     return (
         <>
             <form className="form" >
-                <select className="form-control mt-4 mb-5" onChange={handleChange} name="selectedIndexType">
+                <select className="form-control mt-4 mb-3" onChange={handleChange} name="selectedIndexType">
                     {data.index_type.map((item, index) => {
                         return (
                             <option key={index} value={item.symbol}>{item.name}</option>
@@ -97,12 +98,18 @@ export function ChartsIndexFrom({ setChartData, setLabels, setDataFound, setInde
                         </div>
                     )
                 }
-                <div className="p-3">
-                    <button className="btn btn-dark" onClick={handelSubmit}>Submit</button>
-                </div>
+                
 
 
             </form>
+
+
+            <div className="p-3">
+                    <button className="btn text-light" onClick={handelSubmit} style={{
+                        backgroundColor: "var(--teritary-color)",
+                        marginLeft: "2rem"
+                    }}>Submit</button>
+                </div>
         </>
     )
 }
