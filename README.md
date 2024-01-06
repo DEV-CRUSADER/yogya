@@ -5,6 +5,9 @@
 ### First Lets Download / Install all the required Tooling
 #### Install PSQL
 
+
+### Rename env/dev.sample to (.dev) and add your details.
+
 Please install PSQL using this link
 ```https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/```.
 This is just a reference for installation. 
