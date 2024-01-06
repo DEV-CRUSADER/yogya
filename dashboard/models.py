@@ -107,3 +107,15 @@ class AuditLogs(models.Model):
     entity_id = models.UUIDField(null=False)
     metadata = models.JSONField(default=dict)
     event_time = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+class ContactUS(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(null=False, blank=False)
+    email = models.CharField(null=False, blank=False)
+    phone_number = models.CharField()
+    message = models.CharField()
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Name: {self.name}"

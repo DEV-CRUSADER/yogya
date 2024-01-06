@@ -5,6 +5,9 @@
 ### First Lets Download / Install all the required Tooling
 #### Install PSQL
 
+
+### Rename env/dev.sample to (.dev) and add your details.
+
 Please install PSQL using this link
 ```https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/```.
 This is just a reference for installation. 
@@ -88,6 +91,10 @@ During development RMQ is not required, and can be disabled by making `ASYNC_EMA
 #### Working with RMQ and RMQ Worker
 
 If you wish to see how RMQ workers are behaving, and have not set `ASYNC_EMAILS = False`, then you will be doing the following :
+
++ Run RMQ worker, by opening a new terminal, activating virtual environment and executing the following command
+``` python -m celery -A core worker --loglevel=info```
+
 
 #### Building React
 
