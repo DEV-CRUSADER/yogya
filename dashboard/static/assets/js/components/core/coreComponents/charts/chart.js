@@ -129,17 +129,6 @@ export function MakeChart({ labels, data, chartType }) {
         },
       },
     },
-    // pan: {
-    //   enabled: true,
-    //   mode: "xy",
-    //   speed: 10,
-    // },
-    // zoom: {
-    //   enabled: true,
-    //   drag: false,
-    //   mode: "xy",
-
-    // }
   }
 
   return (
