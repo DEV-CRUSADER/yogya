@@ -58,6 +58,30 @@ export function ChartsIndexFrom({
         end_date: formattedDate
     })
 
+    useEffect(() => {
+        const fetchData = () =>{
+            try {
+                setDataFound(false);
+                const res = APICaller.FetchDefaultIndexData(formData);
+                if (res.status) {
+                    setChartData(res.data);
+                    setLabels(res.data.date);
+                    setDataFound(true);
+                    setIndexName(res.data.index_name);
+                } else {
+                    console.log('Failed to fetch NSE data');
+                }
+            }catch (error){
+                console.error(error);
+            }
+        };
+        fetchData();
+        // Clean up function
+        return () => {
+            // my clean up code
+        };
+    },[formData, setChartData, setLabels, setDataFound, setIndexName]);
+
     function handleChange(event) {
         const { name, value } = event.target;
         setSelectedIndexType(value);
@@ -70,22 +94,6 @@ export function ChartsIndexFrom({
 
     function handelSubmit(event) {
         event.preventDefault();
-        setDataFound(false);
-        APICaller.FetchDefaultIndexData(formData).then((res) => {
-            // console.log(res);
-            if (!res.ok) {
-                if (res.status) {
-                    setChartData(res.data);
-                    setLabels(res.data.date);
-                    setDataFound(true);
-                    setIndexName(res.data.index_name);
-                } else {
-                    console.log('Failed to fetch NSE data')
-                }
-            } else {
-                console.log(res)
-            }
-        });
     }
     return (
         <>
