@@ -3,11 +3,8 @@ import { Sidebar, Sidenav, Navbar, Nav } from 'rsuite';
 import AngleLeftIcon from '@rsuite/icons/legacy/AngleLeft';
 import AngleRightIcon from '@rsuite/icons/legacy/AngleRight';
 import FunnelTimeIcon from '@rsuite/icons/FunnelTime';
-
 import { ChartsIndexFrom } from "./form";
-
 import "../../../../../../css/core/sidebar.css";
-
 
 const headerStyles = {
     padding: 18,
@@ -19,13 +16,11 @@ const headerStyles = {
     overflow: 'hidden'
 };
 
-
-
 const NavToggle = ({ expand, onChange }) => {
     return (
         <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none text-light">
             <Nav pullRight>
-                <Nav.Item id="tog" onClick={onChange} style={{
+                <Nav.Item className="text-light" onClick={onChange} style={{
                     width: 56,
                     textAlign: 'center',
                     backgroundColor: "var(--teritary-color)",
@@ -37,8 +32,6 @@ const NavToggle = ({ expand, onChange }) => {
         </Navbar>
     );
 };
-
-
 
 export function ResourcesSidebar({ expand, setExpand, 
     setDataFound, setIndexName, setLabels, setChartData, }) {
