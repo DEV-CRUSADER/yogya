@@ -1,4 +1,9 @@
+import logging
+
 from django.conf import settings
+
+
+log = logging.getLogger(__name__)
 
 class Mailer:
     mail_classes = {}
@@ -6,7 +11,7 @@ class Mailer:
     def register(self, mail_name, func):
         self.mail_classes[mail_name] = func
 
-    def send_mail(self, mail_name, is_async=True, **args):
+    def send_mail(self, mail_name, is_async=True, **kwargs):
         if not settings.ASYNC_EMAILS:
             is_async = False
 
@@ -14,8 +19,10 @@ class Mailer:
             return
 
         if is_async:
-            self.mail_classes[mail_name].delay(**args)
+            log.info(f"Sending mail async: {mail_name}")
+            self.mail_classes[mail_name].delay(**kwargs)
         else:
-            self.mail_classes[mail_name](**args)
+            log.info(f"Sending mail sync: {mail_name}")
+            self.mail_classes[mail_name](**kwargs)
 
 mailer = Mailer()

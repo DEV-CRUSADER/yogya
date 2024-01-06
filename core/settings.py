@@ -218,13 +218,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DASHBOARD_LOGIN_REDIRECT_URL = 'dashboard'
 
 # Email settings
+
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
@@ -232,3 +233,7 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 # ASGI
 ASGI_APPLICATION = "core.asgi.application"
 THREAD_POOL_SIZE = 2
+
+# DEBUGGING
+ASYNC_EMAILS = os.getenv('ASYNC_EMAILS', "True") == 'True'
+SKIP_OTP = os.getenv('SKIP_OTP', "True") == 'True'

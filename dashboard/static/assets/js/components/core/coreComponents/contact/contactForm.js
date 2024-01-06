@@ -1,11 +1,47 @@
 import React, { useState } from "react";
-import CSS from "../../../../../../css/contact.css";
+import validator from "validator";
+
+import { APICaller } from "../../scripts/server";
+import { Notyf } from 'notyf';
+
+import 'notyf/notyf.min.css';
+import "../../../../../../css/contact.css";
+
+const notyf = new Notyf({
+  duration: 3000,
+  position: {
+    x: 'right',
+    y: 'top',
+  },
+  types: [
+    {
+      type: 'error',
+      background: '#e74c3c',
+      icon: {
+        className: 'fas fa-exclamation-circle',
+        tagName: 'span',
+        color: '#fff'
+      },
+      dismissible: true
+    },
+    {
+      type: 'success',
+      background: '#2ecc71',
+      icon: {
+        className: 'fas fa-check-circle',
+        tagName: 'span',
+        color: '#fff'
+      },
+      dismissible: true
+    }
+  ]
+});
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone_number: "",
     message: "",
   });
 
@@ -13,6 +49,35 @@ export function ContactForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name === "" || formData.email === "" || formData.phone_number === ""  || formData.message === "") {
+      notyf.error('Please fill out the form');
+      return;
+    }
+    if (!validator.isEmail(formData.email)){
+      notyf.error('Please enter a valid email');
+      return;
+    }
+    sendMail();
+  };
+
+  function sendMail() {
+    APICaller.SendontactUsEmail(formData).then((res) => {
+      if (res.status) {
+        notyf.success(res.message);
+        setFormData({
+          name: "",
+          email: "",
+          phone_number: "",
+          message: "",
+        });
+      } else {
+        notyf.error('Something went wrong');
+      }
+    });
+  }
 
   return (
     <>
@@ -50,12 +115,12 @@ export function ContactForm() {
             Phone number
             <input
               type="number"
-              name="phone"
+              name="phone_number"
               inputMode="numeric"
-              value={formData.phone}
+              value={formData.phone_number}
               onChange={handleChange}
               className="form-control"
-              placeholder="eg. +91 xxxxx xxxxx"
+              placeholder="eg. xxxxxxxxxx"
             />
           </label>
         </div>
@@ -72,10 +137,12 @@ export function ContactForm() {
                 resize: "none"
               }}
               placeholder="Type your message here....."
+              value={formData.message}
+              onChange={handleChange}
             ></textarea>
           </label>
         </div>
-        <button onClick={() => console.log(formData)} className="btn btn-dark mt-3">
+        <button onClick={onSubmit} className="btn btn-dark mt-3">
           Submit
         </button>
       </form>

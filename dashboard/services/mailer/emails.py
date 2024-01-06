@@ -1,6 +1,6 @@
 from celery import shared_task
 from django.conf import settings
-from django.core import mail
+from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
@@ -23,7 +23,7 @@ def send_user_verification_email(business_member_id):
         'token': TokenGenerator(business_member).make_token(business_member.user),
     })
     plain_message = strip_tags(html_message)
-    mail.send_mail(mail_subject, plain_message, settings.SENDER_EMAIL, [business_member.user.email],
+    send_mail(mail_subject, plain_message, settings.SENDER_EMAIL, [business_member.user.email],
                    html_message=html_message)
 
 @shared_task
@@ -36,13 +36,12 @@ def send_contact_us_email(name, email, phone_number, message):
         'message': message,
     })
     plain_message = strip_tags(html_message)
-    mail.send_mail(
+    send_mail(
         mail_subject, 
         plain_message, 
         settings.SENDER_EMAIL, 
         [settings.SENDER_EMAIL],
         html_message=html_message,
-        reply_to=[email]
     )
 
 def register_all():

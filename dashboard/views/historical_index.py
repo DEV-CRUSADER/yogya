@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 class HistoricalIndexAPIView:
 
     @staticmethod
-    @api_view(['POST', 'GET'])
+    @api_view(['POST'])
     def get_index_data(request):
         log.info(f"get_index_data called : {request.data}")
 
