@@ -14,6 +14,7 @@ import { CSS } from "../../../../../css/home.css";
 
 export function Home() {
     TabTitle('Yogya Capital')
+    document.body.style.overflowY = "hidden";
 
     return (
         <>

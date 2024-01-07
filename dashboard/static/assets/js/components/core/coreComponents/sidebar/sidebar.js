@@ -20,7 +20,7 @@ const NavToggle = ({ expand, onChange }) => {
     return (
         <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none text-light">
             <Nav pullRight>
-                <Nav.Item className="text-light" onClick={onChange} style={{
+                <Nav.Item id="nav-item-arrow" className="text-light" onClick={onChange} style={{
                     width: 56,
                     textAlign: 'center',
                     backgroundColor: "var(--teritary-color)",

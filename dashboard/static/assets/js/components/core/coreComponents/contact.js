@@ -4,6 +4,9 @@ import CSS from "../../../../../css/contact.css";
 
 export function Contact() {
     TabTitle('Yogya Capital | Contact')
+
+    document.body.style.overflowY = "hidden";
+
     return (
         <>
 

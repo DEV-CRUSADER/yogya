@@ -5,6 +5,14 @@ Nav.Menu {
     color: aliceblue;
 }
 
+
+@media screen and (max-width: 768px) {
+  #sidBar{
+    display: none;
+  }
+  }
+
+
 @media screen and (max-width: 768px) {
     #headerDiv {
       display: none;

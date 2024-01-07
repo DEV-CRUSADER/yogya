@@ -59,10 +59,10 @@ export function ChartsIndexFrom({
     })
 
     useEffect(() => {
-        const fetchData = () =>{
+        const fetchData = async () =>{
             try {
                 setDataFound(false);
-                const res = APICaller.FetchDefaultIndexData(formData);
+                const res = await APICaller.FetchDefaultIndexData(formData);
                 if (res.status) {
                     setChartData(res.data);
                     setLabels(res.data.date);
@@ -78,7 +78,7 @@ export function ChartsIndexFrom({
         fetchData();
         // Clean up function
         return () => {
-            // my clean up code
+            fetchData();
         };
     },[formData, setChartData, setLabels, setDataFound, setIndexName]);
 
