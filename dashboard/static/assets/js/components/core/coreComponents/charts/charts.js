@@ -16,23 +16,34 @@ export function Charts({
   dataFound,
   setDataFound,
   indexName,
-}) {
-
-
+}) 
+{
   useEffect(() => {
-    APICaller.FetchDefaultIndexData().then((res) => {
-      if (!res.ok) {
-        if (res.data.status) {
-          setChartData(res.data.data);
-          setLabels(res.data.data.date)
-          setDataFound(true)
+    const fetchData = async () => {
+      try {
+        const res = await APICaller.FetchDefaultIndexData();
+
+        if (!res.ok) {
+          if (res.data.status) {
+            setChartData(res.data.data);
+            setLabels(res.data.data.date);
+            setDataFound(true);
+          } else {
+            console.log('Failed to fetch data from NSE');
+          }
         } else {
-          console.log('Failed to fetch data from NSE')
+          console.log('Failed');
         }
-      } else {
-        console.log("Failed")
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    });
+    };
+
+    fetchData();
+
+    return () => {
+      fetchData();
+    };
   }, []);
 
   return (

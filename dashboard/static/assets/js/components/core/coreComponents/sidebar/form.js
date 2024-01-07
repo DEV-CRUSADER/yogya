@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { data } from "./constants";
 import { APICaller } from "../../scripts/server";
 
@@ -58,29 +58,6 @@ export function ChartsIndexFrom({
         end_date: formattedDate
     })
 
-    useEffect(() => {
-        const fetchData = async () =>{
-            try {
-                setDataFound(false);
-                const res = await APICaller.FetchDefaultIndexData(formData);
-                if (res.status) {
-                    setChartData(res.data);
-                    setLabels(res.data.date);
-                    setDataFound(true);
-                    setIndexName(res.data.index_name);
-                } else {
-                    console.log('Failed to fetch NSE data');
-                }
-            }catch (error){
-                console.error(error);
-            }
-        };
-        fetchData();
-        // Clean up function
-        return () => {
-            fetchData();
-        };
-    },[formData, setChartData, setLabels, setDataFound, setIndexName]);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -94,7 +71,23 @@ export function ChartsIndexFrom({
 
     function handelSubmit(event) {
         event.preventDefault();
+        setDataFound(false);
+        APICaller.FetchDefaultIndexData(formData).then((res) => {
+            if (!res.ok) {
+                if (res.status) {
+                    setChartData(res.data);
+                    setLabels(res.data.date);
+                    setDataFound(true);
+                    setIndexName(res.data.index_name);
+                } else {
+                    console.log('Failed to fetch NSE data')
+                }
+            } else {
+                console.log(res)
+            }
+        });
     }
+
     return (
         <>
             <form className="form" >
