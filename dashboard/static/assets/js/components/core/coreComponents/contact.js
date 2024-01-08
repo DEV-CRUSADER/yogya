@@ -6,6 +6,7 @@ import { ContactInfo } from "./contact/contactInfo";
 import { ContactForm } from "./contact/contactForm";
 
 export function Contact() {
+<<<<<<< HEAD
   TabTitle("YC | Contact");
   return (
     <>
@@ -26,3 +27,16 @@ export function Contact() {
     </>
   );
 }
+=======
+    TabTitle('Yogya Capital | Contact')
+
+    document.body.style.overflowY = "auto";
+
+    return (
+        <>
+
+            <h1>Contact ME resbase</h1> 
+        </>
+    );
+}
+>>>>>>> sideBar

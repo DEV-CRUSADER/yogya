@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+// import * as Zoom from "chartjs-plugin-zoom";
+
 import {
   Chart as ChartJS,
   CategoryScale,

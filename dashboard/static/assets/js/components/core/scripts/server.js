@@ -3,10 +3,16 @@
 
 export class APICaller{
 
+<<<<<<< HEAD
     static FetchDefaultIndexData(){
+=======
+    // Refer this for API CALLS
+    static FetchDefaultIndexData(data){
+>>>>>>> sideBar
         return fetch("/api/v1/get-index-data", {
-            method: "GET",
+            method: "POST",
             headers: genericHeaders,
+            body: JSON.stringify(data),
         }).then((res) => res.json());
     }
 
