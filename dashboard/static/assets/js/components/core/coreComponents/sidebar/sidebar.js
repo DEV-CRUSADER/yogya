@@ -16,22 +16,7 @@ const headerStyles = {
     overflow: 'hidden'
 };
 
-const NavToggle = ({ expand, onChange }) => {
-    return (
-        <Navbar appearance="subtle" className="nav-toggle d-flex d-md-none d-lg-none d-xl-none text-light">
-            <Nav pullRight>
-                <Nav.Item id="nav-item-arrow" className="text-light" onClick={onChange} style={{
-                    width: 56,
-                    textAlign: 'center',
-                    backgroundColor: "var(--teritary-color)",
-                    borderRadius: "13px"
-                    }}>
-                    {expand ? <AngleLeftIcon /> : <AngleRightIcon />}
-                </Nav.Item>
-            </Nav>
-        </Navbar>
-    );
-};
+
 
 export function ResourcesSidebar({ expand, setExpand, 
     setDataFound, setIndexName, setLabels, setChartData, }) {
@@ -73,7 +58,6 @@ export function ResourcesSidebar({ expand, setExpand,
                     </Nav>
                 </Sidenav.Body>
             </Sidenav>
-            <NavToggle expand={expand} onChange={() => setExpand(!expand)}/>
         </Sidebar>
     );
 };

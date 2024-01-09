@@ -9,6 +9,8 @@ import "../../../../../css/contact.css";
 
 export function Contact() {
   TabTitle("YC | Contact");
+  document.body.style.overflowY = "auto";
+
   return (
     <>
       <ContactHead />

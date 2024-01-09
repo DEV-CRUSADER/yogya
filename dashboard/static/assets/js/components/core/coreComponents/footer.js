@@ -76,7 +76,7 @@ export function Footer() {
           <div className="ps-1">
             <a>
               <FaRegEnvelope />
-              <span className="ps-1">chirag.jain@yahoo.com</span>
+              <span className="ps-1">chirag.jain48@yahoo.com</span>
             </a>
           </div>
         </div>

@@ -9,6 +9,16 @@ import { TopBar } from '../sidebar/sidebar';
 import { APICaller } from '../../scripts/server';
 
 
+let contentHeigth = "80.2svh"
+
+if (window.innerWidth <= 630){
+  contentHeigth = "81svh"
+} else if (window.innerWidth > 630 && window.innerWidth <= 1024){
+  contentHeigth = "86svh"
+} else {
+  contentHeigth = "80.2svh"
+}
+
 export const MakeChartsType = [
   {
     name: "PE GRAPH",
@@ -69,16 +79,18 @@ export function Charts({
 
 
   // TO set size of the Charts
-  const [graphSize, setGraphSize] = useState(window.innerWidth*0.75);
+  const [graphSize, setGraphSize] = useState(650);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const windowSizeHandler = () => {
-      if (window.innerWidth > 0 && window.innerWidth <= 630){
+      setWindowWidth(window.innerWidth)
+      if (window.innerWidth <= 630){
         setGraphSize(300)
-      } else if (window.innerWidth > 630 && window.innerWidth <= 1080){
+      } else if (window.innerWidth > 630 && window.innerWidth <= 1024){
         setGraphSize(500)
-      } else if (window.innerWidth > 1080){
-        setGraphSize(800)
+      } else if (window.innerWidth > 1024){
+        setGraphSize(650)
       }
     }
     window.addEventListener("resize", windowSizeHandler)
@@ -88,23 +100,25 @@ export function Charts({
     }
   },[])
 
+
   return (
     <>
       <div className='container-fluid m-0 p-0'
         style={{
           overflow: "scroll",
           overflowX: "hidden",
-          height: "80svh",
+          height: `${contentHeigth}`,
           marginLeft: "240px"
         }}
       >
-        <TopBar
-            setDataFound={setDataFound}
-            setIndexName={setIndexName}
-            setLabels={setLabels}
-            setChartData={setChartData}
-        />
-
+        {(windowWidth < 800) && (
+            <TopBar
+              setDataFound={setDataFound}
+              setIndexName={setIndexName}
+              setLabels={setLabels}
+              setChartData={setChartData}
+            />      
+        )}
         {!dataFound && (
             <div className="container"
               style={{

@@ -1,13 +1,13 @@
 import React from "react";
 
 //importing css
-import { CSS } from "../../../../../../css/home.css";
+import "../../../../../../css/home.css";
 
 export function Hero() {
   return (
     <>
       <div className="hero-section d-flex justify-content-around align-items-center flex-column flex-sm-column 
-          flex-md-column flex-lg-row flex-xl-row">
+          flex-md-column flex-lg-row flex-xl-row pt-5">
         <div
         id="hero-text"
           className="text-center"
