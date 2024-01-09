@@ -1,16 +1,25 @@
 import React from "react";
 import { TabTitle } from "../scripts/general_function";
-import CSS from "../../../../../css/contact.css";
+import { ContactHead } from "./contact/contactHead";
+import { ContactInfo } from "./contact/contactInfo";
+import { ContactForm } from "./contact/contactForm";
+import { Footer } from "./footer";
+
+import "../../../../../css/contact.css";
 
 export function Contact() {
-    TabTitle('Yogya Capital | Contact')
+  TabTitle("YC | Contact");
+  document.body.style.overflowY = "auto";
 
-    document.body.style.overflowY = "auto";
-
-    return (
-        <>
-
-            <h1>Contact ME resbase</h1> 
-        </>
-    );
+  return (
+    <>
+      <ContactHead />
+      <div className="d-flex flex-column p-sm-4 p-2 
+            justify-content-end align-items-center">
+        <ContactForm />
+        <ContactInfo />
+      </div>
+      <Footer />
+    </>
+  );
 }

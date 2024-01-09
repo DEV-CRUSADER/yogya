@@ -25,7 +25,7 @@ ChartJS.register(
 );
 
 
-export function MakeChart({ labels, data, chartType }) {
+export function MakeChart({ labels, data, chartType, graphSize }) {
   var data = {
     labels: labels,
     datasets: [{
@@ -135,7 +135,7 @@ export function MakeChart({ labels, data, chartType }) {
     <div>
       <Line
         data={data}
-        height={800}
+        height={graphSize}
         options={options}
       />
     </div>

@@ -1,0 +1,44 @@
+{% extends 'emails/base-email.html' %}
+{% block content %}
+<h3 style="
+    text-align: center;
+    font-size: 30px;
+    color: #3d7186;
+    font-size: medium;
+">
+    Heyyy! {{ name }}, wants to contact us.
+</h3>
+<div style="
+        display: flex;
+        flex-direction: column;
+        /* padding: 8px; */
+    ">
+    <div style="
+        font-size: 20px;
+        color: #c2dae4;
+        font-size: medium;
+        background-color: #2c5464;
+        padding: 20px 10px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        margin: 0px;
+        border-bottom: 1px solid #3d7186;
+    ">
+        <span>Name: </span> <span>{{ name }}</span><br>
+        <span>Email: </span> <a href="mailto:{{ email }}" target="_blank"> &nbsp;{{ email }}</a><br>
+        <span>Phone: </span> <a href="tel:{{ phone_number }}" target="_blank"> &nbsp;{{ phone_number }}</a>
+    </div>
+    <p style="
+        font-size: 20px;
+        color: #c2dae4;
+        font-size: medium;
+        background-color: #2c5464;
+        padding: 20px 10px;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        margin: 0px;
+    ">
+        {{ message }}
+    </p>
+</div>
+{% endblock content %}

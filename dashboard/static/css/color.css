@@ -4,11 +4,11 @@
   --secondary-color: #3D7186;
   --teritary-color: #2C5464;
   --black: #000;
-  --grey:#888;
-  --grey-2:#ccc;
   --white: #fff;
+  --grey: #808080;
   --secondary-text: #e7e3d4;
   --primary-text: #cfefe7;
+
   
   /* Shadows */
   --line-color: rgba(61, 113, 134, 0);
@@ -27,4 +27,9 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none; 
   scrollbar-width: none; /* Firefox */
+  text-decoration: none;
+}
+
+*:hover {
+  text-decoration: none;
 }

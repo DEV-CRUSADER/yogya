@@ -30,6 +30,7 @@
     "chartjs": "^0.3.24",
     "chartjs-plugin-zoom": "^2.0.1",
     "fs-promise": "^2.0.3",
+    "notyf": "^3.10.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-chartjs-2": "^5.2.0",
@@ -43,7 +44,8 @@
     "save": "^2.9.0",
     "styled-components": "^6.1.3",
     "util": "^0.12.5",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

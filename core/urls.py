@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from dashboard.services.mailer.emails import register_all
+
 import core.views
 
 urlpatterns = [
@@ -28,3 +30,9 @@ urlpatterns = [
 
     path("api/v1/", include('dashboard.api_urls')),
 ]
+
+def register_functions():
+    register_all()
+
+
+register_functions()

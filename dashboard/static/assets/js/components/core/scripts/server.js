@@ -12,4 +12,11 @@ export class APICaller{
         }).then((res) => res.json());
     }
 
+    static SendontactUsEmail(formData){
+        return fetch("/api/v1/send-contact-mail", {
+            method: "POST",
+            headers: genericHeaders,
+            body: JSON.stringify(formData),
+        }).then((res) => res.json());
+    }
 }
