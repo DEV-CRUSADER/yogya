@@ -5,6 +5,7 @@ import { Hero } from './home/hero';
 import { Disclaimer } from './home/disclaimer';
 import { WhyUs } from './home/whyus';
 import { PersonHero } from './home/personHero';
+import { Footer } from './footer';
 
 
 //importing css
@@ -13,23 +14,15 @@ import { CSS } from "../../../../../css/home.css";
 
 export function Home() {
     TabTitle('Yogya Capital')
+    document.body.style.overflowY = "auto";
 
     return (
         <>
             <Hero />
-            {/* <div 
-                className="container-fluid d-flex justify-content-center align-items-center"
-            >
-                <hr
-                    className="border-3 border-dark opacity-25"
-                    style={{
-                        width: "80%",
-                    }}
-                />
-            </div> */}
             <WhyUs />
             <PersonHero />
             <Disclaimer />
+            <Footer />
 
         </>
     );

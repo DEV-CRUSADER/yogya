@@ -57,9 +57,13 @@ export function Navbar(props) {
 				}}
 			>
 				<div className="container-fluid p-2 px-4">
-					<Link className="navbar-brand " to="/" style={{ fontWeight: "bold", fontFamily: "Lora" }}>
-						{" "}
-						Yogya Capital{" "}
+					<Link 
+						className="navbar-brand text-decoration-none" to="/" 
+						style={{ 
+							fontWeight: "bold", 
+							fontFamily: "Lora" 
+						}}>
+						Yogya Capital
 					</Link>
 					<button
 						className="navbar-toggler"
@@ -77,7 +81,7 @@ export function Navbar(props) {
 							{nav_links.map((link, index) => (
 								<Link
 									key={link.to}
-									className={`nav-link ${activeTab === index ? "active_tab" : ""}`}
+									className={`nav-link custom-nav-link ${activeTab === index ? "active_tab" : ""} text-decoration-none`}
 									to={link.to}
 									onClick={() => handleLinkClick(index)}
 								>

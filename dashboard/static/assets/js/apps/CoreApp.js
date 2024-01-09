@@ -8,7 +8,7 @@ import {
   ContactPageView,
 } from "../components/core/App";
 import { Navbar } from "../components/core/coreComponents/navbar";
-import { Footer } from "../components/core/coreComponents/footer";
+
 
 export function CoreApp() {
   return (
@@ -20,7 +20,6 @@ export function CoreApp() {
         <Route path="/mutual-funds" element={<MutualPageView />} />
         <Route path="/contact" element={<ContactPageView />} />
       </Routes>
-      <Footer />
     </>
   );
 }
