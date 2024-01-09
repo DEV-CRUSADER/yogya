@@ -77,3 +77,22 @@ export function ResourcesSidebar({ expand, setExpand,
         </Sidebar>
     );
 };
+
+
+export function TopBar({ setDataFound, setIndexName, setLabels, setChartData, }){
+    return (
+        <div
+            className="m-0 p-5 d-flex justify-content-center align-items-center"
+            style={{
+                background: "var(--secondary-color)"
+            }}
+        >
+            <ChartsIndexFrom
+                setChartData={setChartData}
+                setLabels={setLabels}
+                setDataFound={setDataFound}
+                setIndexName={setIndexName}
+            />
+        </div>
+    )
+}

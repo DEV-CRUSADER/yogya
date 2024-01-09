@@ -10,7 +10,7 @@ export function Hero() {
           flex-md-column flex-lg-row flex-xl-row">
         <div
         id="hero-text"
-          className="text-center  "
+          className="text-center"
           style={{
             width: "100%",
           }}

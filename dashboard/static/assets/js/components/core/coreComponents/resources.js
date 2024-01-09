@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Header, Content } from 'rsuite';
 import { TabTitle } from "../scripts/general_function";
 import { Charts } from "./charts/charts";
-import { ResourcesSidebar } from "./sidebar/sidebar";
+import { ResourcesSidebar, TopBar } from "./sidebar/sidebar";
 
 import "../../../../../css/core/sidebar.css";
 
@@ -30,21 +30,32 @@ export function Resources() {
     document.body.style.overflowY = "hidden";
 
     const [expand, setExpand] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const windowSizeHandler = () => {
+            setWindowWidth(window.innerWidth)
+        }
+        window.addEventListener("resize", windowSizeHandler)
+
+        return () => {
+            window.removeEventListener("resize", windowSizeHandler)
+        }
+    }, [])
 
     return (
         <>
             <div className="sidebar-page">
                 <Container>
-                    <ResourcesSidebar 
+                    {(windowWidth >= 800) ?
+                    <ResourcesSidebar
                         expand={expand}
                         setExpand={setExpand}
                         setDataFound={setDataFound}
                         setIndexName={setIndexName}
                         setLabels={setLabels}
                         setChartData={setChartData}
-
-
-                    />
+                    /> : null}
                     <Container
                         style={{
                             boxShadow: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",

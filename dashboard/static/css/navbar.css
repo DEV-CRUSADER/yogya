@@ -3,6 +3,10 @@
   transition: all 300ms ease-in;
 }
 
+.custom-nav-link{
+  border-bottom: 3px solid var(--white);
+}
+
 .active_tab {
   border-bottom: 3px solid var(--secondary-color);
 }

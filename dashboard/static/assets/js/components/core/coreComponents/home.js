@@ -19,20 +19,9 @@ export function Home() {
     return (
         <>
             <Hero />
-            {/* <div 
-                className="container-fluid d-flex justify-content-center align-items-center"
-            >
-                <hr
-                    className="border-3 border-dark opacity-25"
-                    style={{
-                        width: "80%",
-                    }}
-                />
-            </div> */}
             <WhyUs />
             <PersonHero />
             <Disclaimer />
-
             <Footer />
 
         </>

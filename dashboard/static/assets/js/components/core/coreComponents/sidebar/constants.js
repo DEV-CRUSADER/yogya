@@ -1,457 +1,457 @@
 export const data = {
     index_type: [
         {
-            name: "Equity",
-            symbol: "equity"
+            symbol: "equity",
+            name: "Equity"
         },
         {
-            name: "Fixed Income",
-            symbol: "fix_income"
+            symbol: "fix_income",
+            name: "Fixed Income"
         },
         {
-            name: "Multi Asset",
-            symbol: "multi_asset"
+            symbol: "multi_asset",
+            name: "Multi Asset"
         }
     ],
     equity: [
         {
-            name: "Nifty 50",
-            symbol: "Nifty 50"
+            symbol: "Nifty 50",
+            name: "Nifty 50"
         },
         {
-            name: "Nifty 100",
-            symbol: "Nifty 100"
+            symbol: "Nifty 100",
+            name: "Nifty 100"
         },
         {
-            name: "Nifty 200",
-            symbol: "Nifty 200"
+            symbol: "Nifty 200",
+            name: "Nifty 200"
         },
         {
-            name: "NIFTY 50 ARBITRAGE",
-            symbol: "Nifty 50 Arbitrage"
+            symbol: "NIFTY 50 ARBITRAGE",
+            name: "Nifty 50 Arbitrage"
         },
         {
-            name: "Nifty 500",
-            symbol: "Nifty 500"
+            symbol: "Nifty 500",
+            name: "Nifty 500"
         },
         {
-            name: "NIFTY ADITYA BIRLA GROUP",
-            symbol: "Nifty Aditya Birla Group"
+            symbol: "NIFTY ADITYA BIRLA GROUP",
+            name: "Nifty Aditya Birla Group"
         },
         {
-            name: "NIFTY ALPHA 50",
-            symbol: "Nifty Alpha 50"
+            symbol: "NIFTY ALPHA 50",
+            name: "Nifty Alpha 50"
         },
         {
-            name: "NIFTY ALPHALOWVOL",
-            symbol: "NIFTY ALPHA LOW-VOLATILITY 30"
+            symbol: "NIFTY ALPHALOWVOL",
+            name: "NIFTY ALPHA LOW-VOLATILITY 30"
         },
         {
-            name: "NIFTY ALPHA QUALITY LOW-VOLATILITY 30",
-            symbol: "NIFTY ALPHA QUALITY LOW-VOLATILITY 30"
+            symbol: "NIFTY ALPHA QUALITY LOW-VOLATILITY 30",
+            name: "NIFTY ALPHA QUALITY LOW-VOLATILITY 30"
         },
         {
-            name: "NIFTY ALPHA QUALITY VALUE LOW-VOLATILITY 30",
-            symbol: "NIFTY ALPHA QUALITY VALUE LOW-VOLATILITY 30"
+            symbol: "NIFTY ALPHA QUALITY VALUE LOW-VOLATILITY 30",
+            name: "NIFTY ALPHA QUALITY VALUE LOW-VOLATILITY 30"
         },
         {
-            name: "Nifty Auto",
-            symbol: "Nifty Auto"
+            symbol: "Nifty Auto",
+            name: "Nifty Auto"
         },
         {
-            name: "Nifty Bank",
-            symbol: "Nifty Bank"
+            symbol: "Nifty Bank",
+            name: "Nifty Bank"
         },
         {
-            name: "Nifty Commodities",
-            symbol: "Nifty Commodities"
+            symbol: "Nifty Commodities",
+            name: "Nifty Commodities"
         },
         {
-            name: "NIFTY CONSR DURBL",
-            symbol: "Nifty Consumer Durables"
+            symbol: "NIFTY CONSR DURBL",
+            name: "Nifty Consumer Durables"
         },
         {
-            name: "Nifty Core Housing",
-            symbol: "Nifty Core Housing"
+            symbol: "Nifty Core Housing",
+            name: "Nifty Core Housing"
         },
         {
-            name: "Nifty CPSE",
-            symbol: "Nifty CPSE"
+            symbol: "Nifty CPSE",
+            name: "Nifty CPSE"
         },
         {
-            name: "Nifty Div Opps 50",
-            symbol: "Nifty Dividend Opportunities 50"
+            symbol: "Nifty Div Opps 50",
+            name: "Nifty Dividend Opportunities 50"
         },
         {
-            name: "Nifty Energy",
-            symbol: "Nifty Energy"
+            symbol: "Nifty Energy",
+            name: "Nifty Energy"
         },
         {
-            name: "Nifty Fin Service",
-            symbol: "Nifty Financial Services"
+            symbol: "Nifty Fin Service",
+            name: "Nifty Financial Services"
         },
         {
-            name: "NIFTY FINSRV25 50",
-            symbol: "Nifty Financial Services 25/50"
+            symbol: "NIFTY FINSRV25 50",
+            name: "Nifty Financial Services 25/50"
         },
         {
-            name: "Nifty Financial Services Ex-Bank",
-            symbol: "Nifty Financial Services Ex-Bank"
+            symbol: "Nifty Financial Services Ex-Bank",
+            name: "Nifty Financial Services Ex-Bank"
         },
         {
-            name: "Nifty FMCG",
-            symbol: "Nifty FMCG"
+            symbol: "Nifty FMCG",
+            name: "Nifty FMCG"
         },
         {
-            name: "Nifty GrowSect 15",
-            symbol: "Nifty Growth Sectors 15"
+            symbol: "Nifty GrowSect 15",
+            name: "Nifty Growth Sectors 15"
         },
         {
-            name: "NIFTY HEALTHCARE",
-            symbol: "Nifty Healthcare Index"
+            symbol: "NIFTY HEALTHCARE",
+            name: "Nifty Healthcare Index"
         },
         {
-            name: "NIFTY HIGH BETA 50",
-            symbol: "Nifty High Beta 50"
+            symbol: "NIFTY HIGH BETA 50",
+            name: "Nifty High Beta 50"
         },
         {
-            name: "Nifty Housing",
-            symbol: "Nifty Housing"
+            symbol: "Nifty Housing",
+            name: "Nifty Housing"
         },
         {
-            name: "Nifty Consumption",
-            symbol: "Nifty India Consumption"
+            symbol: "Nifty Consumption",
+            name: "Nifty India Consumption"
         },
         {
-            name: "Nifty India Defence",
-            symbol: "Nifty India Defence"
+            symbol: "Nifty India Defence",
+            name: "Nifty India Defence"
         },
         {
-            name: "NIFTY IND DIGITAL",
-            symbol: "Nifty India Digital"
+            symbol: "NIFTY IND DIGITAL",
+            name: "Nifty India Digital"
         },
         {
-            name: "NIFTY INDIA MFG",
-            symbol: "Nifty India Manufacturing"
+            symbol: "NIFTY INDIA MFG",
+            name: "Nifty India Manufacturing"
         },
         {
-            name: "Nifty Infra",
-            symbol: "Nifty Infrastructure"
+            symbol: "Nifty Infra",
+            name: "Nifty Infrastructure"
         },
         {
-            name: "Nifty IT",
-            symbol: "Nifty IT"
+            symbol: "Nifty IT",
+            name: "Nifty IT"
         },
         {
-            name: "NIFTY LARGEMID250",
-            symbol: "NIFTY LargeMidcap 250"
+            symbol: "NIFTY LARGEMID250",
+            name: "NIFTY LargeMidcap 250"
         },
         {
-            name: "NIFTY LOW VOLATILITY 50",
-            symbol: "Nifty Low Volatility 50"
+            symbol: "NIFTY LOW VOLATILITY 50",
+            name: "Nifty Low Volatility 50"
         },
         {
-            name: "NIFTY MAHINDRA GROUP",
-            symbol: "Nifty Mahindra Group"
+            symbol: "NIFTY MAHINDRA GROUP",
+            name: "Nifty Mahindra Group"
         },
         {
-            name: "Nifty Media",
-            symbol: "Nifty Media"
+            symbol: "Nifty Media",
+            name: "Nifty Media"
         },
         {
-            name: "Nifty Metal",
-            symbol: "Nifty Metal"
+            symbol: "Nifty Metal",
+            name: "Nifty Metal"
         },
         {
-            name: "NIFTY MICROCAP250",
-            symbol: "Nifty Microcap 250"
+            symbol: "NIFTY MICROCAP250",
+            name: "Nifty Microcap 250"
         },
         {
-            name: "NIFTY MIDCAP 100",
-            symbol: "NIFTY Midcap 100"
+            symbol: "NIFTY MIDCAP 100",
+            name: "NIFTY Midcap 100"
         },
         {
-            name: "NIFTY MIDCAP 150",
-            symbol: "Nifty Midcap 150"
+            symbol: "NIFTY MIDCAP 150",
+            name: "Nifty Midcap 150"
         },
         {
-            name: "Nifty Midcap 50",
-            symbol: "Nifty Midcap 50"
+            symbol: "Nifty Midcap 50",
+            name: "Nifty Midcap 50"
         },
         {
-            name: "Nifty Mid Liq 15",
-            symbol: "Nifty Midcap Liquid 15"
+            symbol: "Nifty Mid Liq 15",
+            name: "Nifty Midcap Liquid 15"
         },
         {
-            name: "NIFTY MID SELECT",
-            symbol: "Nifty Midcap Select"
+            symbol: "NIFTY MID SELECT",
+            name: "Nifty Midcap Select"
         },
         {
-            name: "Nifty Midcap150 Momentum 50",
-            symbol: "Nifty Midcap150 Momentum 50"
+            symbol: "Nifty Midcap150 Momentum 50",
+            name: "Nifty Midcap150 Momentum 50"
         },
         {
-            name: "Nifty MidSmall Financial Services",
-            symbol: "Nifty MidSmall Financial Services"
+            symbol: "Nifty MidSmall Financial Services",
+            name: "Nifty MidSmall Financial Services"
         },
         {
-            name: "Nifty MidSmall Healthcare",
-            symbol: "Nifty MidSmall Healthcare"
+            symbol: "Nifty MidSmall Healthcare",
+            name: "Nifty MidSmall Healthcare"
         },
         {
-            name: "Nifty MidSmall India Consumption",
-            symbol: "Nifty MidSmall India Consumption"
+            symbol: "Nifty MidSmall India Consumption",
+            name: "Nifty MidSmall India Consumption"
         },
         {
-            name: "Nifty MidSmall IT & Telecom",
-            symbol: "Nifty MidSmall IT & Telecom"
+            symbol: "Nifty MidSmall IT & Telecom",
+            name: "Nifty MidSmall IT & Telecom"
         },
         {
-            name: "NIFTY MIDSML 400",
-            symbol: "NIFTY MidSmallcap 400"
+            symbol: "NIFTY MIDSML 400",
+            name: "NIFTY MidSmallcap 400"
         },
         {
-            name: "Nifty MNC",
-            symbol: "Nifty MNC"
+            symbol: "Nifty MNC",
+            name: "Nifty MNC"
         },
         {
-            name: "Nifty Mobility",
-            symbol: "Nifty Mobility"
+            symbol: "Nifty Mobility",
+            name: "Nifty Mobility"
         },
         {
-            name: "Nifty Next 50",
-            symbol: "Nifty Next 50"
+            symbol: "Nifty Next 50",
+            name: "Nifty Next 50"
         },
         {
-            name: "Nifty Non-Cyclical Consumer",
-            symbol: "Nifty Non-Cyclical Consumer"
+            symbol: "Nifty Non-Cyclical Consumer",
+            name: "Nifty Non-Cyclical Consumer"
         },
         {
-            name: "NIFTY OIL AND GAS",
-            symbol: "Nifty Oil & Gas"
+            symbol: "NIFTY OIL AND GAS",
+            name: "Nifty Oil & Gas"
         },
         {
-            name: "Nifty Pharma",
-            symbol: "Nifty Pharma"
+            symbol: "Nifty Pharma",
+            name: "Nifty Pharma"
         },
         {
-            name: "Nifty Pvt Bank",
-            symbol: "Nifty Private Bank"
+            symbol: "Nifty Pvt Bank",
+            name: "Nifty Private Bank"
         },
         {
-            name: "Nifty PSE",
-            symbol: "Nifty PSE"
+            symbol: "Nifty PSE",
+            name: "Nifty PSE"
         },
         {
-            name: "Nifty PSU Bank",
-            symbol: "Nifty PSU Bank"
+            symbol: "Nifty PSU Bank",
+            name: "Nifty PSU Bank"
         },
         {
-            name: "Nifty Realty",
-            symbol: "Nifty Realty"
+            symbol: "Nifty Realty",
+            name: "Nifty Realty"
         },
         {
-            name: "Nifty REITs & InvITs",
-            symbol: "Nifty REITs & InvITs"
+            symbol: "Nifty REITs & InvITs",
+            name: "Nifty REITs & InvITs"
         },
         {
-            name: "Nifty Serv Sector",
-            symbol: "Nifty Services Sector"
+            symbol: "Nifty Serv Sector",
+            name: "Nifty Services Sector"
         },
         {
-            name: "NIFTY SHARIAH 25",
-            symbol: "Nifty Shariah 25"
+            symbol: "NIFTY SHARIAH 25",
+            name: "Nifty Shariah 25"
         },
         {
-            name: "NIFTY SMALLCAP 250",
-            symbol: "NIFTY Smallcap 250"
+            symbol: "NIFTY SMALLCAP 250",
+            name: "NIFTY Smallcap 250"
         },
         {
-            name: "NIFTY SMALLCAP 50",
-            symbol: "Nifty Smallcap 50"
+            symbol: "NIFTY SMALLCAP 50",
+            name: "Nifty Smallcap 50"
         },
         {
-            name: "Nifty Smallcap250 Quality 50 Index",
-            symbol: "Nifty Smallcap250 Quality 50"
+            symbol: "Nifty Smallcap250 Quality 50 Index",
+            name: "Nifty Smallcap250 Quality 50"
         },
         {
-            name: "Nifty Smallcap250 Momentum Quality 100",
-            symbol: "Nifty Smallcap250 Momentum Quality 100"
+            symbol: "Nifty Smallcap250 Momentum Quality 100",
+            name: "Nifty Smallcap250 Momentum Quality 100"
         },
         {
-            name: "NIFTY SME EMERGE",
-            symbol: "NIFTY SME EMERGE"
+            symbol: "NIFTY SME EMERGE",
+            name: "NIFTY SME EMERGE"
         },
         {
-            name: "NIFTY TATA GROUP",
-            symbol: "Nifty Tata Group"
+            symbol: "NIFTY TATA GROUP",
+            name: "Nifty Tata Group"
         },
         {
-            name: "NIFTY TATA GROUP 25% CAP",
-            symbol: "Nifty Tata Group 25% Cap"
+            symbol: "NIFTY TATA GROUP 25% CAP",
+            name: "Nifty Tata Group 25% Cap"
         },
         {
-            name: "NIFTY TOTAL MKT",
-            symbol: "Nifty Total Market"
+            symbol: "NIFTY TOTAL MKT",
+            name: "Nifty Total Market"
         },
         {
-            name: "Nifty Transportation & Logistics",
-            symbol: "Nifty Transportation & Logistics"
+            symbol: "Nifty Transportation & Logistics",
+            name: "Nifty Transportation & Logistics"
         },
         {
-            name: "Nifty200 Alpha 30",
-            symbol: "Nifty200 Alpha 30"
+            symbol: "Nifty200 Alpha 30",
+            name: "Nifty200 Alpha 30"
         },
         {
-            name: "NIFTY100 Enhanced ESG",
-            symbol: "NIFTY100 Enhanced ESG"
+            symbol: "NIFTY100 Enhanced ESG",
+            name: "NIFTY100 Enhanced ESG"
         },
         {
-            name: "NIFTY100 EQL WGT",
-            symbol: "Nifty100 Equal Weight"
+            symbol: "NIFTY100 EQL WGT",
+            name: "Nifty100 Equal Weight"
         },
         {
-            name: "NIFTY100 ESG",
-            symbol: "NIFTY100 ESG"
+            symbol: "NIFTY100 ESG",
+            name: "NIFTY100 ESG"
         },
         {
-            name: "Nifty100ESGSecLdr",
-            symbol: "NIFTY100 ESG SECTOR LEADERS"
+            symbol: "Nifty100ESGSecLdr",
+            name: "NIFTY100 ESG SECTOR LEADERS"
         },
         {
-            name: "NIFTY100 LOWVOL30",
-            symbol: "Nifty100 Low Volatility 30"
+            symbol: "NIFTY100 LOWVOL30",
+            name: "Nifty100 Low Volatility 30"
         },
         {
-            name: "NIFTY100 QUALTY30",
-            symbol: "Nifty100 Quality 30"
+            symbol: "NIFTY100 QUALTY30",
+            name: "Nifty100 Quality 30"
         },
         {
-            name: "Nifty100 Alpha 30",
-            symbol: "Nifty100 Alpha 30"
+            symbol: "Nifty100 Alpha 30",
+            name: "Nifty100 Alpha 30"
         },
         {
-            name: "Nifty200Momentm30",
-            symbol: "NIFTY200 MOMENTUM 30"
+            symbol: "Nifty200Momentm30",
+            name: "NIFTY200 MOMENTUM 30"
         },
         {
-            name: "NIFTY200 QUALITY 30",
-            symbol: "NIFTY200 QUALITY 30"
+            symbol: "NIFTY200 QUALITY 30",
+            name: "NIFTY200 QUALITY 30"
         },
         {
-            name: "Nifty50 Div Point",
-            symbol: "NIFTY50 Dividend Points"
+            symbol: "Nifty50 Div Point",
+            name: "NIFTY50 Dividend Points"
         },
         {
-            name: "NIFTY50 EQL WGT",
-            symbol: "NIFTY50 Equal Weight"
+            symbol: "NIFTY50 EQL WGT",
+            name: "NIFTY50 Equal Weight"
         },
         {
-            name: "Nifty50 PR 1x Inv",
-            symbol: "Nifty50 PR 1x Inverse"
+            symbol: "Nifty50 PR 1x Inv",
+            name: "Nifty50 PR 1x Inverse"
         },
         {
-            name: "Nifty50 PR 2x Lev",
-            symbol: "Nifty50 PR 2x Leverage"
+            symbol: "Nifty50 PR 2x Lev",
+            name: "Nifty50 PR 2x Leverage"
         },
         {
-            name: "NIFTY50 SHARIAH",
-            symbol: "Nifty50 Shariah"
+            symbol: "NIFTY50 SHARIAH",
+            name: "Nifty50 Shariah"
         },
         {
-            name: "Nifty50 TR 1x Inv",
-            symbol: "Nifty50 TR 1x Inverse"
+            symbol: "Nifty50 TR 1x Inv",
+            name: "Nifty50 TR 1x Inverse"
         },
         {
-            name: "Nifty50 TR 2x Lev",
-            symbol: "Nifty50 TR 2x Leverage"
+            symbol: "Nifty50 TR 2x Lev",
+            name: "Nifty50 TR 2x Leverage"
         },
         {
-            name: "NIFTY50 USD",
-            symbol: "Nifty50 USD"
+            symbol: "NIFTY50 USD",
+            name: "Nifty50 USD"
         },
         {
-            name: "Nifty50 Value 20",
-            symbol: "Nifty50 Value 20"
+            symbol: "Nifty50 Value 20",
+            name: "Nifty50 Value 20"
         },
         {
-            name: "NIFTY500 MULTICAP",
-            symbol: "NIFTY500 MULTICAP 50:25:25"
+            symbol: "NIFTY500 MULTICAP",
+            name: "NIFTY500 MULTICAP 50:25:25"
         },
         {
-            name: "NIFTY500 SHARIAH",
-            symbol: "Nifty500 Shariah"
+            symbol: "NIFTY500 SHARIAH",
+            name: "Nifty500 Shariah"
         },
         {
-            name: "Nifty500 Value 50",
-            symbol: "Nifty500 Value 50"
+            symbol: "Nifty500 Value 50",
+            name: "Nifty500 Value 50"
         },
 
     ],
     fix_income: [
         {
-            name: "NIFTY 10 YEAR SDL INDEX",
-            symbol: "NIFTY 10 YEAR SDL INDEX"
+            symbol: "NIFTY 10 YEAR SDL INDEX",
+            name: "NIFTY 10 YEAR SDL INDEX"
         },
         {
-            name: "Nifty GS 10Yr",
-            symbol: "Nifty 10 yr Benchmark G-Sec"
+            symbol: "Nifty GS 10Yr",
+            name: "Nifty 10 yr Benchmark G-Sec"
         },
         {
-            name: "Nifty GS 10Yr Cln",
-            symbol: "Nifty 10 yr Benchmark G-Sec (Clean Price)"
+            symbol: "Nifty GS 10Yr Cln",
+            name: "Nifty 10 yr Benchmark G-Sec (Clean Price)"
         },
         {
-            name: "Nifty GS 11 15Yr",
-            symbol: "Nifty 11-15 yr G-Sec Index"
+            symbol: "Nifty GS 11 15Yr",
+            name: "Nifty 11-15 yr G-Sec Index"
         },
         {
-            name: "Nifty GS 15YrPlus",
-            symbol: "Nifty 15 yr and above G-Sec Index"
+            symbol: "Nifty GS 15YrPlus",
+            name: "Nifty 15 yr and above G-Sec Index"
         },
         {
-            name: "NIFTY 1D RATE INDEX",
-            symbol: "Nifty 1D Rate Index"
+            symbol: "NIFTY 1D RATE INDEX",
+            name: "Nifty 1D Rate Index"
         },
         {
-            name: "Nifty GS 4 8Yr",
-            symbol: "Nifty 4-8 yr G-Sec Index"
+            symbol: "Nifty GS 4 8Yr",
+            name: "Nifty 4-8 yr G-Sec Index"
         },
         {
-            name: "NIFTY 5YR BENCHMARK G-SEC INDEX",
-            symbol: "NIFTY 5YR BENCHMARK G-SEC INDEX"
+            symbol: "NIFTY 5YR BENCHMARK G-SEC INDEX",
+            name: "NIFTY 5YR BENCHMARK G-SEC INDEX"
         },
         {
-            name: "Nifty GS 8 13Yr",
-            symbol: "Nifty 8-13 yr G-Sec"
+            symbol: "Nifty GS 8 13Yr",
+            name: "Nifty 8-13 yr G-Sec"
         },
         {
-            name: "Nifty BHARAT Bond Index - April 2023",
-            symbol: "Nifty BHARAT Bond Index - April 2023"
+            symbol: "Nifty BHARAT Bond Index - April 2023",
+            name: "Nifty BHARAT Bond Index - April 2023"
         },
         {
-            name: "Nifty BHARAT Bond Index - April 2025",
-            symbol: "Nifty BHARAT Bond Index - April 2025"
+            symbol: "Nifty BHARAT Bond Index - April 2025",
+            name: "Nifty BHARAT Bond Index - April 2025"
         },
         {
-            name: "Nifty BHARAT Bond Index - April 2030",
-            symbol: "Nifty BHARAT Bond Index - April 2030"
+            symbol: "Nifty BHARAT Bond Index - April 2030",
+            name: "Nifty BHARAT Bond Index - April 2030"
         },
         {
-            name: "Nifty GS Compsite",
-            symbol: "Nifty Composite G-sec Index"
+            symbol: "Nifty GS Compsite",
+            name: "Nifty Composite G-sec Index"
         },
         {
-            name: "Nifty BHARAT Bond Index - April 2031",
-            symbol: "Nifty BHARAT Bond Index - April 2031"
+            symbol: "Nifty BHARAT Bond Index - April 2031",
+            name: "Nifty BHARAT Bond Index - April 2031"
         },
         {
-            name: "Nifty CPSE Bond Plus SDL Sep 2024 50:50 Index",
-            symbol: "Nifty CPSE Bond Plus SDL Sep 2024 50:50 Index"
+            symbol: "Nifty CPSE Bond Plus SDL Sep 2024 50:50 Index",
+            name: "Nifty CPSE Bond Plus SDL Sep 2024 50:50 Index"
         },
         {
-            name: "Nifty SDL Apr 2026 Top 20 Equal Weight Index",
-            symbol: "Nifty SDL Apr 2026 Top 20 Equal Weight Index"
+            symbol: "Nifty SDL Apr 2026 Top 20 Equal Weight Index",
+            name: "Nifty SDL Apr 2026 Top 20 Equal Weight Index"
         },
     ],
     multi_asset: [
