@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+    useQuery,
+    useMutation,
+    useQueryClient,
+    QueryClient,
+    QueryClientProvider,
+} from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient();
+
 
 
 import { Dashboard } from './apps/Dashboard';
@@ -12,15 +23,18 @@ function App() {
     const subdomain = window.location.host.split('.')[0];
 
     return (
-        <BrowserRouter>
-            <Routes>
-                {/* Define routes based on subdomain */}
-                {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
+        <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <BrowserRouter>
+                <Routes>
+                    {/* Define routes based on subdomain */}
+                    {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
 
-                {/* Default route */}
-                <Route path="*" element={<CoreApp />} />
-            </Routes>
-        </BrowserRouter>
+                    {/* Default route */}
+                    <Route path="*" element={<CoreApp />} />
+                </Routes>
+            </BrowserRouter>
+        </QueryClientProvider>
     );
 };
 
