@@ -17,6 +17,10 @@
   --btn-primary:#22577a;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 *:hover {
   text-decoration: none;
 }

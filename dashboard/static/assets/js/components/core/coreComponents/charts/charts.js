@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, Button, IconButton , ButtonToolbar, Placeholder } from 'rsuite';
+import HelpOutlineIcon from '@rsuite/icons/HelpOutline';
+import 'rsuite/dist/rsuite.min.css';
 
 import { MakeChart } from './chart';
 import loader from '../../../../../img/loader.gif';
@@ -13,7 +16,7 @@ import NoDataFound from "../../../../../img/no-data-found.gif"
 let contentHeigth = "80.2svh"
 
 if (window.innerWidth <= 630) {
-  contentHeigth = "81svh"
+  contentHeigth = "80.3svh"
 } else if (window.innerWidth > 630 && window.innerWidth <= 1024) {
   contentHeigth = "86svh"
 } else {
@@ -52,6 +55,18 @@ export function Charts({
   indexName,
   setIndexName
 }) {
+  // TO set size of the Charts
+  const [graphSize, setGraphSize] = useState(() => {
+    if (window.innerWidth <= 630) {
+      return (window.innerWidth * 0.6)
+    } else if (window.innerWidth > 630 && window.innerWidth <= 1024) {
+      return (window.innerWidth * 0.6)
+    } else if (window.innerWidth > 1024) {
+      return (window.innerWidth * 0.35)
+    }
+  });
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
 
   function fetchData(data) {
     APICaller.FetchDefaultIndexData(data)
@@ -76,29 +91,19 @@ export function Charts({
 
   useEffect(() => {
     fetchData(formData);
-  }, []);
-
-  // TO set size of the Charts
-  const [graphSize, setGraphSize] = useState(window.innerWidth * 0.6);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
+    setWindowWidth(window.innerWidth)
     const windowSizeHandler = () => {
-      setWindowWidth(window.innerWidth)
       if (window.innerWidth <= 630) {
-        setGraphSize(300)
+        setGraphSize(windowWidth * 0.6)
       } else if (window.innerWidth > 630 && window.innerWidth <= 1024) {
-        setGraphSize(500)
+        setGraphSize(windowWidth * 0.6)
       } else if (window.innerWidth > 1024) {
-        setGraphSize(650)
+        setGraphSize(windowWidth * 0.35)
       }
     }
-    window.addEventListener("resize", windowSizeHandler)
+    windowSizeHandler()
+  }, []);
 
-    return () => {
-      window.removeEventListener("resize", windowSizeHandler)
-    }
-  }, [window.innerWidth])
 
   return (
     <>
@@ -143,18 +148,29 @@ export function Charts({
           </div>
         ) : (
           MakeChartsType.map((item, index) => (
-            <RenderChart
-              indexName={indexName}
-              name={item.name}
-              labels={labels}
-              data={chartData[item.data]}
-              chartType={item.chartType}
-              graphSize={graphSize}
-              key={index}
-            />
+            <>
+              <RenderChart
+                indexName={indexName}
+                name={item.name}
+                labels={labels}
+                data={chartData[item.data]}
+                chartType={item.chartType}
+                graphSize={graphSize}
+                key={index}
+              />
+            </>
           ))
         )
         }
+        <div
+          className="position-absolute translate-middle"
+          style={{
+            right: "-40px",
+            bottom: "0px",
+          }}
+        >
+          <HowToReadChart />
+        </div>
         <Footer />
       </div>
     </>
@@ -180,3 +196,40 @@ export function RenderChart({ indexName, name, labels, data, chartType, graphSiz
     </div>
   )
 }
+
+export function HowToReadChart() {
+  const [open, setOpen] = React.useState(false);
+  const [overflow, setOverflow] = React.useState(true);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const instructions = "Loading....."
+
+  return (
+    <>
+      <ButtonToolbar>
+        <IconButton 
+          onClick={handleOpen} 
+          appearance="primary"
+          color="green" 
+          icon={<HelpOutlineIcon />
+        }>How to read charts</IconButton>
+      </ButtonToolbar>
+
+      <Modal overflow={overflow} open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Information | How to react charts</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {instructions}
+          <Placeholder.Paragraph rows={80} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose} appearance="primary">
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};

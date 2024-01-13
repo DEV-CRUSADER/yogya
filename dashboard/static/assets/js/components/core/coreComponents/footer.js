@@ -81,7 +81,14 @@ export function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-center mt-2">
-          <p>my logo</p>
+          <Link
+            className="navbar-brand text-decoration-none" to="/"
+            style={{
+              fontWeight: "bold",
+              fontFamily: "Lora"
+            }}>
+            Yogya Capital
+          </Link>
         </div>
         <div
           className="py-1 d-flex justify-content-around"

@@ -35,7 +35,12 @@ class HistoricalIndexAPIView:
                     return Response({"status": index_data['status'], "data": index_data['data']},
                                     status=status.HTTP_200_OK)
                 else:
-                    return Response({"status": index_data['status'], "data": index_data['data'], "errors": index_data['errors']},
+                    log.error(f'{index_data["errors"]}')
+                    if index_data["errors"] == "No Data Found":
+                        return Response({"status": index_data['status'], "data": index_data['data']},
+                                        status=status.HTTP_404_NOT_FOUND)
+                    else:
+                        return Response({"status": index_data['status'], "data": index_data['data'], "errors": index_data['errors']},
                                     status=status.HTTP_400_BAD_REQUEST)
 
             else:
