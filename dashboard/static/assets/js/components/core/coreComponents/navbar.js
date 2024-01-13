@@ -10,6 +10,7 @@ import {
 //importing css
 import { Colors } from "../../../../../css/color.css";
 import { Css } from "../../../../../css/navbar.css";
+import { SignUp } from "../../dashboard/dashboardComponents/accounts/signUp";
 
 
 export function Navbar(props) {
@@ -89,8 +90,8 @@ export function Navbar(props) {
 								</Link>
 							))}
 						</ul>
-						{/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
-              <li className="nav-but px-1">
+						{/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0 "> */}
+              {/* <li className="nav-but px-1">
                 <Link className=" btn btn-self" to="#">
                   Sign up
                 </Link>

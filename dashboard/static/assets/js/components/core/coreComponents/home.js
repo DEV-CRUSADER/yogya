@@ -7,7 +7,6 @@ import { WhyUs } from './home/whyus';
 import { PersonHero } from './home/personHero';
 import { Footer } from './footer';
 
-
 //importing css
 import { CSS } from "../../../../../css/home.css";
 
