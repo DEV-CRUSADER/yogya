@@ -30,7 +30,7 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
         use: ["file-loader"],
       },
       {

@@ -119,3 +119,26 @@ class ContactUS(BaseModel):
 
     def __str__(self):
         return f"Name: {self.name}"
+    
+
+class IndexLists(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    symbol = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    type = models.CharField(max_length=200, null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.name}"
+
+
+class IndexDataFromNSE(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    symbol = models.ForeignKey(IndexLists, on_delete=models.DO_NOTHING, null=False, blank=False, related_name='index_data', default=None)
+    index_name = models.CharField(max_length=200, null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
+    pb = models.FloatField(null=False, blank=False)
+    pe = models.FloatField(null=False, blank=False)
+    divYield = models.FloatField(null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.index_name}"

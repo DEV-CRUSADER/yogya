@@ -1,9 +1,8 @@
 import React from "react";
-import { Sidebar, Sidenav, Navbar, Nav } from 'rsuite';
-import AngleLeftIcon from '@rsuite/icons/legacy/AngleLeft';
-import AngleRightIcon from '@rsuite/icons/legacy/AngleRight';
+import { Sidebar, Sidenav, Navbar, Nav, Modal, Toggle, Button, ButtonToolbar, Placeholder} from 'rsuite';
 import FunnelTimeIcon from '@rsuite/icons/FunnelTime';
 import { ChartsIndexFrom } from "./form";
+
 import "../../../../../../css/core/sidebar.css";
 
 const headerStyles = {
@@ -18,8 +17,12 @@ const headerStyles = {
 
 
 
-export function ResourcesSidebar({ expand, setExpand, 
-    setDataFound, setIndexName, setLabels, setChartData, }) {
+export function ResourcesSidebar({ expand, setExpand,
+    setDataFound, setIndexName, setLabels, setChartData, setNoData }) {
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => setOpen(false);
+
+
     return (
         <Sidebar
             style={{
@@ -47,11 +50,13 @@ export function ResourcesSidebar({ expand, setExpand,
                             placement="rightStart"
                         >
                             <Nav.Item eventKey="3-1" >
-                                <ChartsIndexFrom 
+                                <ChartsIndexFrom
                                     setChartData={setChartData}
                                     setLabels={setLabels}
                                     setDataFound={setDataFound}
                                     setIndexName={setIndexName}
+                                    setNoData={setNoData}
+                                    handleClose={handleClose}
                                 />
                             </Nav.Item>
                         </Nav.Menu>
@@ -62,21 +67,42 @@ export function ResourcesSidebar({ expand, setExpand,
     );
 };
 
+export function TopBar({ setDataFound, setIndexName, setLabels, setChartData, setNoData}){
+    const [open, setOpen] = React.useState(false);
+    const [overflow, setOverflow] = React.useState(true);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
-export function TopBar({ setDataFound, setIndexName, setLabels, setChartData, }){
     return (
-        <div
-            className="m-0 p-5 d-flex justify-content-center align-items-center"
-            style={{
-                background: "var(--secondary-color)"
-            }}
-        >
-            <ChartsIndexFrom
-                setChartData={setChartData}
-                setLabels={setLabels}
-                setDataFound={setDataFound}
-                setIndexName={setIndexName}
-            />
-        </div>
-    )
-}
+        <>
+            <ButtonToolbar className="d-flex justify-content-center">
+                <Button onClick={handleOpen}
+                    className="btn"
+                    sizetyle={{
+                        backgroundColor: "var(--teritary-color)",
+                    }}
+                ><FunnelTimeIcon />&nbsp;Load another chart</Button>
+            </ButtonToolbar>
+            <Modal overflow={overflow} open={open} onClose={handleClose}>
+                <Modal.Header>
+                    <Modal.Title>Choose Chart Type</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ChartsIndexFrom
+                        setChartData={setChartData}
+                        setLabels={setLabels}
+                        setDataFound={setDataFound}
+                        setIndexName={setIndexName}
+                        setNoData={setNoData}
+                        handleClose={handleClose}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose} appearance="subtle">
+                        Cancel
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+};
