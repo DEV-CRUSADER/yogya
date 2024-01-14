@@ -52,7 +52,7 @@ export function ContactForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (formData.name === "" || formData.email === "" || formData.phone_number === ""  || formData.message === "") {
+    if (formData.name === "" || formData.email === "" || formData.phone_number === "") {
       notyf.error('Please fill out the form');
       return;
     }

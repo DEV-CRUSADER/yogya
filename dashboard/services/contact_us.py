@@ -6,11 +6,13 @@ from dashboard.models import ContactUS
 
 log = logging.getLogger(__name__)
 
-class ContactUsSerializer(serializers.Serializer):
+class ContactUsSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100, required=True)
     email = serializers.EmailField(required=True)
     phone_number = serializers.CharField(required=True, max_length=15)
-    message = serializers.CharField(max_length=100, required=True)
+    class Meta:
+        model = ContactUS
+        fields = "__all__"
 
 
 class ContactUsService():
