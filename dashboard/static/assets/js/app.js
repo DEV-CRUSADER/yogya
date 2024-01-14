@@ -15,18 +15,20 @@ function App() {
     const subdomain = window.location.host.split('.')[0];
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <BrowserRouter>
-                <Routes>
-                    {/* Define routes based on subdomain */}
-                    {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
+        <>
+            <QueryClientProvider client={queryClient}>
+                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+                <BrowserRouter>
+                    <Routes>
+                        {/* Define routes based on subdomain */}
+                        {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
 
-                    {/* Default route */}
-                    <Route path="*" element={<CoreApp />} />
-                </Routes>
-            </BrowserRouter>
-        </QueryClientProvider>
+                        {/* Default route */}
+                        <Route path="*" element={<CoreApp />} />
+                    </Routes>
+                </BrowserRouter>
+            </QueryClientProvider>
+        </>
     );
 };
 

@@ -19,11 +19,6 @@ class HistoricalIndexServices:
 
     @staticmethod
     def get_historical_index_from_and_to_dates(data):
-
-        # log.info(f'Retrieving historical Service')
-        # data['start_date'] = data['start_date'].strftime('%d-%b-%Y')
-        # data['end_date'] = data['end_date'].strftime('%d-%b-%Y')
-
         log.info(f"Getting historical index from and to dates: {data}")
         json_response = HistoricalIndexServices.get_historical_nse_index(data)
         return json_response
