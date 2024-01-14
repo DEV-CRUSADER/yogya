@@ -10,7 +10,7 @@ class ContactUsSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100, required=True)
     email = serializers.EmailField(required=True)
     phone_number = serializers.CharField(required=True, max_length=15)
-    message = serializers.CharField(max_length=1000, required=True)
+    message = serializers.CharField(max_length=100, required=True)
 
 
 class ContactUsService():
