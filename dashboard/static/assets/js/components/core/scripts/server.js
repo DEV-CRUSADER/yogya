@@ -62,14 +62,14 @@ export class APICaller {
     }
 
     static SendContactUsEmail(formData) {
-        return axios.post("/api/v1/send-contact-mail", formData, {
+
+        return fetch("/api/v1/send-contact-mail", {
+            method: "POST",
             headers: genericHeaders,
-        })
-            .ther((response) => response.data)
-            .catch((error) => {
-                console.error("Error sending email:", error);
-                throw error;
-            });
+            body: formData,
+            body: JSON.stringify(formData),
+        }).then((res) => res.json());
+
     }
 
     static async FetchIndexes(data) {

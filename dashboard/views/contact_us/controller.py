@@ -34,4 +34,5 @@ class ContactUsView():
 
             return Response(respone, status=200)
         else:
-            return Response({"status": serializer.errors}, status=400)
+            log.error(f"Error sending email: {serializer.errors}")
+            return Response({"status": False, "message" : serializer.errors}, status=400)

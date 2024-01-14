@@ -111,10 +111,10 @@ class AuditLogs(models.Model):
 
 class ContactUS(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(null=False, blank=False)
-    email = models.CharField(null=False, blank=False)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     phone_number = models.CharField()
-    message = models.CharField()
+    message = models.CharField(max_length=100000, null=True, blank=True)
     is_read = models.BooleanField(default=False)
 
     def __str__(self):
