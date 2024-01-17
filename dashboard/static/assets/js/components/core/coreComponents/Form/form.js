@@ -1,17 +1,21 @@
 import React from "react";
-import "./App.css";
 import { useState } from "react";
+import { css } from "../../../../../../css/form.css";
 
 export function ClientData() {
   const [formData, setFormData] = useState({
     fullName: "",
+    phone: "",
     age: [""],
+    email:"",
+    pancard: "",
     currentOccupation: "",
     monthlySalary: "",
     currentKnowledge: "",
     anyGoals: "",
     riskBalance: [""],
     exintingInvesment: [""],
+    loan: "",
   });
 
   const onChangeHandler = (event) => {
@@ -56,10 +60,23 @@ export function ClientData() {
             name="fullName"
             onChange={onChangeHandler}
             value={formData.username}
-            placeholder="Full Name"
+            placeholder="Name"
           />
         </div>
-        {/* Age */}
+        {/* Phone Number */}
+        <div className="form-group">
+          <label htmlFor="phoneNumber" className="form-label">
+            Phone Number
+          </label>
+          <input
+            className="form-control"
+            name="phoneNumber"
+            onChange={onChangeHandler}
+            value={formData.phone}
+            placeholder="Phone Number"
+          />
+        </div>
+        {/* Age, need a backend */}
         <div className="form-group">
           <label htmlFor="age" className="form-label">
             Age
@@ -76,7 +93,32 @@ export function ClientData() {
             <option value="56+">56 & Above</option>
           </select>
         </div>
-
+           {/* Email */}
+          <div className="form-group">
+          <label htmlFor="phoneNumber" className="form-label">
+            Email ID
+          </label>
+          <input
+            className="form-control"
+            name="email"
+            onChange={onChangeHandler}
+            value={formData.email}
+            placeholder="Email"
+          />
+        </div>
+        {/* PanCard No. */}
+        <div className="form-group">
+          <label htmlFor="phoneNumber" className="form-label">
+            PanCard Number
+          </label>
+          <input
+            className="form-control"
+            name="pancard"
+            onChange={onChangeHandler}
+            value={formData.phone}
+            placeholder="PanCard No."
+          />
+        </div>
         {/* Occupations */}
         <div className="form-group">
           <label htmlFor="currentOccupation" className="form-label">
@@ -86,11 +128,12 @@ export function ClientData() {
             className="form-select"
             name="currentOccupation"
             onChange={onChangeHandler}
-            value={formData.occupation}
+            value={formData.currentOccupation}
           >
             <option value="Salaried">Salaried</option>
             <option value="Slef-Employed">Slef-Employed</option>
             <option value="Retired">Retired</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         {/* Monthly Salary */}
@@ -103,7 +146,7 @@ export function ClientData() {
             className="form-control"
             name="monthlySalary"
             onChange={onChangeHandler}
-            value={formData.username}
+            value={formData.monthlySalary}
             placeholder="Your Salary"
           />
         </div>
@@ -117,7 +160,7 @@ export function ClientData() {
             className="form-select"
             name="currentKnowledge"
             onChange={onChangeHandler}
-            value={formData.occupation}
+            value={formData.currentKnowledge}
           >
             <option value="None">None</option>
             <option value="Intermediate">Intermediate</option>
@@ -134,27 +177,37 @@ export function ClientData() {
             className="form-control"
             name="anyGoals"
             onChange={onChangeHandler}
-            value={formData.username}
-            placeholder="Your Golas"
+            value={formData.anyGoals}
+            placeholder="Your Goals"
           />
         </div>
 
-        {/* Risk Balance */}
-
+        {/* Risk Tolarance*/}
         <div className="form-group">
           <label htmlFor="riskBalance" className="form-label">
-            Risk Balance
+            Risk Tolarance
           </label>
+          <div className="d-flex col ">
           <select
             className="form-select"
             name="riskBalance"
             onChange={onChangeHandler}
-            value={formData.occupation}
+            value={formData.riskBalance}
           >
-            <option value="low">Low (5-15%)</option>
-            <option value="medium">Medium (15-30%)</option>
-            <option value="high">High (30-50%)</option>
+            <option value="low-very">Very Low (5-10%)</option>
+            <option value="low">Low (10-15%)</option>
+            <option value="moderate">Moderate (15-25%)</option>
+            <option value="high">High (25-35%)</option>
+            <option value="high-very">Very High (35-50%)</option>
           </select>
+          <input
+              className="form-control "
+              name="riskBalance"
+              onChange={onChangeHandler}
+              value={formData.riskBalance}
+              placeholder="Text here.."
+            />
+            </div>
         </div>
 
         {/* Existing Invesment */}
@@ -167,7 +220,7 @@ export function ClientData() {
             className="form-select"
             name="exintingInvesment"
             onChange={onChangeHandler}
-            value={formData.occupation}
+            value={formData.exintingInvesment}
           >
             <option value="stocks">Stocks</option>
             <option value="mf">Mutual Funds (MF)</option>
@@ -181,19 +234,28 @@ export function ClientData() {
           <label htmlFor="anyLoan" className="form-label">
             Any Loan On{" "}
           </label>
-          <select
-            className="form-select"
-            name="anyLoan"
-            onChange={onChangeHandler}
-            value={formData.occupation}
-          >
-            <option value="None">None</option>
-            <option value="home">Home</option>
-            <option value="property">Property</option>
-            <option value="creditCard">Credit Card</option>
-            <option value="llc">LLC</option>
-            <option value="education">Education</option>
-          </select>
+          <div className="d-flex col ">
+            <select
+              className="form-select"
+              name="anyLoan"
+              onChange={onChangeHandler}
+              value={formData.anyLoan}
+            >
+              <option value="None">None</option>
+              <option value="home">Home</option>
+              <option value="property">Property</option>
+              <option value="creditCard">Credit Card</option>
+              <option value="llc">LLC</option>
+              <option value="education">Education</option>
+            </select>
+            <input
+              className="form-control "
+              name="loanLimit"
+              onChange={onChangeHandler}
+              value={formData.anyLoan}
+              placeholder="How much.."
+            />
+          </div>
         </div>
 
         {/* Any Insurance  */}
@@ -201,15 +263,24 @@ export function ClientData() {
           <label htmlFor="currentInsurance" className="form-label">
             Current Insurance Of Yours OR Family Dependents{" "}
           </label>
+          <div className="d-flex col ">
           <select
             className="form-select"
             name="currentInsurance"
             onChange={onChangeHandler}
-            value={formData.occupation}
+            value={formData.currentInsurance}
           >
             <option value="healthInsurance">Health Insurance</option>
             <option value="termInsurance">Term Insurance</option>
           </select>
+          <input
+              className="form-control "
+              name="currentInsurance"
+              onChange={onChangeHandler}
+              value={formData.currentInsurance}
+              placeholder="Text here.."
+            />
+            </div>
         </div>
 
         {/* Current Emergency Funds-Cover */}
@@ -238,6 +309,13 @@ export function ClientData() {
               />
               <label htmlFor="no">No</label>
             </div>
+            <input
+              className="form-control "
+              name="loanLimit"
+              onChange={onChangeHandler}
+              value={formData.loanLimit}
+              placeholder="How much.."
+            />
           </div>
         </div>
 
@@ -248,15 +326,15 @@ export function ClientData() {
           <label htmlFor="improve" className="form-label">
             How Can We Improve Ourselves
           </label>
-          <input
+          
+          <textarea
             className="form-control"
             name="improve"
             onChange={onChangeHandler}
-            value={formData.email}
+            value={formData.improve}
             placeholder="Your Suggestions"
           />
         </div>
-
         <div className="form-group">
           <button className="btn" type="submit">
             Submit
