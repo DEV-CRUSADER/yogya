@@ -37,14 +37,12 @@ class User(AbstractUser, BaseModel):
     email = models.EmailField(_('email address'), unique=True)
     is_verified = models.BooleanField(_('is_verified'), default=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
-
-    groups = models.ManyToManyField(Group, blank=True, related_name='user_set_related')
-    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='user_set_related')
 
     class Meta:
         unique_together = ('email',)

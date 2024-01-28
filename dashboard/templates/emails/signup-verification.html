@@ -1,0 +1,32 @@
+{% extends 'emails/base-email.html' %}
+{% block content %}
+<div style="background-color:#ffffff;padding:35px 75px">
+    <div style="margin-top:0"><p
+            style="width:100%;margin:0;box-sizing:border-box">Hi {{ user }},</p></div>
+    <div style="margin-top:25px"><p
+            style="width:100%;margin:0;box-sizing:border-box">We are contacting you to verify your account with our service. As
+        part of our security measures, we require all users to confirm their account information to ensure the safety
+        and security of our platform.</p></div>
+    <div style="margin-top:25px"><p
+            style="width:100%;margin:0;box-sizing:border-box">To complete the verification process, please click on the
+        verification link below.</p></div>
+    <div style="margin-top:25px"><p
+            style="width:100%;margin:0;box-sizing:border-box">   <a
+    href="https://dashboard.{{ domain }}{% url 'activate' uidb64=uid bmid64=business_member_id token=token %}?reset_password=false"
+    style="cursor: pointer; display: inline-block; background-color: #f1f1f1; color: #000; text-decoration: none; padding: 10px 20px; border-radius: 4px; border: 1px solid #ccc;"
+    target="_blank">Verify My Account</a>
+</p></div>
+    <div style="margin-top:25px">
+        <p
+            style="width:100%;margin:0;box-sizing:border-box">Team
+        Yogya Capital</p>
+        <p style="width:100%;margin:0;box-sizing:border-box"><a
+                href="https://www.yogyacapital.com" target="_blank"
+                data-saferedirecturl="https://www.yogyacapital.com">www.yogyacapital.com</a>
+        </p></div>
+    <div style="margin-top:25px"><p
+            style="width:100%;margin:0;box-sizing:border-box;color:#c8c8c8;font-style:italic">
+        ** This is an auto-generated email. Please do not reply to this
+        email.**</p></div>
+</div>
+{% endblock content %}

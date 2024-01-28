@@ -10,4 +10,7 @@ urlpatterns = [
     path('/resources', dashboard.views.dashboard.DashboardView.load_dashboard, name='dashboard-resources'),
 
     path("api/v1/", include('dashboard.api_urls')),
+
+    # Authentication Routes
+    path( 'accounts/activate/<uidb64>/<bmid64>/<token>/', dashboard.views.accounts.ActivateView.as_view(), name="activate"),
 ]

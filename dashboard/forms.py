@@ -1,11 +1,10 @@
-from admin_volt.forms import LoginForm
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from dashboard.models import User
+from dashboard.services.business_members import email_already_a_staff_or_admin, get_staff_business_member_by_user
 
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
@@ -32,22 +31,26 @@ class RegistrationForm(UserCreationForm):
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Business Email'}),
     )
 
-    mobile_number= forms.CharField(
+    phone_number= forms.CharField(
         label=_("Mobile Number"),
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Mobile Number'}),
     )
+
+    def clean(self):
+        if email_already_a_staff_or_admin(self.cleaned_data['email']):
+            raise ValidationError({"email": "Email already registered. Please login to continue."})
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'phone_number')
 
 
-class CustomLoginForm(LoginForm):
+# class CustomLoginForm(LoginForm):
     
-    error_messages = {
-        **AuthenticationForm.error_messages,
-        "verification_required": _(
-            "Please complete Email Verification before attempting login."
-        ),
-    }
-    required_css_class = "required"
+#     error_messages = {
+#         **AuthenticationForm.error_messages,
+#         "verification_required": _(
+#             "Please complete Email Verification before attempting login."
+#         ),
+#     }
+#     required_css_class = "required"

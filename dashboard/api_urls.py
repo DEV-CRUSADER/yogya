@@ -3,6 +3,8 @@ from django.urls import path, include
 from  dashboard.views.historical_index import HistoricalIndexAPIView
 from  dashboard.views.contact_us.controller import ContactUsView
 
+from dashboard.views.accounts import SignUpView
+
 
 urlpatterns = [
     # get index-data (API routes for index data)
@@ -13,4 +15,7 @@ urlpatterns = [
 
     # Email Routes API
     path('send-contact-mail', ContactUsView.send_email_to_us, name="sent-contact-mail"),
+
+    # User Authentication APIs
+    path('account/register', SignUpView.post, name="register-user"),
 ]
