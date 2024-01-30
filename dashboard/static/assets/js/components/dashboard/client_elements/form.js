@@ -1,348 +1,429 @@
-import React from "react";
-import { useState } from "react";
-import { css } from "../../../../../../css/form.css";
+import React, { useState, useEffect } from "react";
+import "../../../../../css/dashboard/form.css";
+import "../../../../../css/dashboard/datePicker.css";
+
+import Insurance from "./insurance";
+import { InvesmentsMultiple } from "./multipleFiels"
+import AnyLoan from "./anyLoan";
 
 export function ClientData() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    age: [""],
-    email:"",
-    pancard: "",
-    currentOccupation: "",
-    monthlySalary: "",
-    currentKnowledge: "",
-    anyGoals: "",
-    riskBalance: [""],
-    exintingInvesment: [""],
-    loan: "",
-  });
+    const [investmentsStock, setInvestmentsStock] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            amount: "",
+            portfolio: "",
+        },
+    ]);
+    const [investmentsLumpSum, setInvestmentsLumpSum] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            amount: "",
+            portfolio: "",
+        },
+    ]);
+    const [investmentsSIP, setInvestmentsSIP] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            amount: "",
+            portfolio: "",
+        },
+    ]);
+    const [investmentsFD, setInvestmentsFD] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            amount: "",
+            portfolio: "",
+        },
+    ]);
+    const [investmentsOthers, setInvestmentsOthers] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            amount: "",
+            portfolio: "",
+        },
+    ]);
 
-  const onChangeHandler = (event) => {
-    console.log(event);
-    if (event.target.name === "riskBalance") {
-      let copy = { ...formData };
+    const current_knowledge_values = [
+        {
+            value: null,
+            label: "Choose Occupation"
+        },
+        {
+            value: "intermediate",
+            label: "Intermediate"
+        }, 
+        {
+            value: "high",
+            label: "High"
+        }
+    ]
 
-      // if (event.target.checked) {
-      //   copy.riskBalance.push(event.target.value)
-      // } else {
-      //   copy.riskBalance = copy.riskBalance.filter(el => el !== event.target.value)
-      // }
-      setFormData(copy);
-      if (event.target.name === "exintingInvesment") {
-        let copy = { ...formData };
-        setFormData(copy);
-      }
-    } else {
-      setFormData(() => ({
-        ...formData,
-        [event.target.name]: event.target.value,
-      }));
-    }
-  };
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        DOB: "",
+        pancard: "",
+        email: "",
+        current_occupation: "",
+        salary: "",
+        current_knowledge: "",
+        goals: "",
+        risk_tolarance_low: "",
+        risk_tolarance_mid: "",
+        risk_tolarance_high: "",
+        invesment: {
+            stocks: investmentsStock,
+            lump_sum: investmentsLumpSum,
+            sip: investmentsSIP,
+            fd: investmentsFD,
+            others: investmentsOthers,
+        },
+        loan: {},
+        insurance: {},
+        emergency_funds: {},
+        feedback: "",
+    });
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log(formData);
-  };
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            invesment: {
+                stocks: investmentsStock,
+                lump_sum: investmentsLumpSum,
+                sip: investmentsSIP,
+                fd: investmentsFD,
+                others: investmentsOthers,
+            },
+        })
+    }, 
+    [investmentsStock, investmentsFD, 
+        investmentsLumpSum, investmentsOthers, investmentsSIP])
 
-  return (
-    <div className="App">
-      <h2>Client Forms</h2>
-      <form onSubmit={onSubmitHandler}>
-        {/* Name */}
-        <div className="form-group">
-          <label htmlFor="fullName" className="form-label">
-            Full Name
-          </label>
-          <input
-            className="form-control"
-            name="fullName"
-            onChange={onChangeHandler}
-            value={formData.username}
-            placeholder="Name"
-          />
-        </div>
-        {/* Phone Number */}
-        <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label">
-            Phone Number
-          </label>
-          <input
-            className="form-control"
-            name="phoneNumber"
-            onChange={onChangeHandler}
-            value={formData.phone}
-            placeholder="Phone Number"
-          />
-        </div>
-        {/* Age, need a backend */}
-        <div className="form-group">
-          <label htmlFor="age" className="form-label">
-            Age
-          </label>
-          <select
-            className="form-select"
-            name="age"
-            onChange={onChangeHandler}
-            value={formData.occupation}
-          >
-            <option value="18-25">18-25</option>
-            <option value="26-40">26-40</option>
-            <option value="41-55">41-55</option>
-            <option value="56+">56 & Above</option>
-          </select>
-        </div>
-           {/* Email */}
-          <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label">
-            Email ID
-          </label>
-          <input
-            className="form-control"
-            name="email"
-            onChange={onChangeHandler}
-            value={formData.email}
-            placeholder="Email"
-          />
-        </div>
-        {/* PanCard No. */}
-        <div className="form-group">
-          <label htmlFor="phoneNumber" className="form-label">
-            PanCard Number
-          </label>
-          <input
-            className="form-control"
-            name="pancard"
-            onChange={onChangeHandler}
-            value={formData.phone}
-            placeholder="PanCard No."
-          />
-        </div>
-        {/* Occupations */}
-        <div className="form-group">
-          <label htmlFor="currentOccupation" className="form-label">
-            Current Occupation
-          </label>
-          <select
-            className="form-select"
-            name="currentOccupation"
-            onChange={onChangeHandler}
-            value={formData.currentOccupation}
-          >
-            <option value="Salaried">Salaried</option>
-            <option value="Slef-Employed">Slef-Employed</option>
-            <option value="Retired">Retired</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        {/* Monthly Salary */}
+    const onChangeHandler = (event) => {
+        setFormData(() => ({
+            ...formData,
+            [event.target.name]: event.target.value,
+        }));
+    };
 
-        <div className="form-group">
-          <label htmlFor="monthlySalary" className="form-label">
-            Monthly Salary
-          </label>
-          <input
-            className="form-control"
-            name="monthlySalary"
-            onChange={onChangeHandler}
-            value={formData.monthlySalary}
-            placeholder="Your Salary"
-          />
-        </div>
-        {/* Current knowledge about mutual funds */}
+    return (
+        <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
+            <h2>Client Forms</h2>
+            <form>
+                {/* Name */}
+                <div className="form-group d-flex w-100">
+                    <div className="flex-grow-1 me-2">
+                        <label htmlFor="first_name" className="form-label">
+                            First Name
+                        </label>
+                        <input
+                            className="form-control"
+                            name="first_name"
+                            onChange={onChangeHandler}
+                            value={formData.first_name}
+                            placeholder="First name"
+                        />
+                    </div>
+                    <div className="flex-grow-1">
+                        <label htmlFor="last_name" className="form-label">
+                            Last Name
+                        </label>
+                        <input  
+                            className="form-control"
+                            name="last_name"
+                            onChange={onChangeHandler}
+                            value={formData.last_name}
+                            placeholder="Last name"
+                        />
+                    </div>
+                </div>
+                {/* Phone Number */}
+                <div className="form-group">
+                    <label htmlFor="phoneNumber" className="form-label">
+                        Phone Number
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        name="phone_number"
+                        onChange={onChangeHandler}
+                        value={formData.phone_number}
+                        placeholder="Phone Number"
+                    />
+                </div>
+                {/* Age, need a backend */}
+                <div className="form-group">
+                    <label htmlFor="age" className="form-label">
+                        Date of Birth
+                    </label>
+                    <br />
+                    <input type="date" name="DOB" value={formData.DOB} onChange={onChangeHandler} className="form-control"/>
+                </div>
+                {/* Email */}
+                <div className="form-group">
+                    <label htmlFor="phoneNumber" className="form-label">
+                        Email ID
+                    </label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        onChange={onChangeHandler}
+                        value={formData.email}
+                        placeholder="Email"
+                    />
+                </div>
+                {/* PanCard No. */}
+                <div className="form-group">
+                    <label htmlFor="phoneNumber" className="form-label">
+                        PanCard Number
+                    </label>
+                    <input
+                        className="form-control"
+                        name="pancard"
+                        onChange={onChangeHandler}
+                        value={formData.pancard}
+                        placeholder="PanCard No."
+                    />
+                </div>
+                {/* Occupations */}
+                <div className="form-group">
+                    <label htmlFor="currentOccupation" className="form-label">
+                        Current Occupation
+                    </label>
+                    <select
+                        className="form-select"
+                        name="current_occupation"
+                        onChange={onChangeHandler}
+                        value={formData.current_occupation}
+                    >
+                        <option value="Salaried">Salaried</option>
+                        <option value="Slef-Employed">Slef-Employed</option>
+                        <option value="Retired">Retired</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                {/* Monthly Salary */}
+                <div className="form-group">
+                    <label htmlFor="monthlySalary" className="form-label">
+                        Monthly Salary (&#8377;)
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        name="salary"
+                        onChange={onChangeHandler}
+                        value={formData.salary}
+                        placeholder="Your Salary"
+                    />
+                </div>
+                {/* Current knowledge about mutual funds */}
 
-        <div className="form-group">
-          <label htmlFor="currentKnowledge" className="form-label">
-            Current Knowledge About Mutual Funds
-          </label>
-          <select
-            className="form-select"
-            name="currentKnowledge"
-            onChange={onChangeHandler}
-            value={formData.currentKnowledge}
-          >
-            <option value="None">None</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="High">High</option>
-          </select>
-        </div>
+                <div className="form-group">
+                    <label htmlFor="currentKnowledge" className="form-label">
+                        Current Knowledge About Mutual Funds
+                    </label>
+                    <select
+                        className="form-select"
+                        name="current_knowledge"
+                        onChange={onChangeHandler}
+                        value={formData.current_knowledge}
+                    >
+                        {current_knowledge_values.map((item, index) => (
+                            <option value={item.value} key={index}>{item.label}</option>
+                        ))}
+                    </select>
+                </div>
 
-        {/* Any goals */}
-        <div className="form-group">
-          <label htmlFor="anyGoals" className="form-label">
-            Any Specific Goals In Mind
-          </label>
-          <input
-            className="form-control"
-            name="anyGoals"
-            onChange={onChangeHandler}
-            value={formData.anyGoals}
-            placeholder="Your Goals"
-          />
-        </div>
+                {/* Any goals */}
+                <div className="form-group">
+                    <label htmlFor="anyGoals" className="form-label">
+                        Any Specific Goals In Mind
+                    </label>
+                    <input
+                        className="form-control"
+                        name="goals"
+                        onChange={onChangeHandler}
+                        value={formData.goals}
+                        placeholder="Your Goals"
+                    />
+                </div>
 
-        {/* Risk Tolarance*/}
-        <div className="form-group">
-          <label htmlFor="riskBalance" className="form-label">
-            Risk Tolarance
-          </label>
-          <div className="d-flex col ">
-          <select
-            className="form-select"
-            name="riskBalance"
-            onChange={onChangeHandler}
-            value={formData.riskBalance}
-          >
-            <option value="low-very">Very Low (5-10%)</option>
-            <option value="low">Low (10-15%)</option>
-            <option value="moderate">Moderate (15-25%)</option>
-            <option value="high">High (25-35%)</option>
-            <option value="high-very">Very High (35-50%)</option>
-          </select>
-          <input
-              className="form-control "
-              name="riskBalance"
-              onChange={onChangeHandler}
-              value={formData.riskBalance}
-              placeholder="Text here.."
-            />
-            </div>
-        </div>
+                {/* Risk Tolarance*/}
+                <div className="form-group">
+                    
+                    <label className="form-label">Risk Tolarance</label>
+                    <div className="d-flex row">
+                        <div className="d-flex my-2">
+                            <label htmlFor="riskBalance" className="w-25">
+                                Low (5-15%)
+                            </label>
+                            <input
+                                className="form-control"
+                                name="risk_tolarance_low"
+                                onChange={onChangeHandler}
+                                value={formData.risk_tolarance_low}
+                                placeholder="Text here.."
+                            />
+                        </div>
+                        <div className="d-flex my-2">
+                            <label htmlFor="riskBalance" className="w-25">
+                                Mid (15-35%)
+                            </label>
+                            <input
+                                className="form-control "
+                                name="risk_tolarance_mid"
+                                onChange={onChangeHandler}
+                                value={formData.risk_tolarance_mid}
+                                placeholder="Text here.."
+                            />
+                        </div>
+                        <div className="d-flex my-2">
+                            <label htmlFor="riskBalance" className="w-25">
+                                High (30-50%)
+                            </label>
+                            <input
+                                className="form-control "
+                                name="risk_tolarance_high"
+                                onChange={onChangeHandler}
+                                value={formData.risk_tolarance_high}
+                                placeholder="Text here.."
+                            />
+                        </div>
+                    </div>
+                </div>
 
-        {/* Existing Invesment */}
+                {/* Existing Invesment */}
 
-        <div className="form-group">
-          <label htmlFor="exintingInvesment" className="form-label">
-            Existing Invesments In
-          </label>
-          <select
-            className="form-select"
-            name="exintingInvesment"
-            onChange={onChangeHandler}
-            value={formData.exintingInvesment}
-          >
-            <option value="stocks">Stocks</option>
-            <option value="mf">Mutual Funds (MF)</option>
-            <option value="fd">Fixed Deposite (FD)</option>
-            <option value="others">Others</option>
-          </select>
-        </div>
+                <div className="form-group">
+                    <label htmlFor="exintingInvesment" className="form-label">
+                        Existing Invesments In
+                    </label>
+                    <br />
+                    <label value="stock">Stock</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsStock}
+                        setInputFields={setInvestmentsStock}
+                    />
+                    <label value="mf">Mutual Funds (Lump Sum)</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsLumpSum}
+                        setInputFields={setInvestmentsLumpSum}
+                    />
+                    <label value="mf">Mutual Funds (SIP)</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsSIP}
+                        setInputFields={setInvestmentsSIP}
+                    />
+                    <label value="fd">Fixed Deposite (FD)</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsFD}
+                        setInputFields={setInvestmentsFD}
+                    />
+                    <label value="others">Others</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsOthers}
+                        setInputFields={setInvestmentsOthers}
+                    />
+                </div>
 
-        {/* Any Loans  */}
-        <div className="form-group">
-          <label htmlFor="anyLoan" className="form-label">
-            Any Loan On{" "}
-          </label>
-          <div className="d-flex col ">
-            <select
-              className="form-select"
-              name="anyLoan"
-              onChange={onChangeHandler}
-              value={formData.anyLoan}
-            >
-              <option value="None">None</option>
-              <option value="home">Home</option>
-              <option value="property">Property</option>
-              <option value="creditCard">Credit Card</option>
-              <option value="llc">LLC</option>
-              <option value="education">Education</option>
-            </select>
-            <input
-              className="form-control "
-              name="loanLimit"
-              onChange={onChangeHandler}
-              value={formData.anyLoan}
-              placeholder="How much.."
-            />
-          </div>
-        </div>
+                {/* Any Loans  */}
+                <div className="form-group">
+                    <label htmlFor="anyLoan" className="form-label">
+                        Any Loan On{" "}
+                    </label>
+                    <AnyLoan />
+                </div>
 
-        {/* Any Insurance  */}
-        <div className="form-group">
-          <label htmlFor="currentInsurance" className="form-label">
-            Current Insurance Of Yours OR Family Dependents{" "}
-          </label>
-          <div className="d-flex col ">
-          <select
-            className="form-select"
-            name="currentInsurance"
-            onChange={onChangeHandler}
-            value={formData.currentInsurance}
-          >
-            <option value="healthInsurance">Health Insurance</option>
-            <option value="termInsurance">Term Insurance</option>
-          </select>
-          <input
-              className="form-control "
-              name="currentInsurance"
-              onChange={onChangeHandler}
-              value={formData.currentInsurance}
-              placeholder="Text here.."
-            />
-            </div>
-        </div>
+                {/* Any Insurance  */}
+                <div className="form-group">
+                    <label htmlFor="currentInsurance" className="form-label">
+                        Current Insurance Of Yours OR Family Dependents{" "}
+                    </label>
+                    <div className="d-flex row ">
+                        <div>
+                            <label value="healthInsurance">Health Insurance</label>
+                            <Insurance />
+                            <label value="termInsurance">Term Insurance</label>
+                            <Insurance />
+                            <label value="termInsurance">Others</label>
+                            <Insurance />
+                        </div>
+                    </div>
+                </div>
 
-        {/* Current Emergency Funds-Cover */}
-        <div className="form-group">
-          <label htmlFor="fundsCover" className="form-label">
-            Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
-          </label>
-          <div>
-            <div>
-              <input
-                type="radio"
-                name="fundsCover"
-                value="yes"
-                onChange={onChangeHandler}
-                checked={formData.fundsCover === "yes"}
-              />
-              <label htmlFor="yes">Yes</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="fundsCover"
-                value="no"
-                onChange={onChangeHandler}
-                checked={formData.fundsCover === "no"}
-              />
-              <label htmlFor="no">No</label>
-            </div>
-            <input
-              className="form-control "
-              name="loanLimit"
-              onChange={onChangeHandler}
-              value={formData.loanLimit}
-              placeholder="How much.."
-            />
-          </div>
-        </div>
+                {/* Current Emergency Funds-Cover */}
+                <div className="form-group">
+                    <label htmlFor="fundsCover" className="form-label">
+                        Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
+                    </label>
+                    <div>
+                        <div>
+                            <input
+                                type="radio"
+                                name="fundsCover"
+                                value="yes"
+                                onChange={onChangeHandler}
+                                checked={formData.fundsCover === "yes"}
+                            />
+                            <label htmlFor="yes">Yes</label>
+                        </div>
+                        <div>
+                            <input
+                                type="radio"
+                                name="fundsCover"
+                                value="no"
+                                onChange={onChangeHandler}
+                                checked={formData.fundsCover === "no"}
+                            />
+                            <label htmlFor="no">No</label>
+                        </div>
+                        <input
+                            className="form-control "
+                            name="loanLimit"
+                            onChange={onChangeHandler}
+                            value={formData.loanLimit}
+                            placeholder="How much.."
+                        />
+                    </div>
+                </div>
 
-        {/* Tax Brackets of Clients */}
+                {/* Tax Brackets of Clients */}
 
-        {/* How Can We Improve Ourselves */}
-        <div className="form-group">
-          <label htmlFor="improve" className="form-label">
-            How Can We Improve Ourselves
-          </label>
-          
-          <textarea
-            className="form-control"
-            name="improve"
-            onChange={onChangeHandler}
-            value={formData.improve}
-            placeholder="Your Suggestions"
-          />
+                {/* How Can We Improve Ourselves */}
+                <div className="form-group">
+                    <label htmlFor="improve" className="form-label">
+                        How Can We Improve Ourselves
+                    </label>
+
+                    <textarea
+                        className="form-control  "
+                        name="improve"
+                        onChange={onChangeHandler}
+                        value={formData.improve}
+                        placeholder="Your Suggestions"
+                    />
+                </div>
+                <div className="form-group">
+                    <button className="btn" style={{
+                        background: "var(--secondary-color)",
+                        color: "var(--white)"
+                    }}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        console.log(formData)
+                    }}
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
-        <div className="form-group">
-          <button className="btn" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+    );
 }
-
-export default ClientData;
