@@ -1,8 +1,36 @@
 import React, { useState } from "react";
 import { CSS } from "./css/style.css";
 import background from "./login_image.webp";
+import { ForgotPassword } from "./forgotPassword";
+
 
 export function Login() {
+
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  }
+
+  const handleForgotPasswordClick = (e) => {
+    e.preventDefault();
+    setShowForgotPassword(true);
+  };
+
   return (
     <div>
       <div className="d-lg-flex half">
@@ -18,6 +46,7 @@ export function Login() {
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-md-7">
+
                 <h3>
                   Login to <strong>Yogya Capital</strong>
                 </h3>
@@ -25,36 +54,51 @@ export function Login() {
                   Welcome to Yogya Capital, it is our pleasure that you here
                   with us.
                 </p>
-                <form action="#" method="post">
+                <form method="GET" onSubmit={handleSubmit}>
                   <div className="form-group first">
                     <label>Username</label>
                     <input
-                      type="text"
                       className="form-control"
-                      placeholder="your-email@gmail.com"
-                      id="username"
+                      type="text"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                      placeholder="your_email@gmail.com"
+                      required
                     />
                   </div>
                   <br />
                   <div className="form-group last mb-3">
                     <label>Password</label>
                     <input
-                      type="password"
                       className="form-control"
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
                       placeholder="Your Password"
-                      id="password"
+                      required
                     />
                   </div>
                   <div className="d-flex mb-5 align-items-center">
+                    <a href="" onClick={handleForgotPasswordClick}>forgot password</a> <br />
                     <label className="control control--checkbox mb-0">
-                      <span className="caption">Remember me</span>
                       <input type="checkbox" />
+                      <span className="caption">Remember me</span>
                       <div className="control__indicator"></div>
                     </label>
                   </div>
 
-                  <a href="/" className="bn3 fs-6">Login</a>
+                  <button
+                    type="submit"
+                    className="bn3 fs-6 text-dark"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Log In
+                  </button>
                 </form>
+
+                {showForgotPassword && <ForgotPassword />}
               </div>
             </div>
           </div>
