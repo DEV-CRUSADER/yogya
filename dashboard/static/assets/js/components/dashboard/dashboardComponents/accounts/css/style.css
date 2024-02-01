@@ -30,6 +30,27 @@ h2 {
 @media (max-width: 991.98px) {
   .half .bg {
     height: 200px; } }
+    
+@media (min-width: 991.98px) {
+  #small-device-bg-signup{
+    display: none; 
+  } 
+}
+@media (max-width: 991.98px) {
+  #init-signup-bg{
+    display: none; 
+  } 
+}
+@media (min-width: 991.98px) {
+  #small-device-bg-login{
+    display: none; 
+  } 
+}
+@media (max-width: 991.98px) {
+  #init-login-bg{
+    display: none; 
+  } 
+}
 
 .half .contents {
   background: #f6f7fc; }

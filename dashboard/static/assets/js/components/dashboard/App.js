@@ -17,7 +17,7 @@ export function HomeView() {
     return (
         <>
             <div>
-                <div className="container p-">
+                <div className="">
                     <button onClick={toggleForm} className='p-2'>
                         {isLoginForm ? "Sign Up" : "Log In"}
                     </button>

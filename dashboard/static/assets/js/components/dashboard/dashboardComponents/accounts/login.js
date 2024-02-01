@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CSS } from "./css/style.css";
 import background from "./login_image.webp";
 import { ForgotPassword } from "./forgotPassword";
+import { ToggleButton } from "../../App"
 
 
 export function Login() {
@@ -32,9 +33,10 @@ export function Login() {
   };
 
   return (
-    <div>
-      <div className="d-lg-flex half">
+    <div className="" >
+      <div className="d-lg-flex half" style={{backgroundColor: "var(--secondary-color)"}}>
         <div
+          id="init-login-bg"
           className="bg order-1 order-md-2"
           style={{
             backgroundImage: `url(${background})`,
@@ -44,8 +46,9 @@ export function Login() {
         ></div>
         <div className="contents order-2 order-md-1">
           <div className="container">
-            <div className="row align-items-center justify-content-center">
-              <div className="col-md-7">
+            <div className="row align-items-center justify-content-center" style={{backgroundColor: "var(--primary-text)"}}>
+
+              <div className="col-md-7 ">
 
                 <h3>
                   Login to <strong>Yogya Capital</strong>
@@ -81,7 +84,7 @@ export function Login() {
                     />
                   </div>
                   <div className="d-flex mb-5 align-items-center">
-                    <a href="" onClick={handleForgotPasswordClick}>forgot password</a> <br />
+                    <a href="" onClick={handleForgotPasswordClick} style={{marginRight: "10px"}}>forgot password</a> <br />
                     <label className="control control--checkbox mb-0">
                       <input type="checkbox" />
                       <span className="caption">Remember me</span>
@@ -103,6 +106,15 @@ export function Login() {
             </div>
           </div>
         </div>
+        <div
+          id="small-device-bg-login"
+          className="bg order-1 order-md-2"
+          style={{
+            backgroundImage: `url(${background})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        ></div>
       </div>
     </div>
   );

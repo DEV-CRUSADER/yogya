@@ -28,8 +28,9 @@ export function SignUp() {
 
   return (
     <div>
-      <div className="d-lg-flex half">
+      <div className="d-lg-flex half" style={{backgroundColor: "var(--secondary-color)"}}>
         <div
+          id="init-signup-bg"
           className="bg order-1 order-md-2"
           style={{
             backgroundImage: `url(${signUp_image})`,
@@ -40,7 +41,7 @@ export function SignUp() {
         </div>
         <div className="contents order-2 order-md-1">
           <div className="container">
-            <div className="row align-items-center justify-content-center">
+            <div className="row align-items-center justify-content-center" style={{backgroundColor: "var(--primary-text)"}}>
               <div className="col-md-7">
                 <h3>
                   SignUp to <strong>Yogya Capital</strong>
@@ -135,6 +136,16 @@ export function SignUp() {
               </div>
             </div>
           </div>
+        </div>
+        <div
+          id="small-device-bg-signup"
+          className="bg order-1 order-md-2"
+          style={{
+            backgroundImage: `url(${signUp_image})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
         </div>
       </div>
     </div>
