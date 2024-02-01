@@ -2,9 +2,19 @@ import React, { useState, useEffect } from "react";
 import "../../../../../css/dashboard/form.css";
 import "../../../../../css/dashboard/datePicker.css";
 
-import Insurance from "./insurance";
-import { InvesmentsMultiple } from "./multipleFiels"
-import AnyLoan from "./anyLoan";
+function Defaulthideshow()
+{
+  const [showhide, setShowhide]= useState("no");
+
+const handleshow= e=>{
+  const getshow= e.target.value;
+  setShowhide(getshow);
+}
+}
+
+// import Insurance from "./insurance";
+import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
+// import AnyLoan from "./anyLoan";
 
 export function ClientData() {
     const [investmentsStock, setInvestmentsStock] = useState([
@@ -47,6 +57,41 @@ export function ClientData() {
             portfolio: "",
         },
     ]);
+    const [healthInsurance, setHealthInsurance] = useState([
+        {
+            company_name: "",
+            scheme_name: "",
+            scheme_type: "",
+            annual_premium: "",
+            sum_assured:"",
+        },
+    ]);
+    const [termInsurance, setTermInsurance] = useState([
+        {
+            company_name: "",
+            scheme_name: "",
+            scheme_type: "",
+            annual_premium: "",
+            sum_assured:"",
+        },
+    ]);
+    const [otherInsurance, setOtherInsurance] = useState([
+        {
+            company_name: "",
+            scheme_name: "",
+            scheme_type: "",
+            annual_premium: "",
+            sum_assured:"",
+        },
+    ]);
+    const [anyLoan, setAnyLoan] = useState([
+        {
+            anyLoan:"",
+            loan: "",
+        },
+    ]);
+
+    
 
     const current_knowledge_values = [
         {
@@ -85,7 +130,11 @@ export function ClientData() {
             others: investmentsOthers,
         },
         loan: {},
-        insurance: {},
+        insurance: {
+            healthInsurance: healthInsurance,
+            termInsurance: termInsurance,
+            otherInsurance: otherInsurance,
+        },
         emergency_funds: {},
         feedback: "",
     });
@@ -105,6 +154,18 @@ export function ClientData() {
     [investmentsStock, investmentsFD, 
         investmentsLumpSum, investmentsOthers, investmentsSIP])
 
+        useEffect(() => {
+            setFormData({
+                ...formData,
+                invesment: {
+                    healthInsurance: healthInsurance,
+                    termInsurance: termInsurance,
+                    otherInsurance: otherInsurance,
+                },
+            })
+        }, 
+        [healthInsurance, termInsurance, otherInsurance])
+
     const onChangeHandler = (event) => {
         setFormData(() => ({
             ...formData,
@@ -119,7 +180,7 @@ export function ClientData() {
                 {/* Name */}
                 <div className="form-group d-flex w-100">
                     <div className="flex-grow-1 me-2">
-                        <label htmlFor="first_name" className="form-label">
+                        <label className="form-label fs-4 fw-bold">
                             First Name
                         </label>
                         <input
@@ -131,7 +192,7 @@ export function ClientData() {
                         />
                     </div>
                     <div className="flex-grow-1">
-                        <label htmlFor="last_name" className="form-label">
+                        <label className="form-label fs-4 fw-bold" >
                             Last Name
                         </label>
                         <input  
@@ -145,7 +206,7 @@ export function ClientData() {
                 </div>
                 {/* Phone Number */}
                 <div className="form-group">
-                    <label htmlFor="phoneNumber" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Phone Number
                     </label>
                     <input
@@ -159,7 +220,7 @@ export function ClientData() {
                 </div>
                 {/* Age, need a backend */}
                 <div className="form-group">
-                    <label htmlFor="age" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Date of Birth
                     </label>
                     <br />
@@ -167,7 +228,7 @@ export function ClientData() {
                 </div>
                 {/* Email */}
                 <div className="form-group">
-                    <label htmlFor="phoneNumber" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Email ID
                     </label>
                     <input
@@ -181,7 +242,7 @@ export function ClientData() {
                 </div>
                 {/* PanCard No. */}
                 <div className="form-group">
-                    <label htmlFor="phoneNumber" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         PanCard Number
                     </label>
                     <input
@@ -194,7 +255,7 @@ export function ClientData() {
                 </div>
                 {/* Occupations */}
                 <div className="form-group">
-                    <label htmlFor="currentOccupation" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Current Occupation
                     </label>
                     <select
@@ -211,7 +272,7 @@ export function ClientData() {
                 </div>
                 {/* Monthly Salary */}
                 <div className="form-group">
-                    <label htmlFor="monthlySalary" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Monthly Salary (&#8377;)
                     </label>
                     <input
@@ -224,9 +285,8 @@ export function ClientData() {
                     />
                 </div>
                 {/* Current knowledge about mutual funds */}
-
                 <div className="form-group">
-                    <label htmlFor="currentKnowledge" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Current Knowledge About Mutual Funds
                     </label>
                     <select
@@ -243,7 +303,7 @@ export function ClientData() {
 
                 {/* Any goals */}
                 <div className="form-group">
-                    <label htmlFor="anyGoals" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Any Specific Goals In Mind
                     </label>
                     <input
@@ -258,10 +318,10 @@ export function ClientData() {
                 {/* Risk Tolarance*/}
                 <div className="form-group">
                     
-                    <label className="form-label">Risk Tolarance</label>
+                    <label className="form-label fs-4 fw-bold">Risk Tolarance</label>
                     <div className="d-flex row">
                         <div className="d-flex my-2">
-                            <label htmlFor="riskBalance" className="w-25">
+                            <label className="w-25 fs-5 fw-bold">
                                 Low (5-15%)
                             </label>
                             <input
@@ -273,7 +333,7 @@ export function ClientData() {
                             />
                         </div>
                         <div className="d-flex my-2">
-                            <label htmlFor="riskBalance" className="w-25">
+                            <label className="w-25 fs-5 fw-bold">
                                 Mid (15-35%)
                             </label>
                             <input
@@ -285,7 +345,7 @@ export function ClientData() {
                             />
                         </div>
                         <div className="d-flex my-2">
-                            <label htmlFor="riskBalance" className="w-25">
+                            <label className="w-25 fs-5 fw-bold">
                                 High (30-50%)
                             </label>
                             <input
@@ -302,31 +362,31 @@ export function ClientData() {
                 {/* Existing Invesment */}
 
                 <div className="form-group">
-                    <label htmlFor="exintingInvesment" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Existing Invesments In
                     </label>
                     <br />
-                    <label value="stock">Stock</label>
+                    <label className="fs-5 fw-bold" value="stock">Stock</label>
                     <InvesmentsMultiple
                         inputFields={investmentsStock}
                         setInputFields={setInvestmentsStock}
                     />
-                    <label value="mf">Mutual Funds (Lump Sum)</label>
+                    <label className="fs-5 fw-bold" value="mf">Mutual Funds (Lump Sum)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsLumpSum}
                         setInputFields={setInvestmentsLumpSum}
                     />
-                    <label value="mf">Mutual Funds (SIP)</label>
+                    <label className="fs-5 fw-bold" value="mf">Mutual Funds (SIP)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsSIP}
                         setInputFields={setInvestmentsSIP}
                     />
-                    <label value="fd">Fixed Deposite (FD)</label>
+                    <label className="fs-5 fw-bold" value="fd">Fixed Deposite (FD)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsFD}
                         setInputFields={setInvestmentsFD}
                     />
-                    <label value="others">Others</label>
+                    <label className="fs-5 fw-bold" value="others">Others</label>
                     <InvesmentsMultiple
                         inputFields={investmentsOthers}
                         setInputFields={setInvestmentsOthers}
@@ -335,34 +395,65 @@ export function ClientData() {
 
                 {/* Any Loans  */}
                 <div className="form-group">
-                    <label htmlFor="anyLoan" className="form-label">
-                        Any Loan On{" "}
+                    <label className="form-label fs-4 fw-bold">
+                        Any Loan On
                     </label>
-                    <AnyLoan />
+                    <AnyLoan 
+                    inputFields={anyLoan}
+                    setInputFields={setAnyLoan}/>
                 </div>
 
                 {/* Any Insurance  */}
                 <div className="form-group">
-                    <label htmlFor="currentInsurance" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         Current Insurance Of Yours OR Family Dependents{" "}
                     </label>
                     <div className="d-flex row ">
                         <div>
-                            <label value="healthInsurance">Health Insurance</label>
-                            <Insurance />
-                            <label value="termInsurance">Term Insurance</label>
-                            <Insurance />
-                            <label value="termInsurance">Others</label>
-                            <Insurance />
+                            <label className="fs-5 fw-bold" value="healthInsurance">Health Insurance</label>
+                            <Insurance 
+                            inputFields={healthInsurance}
+                            setInputFields={setHealthInsurance}
+                            />
+                            <label className="fs-5 fw-bold" value="termInsurance">Term Insurance</label>
+                            <Insurance 
+                            inputFields={termInsurance}
+                            setInputFields={setTermInsurance}
+                            />
+                            <label className="fs-5 fw-bold" value="otherInsurance">Others</label>
+                            <Insurance 
+                            inputFields={otherInsurance}
+                            setInputFields={setOtherInsurance}
+                            />
                         </div>
                     </div>
                 </div>
 
                 {/* Current Emergency Funds-Cover */}
-                <div className="form-group">
-                    <label htmlFor="fundsCover" className="form-label">
+                {/* <div className="form-group">
+                    <label  className="form-label fs-4 fw-bold">
                         Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
                     </label>
+                    <div className="col-md-12">
+                    <label  className="form-label"> Show Details</label>            
+                    <div className="text-white"> 
+                      Yes <input type="radio" name="userdetail" value="yes" onClick={ handleshow } /> 
+                      No <input type="radio" name="userdetail" value="no" checked={ showhide==='no' } onClick={ handleshow }/> 
+                    </div>
+                    </div>
+
+                    {
+                    showhide==='yes' && (
+                    <div className='col-md-12'>
+                     <label  className="form-label"> Address</label>            
+                    <div className="text-white"> 
+                     <input type="text" name='address' className='form-control'/>                                                 
+                    </div>
+                    </div>
+                    )} */}
+                    {/* </div> */}
+
+{/* 
                     <div>
                         <div>
                             <input
@@ -372,7 +463,7 @@ export function ClientData() {
                                 onChange={onChangeHandler}
                                 checked={formData.fundsCover === "yes"}
                             />
-                            <label htmlFor="yes">Yes</label>
+                            <label >Yes</label>
                         </div>
                         <div>
                             <input
@@ -382,7 +473,7 @@ export function ClientData() {
                                 onChange={onChangeHandler}
                                 checked={formData.fundsCover === "no"}
                             />
-                            <label htmlFor="no">No</label>
+                            <label >No</label>
                         </div>
                         <input
                             className="form-control "
@@ -391,14 +482,15 @@ export function ClientData() {
                             value={formData.loanLimit}
                             placeholder="How much.."
                         />
-                    </div>
-                </div>
+                    </div> */}
+
+                
 
                 {/* Tax Brackets of Clients */}
 
                 {/* How Can We Improve Ourselves */}
                 <div className="form-group">
-                    <label htmlFor="improve" className="form-label">
+                    <label className="form-label fs-4 fw-bold">
                         How Can We Improve Ourselves
                     </label>
 
