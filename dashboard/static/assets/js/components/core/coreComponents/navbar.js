@@ -10,7 +10,6 @@ import {
 //importing css
 import { Colors } from "../../../../../css/color.css";
 import { Css } from "../../../../../css/navbar.css";
-import { SignUp } from "../../dashboard/dashboardComponents/accounts/signUp";
 
 
 export function Navbar(props) {

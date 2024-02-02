@@ -5,6 +5,8 @@ import { Resources } from './coreComponents/resources';
 import { Mutual } from './coreComponents/mutual';
 import { Contact } from './coreComponents/contact';
 
+import { ClientAuthenticationView } from '../common/accounts/base'
+
 export function HomePageView()  {
     return (
         <>
@@ -35,4 +37,12 @@ export function ContactPageView()  {
             <Contact />
         </>
     );
+}
+
+export function ClientAuthView({ formType }) {
+    return (
+        <>  
+            <ClientAuthenticationView formType={formType} />
+        </>
+    )
 }

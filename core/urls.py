@@ -24,9 +24,13 @@ import core.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", core.views.CoreView.load_homepage, name="home-page"),
-    path("resources", core.views.CoreView.load_homepage, name="resources-page"),
-    path("mutual-funds", core.views.CoreView.load_homepage, name="resources-page"),
-    path("contact", core.views.CoreView.load_homepage, name="resources-page"),
+    path("resources/", core.views.CoreView.load_homepage, name="resources-page"),
+    path("mutual-funds/", core.views.CoreView.load_homepage, name="resources-page"),
+    path("contact/", core.views.CoreView.load_homepage, name="resources-page"),
+
+    path("register/", core.views.CoreView.load_homepage, name="client-register-page"),
+    path("login/", core.views.CoreView.load_homepage, name="client-login-page"),
+    path("password-reset/", core.views.CoreView.load_homepage, name="client-password-reset-page"),
 
     path("api/v1/", include('dashboard.api_urls')),
 ]
