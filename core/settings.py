@@ -28,15 +28,9 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
-    "https://127.0.0.1",
-    "http://*.127.0.0.1",
-    "https://*.127.0.0.1",
-    "http://localhost",
-    "https://localhost",
-    "http://*.localhost"
-    "https://*.localhost"
-    "http://dashboard.localhost",
-    "https://dashboard.localhost",
+    "http://localhost"
+    "http://dashboard.localhost"
+    "http://dashboard.localhost:8000",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -45,6 +39,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +49,8 @@ INSTALLED_APPS = [
     'dashboard',
     'django_hosts',
     "softdelete",
-    'rest_framework',
+    "rest_framework",
+    "django_otp",
 ]
 
 MIDDLEWARE = [
@@ -218,7 +214,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DASHBOARD_LOGIN_REDIRECT_URL = 'dashboard'
 
 # Email settings
-
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
@@ -232,8 +227,52 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 # ASGI
 ASGI_APPLICATION = "core.asgi.application"
+
+# Thread Pool
 THREAD_POOL_SIZE = 2
+
+# USER AUTHENTICATION
+AUTH_USER_MODEL = 'dashboard.User'
+AUTHENTICATION_BACKENDS = [
+    # 'django.contrib.auth.backends.ModelBackend',
+    "core.backends.AuthModelBackend.AuthModelBackend"
+]
+LOGIN_REDIRECT_URL = '/resources'
+DASHBOARD_LOGIN_REDIRECT_URL = '/'
 
 # DEBUGGING
 ASYNC_EMAILS = os.getenv('ASYNC_EMAILS', "True") == 'True'
 SKIP_OTP = os.getenv('SKIP_OTP', "True") == 'True'
+
+
+# JAZZMIN CONFIGURATIONS
+JAZZMIN_SETTINGS = {
+    "site_title": "Dashboard",
+    "site_header": "Yogya Capital",
+    "site_brand": "Yogya Capital",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "Yogya Capital Admin Portal",
+    "copyright": "&copy; Yogya Capital",
+    "search_model": ["auth.User", "auth.Group"],
+    "usermenu_links": [
+        {"model": "auth.user"}
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    "related_modal_active": False,
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+}

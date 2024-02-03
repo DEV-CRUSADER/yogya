@@ -90,6 +90,16 @@ This will make sure that all emails are shown on the console, and not actually s
 #### Migrate to new Roles and Permissins Framework
 ``` python manage.py fix_roles ```
 
+#### To load initial indexes
+``` python manage.py load_initial_indexes ```
+
+#### To load inital data for all the indxex
+- Note: before running below command run the above command
+
+``` python manage.py load_initial_index_data ```
+- This command will take approx 10 minutes, So kindly hold and wait fot sucess message.
+- Your device must have internet access before running the above command
+
 #### Run Server
 ``` python manage.py runserver ```
 #### Run Server with gunicorn
@@ -108,7 +118,9 @@ During development RMQ is not required, and can be disabled by making `ASYNC_EMA
 If you wish to see how RMQ workers are behaving, and have not set `ASYNC_EMAILS = False`, then you will be doing the following :
 
 + Run RMQ worker, by opening a new terminal, activating virtual environment and executing the following command
-``` python -m celery -A core worker --loglevel=info```
+  - ``` celery -A core worker --loglevel=info```
++ To run the celery beat use this command in the same folder as your project `manage.py` file in another terminal
+  - ``` celery -A core beat -l info ```
 
 
 #### Building React
@@ -120,6 +132,5 @@ The following commands for installing and running auto-compiler for Javascript f
 + ``` npm install ```
 + ``` npx webpack --config webpack.config.js --mode=development ```
 Keep the second command running, so that it listens to changes to JS files and automatically builds them.
-
-
-
+# For production
++ ``` npx webpack --config webpack.config.js --mode=production ```

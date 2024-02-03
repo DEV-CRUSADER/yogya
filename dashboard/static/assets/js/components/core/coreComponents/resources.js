@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
 import { Container, Header, Content } from 'rsuite';
+
 import { TabTitle } from "../scripts/general_function";
 import { Charts } from "./charts/charts";
 import { ResourcesSidebar, TopBar } from "./sidebar/sidebar";
 
 import "../../../../../css/core/sidebar.css";
-
-// CURERNT_DATE
-const date = new Date();
-const year = date.getFullYear();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = String(date.getDate()).padStart(2, '0');
-const formattedDate = `${year}-${month}-${day}`;
 
 
 export function Resources() {
@@ -19,15 +14,8 @@ export function Resources() {
     const [chartData, setChartData] = useState({})
     const [labels, setLabels] = useState([])
     const [dataFound, setDataFound] = useState(false)
+    const [noData, setNoData] = useState(false)
     const [indexName, setIndexName] = useState("Nifty 50")
-    const [formData, setFormData] = useState({
-        symbol: 'NIFTY 50',
-        start_date: '1990-01-01',
-        end_date: formattedDate,
-    })
-
-
-    document.body.style.overflowY = "hidden";
 
     const [expand, setExpand] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -55,6 +43,7 @@ export function Resources() {
                         setIndexName={setIndexName}
                         setLabels={setLabels}
                         setChartData={setChartData}
+                        setNoData={setNoData}
                     /> : null}
                     <Container
                         style={{
@@ -71,7 +60,8 @@ export function Resources() {
                         />
                         <Content>
                             <Charts
-                                formData={formData}
+                                noData={noData}
+                                setNoData={setNoData}
                                 chartData={chartData}
                                 setChartData={setChartData}
                                 labels={labels}

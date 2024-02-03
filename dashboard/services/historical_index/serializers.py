@@ -5,6 +5,8 @@ from datetime import datetime
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from dashboard.models import IndexLists
+
 
 log = logging.getLogger(__name__)
 
@@ -48,3 +50,13 @@ class StockDataSerializer(serializers.Serializer):
     pb = serializers.DictField()
     pe = serializers.DictField()
     divYield = serializers.DictField()
+
+class IndexSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IndexLists
+        fields = ["name", "symbol", "type"]
+
+class GetIndexSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    symbol = serializers.CharField()
+    type = serializers.CharField()

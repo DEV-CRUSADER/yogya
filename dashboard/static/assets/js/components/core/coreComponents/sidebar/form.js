@@ -1,6 +1,42 @@
-import React, { useState } from "react";
-import { data } from "./constants";
+import React, { useEffect, useState } from "react";
+import { indexTypes } from "./constants";
 import { APICaller } from "../../scripts/server";
+
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+
+import { useQuery, QueryClient, useMutation } from 'react-query'
+
+const queryClient = new QueryClient();
+const notyf = new Notyf({
+    duration: 3000,
+    position: {
+        x: 'right',
+        y: 'top',
+    },
+    types: [
+        {
+            type: 'error',
+            background: '#e74c3c',
+            icon: {
+                className: 'fas fa-exclamation-circle',
+                tagName: 'span',
+                color: '#fff'
+            },
+            dismissible: true
+        },
+        {
+            type: 'success',
+            background: '#2ecc71',
+            icon: {
+                className: 'fas fa-check-circle',
+                tagName: 'span',
+                color: '#fff'
+            },
+            dismissible: true
+        }
+    ]
+});
 
 const date = new Date();
 const year = date.getFullYear();
@@ -8,14 +44,16 @@ const month = String(date.getMonth() + 1).padStart(2, '0');
 const day = String(date.getDate()).padStart(2, '0');
 const formattedDate = `${year}-${month}-${day}`;
 
-export function CustomSelect({ options, name, onChange }) {
+export function CustomSelect({ data, name, onChange, selectedIndexType }) {
     return (
         <select className="form-control" name={name} onChange={onChange}>
-            {options.map((item, index) => (
-                <option key={index} value={item.symbol}>
-                    {item.name}
-                </option>
-            ))}
+            {data != null && (
+                data.map((item, index) => (
+                    item.type === selectedIndexType && (
+                        <option key={index} value={item.symbol}>{item.name}</option>
+                    )
+                ))
+            )}
         </select>
     )
 }
@@ -48,16 +86,26 @@ export function ChartsIndexFrom({
     setChartData,
     setLabels,
     setDataFound,
-    setIndexName
+    setIndexName,
+    setNoData,
+    handleClose,
 }) {
+
     const [selectedIndexType, setSelectedIndexType] = useState('equity');
-    const [selectedIndexValue, setSelectedIndexValue] = useState();
     const [formData, setFormData] = useState({
-        symbol: 'NIFTY 50',
+        symbol: 'Nifty 50',
         start_date: '1990-01-01',
         end_date: formattedDate
     })
+    const [data, setData] = useState(null)
 
+    const query = useQuery({
+        queryKey: 'indexes',
+        queryFn: () => APICaller.FetchIndexes(),
+        onSuccess: (res) => {
+            setData(res.data)
+        }
+    })
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -71,21 +119,32 @@ export function ChartsIndexFrom({
 
     function handelSubmit(event) {
         event.preventDefault();
-        setDataFound(false);
         APICaller.FetchDefaultIndexData(formData).then((res) => {
-            if (!res.ok) {
-                if (res.status) {
-                    setChartData(res.data);
-                    setLabels(res.data.date);
-                    setDataFound(true);
-                    setIndexName(res.data.index_name);
-                } else {
-                    console.log('Failed to fetch NSE data')
+
+            if (res.status == 401){
+                return;
+            }
+
+            if (res.status == 404 || res == undefined) {
+                setDataFound(true);
+                setNoData(true);
+                return;
+            }
+
+            if (res.status) {
+                setChartData(res.data);
+                setLabels(res.data.date);
+                setDataFound(true);
+                setIndexName(res.data.index_name);
+                if (res.data == {}){
+                    setNoData(true);
+                    notyf.error("No data found for this index")
                 }
             } else {
-                console.log(res)
+                notyf.error(res.errors);
             }
         });
+        handleClose();
     }
 
     return (
@@ -96,12 +155,13 @@ export function ChartsIndexFrom({
                     onChange={handleChange}
                     name="selectedIndexType"
                 >
-                    {data.index_type.map((item, index) => {
+                    {indexTypes.map((item, index) => {
                         return (
-                            <option key={index} value={item.symbol}>{item.name}</option>
+                            <option key={index} value={item.symbol}>
+                                {item.name}
+                            </option>
                         )
                     })}
-
                 </select>
                 {(() => {
                     switch (selectedIndexType) {
@@ -110,9 +170,10 @@ export function ChartsIndexFrom({
                         case 'multi_asset':
                             return (
                                 <CustomSelect
-                                    options={data[selectedIndexType]}
+                                    data={data}
                                     name="symbol"
                                     onChange={handleChangeValue}
+                                    selectedIndexType={selectedIndexType}
                                 />
                             );
                         default:

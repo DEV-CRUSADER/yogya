@@ -37,14 +37,12 @@ class User(AbstractUser, BaseModel):
     email = models.EmailField(_('email address'), unique=True)
     is_verified = models.BooleanField(_('is_verified'), default=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
-
-    groups = models.ManyToManyField(Group, blank=True, related_name='user_set_related')
-    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='user_set_related')
 
     class Meta:
         unique_together = ('email',)
@@ -111,11 +109,34 @@ class AuditLogs(models.Model):
 
 class ContactUS(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(null=False, blank=False)
-    email = models.CharField(null=False, blank=False)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     phone_number = models.CharField()
-    message = models.CharField()
+    message = models.CharField(max_length=100000, null=True, blank=True)
     is_read = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Name: {self.name}"
+    
+
+class IndexLists(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    symbol = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    type = models.CharField(max_length=200, null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.name}"
+
+
+class IndexDataFromNSE(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    symbol = models.ForeignKey(IndexLists, on_delete=models.DO_NOTHING, null=False, blank=False, related_name='index_data', default=None)
+    index_name = models.CharField(max_length=200, null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
+    pb = models.FloatField(null=False, blank=False)
+    pe = models.FloatField(null=False, blank=False)
+    divYield = models.FloatField(null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.index_name}"

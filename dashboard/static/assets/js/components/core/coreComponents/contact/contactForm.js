@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import validator from "validator";
 
 import { APICaller } from "../../scripts/server";
@@ -52,7 +52,7 @@ export function ContactForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (formData.name === "" || formData.email === "" || formData.phone_number === ""  || formData.message === "") {
+    if (formData.name === "" || formData.email === "" || formData.phone_number === "") {
       notyf.error('Please fill out the form');
       return;
     }
@@ -64,7 +64,7 @@ export function ContactForm() {
   };
 
   function sendMail() {
-    APICaller.SendontactUsEmail(formData).then((res) => {
+    APICaller.SendContactUsEmail(formData).then((res) => {
       if (res.status) {
         notyf.success(res.message);
         setFormData({
