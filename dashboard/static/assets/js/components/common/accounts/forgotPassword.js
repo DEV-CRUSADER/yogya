@@ -95,7 +95,7 @@ export function ForgotPassword() {
     return (
 
         <div className="contents order-2 order-md-1">
-            <div className="container">
+            <div className="container" style={{marginTop: "20svh"}}>
                 <div className="row align-items-center justify-content-center">
                     <div className="col-md-7">
 
