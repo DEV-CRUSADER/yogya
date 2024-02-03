@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function ForgotPassword() {
 
@@ -10,24 +12,84 @@ export function ForgotPassword() {
         setEmail(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Simulate an API call to send OTP
+        try {
+            // Replace this with your actual API call
+            const response = await fetch('your-api-endpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
 
-        setTimeout(() => {
-            setOtpSent(true);
-        },);
-
-        // backend to send the OTP to the provided email
-        setOtpSent(true);
-        console.log("OTP Sent")
+            switch (response.status) {
+                case 200:
+                    setOtpSent(true);
+                    differentToast();
+                    break;
+                case 300:
+                    setOtpSent(true);
+                    warnToast();
+                    break;
+                case 404:
+                    setOtpSent(true);
+                    errorToast();
+                    break;
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.log("Error in sending OTP", error);
+        }
     };
+    //     if (response.status === 200) {
+    //         setOtpSent(true);
+    //         successToast();
+    //     } else if (response.status === 300) {
+    //         warnToast();
+    //     } else if (response.status === 404) {
+    //         errorToast();
+    //     } else {
+    //         // Handle other status codes if needed
+    //     }
+    // } catch (error) {
+    //     console.error('Error sending OTP:', error);
+    // }
+
+    // setTimeout(() => {
+    //     setOtpSent(true);
+    // },);
+
+    // // backend to send the OTP to the provided email
+    // setOtpSent(true);
+    // console.log("OTP Sent")
+    // };
 
     const handleOtpValidation = (e) => {
         e.preventDefault();
 
         // Validate OTP logic here
         console.log("OTP Validated");
+    };
+    const differentToast = () => {
+        toast.success("OTP Sent Successfylly", {
+            position: "top-center"
+        })
+    }
+    const warnToast = () => {
+        toast.warn("Warning Message for Status 300", {
+            position: "top-left",
+        });
+    };
+
+    const errorToast = () => {
+        toast.error("Error Message for Status 404", {
+            position: "top-right",
+        });
     };
 
     return (
@@ -61,6 +123,7 @@ export function ForgotPassword() {
                                     style={{ backgroundColor: "var(--secondary-color)" }}
                                     type="submit"
                                     className="btn text-light"
+                                    onClick={handleSubmit}
                                 >
                                     Verify
                                 </button>
@@ -94,11 +157,10 @@ export function ForgotPassword() {
                                 >
                                     Validate OTP
                                 </button>
-
                                 <div style={{ marginTop: "10px" }}>
                                     <p><strong>*NOTE :</strong> Check your given E-mail for OTP</p>
-                                    <p><strong>Your E-mail</strong> : {email}</p>
                                 </div>
+                                <ToastContainer />
                             </form>
                         )}
                     </div>

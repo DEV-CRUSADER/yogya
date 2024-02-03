@@ -26,7 +26,7 @@ export function SignUp() {
 
     return (
         <div className="contents order-2 order-md-1">
-            <div className="container">
+            <div className="container" style={{marginTop: "10svh"}}>
                 <div className="row align-items-center justify-content-center" style={{ }}>
                     <div className="col-md-7">
                         <h3>

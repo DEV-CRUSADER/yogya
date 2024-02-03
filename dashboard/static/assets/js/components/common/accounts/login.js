@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ForgotPassword } from "./forgotPassword";
+// import { ForgotPassword } from "./forgotPassword";
 
 import { Link } from "react-router-dom";
 
@@ -26,14 +26,9 @@ export function Login() {
     console.log('Form submitted:', formData);
   }
 
-  const handleForgotPasswordClick = (e) => {
-    e.preventDefault();
-    setShowForgotPassword(true);
-  };
-
   return (
     <div className="contents order-2 order-md-1" >
-      <div className="container">
+      <div className="container" style={{marginTop: "18svh"}}>
         <div className="row align-items-center justify-content-center">
           <div className="col-md-7 ">
             <h3>
@@ -72,7 +67,6 @@ export function Login() {
               <div className="d-flex mb-5 align-items-center">
                 <Link
                   to={'/password-reset'}
-                  onClick={handleForgotPasswordClick}
                   style={{ marginRight: "10px" }}
                 >
                   forgot password

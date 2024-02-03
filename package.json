@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.1",
+    "react-toastify": "^10.0.4",
     "react-use-websocket": "^4.3.1",
     "react-websocket": "^1.1.2",
     "react-zoom-pan-pinch": "^3.3.0",
