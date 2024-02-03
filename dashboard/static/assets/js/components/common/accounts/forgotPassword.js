@@ -119,6 +119,7 @@ export function ForgotPassword() {
                                     />
                                 </div>
                                 <br />
+                                <div className="text-center">
                                 <button
                                     style={{ backgroundColor: "var(--secondary-color)" }}
                                     type="submit"
@@ -127,8 +128,8 @@ export function ForgotPassword() {
                                 >
                                     Verify
                                 </button>
+                                </div>
                                 <div style={{ marginTop: "10px" }}>
-                                    <p><strong>*NOTE</strong> : OTP will be sent to your E-mail</p>
                                 </div>
                             </form>
                         ) : (
@@ -150,6 +151,7 @@ export function ForgotPassword() {
                                     />
                                 </div>
                                 <br />
+                                <div className="text-center">
                                 <button
                                     style={{ backgroundColor: "var(--secondary-color)" }}
                                     type="submit"
@@ -157,8 +159,9 @@ export function ForgotPassword() {
                                 >
                                     Validate OTP
                                 </button>
+                                </div>
                                 <div style={{ marginTop: "10px" }}>
-                                    <p><strong>*NOTE :</strong> Check your given E-mail for OTP</p>
+                                    
                                 </div>
                                 <ToastContainer />
                             </form>

@@ -87,7 +87,7 @@ export function SignUp() {
                             </div>
 
                             <div className="form-group last mb-3">
-                                <label>Password</label>
+                                <label>New Password</label>
                                 <input
                                     className="form-control"
                                     type="password"
@@ -99,7 +99,7 @@ export function SignUp() {
                             </div>
 
                             <div className="form-group last mb-3">
-                                <label>Confirm Password</label>
+                                <label>Confirm New Password</label>
                                 <input
                                     className="form-control"
                                     type="password"
