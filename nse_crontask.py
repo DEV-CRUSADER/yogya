@@ -44,6 +44,14 @@ latest_date = cursor.fetchone()[0]
 
 print(latest_date)
 
+# Calculate the next date
+next_date = latest_date + timedelta(days=1)
+
+# Convert the next date back to a string if needed
+start_data = next_date.strftime('%Y-%m-%d')
+
+print(start_data)
+
 # # If there is no data in the table yet, set a default date
 # if latest_date is None:
 #     latest_date = datetime(2000, 1, 1)
