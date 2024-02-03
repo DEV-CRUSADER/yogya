@@ -30,11 +30,7 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-<<<<<<< HEAD
         test: /\.(png|jpe?g|gif|webp|svg)$/i,
-=======
-        test: /\.(png|jpe?g|gif|webp)$/i,
->>>>>>> cws-user-authentication-be
         use: ["file-loader"],
       },
       {
