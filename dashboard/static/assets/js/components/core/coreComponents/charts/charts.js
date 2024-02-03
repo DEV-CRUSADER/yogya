@@ -45,7 +45,6 @@ export const MakeChartsType = [
 export function Charts({
   noData,
   setNoData,
-  formData,
   chartData,
   setChartData,
   labels,
@@ -69,7 +68,7 @@ export function Charts({
 
 
   function fetchData(data) {
-    APICaller.FetchDefaultIndexData(data)
+    APICaller.FetchFreeData()
       .then((res) => {
         if (!res.ok) {
           if (res.status) {
@@ -90,7 +89,7 @@ export function Charts({
   }
 
   useEffect(() => {
-    fetchData(formData);
+    fetchData();
     setWindowWidth(window.innerWidth)
     const windowSizeHandler = () => {
       if (window.innerWidth <= 630) {
@@ -148,17 +147,15 @@ export function Charts({
           </div>
         ) : (
           MakeChartsType.map((item, index) => (
-            <>
-              <RenderChart
-                indexName={indexName}
-                name={item.name}
-                labels={labels}
-                data={chartData[item.data]}
-                chartType={item.chartType}
-                graphSize={graphSize}
-                key={index}
-              />
-            </>
+            <RenderChart
+              indexName={indexName}
+              name={item.name}
+              labels={labels}
+              data={chartData[item.data]}
+              chartType={item.chartType}
+              graphSize={graphSize}
+              key={index}
+            />
           ))
         )
         }

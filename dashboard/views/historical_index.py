@@ -1,4 +1,5 @@
 import logging
+from datetime import date
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,36 +16,49 @@ log = logging.getLogger(__name__)
 
 class HistoricalIndexAPIView:
 
+
     @staticmethod
     @api_view(['POST'])
+    def get_first_index_data(request):
+        log.info(f"get_first_index_data called : {request.data}")
+
+        data = {
+            "symbol": "Nifty 50",
+            "start_date": "1990-01-01",
+            "end_date": date.today().strftime("%Y-%m-%d")
+        }
+
+        index_data = HistoricalIndexServices.get_historical_nse_index(data=HistoricalIndexFormSerializer(data).data)
+        return Response({"status": index_data['status'], "data": index_data['data']}, status=status.HTTP_200_OK)
+        
+
+    @staticmethod
+    @api_view(['POST'])
+    @login_required(login_url='/login-required/')
     def get_index_data(request):
         log.info(f"get_index_data called : {request.data}")
 
-        if request.data == {}:
-            nse_data = HistoricalIndexServices.get_historical_nse_index(data=None)
-            return Response({"sucess": True, "data": nse_data}, status=status.HTTP_200_OK)
-        else:
-            serializer = HistoricalIndexFormSerializer(data=request.data)
+        serializer = HistoricalIndexFormSerializer(data=request.data)
 
-            if serializer.is_valid():
-                validated_data = serializer.validated_data
+        if serializer.is_valid():
+            validated_data = serializer.validated_data
 
-                index_data = HistoricalIndexServices.get_historical_index_from_and_to_dates(data=validated_data)
+            index_data = HistoricalIndexServices.get_historical_index_from_and_to_dates(data=validated_data)
 
-                if index_data["status"]:
-                    return Response({"status": index_data['status'], "data": index_data['data']},
-                                    status=status.HTTP_200_OK)
-                else:
-                    log.error(f'{index_data["errors"]}')
-                    if index_data["errors"] == "No Data Found":
-                        return Response({"status": index_data['status'], "data": index_data['data']},
-                                        status=status.HTTP_404_NOT_FOUND)
-                    else:
-                        return Response({"status": index_data['status'], "data": index_data['data'], "errors": index_data['errors']},
-                                    status=status.HTTP_400_BAD_REQUEST)
-
+            if index_data["status"]:
+                return Response({"status": index_data['status'], "data": index_data['data']},
+                                status=status.HTTP_200_OK)
             else:
-                return Response({"sucess": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                log.error(f'{index_data["errors"]}')
+                if index_data["errors"] == "No Data Found":
+                    return Response({"status": index_data['status'], "data": index_data['data'], "message": "No Data Found",},
+                                    status=status.HTTP_404_NOT_FOUND)
+                else:
+                    return Response({"status": index_data['status'], "data": index_data['data'], "errors": index_data['errors']},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            return Response({"sucess": False, "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
     @api_view(['POST'])

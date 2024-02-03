@@ -2,18 +2,15 @@ import datetime
 import logging
 
 from django.conf import settings
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.views import RedirectURLMixin
 from django.core.exceptions import ValidationError
 from django.forms import Form, CharField
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from django.views import View
 from django.views.decorators.cache import never_cache
-from django.views.decorators.debug import sensitive_post_parameters
 from django_otp.util import random_hex
 
 from rest_framework.response import Response
@@ -29,10 +26,10 @@ from dashboard.forms import RegistrationForm
 from dashboard.models import BusinessMembers, User
 from dashboard.services.mailer.factory import mailer
 from dashboard.services.totp_verification import generate_otp_by_key, verify_otp_by_key
-from dashboard.services.users import get_user_model
+from dashboard.services.users import get_user_model, get_user_by_email
 from dashboard.utils import TokenGenerator
 
-from dashboard.services.accounts import CreateAccountSerializer
+from dashboard.services.accounts import CreateAccountSerializer, LoginSerializer, ForgotPasswordResetSerializer
 
 log = logging.getLogger(__name__)
 
@@ -51,6 +48,8 @@ class SignUpView():
 
         log.info(f"Registration form: {form}")
         if form.is_valid():
+            if AccountService.check_user_exists(form.cleaned_data['email']):
+                return Response({"message": "User already exists"}, status=status.HTTP_400_BAD_REQUEST)
             business_member, user = AccountService.create(form.cleaned_data)
             if user.is_verified:
                 return Response({"message": "User verified not required"}, status=status.HTTP_200_OK)
@@ -59,3 +58,73 @@ class SignUpView():
         else:
             log.info("Registration failed!")
         return Response({"message": "Registration failed!"}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class SignUpUserVerificationView():
+    
+    @api_view(['GET'])
+    def get(request, uidb64, bmid64, token):
+
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            bmid = force_str(urlsafe_base64_decode(bmid64))
+            user = get_user_model(uid=uid)
+            business_member = BusinessMembers.objects.get(pk=bmid)
+
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist, BusinessMembers.DoesNotExist):
+            user = None
+            business_member = None
+
+        if user is not None and business_member is not None and TokenGenerator(business_member).check_token(user, token):
+            user.is_verified = True
+            user.save()
+            business_member.is_verified = True
+            business_member.save()
+            return Response({"message": "User verified successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "User verification failed"}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class LoginView():
+
+    @api_view(['POST'])
+    def post(request):
+
+        serializer = LoginSerializer(data=request.data)
+
+        if serializer.is_valid():
+            validated_data = serializer.validated_data
+
+            if validated_data['email'] is None or validated_data['password'] is None:
+                return Response({"message": "Email and password required"}, status=status.HTTP_400_BAD_REQUEST)
+
+            user = authenticate(request, email=validated_data['email'], password=validated_data['password'])
+
+            if user is None:
+                return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+            
+            if not user.is_verified:
+                return Response({"message": "User not verified"}, status=status.HTTP_401_UNAUTHORIZED)
+            
+            if user.check_password(validated_data['password']):
+                login(request, user)
+                return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+            
+            return Response({"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response({"message": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+        
+class ForgotPasswordResetView():
+
+    @api_view(['POST'])
+    def post(request):
+
+        serializer = ForgotPasswordResetSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = get_user_by_email(email=serializer.validated_data['email'])
+
+            if user is None:
+                return Response({'message': "Email id not registered", "error": "Email id not registered"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)

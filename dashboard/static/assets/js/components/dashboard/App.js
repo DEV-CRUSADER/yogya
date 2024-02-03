@@ -4,7 +4,7 @@ import { TabTitle } from "../core/scripts/general_function";
 
 
 export function HomeView()  {
-    TabTitle('Yogya|Home')
+    TabTitle('Yogya | Home')
     return (
 
         <div className="container">

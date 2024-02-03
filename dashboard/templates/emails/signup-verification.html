@@ -12,7 +12,7 @@
         verification link below.</p></div>
     <div style="margin-top:25px"><p
             style="width:100%;margin:0;box-sizing:border-box">   <a
-    href="https://dashboard.{{ domain }}{% url 'activate' uidb64=uid bmid64=business_member_id token=token %}?reset_password=false"
+    href="https://{{ domain }}{% url 'dashboard:activate' uidb64=uid bmid64=business_member_id token=token %}"
     style="cursor: pointer; display: inline-block; background-color: #f1f1f1; color: #000; text-decoration: none; padding: 10px 20px; border-radius: 4px; border: 1px solid #ccc;"
     target="_blank">Verify My Account</a>
 </p></div>

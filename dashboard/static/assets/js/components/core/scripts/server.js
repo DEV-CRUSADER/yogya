@@ -44,15 +44,20 @@ const notyf = new Notyf({
     ]
 });
 
+
+let axiosInstance = axios.create({
+    headers: genericHeaders
+})
+
 export class APICaller {
 
-    static async FetchDefaultIndexData(data) {
+    static async FetchFreeData() {
         notyf.open({
             type: 'warning',
             message: 'Fetching data...',
         })
         try {
-            const response = await axios.post("/api/v1/get-index-data", data, {
+            const response = await axiosInstance.post("/api/v1/get-first-index-data", {
                 headers: genericHeaders,
             });
             return response.data;
@@ -61,12 +66,29 @@ export class APICaller {
         }
     }
 
-    static SendContactUsEmail(formData) {
+
+    static async FetchDefaultIndexData(data) {
+        notyf.open({
+            type: 'warning',
+            message: 'Fetching data...',
+        })
+        try {
+            const response = await axiosInstance.post("/api/v1/get-index-data", data, {
+                headers: genericHeaders,
+            });
+
+            return response.data;
+        } catch (error) {
+            notyf.error(error.response.data.message);
+            return error.response;
+        }
+    }
+
+    static async SendContactUsEmail(formData) {
 
         return fetch("/api/v1/send-contact-mail", {
             method: "POST",
             headers: genericHeaders,
-            body: formData,
             body: JSON.stringify(formData),
         }).then((res) => res.json());
 
@@ -74,7 +96,7 @@ export class APICaller {
 
     static async FetchIndexes(data) {
         try {
-            const response = await axios.get("/api/v1/get-index-list", data, {
+            const response = await axiosInstance.get("/api/v1/get-index-list", data, {
                 headers: genericHeaders,
             });
             return response.data;

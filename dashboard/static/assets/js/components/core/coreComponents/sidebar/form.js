@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { indexTypes } from "./constants";
 import { APICaller } from "../../scripts/server";
 
@@ -119,14 +119,18 @@ export function ChartsIndexFrom({
 
     function handelSubmit(event) {
         event.preventDefault();
-        setNoData(false);
-        setDataFound(false);
         APICaller.FetchDefaultIndexData(formData).then((res) => {
-            if (res == undefined){
+
+            if (res.status == 401){
+                return;
+            }
+
+            if (res.status == 404 || res == undefined) {
                 setDataFound(true);
                 setNoData(true);
                 return;
             }
+
             if (res.status) {
                 setChartData(res.data);
                 setLabels(res.data.date);

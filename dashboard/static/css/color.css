@@ -24,3 +24,26 @@ body{
 *:hover {
   text-decoration: none;
 }
+
+
+
+/* Customizing the scrollbars */
+*::-webkit-scrollbar {
+  background: var(--grey);
+  width: 5px;
+  transition: all 300ms ease-in-out;
+}
+
+*::-webkit-scrollbar:hover {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--main-color); /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the border radius of the scrollbar thumb */
+}
+
+body {
+  scrollbar-width: 5px;
+  scrollbar-color: var(--teritary-color) var(--main-color);
+}

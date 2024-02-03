@@ -26,8 +26,9 @@ class HistoricalIndexServices:
     @staticmethod
     def get_historical_nse_index(data):
         log.info("Getting historical nse index")
-        end_date = datetime.datetime.now()
-        end_date = end_date.strftime("%d-%b-%Y")
+        end_date = datetime.datetime.now().strftime("%d-%b-%Y")
+
+        log.info(f"Data: {data}")
 
         if data is None:
             symbol = "Nifty 50"

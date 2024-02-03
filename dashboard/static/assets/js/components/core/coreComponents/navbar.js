@@ -30,6 +30,10 @@ export function Navbar(props) {
 			to: "/resources",
 			label: "Resources",
 		},
+		{
+			to: "https://yogyacapital.substack.com",
+			label: "Blog",
+		},
 		// {
 		//   to: "/mutual-funds",
 		//   label: "Mutual Funds",
@@ -84,6 +88,7 @@ export function Navbar(props) {
 									className={`nav-link custom-nav-link ${activeTab === index ? "active_tab" : ""} text-decoration-none`}
 									to={link.to}
 									onClick={() => handleLinkClick(index)}
+									target={link.to.startsWith("http") ? "_blank" : ""}
 								>
 									{link.label}
 								</Link>

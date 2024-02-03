@@ -11,6 +11,7 @@ import { CoreApp } from './apps/CoreApp';
 
 
 function App() {
+
     // Get subdomain
     const subdomain = window.location.host.split('.')[0];
 

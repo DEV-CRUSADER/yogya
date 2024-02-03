@@ -8,13 +8,6 @@ import { ResourcesSidebar, TopBar } from "./sidebar/sidebar";
 
 import "../../../../../css/core/sidebar.css";
 
-// CURERNT_DATE
-const date = new Date();
-const year = date.getFullYear();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = String(date.getDate()).padStart(2, '0');
-const formattedDate = `${year}-${month}-${day}`;
-
 
 export function Resources() {
     TabTitle('YC | Equity Charts')
@@ -23,11 +16,6 @@ export function Resources() {
     const [dataFound, setDataFound] = useState(false)
     const [noData, setNoData] = useState(false)
     const [indexName, setIndexName] = useState("Nifty 50")
-    const [formData, setFormData] = useState({
-        symbol: 'Nifty 50',
-        start_date: '1990-01-01',
-        end_date: formattedDate,
-    })
 
     const [expand, setExpand] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -74,7 +62,6 @@ export function Resources() {
                             <Charts
                                 noData={noData}
                                 setNoData={setNoData}
-                                formData={formData}
                                 chartData={chartData}
                                 setChartData={setChartData}
                                 labels={labels}

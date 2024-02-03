@@ -11,7 +11,6 @@ from dashboard.services.users import get_user_by_email
 log = logging.getLogger(__name__)
 
 
-
 class CreateAccountSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=False)
@@ -25,7 +24,13 @@ class CreateAccountSerializer(serializers.Serializer):
             raise serializers.ValidationError("Passwords do not match")
         return data
 
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(required=True)
 
+
+class ForgotPasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
 
 class AccountService:
 
@@ -49,3 +54,7 @@ class AccountService:
         log.info(
             f"Business Created, Owner: {user.id}, business_member_id: {business_member.id}")
         return business_member, user
+    
+    @staticmethod
+    def check_user_exists(email):
+        return get_user_by_email(email) is not None

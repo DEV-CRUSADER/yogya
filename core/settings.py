@@ -29,6 +29,8 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
     "http://localhost"
+    "http://dashboard.localhost"
+    "http://dashboard.localhost:8000",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
