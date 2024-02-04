@@ -2,7 +2,7 @@ import datetime
 import logging
 
 from django.conf import settings
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model, logout
 from django.contrib.auth.views import RedirectURLMixin
 from django.core.exceptions import ValidationError
 from django.forms import Form, CharField
@@ -80,6 +80,7 @@ class SignUpUserVerificationView():
             user.save()
             business_member.is_verified = True
             business_member.save()
+            return redirect("client-login-page")
             return Response({"message": "User verified successfully"}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "User verification failed"}, status=status.HTTP_400_BAD_REQUEST)
@@ -90,41 +91,68 @@ class LoginView():
     @api_view(['POST'])
     def post(request):
 
+        print(300*"*")
+        log.info(f"Login request: {request.data}")
+        print(300*"*")
+
         serializer = LoginSerializer(data=request.data)
 
         if serializer.is_valid():
             validated_data = serializer.validated_data
 
             if validated_data['email'] is None or validated_data['password'] is None:
-                return Response({"message": "Email and password required"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"status": False,"message": "Email and password required"}, status=status.HTTP_400_BAD_REQUEST)
 
             user = authenticate(request, email=validated_data['email'], password=validated_data['password'])
 
             if user is None:
-                return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+                return Response({"status": False,"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
             
             if not user.is_verified:
-                return Response({"message": "User not verified"}, status=status.HTTP_401_UNAUTHORIZED)
+                return Response({"status": False,"message": "User not verified"}, status=status.HTTP_401_UNAUTHORIZED)
             
             if user.check_password(validated_data['password']):
                 login(request, user)
-                return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+                return Response({"status": True,"message": "Login successful"}, status=status.HTTP_200_OK)
             
-            return Response({"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"status": False,"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         else:
-            return Response({"message": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status": False,"message": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+class CheckClientLoginView():
+
+    @api_view(['GET'])
+    def get(request):
+        log.info(f"Check client login request: {request.user}")
+        if request.user.is_authenticated:
+            username = request.user.first_name + " " + request.user.last_name
+            return Response({"status": True,"message": "User authenticated", "username" : username}, status=status.HTTP_200_OK)
+        return Response({"status": False,"message": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
+    
+class LogOutView():
+
+    @api_view(['POST'])
+    def post(request):
+        log.info(f"Logging out {request.user}")
+        logout(request)
+        return Response({"status": True, "message": "User Logged Out"}, status=status.HTTP_200_OK)        
         
 class ForgotPasswordResetView():
 
     @api_view(['POST'])
     def post(request):
+        log.info(f"Forgot password reset request: {request.user}")
 
         serializer = ForgotPasswordResetSerializer(data=request.data)
 
         if serializer.is_valid():
             user = get_user_by_email(email=serializer.validated_data['email'])
+            business_member = BusinessMembers.objects.get(user=user)
+
+            log.info(f"User: {business_member}")
 
             if user is None:
                 return Response({'message': "Email id not registered", "error": "Email id not registered"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "Email sent successfully", "error": "Email sent successfully"}, status=status.HTTP_200_OK)
         else:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status" : False}, status=status.HTTP_400_BAD_REQUEST)

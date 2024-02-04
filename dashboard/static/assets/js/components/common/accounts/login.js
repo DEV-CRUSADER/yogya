@@ -1,97 +1,127 @@
-import React, { useState } from "react";
-// import { ForgotPassword } from "./forgotPassword";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { notyf } from "../utils/notfy";
 
-import { Link } from "react-router-dom";
+import { APICaller } from "../scripts/server";
 
 
 export function Login() {
 
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+    const navigate = useNavigate();
 
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+    useEffect(() => {
+        CheckLogin();
+    }, []);
+
+    function CheckLogin() {
+        APICaller.CheckLoginStatusAPI().then((response) => {
+            if (response.status === true) {
+                console.log("Not logged in");
+                navigate("/");
+            } else {
+                console.log("Logged in");
+            }
+        });
+    }
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
     });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
-  return (
-    <div className="contents order-2 order-md-1" >
-      <div className="container" style={{marginTop: "18svh"}}>
-        <div className="row align-items-center justify-content-center">
-          <div className="col-md-7 ">
-            <h3>
-              Login to <strong>Yogya Capital</strong>
-            </h3>
-            <p className="mb-4">
-              Welcome to Yogya Capital, it is our pleasure that you here
-              with us.
-            </p>
-            <form method="GET" onSubmit={handleSubmit}>
-              <div className="form-group first">
-                <label>Username</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  placeholder="your_email@gmail.com"
-                  required
-                />
-              </div>
-              <br />
-              <div className="form-group last mb-3">
-                <label>Password</label>
-                <input
-                  className="form-control"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Your Password"
-                  required
-                />
-              </div>
-              <div className="d-flex mb-5 align-items-center">
-                <Link
-                  to={'/password-reset'}
-                  style={{ marginRight: "10px" }}
-                >
-                  forgot password
-                </Link> <br /> <br />
-                <label className="control control--checkbox mb-0">
-                  <input type="checkbox" />
-                  <span className="caption">Remember me</span>
-                  <div className="control__indicator"></div>
-                </label>
-              </div>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (loginUserFunction(formData)) {
+            notyf.success("Logged in successfully");
+        }
+    }
 
-              <button
-                type="submit"
-                className="btn text-light"
-                style={{
-                  textDecoration: "none",
-                  backgroundColor: "var(--secondary-color)"
-                }}
-              >
-                Log In
-              </button>
-            </form>
-          </div>
+    function loginUserFunction(data) {
+        APICaller.LoginUserAPI(data)
+            .then((response) => {
+                if (response.status) {
+                    notyf.success("Logged in successfully");
+                    window.location.href = "/resources";
+                }
+                return true;
+            })
+            .catch((error) => {
+                notyf.error("Invalid credentials");
+                return false;
+            });
+    }
+
+
+    return (
+        <div className="w-100">
+            <div className="container">
+                <div className="row align-items-center justify-content-center">
+                    <div className="col-md-7 ">
+                        <h3>
+                            Login to <strong>Yogya Capital</strong>
+                        </h3>
+                        <p className="mb-4">
+                            Welcome to Yogya Capital, it is our pleasure that you here
+                            with us.
+                        </p>
+                        <form method="GET" onSubmit={handleSubmit}>
+                            <div className="form-group first">
+                                <label>Username</label>
+                                <input
+                                    className="form-control"
+                                    type="text"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="your_email@gmail.com"
+                                    required
+                                />
+                            </div>
+                            <br />
+                            <div className="form-group last mb-3">
+                                <label>Password</label>
+                                <input
+                                    className="form-control"
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Your Password"
+                                    required
+                                />
+                            </div>
+                            <div className="d-flex flex-column justify-content-center  align-items-center">
+                                <button
+                                    type="submit"
+                                    className="btn text-light"
+                                    style={{
+                                        textDecoration: "none",
+                                        backgroundColor: "var(--secondary-color)"
+                                    }}
+                                >
+                                    Log In
+                                </button>
+                                <Link
+                                    className="fs-6 my-2"
+                                    to={'/password-reset'}
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Forgot password?
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }

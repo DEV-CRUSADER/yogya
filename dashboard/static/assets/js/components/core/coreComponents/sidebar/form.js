@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { indexTypes } from "./constants";
 import { APICaller } from "../../scripts/server";
 
@@ -91,6 +93,8 @@ export function ChartsIndexFrom({
     handleClose,
 }) {
 
+    const navigate = useNavigate();
+
     const [selectedIndexType, setSelectedIndexType] = useState('equity');
     const [formData, setFormData] = useState({
         symbol: 'Nifty 50',
@@ -122,6 +126,7 @@ export function ChartsIndexFrom({
         APICaller.FetchDefaultIndexData(formData).then((res) => {
 
             if (res.status == 401){
+                navigate('/login?next=/resources');
                 return;
             }
 

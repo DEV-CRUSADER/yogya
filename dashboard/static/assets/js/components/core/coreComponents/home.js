@@ -7,10 +7,6 @@ import { WhyUs } from './home/whyus';
 import { PersonHero } from './home/personHero';
 import { Footer } from './footer';
 
-//importing css
-import { CSS } from "../../../../../css/home.css";
-
-
 export function Home() {
     TabTitle('Yogya Capital')
     document.body.style.overflowY = "auto";
@@ -22,7 +18,6 @@ export function Home() {
             <PersonHero />
             <Disclaimer />
             <Footer />
-
         </>
     );
 }

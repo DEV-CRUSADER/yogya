@@ -8,7 +8,7 @@ import { Login } from "./login";
 import { ForgotPassword } from "./forgotPassword";
 
 import loginViewImage from '../../../../img/login_image.webp'
-import registerViewImage from '../../../../svg/signUp_image.svg'
+import registerViewImage from '../../../../img/signUp_image.png'
 
 import 'aos/dist/aos.css';
 
@@ -19,28 +19,29 @@ export function ClientAuthenticationView({ formType }) {
     // formType = {'register', 'login', "password-reset"}
 
     return (
-        <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
+        <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row" style={{ height: "100vh" }}>
             <div className="w-100 w-sm-100 w-md-50 w-lg-50 d-flex flex-column p-2 p-sm-2 p-md-3 p-lg-4">
-                <div className="">
-                    <Link
-                        className="btn fs-4 border border-light"
-                        style={{
-                            textDecoration: "none",
-                            color: "var(--white)",
-                            background: "var(--secondary-color)"
-                        }}
-                        to={(formType === 'login') ? "/register" : '/login'}
-                    >
-                        {(formType === 'login') ? "Sign Up" : "Sign In"}
-                    </Link>
-                </div>
-                <div>
+                <div className="d-flex flex-column justify-content-center align-items-center h-100">
                     {(formType === 'register') ?
                         <SignUp /> :
-                        (formType === 'login') ?<Login /> : <ForgotPassword />}
+                        (formType === 'login') ? <Login /> : <ForgotPassword />}
+                    <hr
+                        className="my-4"
+                        style={{
+                            width: "50%",
+                            border: "1px solid var(--teritary-color)",
+                        }}
+                    />
+                    <Link
+                        className="btn fs-5 text-decoration-none"
+                        to={(formType === 'login') ? '/register' : '/login'}
+                        style={{ marginRight: "10px", backgroundColor: "var(--secondary-color)", color: "white" }}
+                    >
+                        {(formType === 'login') ? "Don't have an account? Sign up" : "Already have an account? Log in"}
+                    </Link> <br /> <br />
                 </div>
             </div>
-            <div className="w-100 w-sm-100 w-md-50 w-lg-50"
+            <div className="w-100 w-sm-100 w-md-50 w-lg-50 d-flex justify-content-center align-items-center p-2 p-sm-2 p-md-3 p-lg-4"
                 style={{
                     background: `var(--secondary-color)`
                 }}

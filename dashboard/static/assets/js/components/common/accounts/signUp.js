@@ -1,6 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { notyf } from "../utils/notfy";
+
+import { APICaller } from '../scripts/server';
 
 export function SignUp() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        CheckLogin();
+    }, []);
+
+    function CheckLogin() {
+        APICaller.CheckLoginStatusAPI().then((response) => {
+            if (response.status === true) {
+                navigate("/");
+            }
+        });
+    }
+
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -21,18 +40,35 @@ export function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        if (formData.password1 !== formData.password2) {
+            notyf.error("Passwords do not match");
+            return;
+        }
+        createUserFunction(formData);
+    }
+
+    function createUserFunction(data){
+        APICaller.CreateUserAPI(data).then((response) => {
+            if (response.status === 201) {
+                notyf.success("Account created successfully");
+                notyf.open({
+                    type: 'warning',
+                    message: 'Verify your email to login',
+                })
+                window.location.href = "/login";
+            }
+        });
     }
 
     return (
-        <div className="contents order-2 order-md-1">
-            <div className="container" style={{marginTop: "10svh"}}>
+        <div className="w-100">
+            <div className="container">
                 <div className="row align-items-center justify-content-center" style={{ }}>
                     <div className="col-md-7">
-                        <h3>
+                        <span className="fs-5 fs-sm-5 fs-md-2 fs-lg-2 fs-xl-2 fw-bolder">
                             SignUp to <strong>Yogya Capital</strong>
-                        </h3>
-                        <p className="mb-4">
+                        </span>
+                        <p className="mb-4 fs-lg-5">
                             Welcome to Yogya Capital, it is our pleasure that you here
                             with us.
                         </p>
@@ -109,17 +145,17 @@ export function SignUp() {
                                     placeholder="Confirm Password"
                                 />
                             </div>
-
-                            <button
-                                type="submit"
-                                className="btn text-light"
-                                style={{ textDecoration: "none",
-                                backgroundColor: "var(--secondary-color)"
-                            }}
-                            >
-                                Sign Up
-                            </button>
-
+                            <div className="d-flex justify-content-center align-items-center">
+                                <button
+                                    type="submit"
+                                    className="btn text-light"
+                                    style={{ textDecoration: "none",
+                                    backgroundColor: "var(--secondary-color)"
+                                }}
+                                >
+                                    Sign Up
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

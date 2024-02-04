@@ -3,7 +3,8 @@ from django.urls import path, include
 from  dashboard.views.historical_index import HistoricalIndexAPIView
 from  dashboard.views.contact_us.controller import ContactUsView
 
-from dashboard.views.accounts import SignUpView, LoginView
+from dashboard.views.accounts import SignUpView, LoginView, CheckClientLoginView, \
+    LogOutView, ForgotPasswordResetView
 
 
 urlpatterns = [
@@ -20,4 +21,7 @@ urlpatterns = [
     # User Authentication APIs
     path('account/register', SignUpView.post, name="register-user"),
     path('account/login', LoginView.post, name="login-user"),
+    path('account/check-auth', CheckClientLoginView.get, name="check-auth"),
+    path('account/logout', LogOutView.post, name="logout-user"),
+    path('account/reset-password', ForgotPasswordResetView.post, name="reset-password"),
 ]

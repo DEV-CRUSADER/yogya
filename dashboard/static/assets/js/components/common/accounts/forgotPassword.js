@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { notyf } from "../utils/notfy";
+import { isEmail } from "validator";
+
+import { APICaller } from "../scripts/server";
 
 export function ForgotPassword() {
 
     const [email, setEmail] = useState('');
-    const [otpSent, setOtpSent] = useState(false);
-    const [otp, setOtp] = useState('');
 
     const handleChange = (e) => {
         setEmail(e.target.value);
@@ -14,158 +14,66 @@ export function ForgotPassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Simulate an API call to send OTP
-        try {
-            // Replace this with your actual API call
-            const response = await fetch('your-api-endpoint', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
-
-            switch (response.status) {
-                case 200:
-                    setOtpSent(true);
-                    differentToast();
-                    break;
-                case 300:
-                    setOtpSent(true);
-                    warnToast();
-                    break;
-                case 404:
-                    setOtpSent(true);
-                    errorToast();
-                    break;
-                default:
-                    break;
-            }
-        } catch (error) {
-            console.log("Error in sending OTP", error);
+        if (email === "") {
+            notyf.error("Email cannot be empty");
+            return;
+        } else if (isEmail(email)) {
+            CallResetPassword({ email: email });
+            notyf.success("Password reset link sent to your email");
+        } else {
+            notyf.error("Invalid Email");
         }
     };
-    //     if (response.status === 200) {
-    //         setOtpSent(true);
-    //         successToast();
-    //     } else if (response.status === 300) {
-    //         warnToast();
-    //     } else if (response.status === 404) {
-    //         errorToast();
-    //     } else {
-    //         // Handle other status codes if needed
-    //     }
-    // } catch (error) {
-    //     console.error('Error sending OTP:', error);
-    // }
-
-    // setTimeout(() => {
-    //     setOtpSent(true);
-    // },);
-
-    // // backend to send the OTP to the provided email
-    // setOtpSent(true);
-    // console.log("OTP Sent")
-    // };
-
-    const handleOtpValidation = (e) => {
-        e.preventDefault();
-
-        // Validate OTP logic here
-        console.log("OTP Validated");
-    };
-    const differentToast = () => {
-        toast.success("OTP Sent Successfylly", {
-            position: "top-center"
-        })
+    
+    function CallResetPassword(data){
+        APICaller.ResetPasswordAPI(data).then((response) => {
+            if (response.status === 200) {
+                notyf.success("Password reset link sent to your email");
+            }
+        });
     }
-    const warnToast = () => {
-        toast.warn("Warning Message for Status 300", {
-            position: "top-left",
-        });
-    };
-
-    const errorToast = () => {
-        toast.error("Error Message for Status 404", {
-            position: "top-right",
-        });
-    };
 
     return (
 
-        <div className="contents order-2 order-md-1">
-            <div className="container" style={{marginTop: "20svh"}}>
+        <div className="w-100 pt-3">
+            <div className="container">
                 <div className="row align-items-center justify-content-center">
                     <div className="col-md-7">
-
-                        <h3>
-                            Forgot Your <strong>Password ?</strong>
-                        </h3>
-                        {!otpSent ? (
-                            <form method="GET" className="form" onSubmit={handleSubmit}>
+                        <div className="container text-center fs-4 fw-bolder">
+                            Reset Password
+                        </div>
+                            <form method="GET" className="form needs-validation">
                                 <div className="form-group first" style={{ marginTop: "2rem" }}>
-                                    <label className="h5">Email</label>
-                                    <br />
-                                    <input
-                                        style={{ marginTop: "10px" }}
-                                        className="form-control"
-                                        type="email"
-                                        name="email"
-                                        value={email}
-                                        placeholder="Enter Your Email To Verify"
-                                        onChange={handleChange}
-                                        required
-                                    />
+                                    <label className="h5 text-center w-100">Email</label>
+                                    <div className="input-group has-validation">
+                                        <input
+                                            style={{ marginTop: "10px" }}
+                                            className="form-control text-center"
+                                            type="email"
+                                            name="email"
+                                            value={email}
+                                            placeholder="Enter Your Email To Verify"
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <div className="invalid-feedback">
+                                            Enter a valid email
+                                        </div>
+                                    </div>
                                 </div>
                                 <br />
                                 <div className="text-center">
-                                <button
-                                    style={{ backgroundColor: "var(--secondary-color)" }}
-                                    type="submit"
-                                    className="btn text-light"
-                                    onClick={handleSubmit}
-                                >
-                                    Verify
-                                </button>
+                                    <button
+                                        style={{ backgroundColor: "var(--secondary-color)" }}
+                                        className="btn text-light"
+                                        onClick={handleSubmit}
+                                    >
+                                        Verify
+                                    </button>
                                 </div>
                                 <div style={{ marginTop: "10px" }}>
                                 </div>
                             </form>
-                        ) : (
-                            // <p>OTP sent to {email}. Check your email for verification.</p>
-
-                            <form method="POST" className="form" onSubmit={handleOtpValidation}>
-                                <div className="form-group first" style={{ marginTop: "2rem" }}>
-                                    <label className="h5">OTP</label>
-                                    <br />
-                                    <input
-                                        style={{ marginTop: "10px" }}
-                                        className="form-control"
-                                        type="text"
-                                        name="otp"
-                                        value={otp}
-                                        placeholder="Enter OTP"
-                                        onChange={(e) => setOtp(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <br />
-                                <div className="text-center">
-                                <button
-                                    style={{ backgroundColor: "var(--secondary-color)" }}
-                                    type="submit"
-                                    className="btn text-light"
-                                >
-                                    Validate OTP
-                                </button>
-                                </div>
-                                <div style={{ marginTop: "10px" }}>
-                                    
-                                </div>
-                                <ToastContainer />
-                            </form>
-                        )}
                     </div>
                 </div>
             </div>
