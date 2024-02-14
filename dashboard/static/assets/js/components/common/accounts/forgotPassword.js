@@ -64,11 +64,10 @@ export function ForgotPassword() {
                                 <br />
                                 <div className="text-center">
                                     <button
-                                        style={{ backgroundColor: "var(--secondary-color)" }}
-                                        className="btn text-light"
+                                        className="btn account-btn"
                                         onClick={handleSubmit}
                                     >
-                                        Verify
+                                        Reset Password
                                     </button>
                                 </div>
                                 <div style={{ marginTop: "10px" }}>

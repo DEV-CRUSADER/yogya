@@ -136,7 +136,7 @@ class IndexDataFromNSE(BaseModel):
     date = models.DateField(null=False, blank=False)
     pb = models.FloatField(null=False, blank=False)
     pe = models.FloatField(null=False, blank=False)
-    divYield = models.FloatField(null=False, blank=False)
+    divyield = models.FloatField(null=False, blank=False)
 
     def __str__(self):
         return f"Index Name: {self.index_name}"

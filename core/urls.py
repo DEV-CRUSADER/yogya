@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from dashboard.services.mailer.emails import register_all
+import dashboard.views.accounts
 from .views import load_404, load_homepage, login_required
 
 import core.views
@@ -38,6 +39,7 @@ urlpatterns = [
     path("dashboard/", include('dashboard.urls')),
 
     path("login-required/", core.views.login_required, name="login-required"),
+    path("accounts/reset-password/<uidb64>/<bmid64>/<token>/", dashboard.views.accounts.PasswordResetView.as_view(), name="client-reset-password"),
 ]
 
 def register_functions():

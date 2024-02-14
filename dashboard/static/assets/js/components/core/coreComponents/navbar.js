@@ -9,6 +9,7 @@ import {
 
 import { APICaller } from "../../common/scripts/server";
 import { notyf } from "../../common/utils/notfy";
+import { TabTitle } from "../scripts/general_function";
 
 //importing css
 import "../../../../../css/initial_style.css";
@@ -25,6 +26,16 @@ export function Navbar() {
 		CheckLogin();
 	}, []);
 
+	if (currentLocation.pathname === "/"){
+		TabTitle("Yogya Capital");
+	} else if (currentLocation.pathname === "/resources"){
+		TabTitle("YC | Resources");
+	} else if (currentLocation.pathname === "/mutual-funds"){
+		TabTitle("YC | Mutual Funds");
+	} else if (currentLocation.pathname === "/contact"){
+		TabTitle("YC | Contact");
+	}
+
 	function CheckLogin() {
 		APICaller.CheckLoginStatusAPI().then((response) => {
 			if (response.status === true) {
@@ -36,8 +47,6 @@ export function Navbar() {
 
 	function LogoutUser() {
 		APICaller.LogoutUserAPI().then((response) => {
-			console.log(response)
-			console.log("response")
 			if (response.status === true) {
 				setIsLoggedIn(false);
 				setUserName("");
@@ -97,7 +106,11 @@ export function Navbar() {
 							fontWeight: "bold",
 							fontFamily: "Lora"
 						}}>
-						<div className="d-flex flex-column align-items-center px-3">
+						<div className="d-flex flex-column align-items-center px-3"
+							style={{
+								color: "var(--secondary-color)"
+							}}
+						>
 							<span style={{
 								fontFamily: "DelicateSans",
 								fontSize: "1.7rem"
@@ -125,7 +138,8 @@ export function Navbar() {
 							{nav_links.map((link, index) => (
 								<Link
 									key={link.to}
-									className={`nav-link custom-nav-link text-decoration-none ${currentLocation.pathname === link.to ? "active_tab" : ""
+									className={`nav-link custom-nav-link text-decoration-none text-dark
+										${currentLocation.pathname === link.to ? "active_tab" : ""
 										}`}
 									to={link.to}
 									onClick={() => handleLinkClick(index)}
@@ -143,14 +157,14 @@ export function Navbar() {
 									</Link>
 								</li>
 								<li className="nav-but px-1">
-									<Link className=" btn btn-core-primary-outline text-decoration-none" to="/login">
+									<Link className=" btn text-decoration-none btn-core-primary-outline" to="/login">
 										login
 									</Link>
 								</li>
 							</ul>
 						) : (
 							<ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex">
-								<div className="dropdown border border-2 rounded">
+								<div className="dropdown">
 									<Link
 										className="btn dropdown-toggle text-decoration-none text-center user-btn px-3 py-2"
 										to="#"

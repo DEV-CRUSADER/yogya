@@ -16,4 +16,5 @@ urlpatterns = [
 
     # Authentication Routes
     path( 'accounts/activate/<uidb64>/<bmid64>/<token>/', dashboard.views.accounts.SignUpUserVerificationView.get, name="activate"),
+    path( 'accounts/reset-password', dashboard.views.accounts.PasswordResetView.as_view(), name="reset-password" )
 ]

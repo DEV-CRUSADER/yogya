@@ -48,6 +48,7 @@
 }
 
 .user-btn:hover{
+  border-color: var(--secondary-color);
   background-color: transparent;
   color: var(--black);
 }

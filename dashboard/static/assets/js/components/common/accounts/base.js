@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AOS from 'aos';
+import { useLocation } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -7,14 +7,24 @@ import { SignUp } from "./signUp";
 import { Login } from "./login";
 import { ForgotPassword } from "./forgotPassword";
 
+import { TabTitle } from "../../core/scripts/general_function";
+
 import loginViewImage from '../../../../img/login_image.webp'
 import registerViewImage from '../../../../img/signUp_image.png'
 
-import 'aos/dist/aos.css';
-
-AOS.init();
+import '../../../../../css/common/accounts/style.css';
 
 export function ClientAuthenticationView({ formType }) {
+
+    const location = useLocation();
+
+    if (location.pathname === "/register") {
+        TabTitle('Register to Yogya Capital')
+    } else if (location.pathname === "/login") {
+        TabTitle('Login to Yogya Capital')
+    } else if (location.pathname === "/password-reset") {
+        TabTitle('Reset your password')
+    }
 
     // formType = {'register', 'login', "password-reset"}
 
@@ -33,9 +43,9 @@ export function ClientAuthenticationView({ formType }) {
                         }}
                     />
                     <Link
-                        className="btn fs-5 text-decoration-none"
+                        className="btn fs-5 text-decoration-none account-btn"
                         to={(formType === 'login') ? '/register' : '/login'}
-                        style={{ marginRight: "10px", backgroundColor: "var(--secondary-color)", color: "white" }}
+                        style={{ marginRight: "10px" }}
                     >
                         {(formType === 'login') ? "Don't have an account? Sign up" : "Already have an account? Log in"}
                     </Link> <br /> <br />

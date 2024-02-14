@@ -66,7 +66,6 @@ export class APICaller {
         }
     }
 
-
     static async FetchDefaultIndexData(data) {
         notyf.open({
             type: 'warning',
@@ -99,9 +98,8 @@ export class APICaller {
             const response = await axiosInstance.get("/api/v1/get-index-list", data, {
                 headers: genericHeaders,
             });
-            return response.data;
+            return response;
         } catch (error) {
-            console.error("Error fetching data:", error);
             throw error;
         }
     }

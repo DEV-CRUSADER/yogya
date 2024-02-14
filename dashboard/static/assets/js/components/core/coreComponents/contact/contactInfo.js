@@ -21,12 +21,12 @@ export function ContactInfo() {
     {
       icon: icons.mail,
       head: "Email Us",
-      description: "chirag.jain48@yahoo.com",
+      description: "invest@yogyacapital.com",
     },
   ];
 
   return (
-    <div className="d-flex flex-wrap justify-content-center w-100 w-md-25 w-lg-25">
+    <section className="d-flex flex-wrap justify-content-center w-100 w-md-25 w-lg-25">
       {constactDetails.map((item, index) => (
         <ContactCard
           key={index}
@@ -35,7 +35,7 @@ export function ContactInfo() {
           description={item.description}
         />
       ))}
-    </div>
+    </section>
   );
 }
 
@@ -48,6 +48,7 @@ export function ContactCard({ icon, head, description }) {
       style={{
         width: "300px",
       }}
+      data-aos="zoom-in"
     >
       <i className={`${icon} fs-3 mb-2 hithere`}></i>
       <h5>{head}</h5>

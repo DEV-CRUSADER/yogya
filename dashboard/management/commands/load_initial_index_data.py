@@ -39,7 +39,7 @@ class Command(BaseCommand):
                         
             data['pb'] = OtherFunctions.filter_index_data(data=data['pb'])
             data['pe'] = OtherFunctions.filter_index_data(data=data['pe'])
-            data['divYield'] = OtherFunctions.filter_index_data(data=data['divYield'])
+            data['divyield'] = OtherFunctions.filter_index_data(data=data['divyield'])
 
 
             for data_index,item in data.iterrows():
@@ -49,8 +49,9 @@ class Command(BaseCommand):
                     "date": datetime.datetime.strptime(item["DATE"], '%d %b %Y').date(),
                     "pb": item["pb"],
                     "pe": item["pe"],
-                    "divYield": item["divYield"]
+                    "divyield": item["divyield"]
                 })
+            time.sleep(20)
 
         instances = [IndexDataFromNSE(**item) for item in context]
         IndexDataFromNSE.objects.bulk_create(instances)

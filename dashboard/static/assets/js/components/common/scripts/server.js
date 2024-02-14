@@ -13,9 +13,8 @@ export class APICaller {
                 headers: genericHeaders,
             });
 
-            return response.data;
+            return response;
         } catch (error) {
-            notyf.error(error.response.data.message);
             return error.response;
         }
     }
@@ -26,9 +25,8 @@ export class APICaller {
             const response = await axiosInstance.post("/api/v1/account/login", data, {
                 headers: genericHeaders,
             });
-            return response.data;
+            return response;
         } catch (error) {
-            notyf.error(error.response.data.message);
             return error.response;
         }
     }

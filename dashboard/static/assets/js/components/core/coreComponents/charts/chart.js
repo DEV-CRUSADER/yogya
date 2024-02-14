@@ -26,6 +26,7 @@ ChartJS.register(
 
 
 export function MakeChart({ labels, data, chartType, graphSize }) {
+
   var data = {
     labels: labels,
     datasets: [{
@@ -36,7 +37,7 @@ export function MakeChart({ labels, data, chartType, graphSize }) {
         'rgba(0,0,0,1)'
       ],
       borderColor: [
-        '#7E00BD'
+        '#3D7186',
       ],
       borderWidth: 1
     },
@@ -83,10 +84,10 @@ export function MakeChart({ labels, data, chartType, graphSize }) {
       data: data.SDP1,
       pointRadius: 0,
       backgroundColor: [
-        '#DE0D92'
+        '#4b5357'
       ],
       borderColor: [
-        '#DE0D92'
+        '#4b5357'
       ],
       borderDash: [10, 5],
       borderWidth: 2
@@ -130,6 +131,7 @@ export function MakeChart({ labels, data, chartType, graphSize }) {
       },
     },
   }
+
 
   return (
     <div>
