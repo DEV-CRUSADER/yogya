@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "DelicateSans";
+  src: url(../assets/fonts/DelicateSans.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
 :root {
   /* main colors */
   --main-color: #c2dae4;
@@ -24,8 +32,6 @@ body{
 *:hover {
   text-decoration: none;
 }
-
-
 
 /* Customizing the scrollbars */
 *::-webkit-scrollbar {

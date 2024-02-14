@@ -50,7 +50,7 @@ class HistoricalIndexAPIView:
                                 status=status.HTTP_200_OK)
             else:
                 log.error(f'{index_data["errors"]}')
-                if index_data["errors"] == "No Data Found":
+                if index_data["errors"].lower() == "No Data Found".lower():
                     return Response({"status": index_data['status'], "data": index_data['data'], "message": "No Data Found",},
                                     status=status.HTTP_404_NOT_FOUND)
                 else:

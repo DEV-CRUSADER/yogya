@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar, Sidenav, Navbar, Nav, Modal, Toggle, Button, ButtonToolbar, Placeholder} from 'rsuite';
+import { Sidebar, Sidenav, Navbar, Nav, Modal, Toggle, Button, ButtonToolbar, Placeholder } from 'rsuite';
 import FunnelTimeIcon from '@rsuite/icons/FunnelTime';
 import { ChartsIndexFrom } from "./form";
 
@@ -24,50 +24,53 @@ export function ResourcesSidebar({ expand, setExpand,
 
 
     return (
-        <Sidebar
-            style={{
-                display: "flex",
-                flexDirection: "column",
-            }}
-            id="sidBar"
-            width={expand ? 260 : 56}
-            collapsible
-        >
-            <Sidenav.Header>
-                <div style={headerStyles}>
-                    <span id="headerMob" style={{ marginLeft: 12 }}>Charts</span>
-                    <span id="headerDiv" style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
-                </div>
-            </Sidenav.Header>
-            <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
-                <Sidenav.Body>
-                    <Nav>
-                        <Nav.Menu
-                            eventKey="3"
-                            trigger="hover"
-                            title="Charts"
-                            icon={<FunnelTimeIcon />}
-                            placement="rightStart"
-                        >
-                            <Nav.Item eventKey="3-1" >
-                                <ChartsIndexFrom
-                                    setChartData={setChartData}
-                                    setLabels={setLabels}
-                                    setDataFound={setDataFound}
-                                    setIndexName={setIndexName}
-                                    setNoData={setNoData}
-                                    handleClose={handleClose}
-                                />
-                            </Nav.Item>
-                        </Nav.Menu>
-                    </Nav>
-                </Sidenav.Body>
-            </Sidenav>
-        </Sidebar>
+        <aside>
+            <Sidebar
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+                id="sidBar"
+                width={expand ? 260 : 56}
+                collapsible
+            >
+                <Sidenav.Header>
+                    <div style={headerStyles}>
+                        <span id="headerMob" style={{ marginLeft: 12 }}>Charts</span>
+                        <span id="headerDiv" style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
+                    </div>
+                </Sidenav.Header>
+                <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
+                    <Sidenav.Body>
+                        <Nav>
+                            <Nav.Menu
+                                eventKey="3"
+                                trigger="hover"
+                                title="Charts"
+                                icon={<FunnelTimeIcon />}
+                                placement="rightStart"
+                            >
+                                <Nav.Item eventKey="3-1" >
+                                    <ChartsIndexFrom
+                                        setChartData={setChartData}
+                                        setLabels={setLabels}
+                                        setDataFound={setDataFound}
+                                        setIndexName={setIndexName}
+                                        setNoData={setNoData}
+                                        handleClose={handleClose}
+                                    />
+                                </Nav.Item>
+                            </Nav.Menu>
+                        </Nav>
+                    </Sidenav.Body>
+                </Sidenav>
+            </Sidebar>
+        </aside>
     );
 };
 
-export function TopBar({ setDataFound, setIndexName, setLabels, setChartData, setNoData}){
+export function TopBar({ windowWidth, setDataFound, setIndexName,
+    setLabels, setChartData, setNoData }) {
     const [open, setOpen] = React.useState(false);
     const [overflow, setOverflow] = React.useState(true);
     const handleOpen = () => setOpen(true);

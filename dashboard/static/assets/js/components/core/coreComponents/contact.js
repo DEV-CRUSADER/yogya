@@ -8,11 +8,11 @@ import { Footer } from "./footer";
 import "../../../../../css/contact.css";
 
 export function Contact() {
-  TabTitle("YC | Contact");
+
   document.body.style.overflowY = "auto";
 
   return (
-    <>
+    <main>
       <ContactHead />
       <div className="d-flex flex-column p-sm-4 p-2 
             justify-content-end align-items-center">
@@ -20,6 +20,6 @@ export function Contact() {
         <ContactInfo />
       </div>
       <Footer />
-    </>
+    </main>
   );
 }

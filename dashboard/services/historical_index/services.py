@@ -58,15 +58,22 @@ class HistoricalIndexServices:
 
         # year_list = nse_data['date'][::-1].apply(HistoricalIndexServices.extract_year).to_list()
 
+        if nse_data.empty:
+            return {
+                "status": False,
+                "data": {},
+                "errors": "No data found"
+            }
+
         context = {
             "index_name": nse_data['index_name'][0],
             "date": nse_data["date"].to_list(),
             "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb']),
             "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe']),
-            "divYield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divYield'])
+            "divyield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divyield'])
         }
 
-        if context["pb"] == {} or context["pe"] == {} or context["divYield"] == {}:
+        if context["pb"] == {} or context["pe"] == {} or context["divyield"] == {}:
             return {
                 "status": False,
                 "data": {},
@@ -201,14 +208,14 @@ class HistoricalIndexNseServices:
                         
             data['pb'] = HistoricalIndexNseServices.filter_index_data(data=data['pb'])
             data['pe'] = HistoricalIndexNseServices.filter_index_data(data=data['pe'])
-            data['divYield'] = HistoricalIndexNseServices.filter_index_data(data=data['divYield'])
+            data['divyield'] = HistoricalIndexNseServices.filter_index_data(data=data['divyield'])
             
             data_for_today.append({
                 "index_name": index["name"],
                 "date": data["DATE"][0],
                 "pb": data["pb"][0],
                 "pe": data["pe"][0],
-                "divYield": data["divYield"][0]
+                "divyield": data["divyield"][0]
             })
         
         print(data_for_today)

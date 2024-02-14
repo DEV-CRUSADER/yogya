@@ -45,12 +45,19 @@ class RegistrationForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email', 'phone_number')
 
 
-# class CustomLoginForm(LoginForm):
+class ClientResetPasswordForm(forms.Form):
     
-#     error_messages = {
-#         **AuthenticationForm.error_messages,
-#         "verification_required": _(
-#             "Please complete Email Verification before attempting login."
-#         ),
-#     }
-#     required_css_class = "required"
+    new_password1 = forms.CharField(
+        label=_("New Password"),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'}),
+    )
+
+    new_password2 = forms.CharField(
+        label=_("Confirm New Password"),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm New Password'}),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('new_password1') != cleaned_data.get('new_password2'):
+            raise ValidationError({"new_password2": "Passwords do not match."})

@@ -35,7 +35,7 @@ def send_user_password_reset_email(business_member_id):
         'business_member': business_member,
         'domain': settings.SITE_URL,
         'uid': urlsafe_base64_encode(force_bytes(business_member.user.pk)),
-        'business_member_id': urlsafe_base64_encode(force_bytes(business_member.id)),
+        'business_member_id': urlsafe_base64_encode(force_bytes(business_member_id)),
         'token': TokenGenerator(business_member).make_token(business_member.user),
     })
     plain_message = strip_tags(html_message)

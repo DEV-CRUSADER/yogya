@@ -14,7 +14,7 @@ const socialIcons = {
 
 export function Profile({ image, name, description, socials, direction }) {
   return (
-    <div className={`d-flex flex-column flex-sm-column ${direction == "left" ? "flex-md-row-reverse" : ""} 
+    <section className={`d-flex flex-column flex-sm-column ${direction == "left" ? "flex-md-row-reverse" : ""} 
             ${direction == "left" ? "flex-lg-row-reverse" : ""}  ${direction == "left" ? "flex-xl-row-reverse" : ""}`}>
       <div className="p-5">
         <img 
@@ -22,11 +22,12 @@ export function Profile({ image, name, description, socials, direction }) {
           src={image} alt={name}
           style={{
             filter: "drop-shadow(-7px -7px 13px rgba(0, 0, 0, 0.3))",
-          }}  
+          }}
+          data-aos="zoom-in"
         />
       </div>
       <div className={`d-flex flex-column justify-content-center align-items-center w-100 w-md-50 w-lg-50`}>
-        <div className="w-75 m-2">
+        <div className="w-75 m-2" data-aos="zoom-in">
           <h1>
             <span style={{ color: "var(--black)", opacity:0.7 }}>This is </span>
             <span style={{ color: "var(--white)" }}>{name}</span>
@@ -40,6 +41,7 @@ export function Profile({ image, name, description, socials, direction }) {
                   target="_blank"
                   key={social.id}
                   className="fs-3 m-2"
+                  data-aos="fade-right"
                 >
                   <i className={`${socialIcons[social.name]} hover-effect`}></i>
                 </a>
@@ -48,6 +50,6 @@ export function Profile({ image, name, description, socials, direction }) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
