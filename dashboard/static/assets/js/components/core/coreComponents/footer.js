@@ -15,7 +15,9 @@ import {
   FaRegEnvelope,
 } from "react-icons/fa";
 
-import { CSS } from "../../../../../css/footer.css";
+import { Logo } from "../../common/utils/logo";
+
+import "../../../../../css/footer.css";
 
 export function Footer() {
   return (
@@ -76,19 +78,12 @@ export function Footer() {
           <div className="ps-1">
             <a>
               <FaRegEnvelope />
-              <span className="ps-1">chirag.jain48@yahoo.com</span>
+              <span className="ps-1">invest@yogyacapital.com</span>
             </a>
           </div>
         </div>
         <div className="d-flex justify-content-center mt-2">
-          <Link
-            className="navbar-brand text-decoration-none" to="/"
-            style={{
-              fontWeight: "bold",
-              fontFamily: "Lora"
-            }}>
-            Yogya Capital
-          </Link>
+          <Logo />
         </div>
         <div
           className="py-1 d-flex justify-content-around"
@@ -96,8 +91,8 @@ export function Footer() {
             background: "var(--teritary-color)",
           }}
         >
-          <span>www.yogyacapital.com &copy;&nbsp;copyright 2024</span>
-          <span>Privacy policy | T&C</span>
+          <span className="bottom-footer">www.yogyacapital.com &copy;&nbsp;copyright 2024</span>
+          <span className="bottom-footer">Privacy policy | T&C</span>
         </div>
       </div>
     </div>

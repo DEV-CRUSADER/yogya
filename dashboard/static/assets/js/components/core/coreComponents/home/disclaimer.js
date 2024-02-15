@@ -5,8 +5,11 @@ import { CSS } from "../../../../../../css/home.css";
 
 export function Disclaimer() {
   return (
-    <>
-      <div className="hero-section-4 m-0 mb-3 m-md-4 m-lg-4 m-xl-4 m-xxl-4  p-1 p-pd-4 p-lg-4 p-xl-4 p-xxl-4">
+    <article>
+      <section className="hero-section-4 m-0 mb-3 m-md-4 
+        m-lg-4 m-xl-4 m-xxl-4 p-1 p-pd-4 p-lg-4 p-xl-4 p-xxl-4"
+        data-aos="zoom-in"
+      >
         <section className="container text-center">
           <p className="span-0 my-2 fs-1">DISCLAIMER</p>
           <p className="span-1 mb-2">
@@ -21,7 +24,7 @@ export function Disclaimer() {
             applicable. Privacy policy of the website is applicable.
           </span>
         </section>
-      </div>
-    </>
+      </section>
+    </article>
   );
 }

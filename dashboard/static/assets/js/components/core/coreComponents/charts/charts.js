@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, IconButton , ButtonToolbar, Placeholder } from 'rsuite';
+import { Modal, Button, IconButton, ButtonToolbar, Placeholder } from 'rsuite';
 import HelpOutlineIcon from '@rsuite/icons/HelpOutline';
 import 'rsuite/dist/rsuite.min.css';
 
@@ -7,6 +7,8 @@ import { MakeChart } from './chart';
 import loader from '../../../../../img/loader.gif';
 import { Footer } from '../footer';
 import { TopBar } from '../sidebar/sidebar';
+
+import { notyf } from "../../../common/utils/notfy"
 
 // APICaller
 import { APICaller } from '../../scripts/server';
@@ -36,7 +38,7 @@ export const MakeChartsType = [
   },
   {
     name: "Divident Yield GRAPH",
-    data: "divYield",
+    data: "divyield",
     chartType: "Divident yield"
   },
 ]
@@ -44,8 +46,8 @@ export const MakeChartsType = [
 
 export function Charts({
   noData,
+  windowWidth,
   setNoData,
-  formData,
   chartData,
   setChartData,
   labels,
@@ -65,11 +67,10 @@ export function Charts({
       return (window.innerWidth * 0.35)
     }
   });
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 
   function fetchData(data) {
-    APICaller.FetchDefaultIndexData(data)
+    APICaller.FetchFreeData()
       .then((res) => {
         if (!res.ok) {
           if (res.status) {
@@ -78,20 +79,14 @@ export function Charts({
             setDataFound(true);
             setNoData(false);
           } else {
-            console.log('Failed to fetch data from NSE');
+            notyf.error('Failed to fetch data from NSE');
           }
-        } else {
-          console.log('Failed');
         }
       })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
   }
 
   useEffect(() => {
-    fetchData(formData);
-    setWindowWidth(window.innerWidth)
+    fetchData();
     const windowSizeHandler = () => {
       if (window.innerWidth <= 630) {
         setGraphSize(windowWidth * 0.6)
@@ -117,6 +112,7 @@ export function Charts({
       >
         {(windowWidth < 800) && (
           <TopBar
+            windowWidth={windowWidth}
             setDataFound={setDataFound}
             setIndexName={setIndexName}
             setLabels={setLabels}
@@ -148,17 +144,15 @@ export function Charts({
           </div>
         ) : (
           MakeChartsType.map((item, index) => (
-            <>
-              <RenderChart
-                indexName={indexName}
-                name={item.name}
-                labels={labels}
-                data={chartData[item.data]}
-                chartType={item.chartType}
-                graphSize={graphSize}
-                key={index}
-              />
-            </>
+            <RenderChart
+              indexName={indexName}
+              name={item.name}
+              labels={labels}
+              data={chartData[item.data]}
+              chartType={item.chartType}
+              graphSize={graphSize}
+              key={index}
+            />
           ))
         )
         }
@@ -203,26 +197,49 @@ export function HowToReadChart() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const instructions = "Loading....."
 
   return (
     <>
       <ButtonToolbar>
-        <IconButton 
-          onClick={handleOpen} 
+        <IconButton
+          onClick={handleOpen}
           appearance="primary"
-          color="green" 
+          color="green"
           icon={<HelpOutlineIcon />
-        }>How to read charts</IconButton>
+          }>How to read charts</IconButton>
       </ButtonToolbar>
 
       <Modal overflow={overflow} open={open} onClose={handleClose}>
         <Modal.Header>
-          <Modal.Title>Information | How to react charts</Modal.Title>
+          <Modal.Title>How to read charts</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {instructions}
-          <Placeholder.Paragraph rows={80} />
+          <>
+            <h4>
+              What this chart represents?
+            </h4>
+            The chart contains historical data since inception of index & can be used as an indicator to gauge current valuation of the index.
+            Average – this line represents the average of historical data.
+            Standard Deviation (SD) - is a measure of the amount of variation of the data, i.e. how volatile the data is. So it adds Standard Deviation (SD) to the average.
+
+            <h4>
+              How values are calculated?
+            </h4>
+            <article>
+              <p>
+                For example if average is 20 & SD is 5 the values will be<br />
+                Average = 20<br />
+                SD+1 = 20+5 = 25<br />
+                SD + 2 = 20+5+5 = 30<br />
+                SD-1 = 20-5 = 15<br />
+                SD-2 = 20-5-5 = 10<br />
+              </p>
+               <h4>
+                How to interpret the chart?
+              </h4>
+                Every index chart has varying interpretation so it is best to interpret by yourself.
+            </article>
+          </>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose} appearance="primary">

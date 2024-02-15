@@ -15,8 +15,9 @@
 }
 
 #capital-text{
-    margin-top: 24px;
-    color: var(--secondary-text);
+    margin-top: 50px;
+    font-size: 8rem;
+    color: var(--primary-text);
 }
 
 .hero-section::before {
@@ -93,7 +94,8 @@
     }
 
     #capital-text{
-        margin-top: -12px;
+        margin-top: -10px;
+        font-size: 4rem;
     }
 }
 

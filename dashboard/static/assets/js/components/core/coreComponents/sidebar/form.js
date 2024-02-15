@@ -1,42 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { indexTypes } from "./constants";
-import { APICaller } from "../../scripts/server";
-
-import { Notyf } from 'notyf';
-import 'notyf/notyf.min.css';
-
 import { useQuery, QueryClient, useMutation } from 'react-query'
 
-const queryClient = new QueryClient();
-const notyf = new Notyf({
-    duration: 3000,
-    position: {
-        x: 'right',
-        y: 'top',
-    },
-    types: [
-        {
-            type: 'error',
-            background: '#e74c3c',
-            icon: {
-                className: 'fas fa-exclamation-circle',
-                tagName: 'span',
-                color: '#fff'
-            },
-            dismissible: true
-        },
-        {
-            type: 'success',
-            background: '#2ecc71',
-            icon: {
-                className: 'fas fa-check-circle',
-                tagName: 'span',
-                color: '#fff'
-            },
-            dismissible: true
-        }
-    ]
-});
+import { APICaller } from "../../scripts/server";
+import { notyf } from "../../../common/utils/notfy";
+
 
 const date = new Date();
 const year = date.getFullYear();
@@ -91,6 +61,8 @@ export function ChartsIndexFrom({
     handleClose,
 }) {
 
+    const navigate = useNavigate();
+
     const [selectedIndexType, setSelectedIndexType] = useState('equity');
     const [formData, setFormData] = useState({
         symbol: 'Nifty 50',
@@ -103,7 +75,7 @@ export function ChartsIndexFrom({
         queryKey: 'indexes',
         queryFn: () => APICaller.FetchIndexes(),
         onSuccess: (res) => {
-            setData(res.data)
+            setData(res.data.data)
         }
     })
 
@@ -119,15 +91,16 @@ export function ChartsIndexFrom({
 
     function handelSubmit(event) {
         event.preventDefault();
-        setNoData(false);
-        setDataFound(false);
         APICaller.FetchDefaultIndexData(formData).then((res) => {
-            if (res == undefined){
+
+            if (res.status == 401){
+                navigate('/login?next=/resources');
+            } else if (res.status == 404 || res == undefined) {
                 setDataFound(true);
                 setNoData(true);
-                return;
-            }
-            if (res.status) {
+            } else if (res.status) {
+                setDataFound(false);
+                setNoData(false);
                 setChartData(res.data);
                 setLabels(res.data.date);
                 setDataFound(true);
@@ -144,7 +117,7 @@ export function ChartsIndexFrom({
     }
 
     return (
-        <>
+        <section data-aos="zoom-in">
             <form className="form" >
                 <select
                     className="form-control mt-4 mb-3"
@@ -177,6 +150,31 @@ export function ChartsIndexFrom({
                     }
                 })()}
 
+                <div>
+                    <label htmlFor="start_date" className="form-label">Start Date</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        name="start_date"
+                        value={formData.start_date}
+                        onChange={handleChangeValue}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="end_date" className="form-label">End Date</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        name="end_date"
+                        value={formData.end_date}
+                        onChange={handleChangeValue}
+                        style={{
+                            zIndex: "1000"
+                        }}
+                    />
+                    
+                </div>
+
                 <div className="p-3">
                     <button className="btn text-light" onClick={handelSubmit} style={{
                         backgroundColor: "var(--teritary-color)",
@@ -184,6 +182,6 @@ export function ChartsIndexFrom({
                     }}>Submit</button>
                 </div>
             </form>
-        </>
+        </section>
     );
 }

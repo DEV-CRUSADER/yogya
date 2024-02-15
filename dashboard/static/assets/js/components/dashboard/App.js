@@ -1,14 +1,14 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { TabTitle } from "../core/scripts/general_function";
 
 
 export function HomeView()  {
-    TabTitle('Yogya|Home')
+    TabTitle('Yogya | Home')
     return (
-
-        <div className="container">
-            <h1>Dashboard Home View</h1>
-        </div>
+        <>
+            <div>
+                This is dashboard
+            </div>
+        </>
     );
 }

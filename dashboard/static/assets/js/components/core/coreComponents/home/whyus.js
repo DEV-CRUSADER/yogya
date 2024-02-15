@@ -1,10 +1,19 @@
 import React from "react";
+import { motion } from "framer-motion"
 
-import { CSS } from "../../../../../../css/home.css";
+import { HiLightBulb } from "react-icons/hi";
+import { MdOutlineAutoGraph } from "react-icons/md";
+import { GiMoneyStack } from "react-icons/gi";
+
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
+
+import "../../../../../../css/home.css";
+import 'react-vertical-timeline-component/style.min.css';
+
 import theGame from "../../../../../img/skinIntheGame.png";
 import selling from "../../../../../img/misSelling.png";
 
-export function WhyUs() {
+export function WhyUsSectionWrapper() {
 
   return (
     <div
@@ -15,28 +24,8 @@ export function WhyUs() {
           color: "var(--white)",
         }}
       >
-        <h1 style={{ color: "var(--teritary-color)" }}>WHO ARE WE?</h1>
-        <span className="text-center mb-5 p-2 w-75"
-          style={{
-            color: "var(--secondary-color)",
-          }}
-        >
-          Yogya Financial Capital is a dynamic financial services company dedicated to empowering individuals and businesses through innovative and client-centric financial solutions. With a focus on integrity and excellence, Yogya Financial Capital strives to be a trusted partner in financial success, offering a comprehensive range of services including investment management, wealth advisory, and tailored financial planning. The company is committed to navigating the ever-changing financial landscape with expertise and agility, ensuring clients achieve their long-term financial goals.
-        </span>
-        <h1 className="main-head text-center " style={{ color: "var(--teritary-color)" }}>WHY US?</h1>
-        <div className="d-flex justify-content-around flex-column flex-sm-column 
-          flex-md-column flex-lg-row flex-xl-row"
-          style={{
-            width: "75%",
-
-          }}
-        >
-          <ServiceCard image={selling} head="No misselling"
-            detail="We only suggest products which fulfills your goals." />
-          <ServiceCard image={theGame} head="Skin in the game"
-            detail="We suggest products where we ourselves would invest own money along
-          with yours."/>
-        </div>
+        <WhoWeAre />
+        <WhyUs />
       </div>
     </div>
   );
@@ -55,12 +44,14 @@ export function ServiceCard({ image, head, detail }) {
         style={{
           height: "150px",
         }}
+        data-aos="zoom-in-up"
       />
       <h2
         className="head-text mt-2"
         style={{
           color: "var(--teritary-color)",
         }}
+        data-aos="zoom-in"
       >
         {head}
       </h2>
@@ -71,9 +62,86 @@ export function ServiceCard({ image, head, detail }) {
           color: "var(--black)",
           opacity: 0.6
         }}
+        data-aos="zoom-in"
       >
         {detail}
       </p>
     </div>
   );
+}
+
+export function WhyUs() {
+  return (
+    <>
+      <h1 className="main-head text-center" style={{ color: "var(--teritary-color)" }}>WHY US?</h1>
+      <div className="d-flex justify-content-around flex-column flex-sm-column 
+          flex-md-column flex-lg-row flex-xl-row"
+        style={{
+          width: "75%",
+        }}
+      >
+        <ServiceCard image={selling} head="No misselling"
+          detail="We only suggest products which fulfills your goals." />
+        <ServiceCard image={theGame} head="Skin in the game"
+          detail="We suggest products where we ourselves would invest own money along
+          with yours."/>
+      </div>
+    </>
+  )
+}
+
+export const WhoWeAreData = [
+  {
+    text: "Innovative and client-centric financial solutions.",
+    icon: <HiLightBulb />
+  },
+  {
+    text: "Offering a comprehensive range of services",
+    icon: <MdOutlineAutoGraph />
+  },{
+    text: "Tailored financial planning for clients achieve their dreams.",
+    icon: <GiMoneyStack />
+  }
+]
+
+const WhoWeAre = () => {
+  return (
+    <>
+      <h1 className="main-head text-center" style={{ color: "var(--teritary-color)" }}>WHO WE ARE?</h1>
+      <motion.div className="d-flex justify-content-around flex-column flex-sm-column 
+            flex-md-column flex-lg-row flex-xl-row"
+        style={{
+          width: "75%",
+        }}
+      >
+
+        <VerticalTimeline>
+          {WhoWeAreData.map((item, index) => (
+            <WhoWeAreCard text={item.text} icon={item.icon} key={index} />
+          ))}
+        </VerticalTimeline>
+      </motion.div>
+    </>
+  )
+}
+
+
+
+export function WhoWeAreCard({ text, icon }) {
+  return (
+    <VerticalTimelineElement
+      className="vertical-timeline-element--work"
+      contentStyle={{ background: 'var(--secondary-color)', color: 'var(--secondary-text)' }}
+      contentArrowStyle={{ borderRight: '7px solid var(--secondary-color)' }}
+      iconStyle={{ 
+        background: 'var(--main-color)', 
+        color: 'var(--secondary-color)', 
+      }}
+      icon={icon}
+    >
+      <p>
+        {text}
+      </p>
+    </VerticalTimelineElement>
+  )
 }

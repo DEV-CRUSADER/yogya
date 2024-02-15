@@ -14,7 +14,7 @@ from dashboard.utils import TokenGenerator
 def send_user_verification_email(business_member_id):
     business_member = BusinessMembers.objects.get(pk=business_member_id)
 
-    mail_subject = 'Welcome to theBackOffice!'
+    mail_subject = 'Welcome to Yogya Capital'
     html_message = render_to_string('emails/signup-verification.html', {
         'user': business_member.user,
         'domain': settings.SITE_URL,
@@ -25,10 +25,26 @@ def send_user_verification_email(business_member_id):
     plain_message = strip_tags(html_message)
     send_mail(mail_subject, plain_message, settings.SENDER_EMAIL, [business_member.user.email],
                    html_message=html_message)
+    
+@shared_task
+def send_user_password_reset_email(business_member_id):
+    business_member = BusinessMembers.objects.get(pk=business_member_id)
+
+    mail_subject = 'Password reset | Yogya Capital'
+    html_message = render_to_string('emails/forgot-password-reset.html', {
+        'business_member': business_member,
+        'domain': settings.SITE_URL,
+        'uid': urlsafe_base64_encode(force_bytes(business_member.user.pk)),
+        'business_member_id': urlsafe_base64_encode(force_bytes(business_member_id)),
+        'token': TokenGenerator(business_member).make_token(business_member.user),
+    })
+    plain_message = strip_tags(html_message)
+    send_mail(mail_subject, plain_message, settings.SENDER_EMAIL, [business_member.user.email],
+                   html_message=html_message)
 
 @shared_task
 def send_contact_us_email(name, email, phone_number, message):
-    mail_subject = 'Contact Us'
+    mail_subject = 'Contact Us - Yogya Capital'
     html_message = render_to_string('emails/contact-us.html', {
         'name': name,
         'email': email,
@@ -47,6 +63,7 @@ def send_contact_us_email(name, email, phone_number, message):
 def register_all():
     mailer.register('send_user_verification_email', send_user_verification_email)
     mailer.register('send_contact_us_email', send_contact_us_email)
+    mailer.register('send_user_password_reset_email', send_user_password_reset_email)
 
 # @shared_task
 # def send_bulk_files_download_email(requested_by_id, client_id, attachment=None, to_emails=None):
