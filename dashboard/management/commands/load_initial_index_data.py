@@ -39,7 +39,7 @@ class Command(BaseCommand):
                         
             data['pb'] = OtherFunctions.filter_index_data(data=data['pb'])
             data['pe'] = OtherFunctions.filter_index_data(data=data['pe'])
-            data['divyield'] = OtherFunctions.filter_index_data(data=data['divyield'])
+            data['divYield'] = OtherFunctions.filter_index_data(data=data['divYield'])
 
 
             for data_index,item in data.iterrows():
@@ -49,7 +49,7 @@ class Command(BaseCommand):
                     "date": datetime.datetime.strptime(item["DATE"], '%d %b %Y').date(),
                     "pb": item["pb"],
                     "pe": item["pe"],
-                    "divyield": item["divyield"]
+                    "divyield": item["divYield"]
                 })
             time.sleep(20)
 

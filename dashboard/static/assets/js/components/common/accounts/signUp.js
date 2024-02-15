@@ -82,7 +82,7 @@ export function SignUp() {
                 item.classList.remove("is-invalid");
             }
         })
-        console.log(validationStatus);
+        return validationStatus;
     }
 
     function createUserFunction(data) {
