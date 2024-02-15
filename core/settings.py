@@ -40,6 +40,11 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost"
     "http://dashboard.localhost"
     "http://dashboard.localhost:8000",
+    "http://dashboard.yogyacapital.com",
+    "http://dashboard.yogyacapital.com:8000",
+    "http://yogyacapital.com",
+    "http://www.yogyacapital.com",
+    "http://195.35.22.25",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
