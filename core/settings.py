@@ -24,16 +24,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = ['195.35.22.25', 
-                'yogyacapital.com',
-                'www.yogyacapital.com',
-                'dashboard.yogyacapital.com',
-                'dashboard.yogyacapital.com:8000',
-                'localhost',
-                'localhost:8000',
-                'dashboard.localhost',
-                'dashboard.localhost:8000',
-            ]
+ALLOWED_HOSTS = [
+        '195.35.22.25', 
+        'yogyacapital.com',
+        'www.yogyacapital.com',
+        'dashboard.yogyacapital.com',
+        'dashboard.yogyacapital.com:8000',
+        'localhost',
+        'localhost:8000',
+        'dashboard.localhost',
+        'dashboard.localhost:8000',
+    ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
@@ -51,8 +52,6 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-SITE_ID = 1
-
 # Application definition
 INSTALLED_APPS = [
     'jazzmin',
@@ -69,6 +68,7 @@ INSTALLED_APPS = [
     "django_otp",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "robots",
 ]
 
 MIDDLEWARE = [
@@ -163,7 +163,10 @@ logging.config.dictConfig(LOGGING)
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+SITE_ID = int(os.getenv('SITE_ID'))
 SITE_URL = os.getenv('SITE_URL')
+DOMAIN_NAME = os.getenv('DOMAIN_NAME')
+SITE_NAME = os.getenv('SITE_NAME')
 PROTOCOL = os.getenv('PROTOCOL', 'http')
 BASE_URL = f"{PROTOCOL}://{SITE_URL}"
 DASHBOARD_URL = f"{PROTOCOL}://dashboard.{SITE_URL}"
