@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../../../../../css/dashboard/form.css";
 import "../../../../../css/dashboard/datePicker.css";
 
-function Defaulthideshow()
-{
-  const [showhide, setShowhide]= useState("no");
+import { Checkbox, CheckboxGroup } from 'rsuite';
 
-const handleshow= e=>{
-  const getshow= e.target.value;
-  setShowhide(getshow);
-}
+function Defaulthideshow() {
+    const [showhide, setShowhide] = useState("no");
+
+    const handleshow = e => {
+        const getshow = e.target.value;
+        setShowhide(getshow);
+    }
 }
 
 // import Insurance from "./insurance";
@@ -21,7 +22,9 @@ export function ClientData() {
         {
             date: "",
             scheme_name: "",
+            quantity: "",
             amount: "",
+            market_value: "",
             portfolio: "",
         },
     ]);
@@ -30,6 +33,7 @@ export function ClientData() {
             date: "",
             scheme_name: "",
             amount: "",
+            market_value: "",
             portfolio: "",
         },
     ]);
@@ -38,6 +42,7 @@ export function ClientData() {
             date: "",
             scheme_name: "",
             amount: "",
+            market_value: "",
             portfolio: "",
         },
     ]);
@@ -45,8 +50,21 @@ export function ClientData() {
         {
             date: "",
             scheme_name: "",
+            fixed_deposit: "",
             amount: "",
+            market_value: "",
             portfolio: "",
+        },
+    ]);
+    const [investmentsDebt, setInvestmentsDebt] = useState([
+        {
+            date: "",
+            scheme_name: "",
+            debt_quantity: "",
+            amount: "",
+            market_value: "",
+            debt_yield: "",
+            // portfolio: "",
         },
     ]);
     const [investmentsOthers, setInvestmentsOthers] = useState([
@@ -54,6 +72,7 @@ export function ClientData() {
             date: "",
             scheme_name: "",
             amount: "",
+            market_value: "",
             portfolio: "",
         },
     ]);
@@ -63,7 +82,7 @@ export function ClientData() {
             scheme_name: "",
             scheme_type: "",
             annual_premium: "",
-            sum_assured:"",
+            sum_assured: "",
         },
     ]);
     const [termInsurance, setTermInsurance] = useState([
@@ -72,7 +91,7 @@ export function ClientData() {
             scheme_name: "",
             scheme_type: "",
             annual_premium: "",
-            sum_assured:"",
+            sum_assured: "",
         },
     ]);
     const [otherInsurance, setOtherInsurance] = useState([
@@ -81,27 +100,31 @@ export function ClientData() {
             scheme_name: "",
             scheme_type: "",
             annual_premium: "",
-            sum_assured:"",
+            sum_assured: "",
         },
     ]);
     const [anyLoan, setAnyLoan] = useState([
         {
-            anyLoan:"",
+            anyLoan: "",
             loan: "",
         },
     ]);
 
-    
+
 
     const current_knowledge_values = [
         {
             value: null,
-            label: "Choose Occupation"
+            label: "Choose"
+        },
+        {
+            value: "low",
+            label: "Low"
         },
         {
             value: "intermediate",
             label: "Intermediate"
-        }, 
+        },
         {
             value: "high",
             label: "High"
@@ -127,6 +150,7 @@ export function ClientData() {
             lump_sum: investmentsLumpSum,
             sip: investmentsSIP,
             fd: investmentsFD,
+            debt: investmentsDebt,
             others: investmentsOthers,
         },
         loan: {},
@@ -147,23 +171,24 @@ export function ClientData() {
                 lump_sum: investmentsLumpSum,
                 sip: investmentsSIP,
                 fd: investmentsFD,
+                debt: investmentsDebt,
                 others: investmentsOthers,
             },
         })
-    }, 
-    [investmentsStock, investmentsFD, 
-        investmentsLumpSum, investmentsOthers, investmentsSIP])
+    },
+        [investmentsStock, investmentsLumpSum, investmentsSIP,
+            investmentsFD, investmentsDebt, investmentsOthers,])
 
-        useEffect(() => {
-            setFormData({
-                ...formData,
-                invesment: {
-                    healthInsurance: healthInsurance,
-                    termInsurance: termInsurance,
-                    otherInsurance: otherInsurance,
-                },
-            })
-        }, 
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            insurance: {
+                healthInsurance: healthInsurance,
+                termInsurance: termInsurance,
+                otherInsurance: otherInsurance,
+            },
+        })
+    },
         [healthInsurance, termInsurance, otherInsurance])
 
     const onChangeHandler = (event) => {
@@ -175,7 +200,7 @@ export function ClientData() {
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
-            <h2>Client Forms</h2>
+            {/* <h2>Client Forms</h2> */}
             <form>
                 {/* Name */}
                 <div className="form-group d-flex w-100">
@@ -195,7 +220,7 @@ export function ClientData() {
                         <label className="form-label fs-4 fw-bold" >
                             Last Name
                         </label>
-                        <input  
+                        <input
                             className="form-control"
                             name="last_name"
                             onChange={onChangeHandler}
@@ -224,7 +249,7 @@ export function ClientData() {
                         Date of Birth
                     </label>
                     <br />
-                    <input type="date" name="DOB" value={formData.DOB} onChange={onChangeHandler} className="form-control"/>
+                    <input type="date" name="DOB" value={formData.DOB} onChange={onChangeHandler} className="form-control" />
                 </div>
                 {/* Email */}
                 <div className="form-group">
@@ -317,7 +342,7 @@ export function ClientData() {
 
                 {/* Risk Tolarance*/}
                 <div className="form-group">
-                    
+
                     <label className="form-label fs-4 fw-bold">Risk Tolarance</label>
                     <div className="d-flex row">
                         <div className="d-flex my-2">
@@ -325,11 +350,12 @@ export function ClientData() {
                                 Low (5-15%)
                             </label>
                             <input
+                                type="number"
                                 className="form-control"
                                 name="risk_tolarance_low"
                                 onChange={onChangeHandler}
                                 value={formData.risk_tolarance_low}
-                                placeholder="Text here.."
+                                placeholder="Enter Number"
                             />
                         </div>
                         <div className="d-flex my-2">
@@ -341,7 +367,7 @@ export function ClientData() {
                                 name="risk_tolarance_mid"
                                 onChange={onChangeHandler}
                                 value={formData.risk_tolarance_mid}
-                                placeholder="Text here.."
+                                placeholder="Enter Number"
                             />
                         </div>
                         <div className="d-flex my-2">
@@ -353,7 +379,7 @@ export function ClientData() {
                                 name="risk_tolarance_high"
                                 onChange={onChangeHandler}
                                 value={formData.risk_tolarance_high}
-                                placeholder="Text here.."
+                                placeholder="Enter Number"
                             />
                         </div>
                     </div>
@@ -361,7 +387,7 @@ export function ClientData() {
 
                 {/* Existing Invesment */}
 
-                <div className="form-group">
+                <div className="form-group align-items-center">
                     <label className="form-label fs-4 fw-bold">
                         Existing Invesments In
                     </label>
@@ -370,6 +396,7 @@ export function ClientData() {
                     <InvesmentsMultiple
                         inputFields={investmentsStock}
                         setInputFields={setInvestmentsStock}
+                        type="stock"
                     />
                     <label className="fs-5 fw-bold" value="mf">Mutual Funds (Lump Sum)</label>
                     <InvesmentsMultiple
@@ -385,6 +412,13 @@ export function ClientData() {
                     <InvesmentsMultiple
                         inputFields={investmentsFD}
                         setInputFields={setInvestmentsFD}
+                        type="fixed_deposit"
+                    />
+                    <label className="fs-5 fw-bold" value="debt">Debt</label>
+                    <InvesmentsMultiple
+                        inputFields={investmentsDebt}
+                        setInputFields={setInvestmentsDebt}
+                        type="debt_quantity"
                     />
                     <label className="fs-5 fw-bold" value="others">Others</label>
                     <InvesmentsMultiple
@@ -394,13 +428,13 @@ export function ClientData() {
                 </div>
 
                 {/* Any Loans  */}
-                <div className="form-group">
+                <div className="form-group" style={{ width: "100%" }}>
                     <label className="form-label fs-4 fw-bold">
                         Any Loan On
                     </label>
-                    <AnyLoan 
-                    inputFields={anyLoan}
-                    setInputFields={setAnyLoan}/>
+                    <AnyLoan
+                        inputFields={anyLoan}
+                        setInputFields={setAnyLoan} />
                 </div>
 
                 {/* Any Insurance  */}
@@ -411,89 +445,28 @@ export function ClientData() {
                     <div className="d-flex row ">
                         <div>
                             <label className="fs-5 fw-bold" value="healthInsurance">Health Insurance</label>
-                            <Insurance 
-                            inputFields={healthInsurance}
-                            setInputFields={setHealthInsurance}
+                            <Insurance
+                                inputFields={healthInsurance}
+                                setInputFields={setHealthInsurance}
                             />
                             <label className="fs-5 fw-bold" value="termInsurance">Term Insurance</label>
-                            <Insurance 
-                            inputFields={termInsurance}
-                            setInputFields={setTermInsurance}
+                            <Insurance
+                                inputFields={termInsurance}
+                                setInputFields={setTermInsurance}
                             />
                             <label className="fs-5 fw-bold" value="otherInsurance">Others</label>
-                            <Insurance 
-                            inputFields={otherInsurance}
-                            setInputFields={setOtherInsurance}
+                            <Insurance
+                                inputFields={otherInsurance}
+                                setInputFields={setOtherInsurance}
                             />
                         </div>
                     </div>
                 </div>
-
-                {/* Current Emergency Funds-Cover */}
-                {/* <div className="form-group">
-                    <label  className="form-label fs-4 fw-bold">
-                        Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
-                    </label>
-                    <div className="col-md-12">
-                    <label  className="form-label"> Show Details</label>            
-                    <div className="text-white"> 
-                      Yes <input type="radio" name="userdetail" value="yes" onClick={ handleshow } /> 
-                      No <input type="radio" name="userdetail" value="no" checked={ showhide==='no' } onClick={ handleshow }/> 
-                    </div>
-                    </div>
-
-                    {
-                    showhide==='yes' && (
-                    <div className='col-md-12'>
-                     <label  className="form-label"> Address</label>            
-                    <div className="text-white"> 
-                     <input type="text" name='address' className='form-control'/>                                                 
-                    </div>
-                    </div>
-                    )} */}
-                    {/* </div> */}
-
-{/* 
-                    <div>
-                        <div>
-                            <input
-                                type="radio"
-                                name="fundsCover"
-                                value="yes"
-                                onChange={onChangeHandler}
-                                checked={formData.fundsCover === "yes"}
-                            />
-                            <label >Yes</label>
-                        </div>
-                        <div>
-                            <input
-                                type="radio"
-                                name="fundsCover"
-                                value="no"
-                                onChange={onChangeHandler}
-                                checked={formData.fundsCover === "no"}
-                            />
-                            <label >No</label>
-                        </div>
-                        <input
-                            className="form-control "
-                            name="loanLimit"
-                            onChange={onChangeHandler}
-                            value={formData.loanLimit}
-                            placeholder="How much.."
-                        />
-                    </div> */}
-
-                
-
-                {/* Tax Brackets of Clients */}
-
                 {/* How Can We Improve Ourselves */}
                 <div className="form-group">
                     <label className="form-label fs-4 fw-bold">
                         How Can We Improve Ourselves
                     </label>
-
                     <textarea
                         className="form-control  "
                         name="improve"
@@ -502,17 +475,23 @@ export function ClientData() {
                         placeholder="Your Suggestions"
                     />
                 </div>
+                <div>
+                    <CheckboxGroup inline name="checkboxList">
+                        <Checkbox value="A">Add to stock waiting list</Checkbox>
+                        <Checkbox value="B">Add to mutual funds waiting list</Checkbox>
+                    </CheckboxGroup>
+                </div>
                 <div className="form-group">
                     <button className="btn" style={{
                         background: "var(--secondary-color)",
                         color: "var(--white)"
                     }}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        console.log(formData)
-                    }}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            console.log(formData)
+                        }}
                     >
-                        Submit
+                        Add Client
                     </button>
                 </div>
             </form>

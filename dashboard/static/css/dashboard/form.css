@@ -1,4 +1,6 @@
 /* *{background-color: var(--main-color);} */
+@import "rsuite/dist/rsuite.css";
+
 
 .form-label {
   margin-bottom: 0.5rem;

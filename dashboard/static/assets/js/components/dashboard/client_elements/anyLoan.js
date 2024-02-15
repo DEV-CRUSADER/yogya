@@ -22,8 +22,8 @@ function AnyLoan() {
         rows.splice(index, 1);
         setInputFields(rows);
     };
-    const handleChange = (index, evnt) => {
-        const { name, value } = evnt.target;
+    const handleChange = (index, event) => {
+        const { name, value } = event.target;
         const list = [...inputFields];
         list[index][name] = value;
         setInputFields(list);
@@ -41,7 +41,7 @@ function AnyLoan() {
                                         className="form-select"
                                         name="anyLoan"
                                         // onChange={onChangeHandler}
-                                        onChange={(evnt) => handleChange(index, evnt)}
+                                        onChange={(event) => handleChange(index, event)}
                                         value={anyLoan}
                                         
                                     >
@@ -56,7 +56,7 @@ function AnyLoan() {
                                 <th className="col-2">
                                     <input
                                         type="Text here"
-                                        onChange={(evnt) => handleChange(index, evnt)}
+                                        onChange={(event) => handleChange(index, event)}
                                         value={schemeName}
                                         name="schemeName"
                                         className="form-control"
@@ -87,7 +87,7 @@ function AnyLoan() {
                     className="btn btn-outline-success "
                     onClick={addInputField}
                 >
-                    Add New
+                
                 </button>
             </div>
         </>
