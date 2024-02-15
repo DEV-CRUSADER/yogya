@@ -51,6 +51,8 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+SITE_ID = 1
+
 # Application definition
 INSTALLED_APPS = [
     'jazzmin',
@@ -65,6 +67,8 @@ INSTALLED_APPS = [
     "softdelete",
     "rest_framework",
     "django_otp",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [
