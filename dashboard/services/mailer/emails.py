@@ -56,7 +56,7 @@ def send_contact_us_email(name, email, phone_number, message):
         mail_subject, 
         plain_message, 
         settings.SENDER_EMAIL, 
-        [settings.SENDER_EMAIL],
+        [settings.SEND_CONTACT_US_EMAIL_TO_EMAIL],
         html_message=html_message,
     )
 
