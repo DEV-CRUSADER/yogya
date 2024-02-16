@@ -17,6 +17,8 @@
   --secondary-text: #e7e3d4;
   --primary-text: #cfefe7;
 
+  --secondary-color-alfa-1: rgba(255, 255, 255, 0.5);
+
   
   /* Shadows */
   --line-color: rgba(61, 113, 134, 0);

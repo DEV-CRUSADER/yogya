@@ -1,8 +1,12 @@
+import logging
+
 from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+
+logger = logging.getLogger(__name__)
 
 def load_404(request, exception):
     return render(request, "404.html")

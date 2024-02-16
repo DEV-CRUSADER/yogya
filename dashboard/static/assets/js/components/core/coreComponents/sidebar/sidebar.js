@@ -16,7 +16,6 @@ const headerStyles = {
 };
 
 
-
 export function ResourcesSidebar({ expand, setExpand,
     setDataFound, setIndexName, setLabels, setChartData, setNoData }) {
     const [open, setOpen] = React.useState(false);
@@ -36,12 +35,14 @@ export function ResourcesSidebar({ expand, setExpand,
             >
                 <Sidenav.Header>
                     <div style={headerStyles}>
-                        <span id="headerMob" style={{ marginLeft: 12 }}>Charts</span>
+                        <span id="headerMob" style={{ marginLeft: 12, color: "red" }} className="text-light">Charts</span>
                         <span id="headerDiv" style={{ marginLeft: 12 }}>P/E, P/B and divYield</span>
                     </div>
                 </Sidenav.Header>
                 <Sidenav expanded={expand} defaultOpenKeys={['3']} appearance="subtle">
-                    <Sidenav.Body>
+                    <Sidenav.Body style={{
+                        color: "var(--white)"
+                    }}>
                         <Nav>
                             <Nav.Menu
                                 eventKey="3"
@@ -50,7 +51,9 @@ export function ResourcesSidebar({ expand, setExpand,
                                 icon={<FunnelTimeIcon />}
                                 placement="rightStart"
                             >
-                                <Nav.Item eventKey="3-1" >
+                                <div className="p-3" style={{
+                                    backgroundColor: "var(--secondary-color-alfa-1)",
+                                }}>
                                     <ChartsIndexFrom
                                         setChartData={setChartData}
                                         setLabels={setLabels}
@@ -59,7 +62,7 @@ export function ResourcesSidebar({ expand, setExpand,
                                         setNoData={setNoData}
                                         handleClose={handleClose}
                                     />
-                                </Nav.Item>
+                                </div>
                             </Nav.Menu>
                         </Nav>
                     </Sidenav.Body>
