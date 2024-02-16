@@ -25,4 +25,4 @@ class YogyacapitalSitemap(Sitemap):
         return "weekly"
 
     def priority(self, item):
-        return 
+        return 0.9
