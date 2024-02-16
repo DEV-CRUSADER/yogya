@@ -1,11 +1,10 @@
 import datetime
 
 from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
 
 
 class YogyacapitalSitemap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.9
 
     def items(self):
         return [
@@ -17,13 +16,13 @@ class YogyacapitalSitemap(Sitemap):
         ]
 
     def location(self, item):
-        return item
+        return reverse(item)
 
     def lastmod(self, item):
         return datetime.date.today()
 
     def changefreq(self, item):
-        return self.changefreq
+        return "weekly"
 
     def priority(self, item):
-        return self.priority
+        return 
