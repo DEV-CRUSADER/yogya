@@ -151,7 +151,7 @@ export function ChartsIndexFrom({
                 })()}
 
                 <div>
-                    <label htmlFor="start_date" className="form-label">Start Date</label>
+                    <label htmlFor="start_date" className="form-label text-dark p-1">Start Date</label>
                     <input
                         type="date"
                         className="form-control"
@@ -161,7 +161,7 @@ export function ChartsIndexFrom({
                     />
                 </div>
                 <div>
-                    <label htmlFor="end_date" className="form-label">End Date</label>
+                    <label htmlFor="end_date" className="form-label text-dark p-1">End Date</label>
                     <input
                         type="date"
                         className="form-control"

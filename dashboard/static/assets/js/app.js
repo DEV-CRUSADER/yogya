@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import AOS from 'aos';
 
-import { Dashboard } from './apps/Dashboard';
-import { CoreApp } from './apps/CoreApp';
+
+import { WebLoader } from './components/common/utils/loader';
+
+const Dashboard = lazy(async () => await  import("./apps/Dashboard").then((module) => ({ default: module.Dashboard })));
+const CoreApp = lazy(async () => await  import("./apps/CoreApp").then((module) => ({ default: module.CoreApp })));
 
 import 'aos/dist/aos.css';
 
@@ -25,10 +28,18 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         {/* Define routes based on subdomain */}
-                        {subdomain === 'dashboard' && <Route path="*" element={<Dashboard />} />}
+                        {subdomain === 'dashboard' && <Route path="*" element={
+                            <React.Suspense fallback={<WebLoader />}>
+                                <Dashboard />
+                            </React.Suspense>
+                        } />}
 
                         {/* Default route */}
-                        <Route path="*" element={<CoreApp />} />
+                        <Route path="*" element={
+                            <React.Suspense fallback={<WebLoader />}>
+                                <CoreApp />
+                            </React.Suspense>
+                        } />
                     </Routes>
                 </BrowserRouter>
             </QueryClientProvider>

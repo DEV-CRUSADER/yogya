@@ -26,11 +26,11 @@ from dashboard.sitemap import YogyacapitalSitemap
 
 import core.views
 
-handler404 = "core.views.load_404"
-
 sitemaps = {
     'yogyacapital.com': YogyacapitalSitemap,
 }
+
+app_name = 'core'
 
 urlpatterns = [
 

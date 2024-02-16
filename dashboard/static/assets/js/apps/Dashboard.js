@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { HomeView } from '../components/dashboard/App';
+import { WebLoader } from "../components/common/utils/loader";
+
+// Lazy load the components
+const DashboardHomeView = lazy(async () => await import("../components/dashboard/App").then((module) => ({ default: module.DashboardHomeView })));
+
 
 export function Dashboard() {
     return (
         <Routes>
-            <Route path="/" element={<HomeView />} />
+            <Route path="/" element={
+                <Suspense fallback={<WebLoader />}>
+                    <DashboardHomeView />
+                </Suspense>
+            } />
         </Routes>
     );
 };
