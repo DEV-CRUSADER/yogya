@@ -24,13 +24,28 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+        '195.35.22.25', 
+        'yogyacapital.com',
+        'www.yogyacapital.com',
+        'dashboard.yogyacapital.com',
+        'dashboard.yogyacapital.com:8000',
+        'localhost',
+        'localhost:8000',
+        'dashboard.localhost',
+        'dashboard.localhost:8000',
+    ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
     "http://localhost"
     "http://dashboard.localhost"
     "http://dashboard.localhost:8000",
+    "http://dashboard.yogyacapital.com",
+    "http://dashboard.yogyacapital.com:8000",
+    "http://yogyacapital.com",
+    "http://www.yogyacapital.com",
+    "http://195.35.22.25",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -51,6 +66,9 @@ INSTALLED_APPS = [
     "softdelete",
     "rest_framework",
     "django_otp",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "robots",
 ]
 
 MIDDLEWARE = [
@@ -145,7 +163,10 @@ logging.config.dictConfig(LOGGING)
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+SITE_ID = int(os.getenv('SITE_ID'))
 SITE_URL = os.getenv('SITE_URL')
+DOMAIN_NAME = os.getenv('DOMAIN_NAME')
+SITE_NAME = os.getenv('SITE_NAME')
 PROTOCOL = os.getenv('PROTOCOL', 'http')
 BASE_URL = f"{PROTOCOL}://{SITE_URL}"
 DASHBOARD_URL = f"{PROTOCOL}://dashboard.{SITE_URL}"
@@ -196,7 +217,9 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_TZ = True
 
 
@@ -204,7 +227,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

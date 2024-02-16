@@ -100,6 +100,9 @@ This will make sure that all emails are shown on the console, and not actually s
 - This command will take approx 10 minutes, So kindly hold and wait fot sucess message.
 - Your device must have internet access before running the above command
 
+#### To load sitemaps and robots
+``` python manage.py load_seo ```
+
 #### Run Server
 ``` python manage.py runserver ```
 #### Run Server with gunicorn

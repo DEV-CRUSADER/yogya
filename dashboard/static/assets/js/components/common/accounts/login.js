@@ -66,7 +66,7 @@ export function Login() {
             .then((response) => {
                 if (response.status == 200) {
                     notyf.success("Logged in successfully");
-                    window.location.href = "/resources";
+                    window.location.href = "resources";
                 } else {
                     notyf.error(response.data.message);
                 }

@@ -93,7 +93,7 @@ export function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               className="form-control"
-              placeholder="eg. Aman Malik"
+              placeholder="eg. Your name"
             />
           </label>
         </div>

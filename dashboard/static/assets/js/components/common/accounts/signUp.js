@@ -39,7 +39,7 @@ export function SignUp() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
-        window.location.href = "/login";
+        window.location.href = "login";
     };
 
     const handleChange = (e) => {
@@ -82,7 +82,7 @@ export function SignUp() {
                 item.classList.remove("is-invalid");
             }
         })
-        console.log(validationStatus);
+        return validationStatus;
     }
 
     function createUserFunction(data) {

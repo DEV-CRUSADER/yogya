@@ -21,11 +21,22 @@ from dashboard.services.mailer.emails import register_all
 import dashboard.views.accounts
 from .views import load_404, load_homepage, login_required
 
+from django.contrib.sitemaps.views import sitemap
+from dashboard.sitemap import YogyacapitalSitemap
+
 import core.views
 
 handler404 = "core.views.load_404"
 
+sitemaps = {
+    'yogyacapital.com': YogyacapitalSitemap,
+}
+
 urlpatterns = [
+
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', include('robots.urls'), name='robots'),
+
     path('admin/', admin.site.urls),
     path("", core.views.load_homepage, name="home-page"),
     path("resources/", core.views.load_homepage, name="resources-page"),
