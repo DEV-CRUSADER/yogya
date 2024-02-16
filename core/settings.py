@@ -25,22 +25,31 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
 ALLOWED_HOSTS = [
-        'yogyacapital.com',
-        'www.yogyacapital.com',
-        'dashboard.yogyacapital.com',
-        'localhost:8000',
-        'dashboard.localhost:8000',
-    ]
+    '127.0.0.1',
+    '127.0.0.1:8000',
+    "localhost",
+    'localhost:8000',
+    'dashboard.localhost',
+    'dashboard.localhost:8000',
+
+    '195.35.22.25',
+    'yogyacapital.com',
+    'www.yogyacapital.com',
+    'dashboard.yogyacapital.com',
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
-    "http://localhost"
-    "http://dashboard.localhost"
+    "http://localhost",
+    "http://localhost:8000",
+    "http://dashboard.localhost",
     "http://dashboard.localhost:8000",
+    "http://195.35.22.25",
     "http://yogyacapital.com",
     "http://www.yogyacapital.com",
     "http://dashboard.yogyacapital.com",
 
+    "https://195.35.22.25",
     "https://yogyacapital.com",
     "https://www.yogyacapital.com",
     "https://dashboard.yogyacapital.com",
