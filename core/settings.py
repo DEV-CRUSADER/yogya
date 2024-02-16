@@ -28,10 +28,7 @@ ALLOWED_HOSTS = [
         'yogyacapital.com',
         'www.yogyacapital.com',
         'dashboard.yogyacapital.com',
-        'dashboard.yogyacapital.com:8000',
-        'localhost',
         'localhost:8000',
-        'dashboard.localhost',
         'dashboard.localhost:8000',
     ]
 
@@ -40,10 +37,13 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost"
     "http://dashboard.localhost"
     "http://dashboard.localhost:8000",
-    "http://dashboard.yogyacapital.com",
-    "http://dashboard.yogyacapital.com",
     "http://yogyacapital.com",
     "http://www.yogyacapital.com",
+    "http://dashboard.yogyacapital.com",
+
+    "https://yogyacapital.com",
+    "https://www.yogyacapital.com",
+    "https://dashboard.yogyacapital.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
