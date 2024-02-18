@@ -74,8 +74,18 @@ export function Charts({
       .then((res) => {
         if (!res.ok) {
           if (res.status) {
-            setChartData(res.data);
-            setLabels(res.data.date);
+            let temp_chartData = {
+              pe: res.data.pe.data,
+              pb: res.data.pb.data,
+              divyield: res.data.divyield.data
+            };
+            setChartData(temp_chartData);
+            let temp_labels = {
+              pe: res.data.pe.labels,
+              pb: res.data.pb.labels,
+              divyield: res.data.divyield.labels
+            }
+            setLabels(temp_labels);
             setDataFound(true);
             setNoData(false);
           } else {
@@ -143,17 +153,20 @@ export function Charts({
             <img src={NoDataFound} alt='No Data Found' />
           </div>
         ) : (
-          MakeChartsType.map((item, index) => (
-            <RenderChart
-              indexName={indexName}
-              name={item.name}
-              labels={labels}
-              data={chartData[item.data]}
-              chartType={item.chartType}
-              graphSize={graphSize}
-              key={index}
-            />
-          ))
+          MakeChartsType.map((item, index) => 
+            {
+              return (
+              <RenderChart
+                indexName={indexName}
+                name={item.name}
+                labels={labels[item.data]}
+                data={chartData[item.data]}
+                chartType={item.chartType}
+                graphSize={graphSize}
+                key={index}
+              />
+              )
+          })
         )
         }
         <div
@@ -172,6 +185,7 @@ export function Charts({
 }
 
 export function RenderChart({ indexName, name, labels, data, chartType, graphSize }) {
+
   return (
     <div className='p-3 mx-0 m-md-1 m-lg-2 m-xl-2 m-xxl-2 mt-4 mb-4 p-2' style={{
       border: "3px solid var(--secondary-color)"

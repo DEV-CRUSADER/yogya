@@ -14,12 +14,30 @@ import {
   FaPhoneAlt,
   FaRegEnvelope,
 } from "react-icons/fa";
+import { BsSubstack } from "react-icons/bs";
 
 import { Logo } from "../../common/utils/logo";
 
 import "../../../../../css/footer.css";
 
 export function Footer() {
+
+  const footer_social_links =[
+    {
+      Icon: FaLinkedinIn,
+      link: "https://www.linkedin.com/in/chirag-jain-16334483/",
+    },
+    {
+      Icon: BsSubstack,
+      link: "https://x.com/Chiragjain1097",
+    },
+    {
+      Icon: FaRegEnvelope,
+      link: "mailto:invest@yogyacapital.com"
+    }
+  ]
+
+
   return (
     <div className="section">
       <div
@@ -29,39 +47,13 @@ export function Footer() {
         }}
       >
         <div className="d-flex justify-content-center ">
-          <Link className="m-2">
-            <FaInstagram
-              className="fs-4 p-2 rounded-circle hover-effect"
-              style={{
-                background: "var(--main-color)",
-                width: "35px",
-                height: "35px",
-                fill: "var(--secondary-color)",
-              }}
-            />
-          </Link>
-          <Link className="m-2">
-            <FaLinkedinIn
-              className="fs-4 p-2 rounded-circle  hover-effect"
-              style={{
-                background: "var(--main-color)",
-                width: "35px",
-                height: "35px",
-                fill: "var(--secondary-color)",
-              }}
-            />
-          </Link>
-          <Link className="m-2">
-            <FaFacebookF
-              className="fs-4 p-2 rounded-circle  hover-effect"
-              style={{
-                background: "var(--main-color)",
-                width: "35px",
-                height: "35px",
-                fill: "var(--secondary-color)",
-              }}
-            />
-          </Link>
+          {
+            footer_social_links.map((social, index) => {
+              return (
+                <SocialLink Icon={social.Icon} link={social.link}/>
+              );
+            })
+          }
         </div>
         <div className="text-center">
           <span className="fs-6">
@@ -96,5 +88,26 @@ export function Footer() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+function SocialLink({ Icon, link }) {
+  return (
+    <Link 
+      className="m-2"
+      to={link}
+      target="_blank"
+    >
+      <Icon
+        className="fs-4 p-2 rounded-circle hover-effect"
+        style={{
+          background: "var(--main-color)",
+          width: "35px",
+          height: "35px",
+          fill: "var(--secondary-color)",
+        }}
+      />
+    </Link>
   );
 }

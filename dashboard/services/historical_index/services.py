@@ -65,12 +65,24 @@ class HistoricalIndexServices:
                 "errors": "No data found"
             }
 
+        pb_labels, pb_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'], labels=nse_data['date'])
+        pe_labels, pe_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'], labels=nse_data['date'])
+        divyield_labels, divyield_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divyield'], labels=nse_data['date'])
+
         context = {
             "index_name": nse_data['index_name'][0],
-            "date": nse_data["date"].to_list(),
-            "pb": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb']),
-            "pe": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe']),
-            "divyield": HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divyield'])
+            "pb": {
+                "labels": pb_labels,
+                "data": pb_data
+            },
+            "pe": {
+                "labels": pe_labels,
+                "data": pe_data
+            },
+            "divyield": {
+                "labels": divyield_labels,
+                "data": divyield_data
+            },
         }
 
         if context["pb"] == {} or context["pe"] == {} or context["divyield"] == {}:
@@ -86,13 +98,21 @@ class HistoricalIndexServices:
         }
 
     @staticmethod
-    def get_json_for_historical_index(data):
+    def get_json_for_historical_index(data, labels):
 
         data = data.replace('-', 0).replace('', 0).astype(float)
         data[data > 200] = 0
         data = data[data != 0].round(2)
-        
-        filtered_data = data[(data != 0) & (data <= 200)]
+
+        filtered_data = []
+        filtered_labels = []
+        for datum, label in zip(data, labels):
+            if datum != 0 and datum <= 200:
+                filtered_data.append(datum)
+                filtered_labels.append(label)
+
+        filtered_data = pd.Series(filtered_data)
+        filtered_labels = pd.Series(filtered_labels)
 
         if filtered_data.empty:
             return {}
@@ -116,7 +136,7 @@ class HistoricalIndexServices:
             "SDP2": df["SDP2"].round(2).astype(str).to_list(),
             "standard": data.round(2).astype(str).to_list()
         }
-        return return_context
+        return filtered_labels, return_context
 
     @staticmethod
     def extract_year(date_string):
@@ -130,7 +150,7 @@ class HistoricalIndexServices:
         instace = IndexLists.objects.create(**data)
         instace.save()
 
-        return { "status": True, "data": "Data added successfully" }
+        return {"status": True, "data": "Data added successfully"}
     
     @staticmethod
     def get_index_list(request):

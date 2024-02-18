@@ -13,7 +13,7 @@ export function PersonHero() {
     {
       id: 2,
       name: "X",
-      link: "https://x.com/Chiragjain1097?t=IKywbG_u9so3G1tZkGZdiQ&s=09",
+      link: "https://x.com/Chiragjain1097",
     },
     {
       id: 3,

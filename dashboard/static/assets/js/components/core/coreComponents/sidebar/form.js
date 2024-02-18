@@ -93,7 +93,7 @@ export function ChartsIndexFrom({
         event.preventDefault();
         APICaller.FetchDefaultIndexData(formData).then((res) => {
 
-            if (res.status == 401){
+            if (res.status == 401) {
                 navigate('/login?next=/resources');
             } else if (res.status == 404 || res == undefined) {
                 setDataFound(true);
@@ -101,11 +101,21 @@ export function ChartsIndexFrom({
             } else if (res.status) {
                 setDataFound(false);
                 setNoData(false);
-                setChartData(res.data);
-                setLabels(res.data.date);
+                let temp_chartData = {
+                    pe: res.data.pe.data,
+                    pb: res.data.pb.data,
+                    divyield: res.data.divyield.data
+                };
+                setChartData(temp_chartData);
+                let temp_labels = {
+                    pe: res.data.pe.labels,
+                    pb: res.data.pb.labels,
+                    divyield: res.data.divyield.labels
+                }
+                setLabels(temp_labels);
                 setDataFound(true);
                 setIndexName(res.data.index_name);
-                if (res.data == {}){
+                if (res.data == {}) {
                     setNoData(true);
                     notyf.error("No data found for this index")
                 }
@@ -172,7 +182,7 @@ export function ChartsIndexFrom({
                             zIndex: "1000"
                         }}
                     />
-                    
+
                 </div>
 
                 <div className="p-3">

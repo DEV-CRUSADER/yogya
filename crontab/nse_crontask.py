@@ -137,6 +137,7 @@ try:
     ) for item in context])
     conn.commit()
     logging.info(f"Data inserted successfully")
+    os.remove(log_file_path)
 
 except (Exception, psycopg2.DatabaseError) as error:
     logging.error(f"Error: {error}")
