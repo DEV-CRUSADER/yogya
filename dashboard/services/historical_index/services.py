@@ -65,25 +65,12 @@ class HistoricalIndexServices:
                 "errors": "No data found"
             }
 
-        pb_labels, pb_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pb'], labels=nse_data['date'])
-        pe_labels, pe_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['pe'], labels=nse_data['date'])
-        divyield_labels, divyield_data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data['divyield'], labels=nse_data['date'])
+        context = {"index_name": nse_data['index_name'][0]}
+        index_keys = ['pb', 'pe', 'divyield']
 
-        context = {
-            "index_name": nse_data['index_name'][0],
-            "pb": {
-                "labels": pb_labels,
-                "data": pb_data
-            },
-            "pe": {
-                "labels": pe_labels,
-                "data": pe_data
-            },
-            "divyield": {
-                "labels": divyield_labels,
-                "data": divyield_data
-            },
-        }
+        for key in index_keys:
+            labels, data = HistoricalIndexServices.get_json_for_historical_index(data=nse_data[key],labels=nse_data['date'])
+            context[key] = {"labels": labels, "data": data}
 
         if context["pb"] == {} or context["pe"] == {} or context["divyield"] == {}:
             return {
