@@ -139,6 +139,7 @@ export function MakeChart({ labels, data, chartType, graphSize }) {
         data={data}
         height={graphSize}
         options={options}
+        redraw={true}
       />
     </div>
   )

@@ -14,7 +14,7 @@ from dashboard.utils import TokenGenerator
 def send_user_verification_email(business_member_id):
     business_member = BusinessMembers.objects.get(pk=business_member_id)
 
-    mail_subject = 'Welcome to Yogya Capital'
+    mail_subject = 'Welcome to Yogya Capital, please verify your email address.'
     html_message = render_to_string('emails/signup-verification.html', {
         'user': business_member.user,
         'domain': settings.SITE_URL,
