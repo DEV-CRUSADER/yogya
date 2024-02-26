@@ -13,9 +13,7 @@ function Defaulthideshow() {
     }
 }
 
-// import Insurance from "./insurance";
 import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
-// import AnyLoan from "./anyLoan";
 
 export function ClientData() {
     const [investmentsStock, setInvestmentsStock] = useState([
@@ -200,8 +198,7 @@ export function ClientData() {
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
-            {/* <h2>Client Forms</h2> */}
-            <form>
+            <form method="post" action="submit_form" id="client_form">
                 {/* Name */}
                 <div className="form-group d-flex w-100">
                     <div className="flex-grow-1 me-2">
@@ -350,7 +347,7 @@ export function ClientData() {
                                 Low (5-15%)
                             </label>
                             <input
-                                type="number"
+                                // type="number"
                                 className="form-control"
                                 name="risk_tolarance_low"
                                 onChange={onChangeHandler}

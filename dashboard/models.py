@@ -28,7 +28,7 @@ class BaseModel(TimeStampModel, SoftDeleteObject):
 
 def generate_id():
     return ''.join(random.choices(string.ascii_uppercase +
-                                  string.digits, k=14))
+                                string.digits, k=14))
 
 
 class User(AbstractUser, BaseModel):
@@ -72,7 +72,6 @@ class BusinessMembers(BaseModel):
     def __str__(self):
         return f"{self.user.__str__()}"
     
-   
 class Clients(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -84,7 +83,7 @@ class Clients(BaseModel):
     phone_number = models.BigIntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     business_member = models.OneToOneField('dashboard.BusinessMembers', related_name='client',
-                                           on_delete=models.DO_NOTHING, null=True)
+                                    on_delete=models.DO_NOTHING, null=True)
     def __str__(self):
         if self.is_business:
             return f"{self.company_name}"
@@ -107,3 +106,49 @@ class AuditLogs(models.Model):
     entity_id = models.UUIDField(null=False)
     metadata = models.JSONField(default=dict)
     event_time = models.DateTimeField(auto_now=False, auto_now_add=True)
+    
+class ClientFormData(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    phone_number = models.BigIntegerField(null=True, blank=True)
+    DOB = models.DateField(null=True, blank=True)
+    email = models.EmailField(null=False, blank=False)
+    pancard = models.CharField(max_length=100, null=True, blank=True)
+    current_occupation = models.CharField(max_length=100, null=True, blank=True)
+    salary = models.BigIntegerField(null=True, blank=True)
+    current_knowledge = models.CharField(max_length=100, null=True, blank=True)
+    goals = models.CharField(max_length=100, null=True, blank=True)
+    risk_tolarance_low = models.DecimalField(default=False, max_digits=5, decimal_places=2)
+    risk_tolarance_mid = models.DecimalField(default=False, max_digits=5, decimal_places=2)
+    risk_tolarance_high = models.DecimalField(default=False, max_digits=5, decimal_places=2)
+    improve = models.CharField(max_length=100, null=True, blank=True)
+    
+    
+class Investment(models.Model):
+    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='investments')
+    type = models.CharField(max_length=100)  # E.g., stocks, mutual funds, FD, etc.
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField()
+    fixed_deposit = models.BooleanField(default=False)
+    market_value = models.DecimalField(max_digits=10, decimal_places=2)
+    portfolio = models.CharField(max_length=100)
+    quantity = models.IntegerField(null=True, blank=True)
+    scheme_name = models.CharField(max_length=100)
+    
+class Loan(models.Model):
+    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='loans')
+    type = models.CharField(max_length=100)  # E.g., home loan, car loan, personal loan, etc.
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    interest_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    # Add more fields as needed for loan details
+    
+class Insurance(models.Model):
+    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='insurances')
+    type = models.CharField(max_length=100)  # E.g., health insurance, term insurance, etc.
+    annual_premium = models.DecimalField(max_digits=10, decimal_places=2)
+    company_name = models.CharField(max_length=100)
+    scheme_name = models.CharField(max_length=100)
+    scheme_type = models.CharField(max_length=100)
+    sum_assured = models.DecimalField(max_digits=10, decimal_places=2)
+    # Add more fields as needed for insurance details
