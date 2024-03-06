@@ -18,6 +18,8 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                 amount: "",
                 market_value: "",
                 portfolio: "",
+                // stock_bal_left: "",
+                // mf_lump_sum_bal_left: "",
             },
         ]);
     };
@@ -35,181 +37,183 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
         // console.log("Current state:", inputFields);
     };
     return (
-        <div className="d-flex justify-content-center align-items-end">
-            <table className="w-100">
-                <thead>
-                    <tr>
-                        <th className="px-1"
-                            style={{
-                                width: "80px"
-                            }}
-                        >Date
-                        </th>
+        <>
+            <div className="d-flex justify-content-center align-items-end">
+                <table className="w-100">
+                    <thead>
+                        <tr>
+                            <th className="px-1"
+                                style={{
+                                    width: "80px"
+                                }}
+                            >Date
+                            </th>
 
-                        <th className="px-1"
-                        >Name
-                        </th>
+                            <th className="px-1"
+                            >Name
+                            </th>
 
-                        {(type === "stock") && (<th className="px-1" style={{ width: "150px" }}>No. of shares</th>)}
-                        {(type === "fixed_deposit") && (<th className="px-1" style={{ width: "150px" }}>Fixed Deposite</th>)}
-                        {(type === "debt_quantity") && (<th className="px-1" style={{ width: "150px" }}>Debt Amount</th>)}
-                        <th className="px-1"
-                            style={{
-                                width: "150px"
-                            }}
-                        >Invested Amount (&#8377;)
-                        </th>
+                            {(type === "stock") && (<th className="px-1" style={{ width: "150px" }}>No. of shares</th>)}
+                            {(type === "fixed_deposit") && (<th className="px-1" style={{ width: "150px" }}>Fixed Deposite</th>)}
+                            {(type === "debt_quantity") && (<th className="px-1" style={{ width: "150px" }}>Debt Amount</th>)}
+                            <th className="px-1"
+                                style={{
+                                    width: "150px"
+                                }}
+                            >Invested Amount (&#8377;)
+                            </th>
 
-                        <th className="px-1"
-                            style={{
-                                width: "150px"
-                            }}
-                        >Market Value (&#8377;)
-                        </th>
-                        
-                        <th className="px-1" style={{ width: "113px" }}>
-                            {(type === "debt_quantity") && ("Yield")}
-                            {(type !== "debt_quantity") && ("Portfolio (%)")}
+                            <th className="px-1"
+                                style={{
+                                    width: "150px"
+                                }}
+                            >Market Value (&#8377;)
+                            </th>
 
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {inputFields.map((data, index) => {
-                        const { date, scheme_name, quantity, fixed_deposit, debt_quantity, amount, market_value, debt_yield, portfolio } = data;
-                        return (
-                            <tr className="my-2" key={index}>
-                                <th className="px-1 pb-1">
-                                    <input
-                                        type="date"
-                                        onChange={(event) => handleChange(index, event)}
-                                        value={date}
-                                        name="date"
-                                        className="form-control"
-                                        placeholder="Date"
-                                    />
-                                </th>
-                                <th className="px-1 pb-1">
-                                    <input
-                                        type="text"
-                                        onChange={(event) => handleChange(index, event)}
-                                        value={scheme_name}
-                                        name="scheme_name"
-                                        className="form-control"
-                                        placeholder="Name"
-                                    />
-                                </th>
-                                {(type == "stock") && (
-                                    <th className="px-1 pb-1 align-items-end">
+                            <th className="px-1" style={{ width: "113px" }}>
+                                {(type === "debt_quantity") && ("Yield")}
+                                {(type !== "debt_quantity") && ("Portfolio (%)")}
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {inputFields.map((data, index) => {
+                            const { date, scheme_name, quantity, fixed_deposit, debt_quantity, amount, market_value, debt_yield, portfolio, } = data;
+                            return (
+                                <tr className="my-2" key={index}>
+                                    <th className="px-1 pb-1">
                                         <input
-                                            type="text"
+                                            type="date"
                                             onChange={(event) => handleChange(index, event)}
-                                            value={quantity}
-                                            name="quantity"
+                                            value={date}
+                                            name="date"
                                             className="form-control"
-                                            placeholder="Quantity"
+                                            placeholder="Date"
                                         />
                                     </th>
-                                )}
-                                {(type == "fixed_deposit") && (
-                                    <th className="px-1 pb-1 align-items-end">
+                                    <th className="px-1 pb-1">
                                         <input
                                             type="text"
                                             onChange={(event) => handleChange(index, event)}
-                                            value={fixed_deposit}
-                                            name="fixed_deposit"
+                                            value={scheme_name}
+                                            name="scheme_name"
                                             className="form-control"
-                                            placeholder="Amount"
+                                            placeholder="Name"
                                         />
                                     </th>
-                                )}
-                                {(type == "debt_quantity") && (
-                                    <th className="px-1 pb-1 align-items-end">
-                                        <input
-                                            type="text"
-                                            onChange={(event) => handleChange(index, event)}
-                                            value={debt_quantity}
-                                            name="debt_quantity"
-                                            className="form-control"
-                                            placeholder="Debt Quantity"
-                                        />
-                                    </th>
-                                )}
-                                <th className="px-1 pb-1">
-                                    <input
-                                        type="text"
-                                        onChange={(event) => handleChange(index, event)}
-                                        value={amount}
-                                        name="amount"
-                                        className="form-control"
-                                        placeholder="Invested Amount"
-                                    />
-                                </th>
-                                <th className="px-1 pb-1">
-                                    <input
-                                        type="text"
-                                        onChange={(event) => handleChange(index, event)}
-                                        value={market_value}
-                                        name="market_value"
-                                        className="form-control"
-                                        placeholder="Market Value"
-                                    />
-                                </th>
-
-                                <th className="px-1 pb-1 align-items-end">
-                                    {(type === "debt_quantity") && (
-                                        <input
-                                            type="text"
-                                            onChange={(event) => handleChange(index, event)}
-                                            value={debt_yield}
-                                            name="debt_yield"
-                                            className="form-control"
-                                            placeholder="Debt Yield"
-                                        />
+                                    {(type == "stock") && (
+                                        <th className="px-1 pb-1 align-items-end">
+                                            <input
+                                                type="text"
+                                                onChange={(event) => handleChange(index, event)}
+                                                value={quantity}
+                                                name="quantity"
+                                                className="form-control"
+                                                placeholder="Quantity"
+                                            />
+                                        </th>
                                     )}
-                                    {(type !== "debt_quantity") && (
+                                    {(type == "fixed_deposit") && (
+                                        <th className="px-1 pb-1 align-items-end">
+                                            <input
+                                                type="text"
+                                                onChange={(event) => handleChange(index, event)}
+                                                value={fixed_deposit}
+                                                name="fixed_deposit"
+                                                className="form-control"
+                                                placeholder="Amount"
+                                            />
+                                        </th>
+                                    )}
+                                    {(type == "debt_quantity") && (
+                                        <th className="px-1 pb-1 align-items-end">
+                                            <input
+                                                type="text"
+                                                onChange={(event) => handleChange(index, event)}
+                                                value={debt_quantity}
+                                                name="debt_quantity"
+                                                className="form-control"
+                                                placeholder="Debt Quantity"
+                                            />
+                                        </th>
+                                    )}
+                                    <th className="px-1 pb-1">
                                         <input
                                             type="text"
                                             onChange={(event) => handleChange(index, event)}
-                                            value={portfolio}
-                                            name="portfolio"
+                                            value={amount}
+                                            name="amount"
                                             className="form-control"
-                                            placeholder="Type.."
+                                            placeholder="Invested Amount"
                                         />
-                                    )}
-                                </th>
-                                {inputFields.length !== 1 && (
-                                    <th className="px-1 pb-1"
-                                        style={{
-                                            width: "50px"
-                                        }}
-                                    >
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={(e) => {
-                                                e.preventDefault()
-                                                removeInputFields(index)
-                                            }
-                                            }
+                                    </th>
+                                    <th className="px-1 pb-1">
+                                        <input
+                                            type="text"
+                                            onChange={(event) => handleChange(index, event)}
+                                            value={market_value}
+                                            name="market_value"
+                                            className="form-control"
+                                            placeholder="Market Value"
+                                        />
+                                    </th>
+
+                                    <th className="px-1 pb-1 align-items-end">
+                                        {(type === "debt_quantity") && (
+                                            <input
+                                                type="text"
+                                                onChange={(event) => handleChange(index, event)}
+                                                value={debt_yield}
+                                                name="debt_yield"
+                                                className="form-control"
+                                                placeholder="Debt Yield"
+                                            />
+                                        )}
+                                        {(type !== "debt_quantity") && (
+                                            <input
+                                                type="text"
+                                                onChange={(event) => handleChange(index, event)}
+                                                value={portfolio}
+                                                name="portfolio"
+                                                className="form-control"
+                                                placeholder="Type.."
+                                            />
+                                        )}
+                                    </th>
+                                    {inputFields.length !== 1 && (
+                                        <th className="px-1 pb-1"
+                                            style={{
+                                                width: "50px"
+                                            }}
                                         >
-                                            <i className="fa-solid fa-trash"></i>
-                                        </button>
-                                    </th>
-                                )}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-            <div>
-                <button
-                    className="btn btn-success mb-1"
-                    onClick={addInputField}
-                >
-                    <i className="fa-solid fa-plus"></i>
-                </button>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    removeInputFields(index)
+                                                }
+                                                }
+                                            >
+                                                <i className="fa-solid fa-trash"></i>
+                                            </button>
+                                        </th>
+                                    )}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <div>
+                    <button
+                        className="btn btn-success mb-1"
+                        onClick={addInputField}
+                    >
+                        <i className="fa-solid fa-plus"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
@@ -483,38 +487,39 @@ export function AnyLoan({ inputFields, setInputFields }) {
 
 
 // {/* Current Emergency Funds-Cover */}
-function Defaulthideshow() {
-    const [showhide, setShowhide] = useState("no");
+// function Defaulthideshow() {
+//     const [showhide, setShowhide] = useState("no");
 
-    const handleshow = e => {
-        const getshow = e.target.value;
-        setShowhide(getshow);
-    }
-    return (<React.Fragment>
+//     const handleshow = e => {
+//         const getshow = e.target.value;
+//         setShowhide(getshow);
+//     }
+//     return (
+//         <>
 
-        <div className="form-group">
-            <label className="form-label">
-                Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
-            </label>
-            <div className="col-md-12">
-                <label className="form-label"> Show Details</label>
-                <div className="text-white">
-                    Yes <input type="radio" name="userdetail" value="yes" onClick={handleshow} />
-                    No <input type="radio" name="userdetail" value="no" checked={showhide === 'no'} onClick={handleshow} />
-                </div>
-            </div>
+//             <div className="form-group">
+//                 <label className="form-label">
+//                     Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
+//                 </label>
+//                 <div className="col-md-12">
+//                     <label className="form-label"> Show Details</label>
+//                     <div className="text-white">
+//                         Yes <input type="radio" name="userdetail" value="yes" onClick={handleshow} />
+//                         No <input type="radio" name="userdetail" value="no" checked={showhide === 'no'} onClick={handleshow} />
+//                     </div>
+//                 </div>
 
-            {
-                showhide === 'yes' && (
-                    <div className='col-md-12'>
-                        <label className="form-label"> Address</label>
-                        <div className="text-white">
-                            <input type="text" name='address' className='form-control' />
-                        </div>
-                    </div>
-                )}
-        </div>
+//                 {
+//                     showhide === 'yes' && (
+//                         <div className='col-md-12'>
+//                             <label className="form-label"> Address</label>
+//                             <div className="text-white">
+//                                 <input type="text" name='address' className='form-control' />
+//                             </div>
+//                         </div>
+//                     )}
+//             </div>
 
-    </React.Fragment>);
-}
-export default Defaulthideshow;
+//         </>);
+// }
+// export default Defaulthideshow;

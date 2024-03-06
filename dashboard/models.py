@@ -119,9 +119,9 @@ class ClientFormData(models.Model):
     salary = models.BigIntegerField(null=True, blank=True)
     current_knowledge = models.CharField(max_length=100, null=True, blank=True)
     goals = models.CharField(max_length=100, null=True, blank=True)
-    risk_tolarance_low = models.DecimalField(default=False, max_digits=5, decimal_places=2)
-    risk_tolarance_mid = models.DecimalField(default=False, max_digits=5, decimal_places=2)
-    risk_tolarance_high = models.DecimalField(default=False, max_digits=5, decimal_places=2)
+    risk_tolarance_low = models.BooleanField()
+    risk_tolarance_mid = models.BooleanField()
+    risk_tolarance_high = models.BooleanField()
     improve = models.CharField(max_length=100, null=True, blank=True)
     
     
@@ -130,7 +130,7 @@ class Investment(models.Model):
     type = models.CharField(max_length=100)  # E.g., stocks, mutual funds, FD, etc.
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
-    fixed_deposit = models.BooleanField(default=False)
+    fixed_deposit = models.CharField(default=False)
     market_value = models.DecimalField(max_digits=10, decimal_places=2)
     portfolio = models.CharField(max_length=100)
     quantity = models.IntegerField(null=True, blank=True)

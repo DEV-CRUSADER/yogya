@@ -4,14 +4,14 @@ import "../../../../../css/dashboard/datePicker.css";
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
 
-function Defaulthideshow() {
-    const [showhide, setShowhide] = useState("no");
+// function Defaulthideshow() {
+//     const [showhide, setShowhide] = useState("no");
 
-    const handleshow = e => {
-        const getshow = e.target.value;
-        setShowhide(getshow);
-    }
-}
+//     const handleshow = e => {
+//         const getshow = e.target.value;
+//         setShowhide(getshow);
+//     }
+// }
 
 import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
 
@@ -24,6 +24,7 @@ export function ClientData() {
             amount: "",
             market_value: "",
             portfolio: "",
+            stock_bal_left: "",
         },
     ]);
     const [investmentsLumpSum, setInvestmentsLumpSum] = useState([
@@ -33,6 +34,7 @@ export function ClientData() {
             amount: "",
             market_value: "",
             portfolio: "",
+            mf_lump_sum_bal_left: "",
         },
     ]);
     const [investmentsSIP, setInvestmentsSIP] = useState([
@@ -157,8 +159,10 @@ export function ClientData() {
             termInsurance: termInsurance,
             otherInsurance: otherInsurance,
         },
-        emergency_funds: {},
+        // emergency_funds: {},
         feedback: "",
+        // stock_hold: "",
+        // mf_hold: "",
     });
 
     useEffect(() => {
@@ -189,12 +193,46 @@ export function ClientData() {
     },
         [healthInsurance, termInsurance, otherInsurance])
 
+    // update stocks and MF(Lump Sum) Balance left
+    const handleMFLumpSumBalLeftChange = (index, value) => {
+        const updatedInvestmentsLumpSum = [...investmentsLumpSum];
+        updatedInvestmentsLumpSum[index].mf_lump_sum_bal_left = value;
+        setInvestmentsLumpSum(updatedInvestmentsLumpSum);
+    };
+
+    const handleStockBalLeftChange = (index, value) => {
+        const updatedInvestmentsStock = [...investmentsStock];
+        updatedInvestmentsStock[index].stock_bal_left = value;
+        setInvestmentsStock(updatedInvestmentsStock);
+    };
+
     const onChangeHandler = (event) => {
-        setFormData(() => ({
-            ...formData,
+        setFormData(prevFormData => ({
+            ...prevFormData,
             [event.target.name]: event.target.value,
         }));
     };
+
+
+    const [stocks_on_hold, setStocks_on_hold] = useState(false);
+    const [MF_on_hold, setMF_on_hold] = useState(false);
+
+    const handleCheckboxChange = (value) => {
+        let updatedFormData = { ...formData };
+
+
+        if (value === 'Stocks') {
+            const newStocksOnHold = !stocks_on_hold;
+            setStocks_on_hold(newStocksOnHold);
+            updatedFormData.stocks_on_hold = newStocksOnHold;
+        } else if (value === 'MF') {
+            const newMFOnHold = !MF_on_hold;
+            setMF_on_hold(newMFOnHold);
+            updatedFormData.MF_on_hold = newMFOnHold;
+        }
+        setFormData(updatedFormData);
+    };
+
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
@@ -395,11 +433,41 @@ export function ClientData() {
                         setInputFields={setInvestmentsStock}
                         type="stock"
                     />
+                    <div className="row mt-0">
+                        <div className="col">
+                            <label className="fs-5 fw-bold">Cash</label>
+                        </div>
+                        <div className="col-11 align-items-start ">
+                            <input
+                                style={{ width: '15%', marginLeft: '10px' }}
+                                name="stock_bal_left"
+                                className="form-control"
+                                placeholder="Cash left"
+                                value={investmentsStock[0].stock_bal_left}
+                                onChange={(e) => handleStockBalLeftChange(0, e.target.value)}
+                            />
+                        </div>
+                    </div>
                     <label className="fs-5 fw-bold" value="mf">Mutual Funds (Lump Sum)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsLumpSum}
                         setInputFields={setInvestmentsLumpSum}
                     />
+                    <div className="row mt-0">
+                        <div className="col">
+                            <label className="fs-5 fw-bold">Cash</label>
+                        </div>
+                        <div className="col-11 align-items-start">
+                            <input
+                                style={{ width: '15%', marginLeft: '10px' }}
+                                name="mf_lump_sum_bal_left"
+                                className="form-control"
+                                placeholder="Cash left"
+                                value={investmentsLumpSum[0].mf_lump_sum_bal_left}
+                                onChange={(e) => handleMFLumpSumBalLeftChange(0, e.target.value)}
+                            />
+                        </div>
+                    </div>
                     <label className="fs-5 fw-bold" value="mf">Mutual Funds (SIP)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsSIP}
@@ -474,8 +542,22 @@ export function ClientData() {
                 </div>
                 <div>
                     <CheckboxGroup inline name="checkboxList">
-                        <Checkbox value="A">Add to stock waiting list</Checkbox>
-                        <Checkbox value="B">Add to mutual funds waiting list</Checkbox>
+                        <Checkbox
+                            value="Stocks"
+                            name="stock_hold"
+                            checked={stocks_on_hold}
+                            onChange={() => handleCheckboxChange('Stocks')}
+                        >
+                            Add to stock waiting list
+                        </Checkbox>
+                        <Checkbox
+                            value="MF"
+                            name="mf_hold"
+                            checked={MF_on_hold}
+                            onChange={() => handleCheckboxChange('MF')}
+                        >
+                            Add to mutual funds waiting list
+                        </Checkbox>
                     </CheckboxGroup>
                 </div>
                 <div className="form-group">
