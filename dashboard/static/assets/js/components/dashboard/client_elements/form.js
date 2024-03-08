@@ -4,6 +4,38 @@ import "../../../../../css/dashboard/datePicker.css";
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
 
+const familyMembers = [
+    {
+        "id": 1,
+        "name": "Sukla"
+    },
+    {
+        "id": 2,
+        "name": "Shah"
+    },
+    {
+        "id": 3,
+        "name": "Sharma"
+    },
+    {
+        "id": 4,
+        "name": "Patel"
+    },
+    {
+        "id": 5,
+        "name": "Other"
+    },
+]
+
+// function Defaulthideshow() {
+//     const [showhide, setShowhide] = useState("no");
+
+//     const handleshow = e => {
+//         const getshow = e.target.value;
+//         setShowhide(getshow);
+//     }
+// }
+
 import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
 
 export function ClientDataForm() {
@@ -15,6 +47,7 @@ export function ClientDataForm() {
             amount: "",
             market_value: "",
             portfolio: "",
+            stock_bal_left: "",
         },
     ]);
     const [investmentsLumpSum, setInvestmentsLumpSum] = useState([
@@ -24,6 +57,7 @@ export function ClientDataForm() {
             amount: "",
             market_value: "",
             portfolio: "",
+            mf_lump_sum_bal_left: "",
         },
     ]);
     const [investmentsSIP, setInvestmentsSIP] = useState([
@@ -99,8 +133,6 @@ export function ClientDataForm() {
         },
     ]);
 
-
-
     const current_knowledge_values = [
         {
             value: null,
@@ -142,14 +174,18 @@ export function ClientDataForm() {
             debt: investmentsDebt,
             others: investmentsOthers,
         },
-        loan: {},
+        loan: {
+            anyLoan: anyLoan,
+            // loan: "",
+        },
         insurance: {
             healthInsurance: healthInsurance,
             termInsurance: termInsurance,
             otherInsurance: otherInsurance,
         },
-        emergency_funds: {},
+        // emergency_funds: {},
         feedback: "",
+        family_name: "",
     });
 
     useEffect(() => {
@@ -180,12 +216,92 @@ export function ClientDataForm() {
     },
         [healthInsurance, termInsurance, otherInsurance])
 
+    // update stocks and MF(Lump Sum) Balance left
+    const handleMFLumpSumBalLeftChange = (index, value) => {
+        const updatedInvestmentsLumpSum = [...investmentsLumpSum];
+        updatedInvestmentsLumpSum[index].mf_lump_sum_bal_left = value;
+        setInvestmentsLumpSum(updatedInvestmentsLumpSum);
+    };
+
+    const handleStockBalLeftChange = (index, value) => {
+        const updatedInvestmentsStock = [...investmentsStock];
+        updatedInvestmentsStock[index].stock_bal_left = value;
+        setInvestmentsStock(updatedInvestmentsStock);
+    };
+
     const onChangeHandler = (event) => {
-        setFormData(() => ({
-            ...formData,
+        setFormData(prevFormData => ({
+            ...prevFormData,
             [event.target.name]: event.target.value,
         }));
     };
+
+
+    const [stocks_on_hold, setStocks_on_hold] = useState(false);
+    const [MF_on_hold, setMF_on_hold] = useState(false);
+
+    const handleCheckboxChange = (value) => {
+        let updatedFormData = { ...formData };
+
+
+        if (value === 'Stocks') {
+            const newStocksOnHold = !stocks_on_hold;
+            setStocks_on_hold(newStocksOnHold);
+            updatedFormData.stocks_on_hold = newStocksOnHold;
+        } else if (value === 'MF') {
+            const newMFOnHold = !MF_on_hold;
+            setMF_on_hold(newMFOnHold);
+            updatedFormData.MF_on_hold = newMFOnHold;
+        }
+        setFormData(updatedFormData);
+    };
+
+
+    const [showInvesment, setShowInvesment] = useState(false);
+    const handleInvesmentCheckbox = (e) => {
+        setShowInvesment(e.target.checked);
+    };
+
+    const [showInsurance, setShowInsurance] = useState(false);
+    const handleInsuranceCheckbox = (e) => {
+        setShowInsurance(e.target.checked);
+    };
+
+    const [showFamilyList, setShowFamilyList] = useState(false);
+    const [selectedFamilyMember, setSelectedFamilyMember] = useState('');
+    const [newFamilyMember, setNewFamilyMember] = useState('');
+    const [familyMembersList, setFamilyMembersList] = useState(familyMembers);
+
+    const handleFamilyChange = (checked) => {
+        setShowFamilyList(checked);
+    };
+
+
+    const handleFamilyMemberChange = (event) => {
+        setSelectedFamilyMember(event.target.value);
+        if (event.target.value !== "Other") {
+            setNewFamilyMember('');
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                family_name: event.target.value,
+            }));
+        }
+    };
+
+    const handleNewFamilyMemberChange = (event) => {
+        setNewFamilyMember(event.target.value);
+    };
+
+    const handleAddFamilyMember = () => {
+        if (newFamilyMember.trim() !== "") {
+            const newMemberId = familyMembersList.length + 1;
+            const newMember = { id: newMemberId, name: newFamilyMember.trim() };
+            setFamilyMembersList([...familyMembersList, newMember]);
+            setSelectedFamilyMember(newFamilyMember.trim());
+            setNewFamilyMember('');
+        }
+    };
+
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
@@ -373,48 +489,6 @@ export function ClientDataForm() {
                     </div>
                 </div>
 
-                {/* Existing Invesment */}
-
-                <div className="form-group align-items-center">
-                    <label className="form-label fs-4 fw-bold">
-                        Existing Invesments In
-                    </label>
-                    <br />
-                    <label className="fs-5 fw-bold" value="stock">Stock</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsStock}
-                        setInputFields={setInvestmentsStock}
-                        type="stock"
-                    />
-                    <label className="fs-5 fw-bold" value="mf">Mutual Funds (Lump Sum)</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsLumpSum}
-                        setInputFields={setInvestmentsLumpSum}
-                    />
-                    <label className="fs-5 fw-bold" value="mf">Mutual Funds (SIP)</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsSIP}
-                        setInputFields={setInvestmentsSIP}
-                    />
-                    <label className="fs-5 fw-bold" value="fd">Fixed Deposite (FD)</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsFD}
-                        setInputFields={setInvestmentsFD}
-                        type="fixed_deposit"
-                    />
-                    <label className="fs-5 fw-bold" value="debt">Debt</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsDebt}
-                        setInputFields={setInvestmentsDebt}
-                        type="debt_quantity"
-                    />
-                    <label className="fs-5 fw-bold" value="others">Others</label>
-                    <InvesmentsMultiple
-                        inputFields={investmentsOthers}
-                        setInputFields={setInvestmentsOthers}
-                    />
-                </div>
-
                 {/* Any Loans  */}
                 <div className="form-group" style={{ width: "100%" }}>
                     <label className="form-label fs-4 fw-bold">
@@ -425,29 +499,128 @@ export function ClientDataForm() {
                         setInputFields={setAnyLoan} />
                 </div>
 
+                {/* Existing Invesment */}
+                <div>
+                    <div className="form-group col">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="showInvesmentDiv"
+                            onChange={handleInvesmentCheckbox}
+                        />
+                        <label className="form-label fs-4 fw-bold" htmlFor="showInvesmentDiv">Existing Investment</label>
+
+                        {showInvesment && (
+                            <div className="form-group align-items-center">
+                                <label className="form-label fs-4 fw-bold">
+                                    Existing Invesments In
+                                </label>
+                                <br />
+                                <label className="fs-5 fw-bold" value="stock">Stock</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsStock}
+                                    setInputFields={setInvestmentsStock}
+                                    type="stock"
+                                />
+                                <div className="row mt-0">
+                                    <div className="col">
+                                        <label className="fs-5 fw-bold">Cash</label>
+                                    </div>
+                                    <div className="col-11 align-items-start ">
+                                        <input
+                                            style={{ width: '15%', marginLeft: '10px' }}
+                                            name="stock_bal_left"
+                                            className="form-control"
+                                            placeholder="Cash left"
+                                            value={investmentsStock[0].stock_bal_left}
+                                            onChange={(e) => handleStockBalLeftChange(0, e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <label className="fs-5 fw-bold" value="mf">Mutual Funds (Lump Sum)</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsLumpSum}
+                                    setInputFields={setInvestmentsLumpSum}
+                                />
+                                <div className="row mt-0">
+                                    <div className="col">
+                                        <label className="fs-5 fw-bold">Cash</label>
+                                    </div>
+                                    <div className="col-11 align-items-start">
+                                        <input
+                                            style={{ width: '15%', marginLeft: '10px' }}
+                                            name="mf_lump_sum_bal_left"
+                                            className="form-control"
+                                            placeholder="Cash left"
+                                            value={investmentsLumpSum[0].mf_lump_sum_bal_left}
+                                            onChange={(e) => handleMFLumpSumBalLeftChange(0, e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <label className="fs-5 fw-bold" value="mf">Mutual Funds (SIP)</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsSIP}
+                                    setInputFields={setInvestmentsSIP}
+                                />
+                                <label className="fs-5 fw-bold" value="fd">Fixed Deposite (FD)</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsFD}
+                                    setInputFields={setInvestmentsFD}
+                                    type="fixed_deposit"
+                                />
+                                <label className="fs-5 fw-bold" value="debt">Debt</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsDebt}
+                                    setInputFields={setInvestmentsDebt}
+                                    type="debt_quantity"
+                                />
+                                <label className="fs-5 fw-bold" value="others">Others</label>
+                                <InvesmentsMultiple
+                                    inputFields={investmentsOthers}
+                                    setInputFields={setInvestmentsOthers}
+                                />
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 {/* Any Insurance  */}
-                <div className="form-group">
-                    <label className="form-label fs-4 fw-bold">
-                        Current Insurance Of Yours OR Family Dependents{" "}
-                    </label>
-                    <div className="d-flex row ">
-                        <div>
-                            <label className="fs-5 fw-bold" value="healthInsurance">Health Insurance</label>
-                            <Insurance
-                                inputFields={healthInsurance}
-                                setInputFields={setHealthInsurance}
-                            />
-                            <label className="fs-5 fw-bold" value="termInsurance">Term Insurance</label>
-                            <Insurance
-                                inputFields={termInsurance}
-                                setInputFields={setTermInsurance}
-                            />
-                            <label className="fs-5 fw-bold" value="otherInsurance">Others</label>
-                            <Insurance
-                                inputFields={otherInsurance}
-                                setInputFields={setOtherInsurance}
-                            />
-                        </div>
+                <div>
+                    <div className="form-group col">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="showInsuranceDiv"
+                            onChange={handleInsuranceCheckbox}
+                        />
+                        <label className="form-label fs-4 fw-bold" htmlFor="showInsuranceDiv">Current Insurance</label>
+
+                        {showInsurance && (
+                            <div className="form-group">
+                                <label className="form-label fs-4 fw-bold">
+                                    Current Insurance Of Yours OR Family Dependents{" "}
+                                </label>
+                                <div className="d-flex row ">
+                                    <div>
+                                        <label className="fs-5 fw-bold" value="healthInsurance">Health Insurance</label>
+                                        <Insurance
+                                            inputFields={healthInsurance}
+                                            setInputFields={setHealthInsurance}
+                                        />
+                                        <label className="fs-5 fw-bold" value="termInsurance">Term Insurance</label>
+                                        <Insurance
+                                            inputFields={termInsurance}
+                                            setInputFields={setTermInsurance}
+                                        />
+                                        <label className="fs-5 fw-bold" value="otherInsurance">Others</label>
+                                        <Insurance
+                                            inputFields={otherInsurance}
+                                            setInputFields={setOtherInsurance}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
                 {/* How Can We Improve Ourselves */}
@@ -464,11 +637,71 @@ export function ClientDataForm() {
                     />
                 </div>
                 <div>
-                    <CheckboxGroup inline name="checkboxList">
-                        <Checkbox value="A">Add to stock waiting list</Checkbox>
-                        <Checkbox value="B">Add to mutual funds waiting list</Checkbox>
-                    </CheckboxGroup>
+                    <div className="d-flex align-items-center">
+                        <CheckboxGroup inline name="checkboxList">
+                            <Checkbox
+                                // className="checkbox"
+                                // style={{borderColor: "red"}}
+                                value="Stocks"
+                                name="stock_hold"
+                                checked={stocks_on_hold}
+                                onChange={() => handleCheckboxChange('Stocks')}
+                            >
+                                Add to stock waiting list
+                            </Checkbox>
+                            <Checkbox
+                                // className="checkbox"
+                                value="MF"
+                                name="mf_hold"
+                                checked={MF_on_hold}
+                                onChange={() => handleCheckboxChange('MF')}
+                            >
+                                Add to mutual funds waiting list
+                            </Checkbox>
+                            <Checkbox
+                                value="family"
+                                name="family_name"
+                                checked={!!showFamilyList}
+                                onChange={handleFamilyChange}
+                            >
+                                Add To Family Members
+                            </Checkbox>
+
+                            {showFamilyList && (
+                                <div className="d-flex align-items-center">
+                                    <div className="d-flex flex-row align-items-center">
+                                        <label className="d-flex align-items-center">Select family: </label>
+                                        <div>
+                                            <select className="form-select" value={selectedFamilyMember} onChange={handleFamilyMemberChange}>
+                                                <option value="">Select a family member</option>
+                                                {familyMembersList.map((member) => (
+                                                    <option key={member.id} value={member.name}>
+                                                        {member.name}
+                                                    </option>
+                                                ))}
+                                                {/* <option value="Other">Other</option> */}
+                                            </select>
+                                        </div>
+                                        {selectedFamilyMember === "Other" && (
+                                            <div>
+                                                <label className="d-flex align-items-center">Add new family :</label>
+                                                <input
+                                                    className="form-control"
+                                                    type="text"
+                                                    value={newFamilyMember}
+                                                    onChange={handleNewFamilyMemberChange}
+                                                />
+                                                <button onClick={handleAddFamilyMember}>Add</button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                        </CheckboxGroup>
+                    </div>
                 </div>
+
                 <div className="form-group">
                     <button className="btn" style={{
                         background: "var(--secondary-color)",
