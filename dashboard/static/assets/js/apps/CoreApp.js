@@ -14,33 +14,6 @@ const ClientAuthView = lazy(async () => await import("../components/core/App").t
 import { ClientData } from "../components/dashboard/client_elements/form";
 
 export function CoreApp() {
-<<<<<<< HEAD
-  return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePageView />} />
-        <Route path="/resources" element={<ResourcesPageView />} />
-        <Route path="/mutual-funds" element={<MutualPageView />} />
-        <Route path="/contact" element={<ContactPageView />} />
-
-        {/* temporary */}
-        <Route path="/forms" element={<ClientForm></ClientForm>} />
-
-      </Routes>
-      <Footer />
-    </>
-  );
-}
-
-export function ClientForm() {
-  return (
-    <div className="p-3">
-      <ClientData />
-    </div>
-  )
-}
-=======
     return (
         <Routes>
                 <Route path="/" element={
@@ -81,4 +54,3 @@ export function ClientForm() {
         </Routes>
     );
 }
->>>>>>> master

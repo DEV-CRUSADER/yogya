@@ -38,15 +38,6 @@ urlpatterns = [
     path('robots.txt', include('robots.urls'), name='robots'),
 
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
-    path("", core.views.CoreView.load_homepage, name="home-page"),
-    path("resources/", core.views.CoreView.load_homepage, name="resources-page"),
-    path("mutual-funds/", core.views.CoreView.load_homepage, name="resources-page"),
-    path("contact/", core.views.CoreView.load_homepage, name="resources-page"),
-
-    # temporary
-    path("forms/", core.views.CoreView.load_homepage, name="client-page"),
-=======
     path("", core.views.load_homepage, name="home-page"),
     path("resources/", core.views.load_homepage, name="resources-page"),
     path("mutual-funds/", core.views.load_homepage, name="resources-page"),
@@ -54,7 +45,6 @@ urlpatterns = [
     path("register/", core.views.load_homepage, name="client-register-page"),
     path("login/", core.views.load_homepage, name="client-login-page"),
     path("password-reset/", core.views.load_homepage, name="client-password-reset-page"),
->>>>>>> master
 
     path("api/v1/", include('dashboard.api_urls')),
     path("dashboard/", include('dashboard.urls')),

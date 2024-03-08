@@ -4,18 +4,9 @@ import "../../../../../css/dashboard/datePicker.css";
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
 
-function Defaulthideshow() {
-    const [showhide, setShowhide] = useState("no");
-
-    const handleshow = e => {
-        const getshow = e.target.value;
-        setShowhide(getshow);
-    }
-}
-
 import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
 
-export function ClientData() {
+export function ClientDataForm() {
     const [investmentsStock, setInvestmentsStock] = useState([
         {
             date: "",
