@@ -1,15 +1,13 @@
-import React from 'react';
-
-import { TabTitle } from "../core/scripts/general_function";
-import { ClientData } from "./client_elements/form"
+import React, { useState } from 'react';
+import { ClientDataForm } from "./client_elements/form"
 
 
 export function HomeView()  {
-    TabTitle('Yogya | Admin Dashboard')
-    return (
 
+
+    return (
         <div className="container">
-            <ClientData />
+            <ClientDataForm />
         </div>
     );
 }

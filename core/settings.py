@@ -24,28 +24,20 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "*.127.0.0.1",
-    "dashboard.localhost",
-    "http://127.0.0.1",
-    "http://localhost",
-    "http://*.127.0.0.1",
-    "http://*.localhost"
-]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
-    "https://127.0.0.1",
-    "http://*.127.0.0.1",
-    "https://*.127.0.0.1",
-    "http://localhost",
-    "https://localhost",
-    "http://*.localhost"
-    "https://*.localhost"
-    "http://dashboard.localhost",
-    "https://dashboard.localhost",
+    "http://localhost"
+    "http://dashboard.localhost"
+    "http://dashboard.localhost:8000",
+    "http://yogyacapital.com",
+    "http://www.yogyacapital.com",
+    "http://dashboard.yogyacapital.com",
+
+    "https://yogyacapital.com",
+    "https://www.yogyacapital.com",
+    "https://dashboard.yogyacapital.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -54,6 +46,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
+    "semantic_admin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +56,11 @@ INSTALLED_APPS = [
     'dashboard',
     'django_hosts',
     "softdelete",
+    "rest_framework",
+    "django_otp",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    "robots",
 ]
 
 MIDDLEWARE = [
@@ -85,7 +83,6 @@ DEFAULT_HOST = "core"
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'core.custom_exception_handler.custom_exception_handler',
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ]
@@ -158,7 +155,10 @@ logging.config.dictConfig(LOGGING)
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+SITE_ID = int(os.getenv('SITE_ID'))
 SITE_URL = os.getenv('SITE_URL')
+DOMAIN_NAME = os.getenv('DOMAIN_NAME')
+SITE_NAME = os.getenv('SITE_NAME')
 PROTOCOL = os.getenv('PROTOCOL', 'http')
 BASE_URL = f"{PROTOCOL}://{SITE_URL}"
 DASHBOARD_URL = f"{PROTOCOL}://dashboard.{SITE_URL}"
@@ -166,9 +166,6 @@ PARENT_HOST = SITE_URL
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
 DB_ENGINE = os.getenv('DB_ENGINE', None)
 DB_USERNAME = os.getenv('DB_USERNAME', None)
 DB_PASS = os.getenv('DB_PASS', None)
@@ -221,8 +218,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -231,5 +228,66 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DASHBOARD_LOGIN_REDIRECT_URL = 'dashboard'
 
+# Email settings
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+
+# ASGI
 ASGI_APPLICATION = "core.asgi.application"
+
+# Thread Pool
 THREAD_POOL_SIZE = 2
+
+# USER AUTHENTICATION
+AUTH_USER_MODEL = 'dashboard.User'
+AUTHENTICATION_BACKENDS = [
+    # 'django.contrib.auth.backends.ModelBackend',
+    "core.backends.AuthModelBackend.AuthModelBackend"
+]
+LOGIN_REDIRECT_URL = '/resources'
+DASHBOARD_LOGIN_REDIRECT_URL = '/'
+
+# DEBUGGING
+ASYNC_EMAILS = os.getenv('ASYNC_EMAILS', "True") == 'True'
+SKIP_OTP = os.getenv('SKIP_OTP', "True") == 'True'
+
+
+# JAZZMIN CONFIGURATIONS
+JAZZMIN_SETTINGS = {
+    "site_title": "Dashboard",
+    "site_header": "Yogya Capital",
+    "site_brand": "Yogya Capital",
+    "site_logo_classes": "img-circle",
+    "welcome_sign": "Yogya Capital Admin Portal",
+    "copyright": "&copy; Yogya Capital",
+    "search_model": ["auth.User", "auth.Group"],
+    "usermenu_links": [
+        {"model": "auth.user"}
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    "related_modal_active": False,
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+}

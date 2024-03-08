@@ -37,14 +37,12 @@ class User(AbstractUser, BaseModel):
     email = models.EmailField(_('email address'), unique=True)
     is_verified = models.BooleanField(_('is_verified'), default=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
-
-    groups = models.ManyToManyField(Group, blank=True, related_name='user_set_related')
-    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='user_set_related')
 
     class Meta:
         unique_together = ('email',)
@@ -106,49 +104,38 @@ class AuditLogs(models.Model):
     entity_id = models.UUIDField(null=False)
     metadata = models.JSONField(default=dict)
     event_time = models.DateTimeField(auto_now=False, auto_now_add=True)
-    
-class ClientFormData(models.Model):
+
+
+class ContactUS(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(max_length=100, null=True, blank=True)
-    last_name = models.CharField(max_length=100, null=True, blank=True)
-    phone_number = models.BigIntegerField(null=True, blank=True)
-    DOB = models.DateField(null=True, blank=True)
-    email = models.EmailField(null=False, blank=False)
-    pancard = models.CharField(max_length=100, null=True, blank=True)
-    current_occupation = models.CharField(max_length=100, null=True, blank=True)
-    salary = models.BigIntegerField(null=True, blank=True)
-    current_knowledge = models.CharField(max_length=100, null=True, blank=True)
-    goals = models.CharField(max_length=100, null=True, blank=True)
-    risk_tolarance_low = models.DecimalField(default=False, max_digits=5, decimal_places=2)
-    risk_tolarance_mid = models.DecimalField(default=False, max_digits=5, decimal_places=2)
-    risk_tolarance_high = models.DecimalField(default=False, max_digits=5, decimal_places=2)
-    improve = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone_number = models.CharField()
+    message = models.CharField(max_length=100000, null=True, blank=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Name: {self.name}"
     
-    
-class Investment(models.Model):
-    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='investments')
-    type = models.CharField(max_length=100)  # E.g., stocks, mutual funds, FD, etc.
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateField()
-    fixed_deposit = models.BooleanField(default=False)
-    market_value = models.DecimalField(max_digits=10, decimal_places=2)
-    portfolio = models.CharField(max_length=100)
-    quantity = models.IntegerField(null=True, blank=True)
-    scheme_name = models.CharField(max_length=100)
-    
-class Loan(models.Model):
-    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='loans')
-    type = models.CharField(max_length=100)  # E.g., home loan, car loan, personal loan, etc.
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    interest_rate = models.DecimalField(max_digits=5, decimal_places=2)
-    # Add more fields as needed for loan details
-    
-class Insurance(models.Model):
-    client = models.ForeignKey(ClientFormData, on_delete=models.CASCADE, related_name='insurances')
-    type = models.CharField(max_length=100)  # E.g., health insurance, term insurance, etc.
-    annual_premium = models.DecimalField(max_digits=10, decimal_places=2)
-    company_name = models.CharField(max_length=100)
-    scheme_name = models.CharField(max_length=100)
-    scheme_type = models.CharField(max_length=100)
-    sum_assured = models.DecimalField(max_digits=10, decimal_places=2)
-    # Add more fields as needed for insurance details
+
+class IndexLists(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    symbol = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    type = models.CharField(max_length=200, null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.name}"
+
+
+class IndexDataFromNSE(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    symbol = models.ForeignKey(IndexLists, on_delete=models.DO_NOTHING, null=False, blank=False, related_name='index_data', default=None)
+    index_name = models.CharField(max_length=200, null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
+    pb = models.FloatField(null=False, blank=False)
+    pe = models.FloatField(null=False, blank=False)
+    divyield = models.FloatField(null=False, blank=False)
+
+    def __str__(self):
+        return f"Index Name: {self.index_name}"

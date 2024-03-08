@@ -30,14 +30,27 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: ["file-loader"],
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        use: {
+          loader: "file-loader",
+          options: {
+            outputPath: "images",
+          },
+        }
+      },
+      {
+        test: /\.(woff|woff2|ttf)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            outputPath: "fonts",
+          },
+        }
       },
       {
         test: /\.?js$/,
         exclude: /node_modules/,
         use: {
-
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],

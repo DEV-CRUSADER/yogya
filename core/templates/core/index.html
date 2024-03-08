@@ -7,14 +7,21 @@
     {% include 'includes/head.html' %}
 
   </head>
-  <body>
+  <body
+    style="background-color: var(--main-color) !important;"
+  >
     <div id="root"></div>
 
     {% include 'includes/script.html' %}
 
+    <script>
+      localStorage.setItem("csrftoken", csrfToken);
+    </script>
+
+
     <script
-    src="{% static 'assets/js/dist/bundle.js' %}"
-    type="module"
+      src="{% static 'assets/js/dist/bundle.js' %}"
+      type="module"
     ></script>
   </body>
 </html>

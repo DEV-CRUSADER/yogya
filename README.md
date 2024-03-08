@@ -5,6 +5,9 @@
 ### First Lets Download / Install all the required Tooling
 #### Install PSQL
 
+
+### Rename env/dev.sample to (.dev) and add your details.
+
 Please install PSQL using this link
 ```https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/```.
 This is just a reference for installation. 
@@ -38,10 +41,21 @@ Similarly, PyCharm (intelliJ) in general has a tonne of Keyboard Shrotcuts, that
 ``` cd yogya ```
 
 #### Create a Python Virtual Environment
-``` python -m venv venv ``` or ```python3 -m venv venv```
+  - #### macOS and linux
+    ``` python -m venv venv ``` or ```python3 -m venv venv```
+  - #### Windows
+  ```
+    pip install virtualenv
+    virtualenv venv
+  ```
 
-#### Activate Virtual Environment
-``` source ./venv/bin/activate ```
+#### Activate Virtual Environment (linux and macOS)
+  - ##### maxOS and linux
+    ``` source ./venv/bin/activate ```
+  - ##### Windows
+    * Please run in command prompt <br>
+    ``` \venv\Scripts\activate ```
+
 
 #### Install Dependent Packages via Pip
 ``` pip install -r requirements.txt ```
@@ -76,10 +90,27 @@ This will make sure that all emails are shown on the console, and not actually s
 #### Migrate to new Roles and Permissins Framework
 ``` python manage.py fix_roles ```
 
+#### To load initial indexes
+``` python manage.py load_initial_indexes ```
+
+#### To load inital data for all the indxex
+- Note: before running below command run the above command
+
+``` python manage.py load_initial_index_data ```
+- This command will take approx 10 minutes, So kindly hold and wait fot sucess message.
+- Your device must have internet access before running the above command
+
+#### To load sitemaps and robots
+``` python manage.py load_seo ```
+
 #### Run Server
 ``` python manage.py runserver ```
+#### Run Server with gunicorn
+``` gunicorn core.wsgi:application --bind 0.0.0.0:8000 ```
 
-  Your server would start running on Go to [127.0.0.1:8000](127.0.0.1:8000) .
+  - Your server would start running on Go to [127.0.0.1:8000](127.0.0.1:8000) .
+  - Your server would start running on Go to [localhost:8000](localhost:8000) .
+
 
 #### Disabling Asynchronous EMAILs and Making then Synchronous
 
@@ -88,6 +119,12 @@ During development RMQ is not required, and can be disabled by making `ASYNC_EMA
 #### Working with RMQ and RMQ Worker
 
 If you wish to see how RMQ workers are behaving, and have not set `ASYNC_EMAILS = False`, then you will be doing the following :
+
++ Run RMQ worker, by opening a new terminal, activating virtual environment and executing the following command
+  - ``` celery -A core worker --loglevel=info```
++ To run the celery beat use this command in the same folder as your project `manage.py` file in another terminal
+  - ``` celery -A core beat -l info ```
+
 
 #### Building React
 
@@ -98,6 +135,5 @@ The following commands for installing and running auto-compiler for Javascript f
 + ``` npm install ```
 + ``` npx webpack --config webpack.config.js --mode=development ```
 Keep the second command running, so that it listens to changes to JS files and automatically builds them.
-
-
-
+# For production
++ ``` npx webpack --config webpack.config.js --mode=production ```
