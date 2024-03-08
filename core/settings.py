@@ -24,13 +24,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = [
-        'yogyacapital.com',
-        'www.yogyacapital.com',
-        'dashboard.yogyacapital.com',
-        'localhost:8000',
-        'dashboard.localhost:8000',
-    ]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
@@ -52,7 +46,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
-    'jazzmin',
+    "semantic_admin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
