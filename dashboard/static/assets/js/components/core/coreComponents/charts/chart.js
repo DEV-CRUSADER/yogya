@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+// import * as Zoom from "chartjs-plugin-zoom";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,7 +25,8 @@ ChartJS.register(
 );
 
 
-export function MakeChart({ labels, data, chartType }) {
+export function MakeChart({ labels, data, chartType, graphSize }) {
+
   var data = {
     labels: labels,
     datasets: [{
@@ -34,7 +37,7 @@ export function MakeChart({ labels, data, chartType }) {
         'rgba(0,0,0,1)'
       ],
       borderColor: [
-        '#7E00BD'
+        '#3D7186',
       ],
       borderWidth: 1
     },
@@ -81,10 +84,10 @@ export function MakeChart({ labels, data, chartType }) {
       data: data.SDP1,
       pointRadius: 0,
       backgroundColor: [
-        '#DE0D92'
+        '#4b5357'
       ],
       borderColor: [
-        '#DE0D92'
+        '#4b5357'
       ],
       borderDash: [10, 5],
       borderWidth: 2
@@ -129,11 +132,12 @@ export function MakeChart({ labels, data, chartType }) {
     },
   }
 
+
   return (
     <div>
       <Line
         data={data}
-        height={800}
+        height={graphSize}
         options={options}
       />
     </div>

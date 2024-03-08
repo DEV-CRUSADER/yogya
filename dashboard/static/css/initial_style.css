@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "DelicateSans";
+  src: url(../assets/fonts/DelicateSans.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+:root {
+  /* main colors */
+  --main-color: #c2dae4;
+  --secondary-color: #3D7186;
+  --teritary-color: #2C5464;
+  --black: #000;
+  --white: #fff;
+  --grey: #808080;
+  --secondary-text: #e7e3d4;
+  --primary-text: #cfefe7;
+
+  --secondary-color-alfa-1: rgba(255, 255, 255, 0.5);
+
+  
+  /* Shadows */
+  --line-color: rgba(61, 113, 134, 0);
+
+  /* buttons */
+  --btn-primary:#22577a;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+*:hover {
+  text-decoration: none;
+}
+
+/* Customizing the scrollbars */
+*::-webkit-scrollbar {
+  background: var(--grey);
+  width: 5px;
+  transition: all 300ms ease-in-out;
+}
+
+*::-webkit-scrollbar:hover {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--main-color); /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the border radius of the scrollbar thumb */
+}
+
+body {
+  scrollbar-width: 5px;
+  scrollbar-color: var(--teritary-color) var(--main-color);
+}

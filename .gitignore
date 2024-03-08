@@ -6,14 +6,17 @@
 /.idea
 /docs/_build/
 /node_modules/
+node_modules/
 build/
 aws
 
 /staticfiles/
+/static/
 
 #src
 *.sqlite*
 venv
-#env/.dev
+env/.dev
+*.log
 #dashboard/static/assets/js/dist/bundle.js
 dashboard/static/assets/js/dist/bundle.js.LICENSE.txt

@@ -1,33 +1,39 @@
 import React from "react";
 
 //importing css
-import { CSS } from "../../../../../../css/home.css";
+import "../../../../../../css/home.css";
 
 export function Hero() {
   return (
-    <>
+    <header>
       <div className="hero-section d-flex justify-content-around align-items-center flex-column flex-sm-column 
-          flex-md-column flex-lg-row flex-xl-row">
+          flex-md-column flex-lg-row flex-xl-row pt-5">
         <div
         id="hero-text"
-          className="text-center  "
+          className="text-center"
           style={{
             width: "100%",
           }}
         >
           <h1
-            className="fw-bold hero-header"
+            className="fw-bold hero-header text-center"
             style={{
               color: "var(--primary-text)",
+              fontFamily: "DelicateSans"
             }}
           >
             YOGYA
           </h1>
           <h1
+            className="text-center"
             id="capital-text"
+            style={{
+              fontFamily: "DelicateSans"
+            }}
           >
             CAPITAL
           </h1>
+          <span className="fs-5 py-2 text-white">Your Trust, Our Commitment</span>
         </div>
         <div className="p-5 ms-5">
           <span
@@ -51,6 +57,6 @@ export function Hero() {
           </p>
         </div>
       </div>
-    </>
+    </header>
   );
 }

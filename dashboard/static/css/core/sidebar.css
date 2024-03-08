@@ -1,0 +1,25 @@
+@import "rsuite/dist/rsuite.css";
+
+
+Nav.Menu {
+    color: aliceblue;
+}
+
+@media screen and (max-width: 768px) {
+    #headerDiv {
+      display: none;
+    }
+    
+  }
+
+  @media screen and (max-width: 768px) {
+    #headerMob {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    #headerMob {
+      display: none;
+    }
+  }
