@@ -25,6 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.getenv("DEBUG", 'False') == 'True'
 
 ALLOWED_HOSTS = [
+        '*',
         'yogyacapital.com',
         'www.yogyacapital.com',
         'dashboard.yogyacapital.com',
