@@ -1,28 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../../../../../css/dashboard/form.css";
 import "../../../../../css/dashboard/datePicker.css";
-import { familyMembers } from './const';
+// import { familyMembers } from './const';
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
-
-// const familyMembers = [
-//     {
-//         "id": 1,
-//         "name": "Sukla"
-//     },
-//     {
-//         "id": 2,
-//         "name": "Shah"
-//     },
-//     {
-//         "id": 3,
-//         "name": "Sharma"
-//     },
-//     {
-//         "id": 4,
-//         "name": "Patel"
-//     },
-// ]
 
 // function Defaulthideshow() {
 //     const [showhide, setShowhide] = useState("no");
@@ -182,10 +163,10 @@ export function ClientDataForm() {
         },
         // emergency_funds: {},
         feedback: "",
-        family: {
-            family_name: "",
-            family_id: "",
-        },
+        // family: {
+        //     family_name: "",
+        //     family_id: "",
+        // },
     });
 
     useEffect(() => {
@@ -267,47 +248,47 @@ export function ClientDataForm() {
         setShowInsurance(e.target.checked);
     };
 
-    const [showFamilyList, setShowFamilyList] = useState(false);
-    const [selectedFamilyMember, setSelectedFamilyMember] = useState('');
-    const [newFamilyMember, setNewFamilyMember] = useState('');
-    const [familyMembersList, setFamilyMembersList] = useState(familyMembers);
+    // const [showFamilyList, setShowFamilyList] = useState(false);
+    // const [selectedFamilyMember, setSelectedFamilyMember] = useState('');
+    // const [newFamilyMember, setNewFamilyMember] = useState('');
+    // const [familyMembersList, setFamilyMembersList] = useState(familyMembers);
 
-    const handleFamilyChange = (checked) => {
-        setShowFamilyList(checked);
-    };
+    // const handleFamilyChange = (checked) => {
+    //     setShowFamilyList(checked);
+    // };
 
 
-    const handleFamilyMemberChange = (event) => {
-        const selectedMemberId = event.target.value;
-        setSelectedFamilyMember(selectedMemberId);
-        if (selectedMemberId !== "Other") {
-            setNewFamilyMember('');
-            const selectedMember = familyMembersList.find(member => member.id === parseInt(selectedMemberId));
-            if (selectedMember) {
-                setFormData(prevFormData => ({
-                    ...prevFormData,
-                    family: {
-                        family_id: selectedMember.id,
-                        family_name: selectedMember.name
-                    }
-                }));
-            }
-        } 
-    };
+    // const handleFamilyMemberChange = (event) => {
+    //     const selectedMemberId = event.target.value;
+    //     setSelectedFamilyMember(selectedMemberId);
+    //     if (selectedMemberId !== "Other") {
+    //         setNewFamilyMember('');
+    //         const selectedMember = familyMembersList.find(member => member.id === parseInt(selectedMemberId));
+    //         if (selectedMember) {
+    //             setFormData(prevFormData => ({
+    //                 ...prevFormData,
+    //                 family: {
+    //                     family_id: selectedMember.id,
+    //                     family_name: selectedMember.name
+    //                 }
+    //             }));
+    //         }
+    //     } 
+    // };
 
-    const handleNewFamilyMemberChange = (event) => {
-        setNewFamilyMember(event.target.value);
-    };
+    // const handleNewFamilyMemberChange = (event) => {
+    //     setNewFamilyMember(event.target.value);
+    // };
 
-    const handleAddFamilyMember = () => {
-        if (newFamilyMember.trim() !== "") {
-            const newMemberId = familyMembersList.length + 1;
-            const newMember = { id: newMemberId, name: newFamilyMember.trim() };
-            setFamilyMembersList([...familyMembersList, newMember]);
-            setSelectedFamilyMember(newFamilyMember.trim());
-            setNewFamilyMember('');
-        }
-    };
+    // const handleAddFamilyMember = () => {
+    //     if (newFamilyMember.trim() !== "") {
+    //         const newMemberId = familyMembersList.length + 1;
+    //         const newMember = { id: newMemberId, name: newFamilyMember.trim() };
+    //         setFamilyMembersList([...familyMembersList, newMember]);
+    //         setSelectedFamilyMember(newFamilyMember.trim());
+    //         setNewFamilyMember('');
+    //     }
+    // };
 
 
     return (
@@ -665,7 +646,7 @@ export function ClientDataForm() {
                             >
                                 Add to mutual funds waiting list
                             </Checkbox>
-                            <Checkbox
+                            {/* <Checkbox
                                 id="family_id"
                                 value="Family"
                                 // name="family_name"
@@ -704,7 +685,7 @@ export function ClientDataForm() {
                                         )}
                                     </div>
                                 </div>
-                            )}
+                            )} */}
 
                         </CheckboxGroup>
                     </div>
