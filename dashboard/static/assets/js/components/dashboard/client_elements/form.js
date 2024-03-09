@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "../../../../../css/dashboard/form.css";
 import "../../../../../css/dashboard/datePicker.css";
+import { familyMembers } from './const';
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
 
-const familyMembers = [
-    {
-        "id": 1,
-        "name": "Sukla"
-    },
-    {
-        "id": 2,
-        "name": "Shah"
-    },
-    {
-        "id": 3,
-        "name": "Sharma"
-    },
-    {
-        "id": 4,
-        "name": "Patel"
-    },
-    {
-        "id": 5,
-        "name": "Other"
-    },
-]
+// const familyMembers = [
+//     {
+//         "id": 1,
+//         "name": "Sukla"
+//     },
+//     {
+//         "id": 2,
+//         "name": "Shah"
+//     },
+//     {
+//         "id": 3,
+//         "name": "Sharma"
+//     },
+//     {
+//         "id": 4,
+//         "name": "Patel"
+//     },
+// ]
 
 // function Defaulthideshow() {
 //     const [showhide, setShowhide] = useState("no");
@@ -185,7 +182,10 @@ export function ClientDataForm() {
         },
         // emergency_funds: {},
         feedback: "",
-        family_name: "",
+        family: {
+            family_name: "",
+            family_id: "",
+        },
     });
 
     useEffect(() => {
@@ -278,14 +278,21 @@ export function ClientDataForm() {
 
 
     const handleFamilyMemberChange = (event) => {
-        setSelectedFamilyMember(event.target.value);
-        if (event.target.value !== "Other") {
+        const selectedMemberId = event.target.value;
+        setSelectedFamilyMember(selectedMemberId);
+        if (selectedMemberId !== "Other") {
             setNewFamilyMember('');
-            setFormData(prevFormData => ({
-                ...prevFormData,
-                family_name: event.target.value,
-            }));
-        }
+            const selectedMember = familyMembersList.find(member => member.id === parseInt(selectedMemberId));
+            if (selectedMember) {
+                setFormData(prevFormData => ({
+                    ...prevFormData,
+                    family: {
+                        family_id: selectedMember.id,
+                        family_name: selectedMember.name
+                    }
+                }));
+            }
+        } 
     };
 
     const handleNewFamilyMemberChange = (event) => {
@@ -500,10 +507,10 @@ export function ClientDataForm() {
                 </div>
 
                 {/* Existing Invesment */}
-                <div>
-                    <div className="form-group col">
+                <div className="">
+                    <div className="form-group">
                         <input
-                            className="form-check-input"
+                            className="form-check-input mt-2 me-1"
                             type="checkbox"
                             id="showInvesmentDiv"
                             onChange={handleInvesmentCheckbox}
@@ -585,10 +592,10 @@ export function ClientDataForm() {
                 </div>
 
                 {/* Any Insurance  */}
-                <div>
-                    <div className="form-group col">
+                <div className="">
+                    <div className="form-group">
                         <input
-                            className="form-check-input"
+                            className="form-check-input mt-2 me-1"
                             type="checkbox"
                             id="showInsuranceDiv"
                             onChange={handleInsuranceCheckbox}
@@ -659,8 +666,9 @@ export function ClientDataForm() {
                                 Add to mutual funds waiting list
                             </Checkbox>
                             <Checkbox
-                                value="family"
-                                name="family_name"
+                                id="family_id"
+                                value="Family"
+                                // name="family_name"
                                 checked={!!showFamilyList}
                                 onChange={handleFamilyChange}
                             >
@@ -674,12 +682,12 @@ export function ClientDataForm() {
                                         <div>
                                             <select className="form-select" value={selectedFamilyMember} onChange={handleFamilyMemberChange}>
                                                 <option value="">Select a family member</option>
-                                                {familyMembersList.map((member) => (
-                                                    <option key={member.id} value={member.name}>
+                                                {familyMembersList && familyMembersList.map((member) => (
+                                                    <option key={member.id} value={member.id}>
                                                         {member.name}
                                                     </option>
                                                 ))}
-                                                {/* <option value="Other">Other</option> */}
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
                                         {selectedFamilyMember === "Other" && (

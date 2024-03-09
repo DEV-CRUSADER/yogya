@@ -1,4 +1,4 @@
-const familyGroup = [
+const familyMembers = [
     {
         "id": 1,
         "name": "Patel"
@@ -12,3 +12,6 @@ const familyGroup = [
         "name": "Sharma"
     },
 ]
+
+
+export { familyMembers };
