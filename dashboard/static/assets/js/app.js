@@ -8,7 +8,7 @@ import AOS from 'aos';
 
 import { WebLoader } from './components/common/utils/loader';
 
-const Dashboard = lazy(async () => await  import("./apps/Dashboard").then((module) => ({ default: module.Dashboard })));
+const DashboardApp = lazy(async () => await  import("./apps/Dashboard").then((module) => ({ default: module.Dashboard })));
 const CoreApp = lazy(async () => await  import("./apps/CoreApp").then((module) => ({ default: module.CoreApp })));
 
 import 'aos/dist/aos.css';
@@ -30,9 +30,9 @@ function App() {
                         {/* Define routes based on subdomain */}
                         {subdomain === 'dashboard' && <Route path="*" element={
                             <React.Suspense fallback={<WebLoader />}>
-                                <Dashboard />
+                                <DashboardApp />
                             </React.Suspense>
-                        } />}
+                        }/>}
 
                         {/* Default route */}
                         <Route path="*" element={

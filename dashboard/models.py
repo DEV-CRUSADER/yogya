@@ -28,7 +28,7 @@ class BaseModel(TimeStampModel, SoftDeleteObject):
 
 def generate_id():
     return ''.join(random.choices(string.ascii_uppercase +
-                                  string.digits, k=14))
+                                string.digits, k=14))
 
 
 class User(AbstractUser, BaseModel):
@@ -70,7 +70,6 @@ class BusinessMembers(BaseModel):
     def __str__(self):
         return f"{self.user.__str__()}"
     
-   
 class Clients(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -82,7 +81,7 @@ class Clients(BaseModel):
     phone_number = models.BigIntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     business_member = models.OneToOneField('dashboard.BusinessMembers', related_name='client',
-                                           on_delete=models.DO_NOTHING, null=True)
+                                    on_delete=models.DO_NOTHING, null=True)
     def __str__(self):
         if self.is_business:
             return f"{self.company_name}"

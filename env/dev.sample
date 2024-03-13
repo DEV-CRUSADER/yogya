@@ -1,8 +1,8 @@
 # True for development, False for production
 DEBUG=True
-#DEBUG=False
+# DEBUG=False
 
-SECRET_KEY='VeryStrongKey'
+SECRET_KEY='YHsyRh8uwvC1nnGFptKeU5tr5MlUB7rCkTH5I7pNNm8I0HYyheJn8NaovV2ntiQP'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -17,7 +17,7 @@ EMAIL_HOST_PASSWORD = ''
 
 SENDER_EMAIL = ''
 DEFAULT_FROM_EMAIL = ''
-
+SEND_CONTACT_US_EMAIL_TO_EMAIL = ''
 
 # Database settings
 DB_ENGINE='postgresql_psycopg2'
@@ -27,7 +27,11 @@ DB_USERNAME=
 DB_PASS=
 DB_PORT=5432
 
-SITE_URL = "https://yogyacapital.com"
+# SITE_SETTINGS
+SITE_ID = 1
+SITE_NAME = "yogyacapital.com"
+SITE_URL = "yogyacapital.com"
+DOMAIN_NAME = "yogyacapital.com"
 RENDER_EXTERNAL_HOSTNAME = "http://www.yogyacapital.com"
 ASYNC_EMAILS = False
 SKIP_OTP = True
