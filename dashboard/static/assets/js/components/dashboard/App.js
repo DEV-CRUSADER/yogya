@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { TabTitle } from "../core/scripts/general_function";
+import { SideBar } from './components/sideBar';
+import { NavBar } from './components/navBar';
+import { DashboardBody } from './components/dashboardBody';
 
 
-export function DashboardHomeView()  {
+
+export function DashboardHomeView() {
     TabTitle('Yogya | Home')
     return (
         <>
-            <div 
-                className='d-flex justify-content-center align-items-center
-                    fs-5 fs-md-4 fs-xl-2 fs-xxl-1 fw-bold text-secondary text-uppercase w-100'
-                style={{height: '100vh'}}
-            >
-                UNDER DEVELOPMENT
+            <div>
+                <NavBar />
+            </div>
+            <div className='d-flex'>
+                <SideBar />
+                <div className='col'>
+                    <DashboardBody />
+                </div>
             </div>
         </>
     );
