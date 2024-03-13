@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import {TableView} from './table';
+import { TableView } from './table';
 
 
 
 export function DashboardBody() {
     return (
         <>
-            <div className="dashboard-body">
+            <div className="dashboard-body h-100">
                 <div className="d-flex justify-content-between align-items-center mt-3">
                     <div>
                         <h5 className=" ms-3">Breadcrum Left</h5>
@@ -19,17 +19,14 @@ export function DashboardBody() {
                                     backgroundColor: 'var(--secondary-color)',
                                     // borderColor: 'var(--primary-color)',
                                 }}
-
                             >Primary
                             </button>
-
                             <button
                                 className="btn text-light "
                                 style={{
                                     backgroundColor: 'var(--secondary-color)',
                                     // borderColor: 'var(--primary-color)',
                                 }}
-
                             >Add Client
                             </button>
                         </div>
@@ -41,9 +38,9 @@ export function DashboardBody() {
                         // width: '100%',
                     }}
                 />
-            </div>
-            <div className="ms-3 me-3">
-                <TableView />
+                <div className="ms-3 me-3">
+                    <TableView />
+                </div>
             </div>
         </>
     );
