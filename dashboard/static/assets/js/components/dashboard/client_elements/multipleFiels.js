@@ -111,7 +111,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 {(type == "stock") && (
                                     <th className="px-1 pb-1 align-items-end">
                                         <input
-                                            type="text"
+                                            type="number"
                                             onChange={(event) => handleChange(index, event)}
                                             value={quantity}
                                             name="quantity"
@@ -123,7 +123,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 {(type == "fixed_deposit") && (
                                     <th className="px-1 pb-1 align-items-end">
                                         <input
-                                            type="text"
+                                            type="number"
                                             onChange={(event) => handleChange(index, event)}
                                             value={fixed_deposit}
                                             name="fixed_deposit"
@@ -135,7 +135,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 {(type == "debt_quantity") && (
                                     <th className="px-1 pb-1 align-items-end">
                                         <input
-                                            type="text"
+                                            type="number"
                                             onChange={(event) => handleChange(index, event)}
                                             value={debt_quantity}
                                             name="debt_quantity"
@@ -146,7 +146,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 )}
                                 <th className="px-1 pb-1">
                                     <input
-                                        type="text"
+                                        type="number"
                                         onChange={(event) => handleChange(index, event)}
                                         value={amount}
                                         name="amount"
@@ -156,7 +156,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 </th>
                                 <th className="px-1 pb-1">
                                     <input
-                                        type="text"
+                                        type="number"
                                         onChange={(event) => handleChange(index, event)}
                                         value={market_value}
                                         name="market_value"
@@ -168,7 +168,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                 <th className="px-1 pb-1 align-items-end">
                                     {(type === "debt_quantity") && (
                                         <input
-                                            type="text"
+                                            type="number"
                                             onChange={(event) => handleChange(index, event)}
                                             value={debt_yield}
                                             name="debt_yield"
@@ -178,7 +178,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                     )}
                                     {(type !== "debt_quantity") && (
                                         <input
-                                            type="text"
+                                            type="number"
                                             onChange={(event) => handleChange(index, event)}
                                             value={portfolio}
                                             name="portfolio"
@@ -318,7 +318,7 @@ export function Insurance({ inputFields, setInputFields }) {
                                 </th>
                                 <th className="px-1 pb-1">
                                     <input
-                                        type="text"
+                                        type="number"
                                         onChange={(event) => handleChange(index, event)}
                                         value={scheme_type}
                                         name="scheme_type"
@@ -445,7 +445,7 @@ export function AnyLoan({ inputFields, setInputFields }) {
                                 </th>
                                 <th className="px-1 pb-1">
                                     <input
-                                        type="text"
+                                        type="number"
                                         onChange={(event) => handleChange(index, event)}
                                         value={amount}
                                         name="amount"

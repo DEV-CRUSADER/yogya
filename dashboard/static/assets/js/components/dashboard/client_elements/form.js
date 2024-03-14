@@ -158,7 +158,7 @@ export function ClientDataForm() {
             mid: "",
             high: "",
         },
-        investment: [
+        investments: [
             investmentsStock,
             investmentsLumpSum,
             investmentsSIP,
@@ -178,8 +178,8 @@ export function ClientDataForm() {
             emergency_input_value: "no",
             address: ""
         },
-        stock_bal_left: "",
-        mf_lump_sum_bal_left: "",
+        // stock_bal_left: "",
+        // mf_lump_sum_bal_left: "",
         waiting: {
             stocks_on_hold: false,
             MF_on_hold: false
@@ -212,12 +212,23 @@ export function ClientDataForm() {
 
     const onChangeHandler = (event, index) => {
         const { name, value } = event.target;
-        // const uppercaseValue = name === "pancard" ? value.toUpperCase() : value;
+        const updatedValue = (name === 'salary' || name === 'phone_number') ? parseInt(value, 10) : value;
+    
+    // Convert pancard to uppercase if it's being updated
+    // const updatedValue = name === 'pancard' ? value.toUpperCase() : parsedValue;
 
+    // Update the state accordingly
+    setFormData(prevFormData => {
+        console.log(`Updating ${name} with value:`, updatedValue);
+        return {
+            ...prevFormData,
+            [name]: updatedValue
+        };
+    });
         //for investment
         setFormData(prevState => ({
             ...prevState,
-            investment: formData.investment.map((item, i) => {
+            investments: formData.investments.map((item, i) => {
                 if (i === index) {
                     return { ...item, [name]: value };
                 }
@@ -300,6 +311,15 @@ export function ClientDataForm() {
         }
     };
 
+    const onInputChange = (event) => {
+        const { name, value } = event.target;
+        const updatedValue = value.toUpperCase();
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: updatedValue
+        }));
+    };
+
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
@@ -375,7 +395,8 @@ export function ClientDataForm() {
                     <input
                         className="form-control"
                         name="pancard"
-                        onChange={onChangeHandler}
+                        // onChange={onChangeHandler}
+                        onInput={onInputChange}
                         value={formData.pancard}
                         placeholder="PanCard No."
                     />
