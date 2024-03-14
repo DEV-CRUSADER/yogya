@@ -192,17 +192,22 @@ export function ClientDataForm() {
     const [stocks_on_hold, setStocks_on_hold] = useState(false);
     const [MF_on_hold, setMF_on_hold] = useState(false);
 
-    // update stocks and MF(Lump Sum) Balance left
-    const handleMFLumpSumBalLeftChange = (index, value) => {
-        const updatedInvestmentsLumpSum = [...investmentsLumpSum];
-        updatedInvestmentsLumpSum[index].mf_lump_sum_bal_left = value || "";
-        setInvestmentsLumpSum(updatedInvestmentsLumpSum);
-    };
-
     const handleStockBalLeftChange = (index, value) => {
         const updatedInvestmentsStock = [...investmentsStock];
-        updatedInvestmentsStock[index].stock_bal_left = value || "";
+        updatedInvestmentsStock[index] = {
+            ...updatedInvestmentsStock[index],
+            stock_bal_left: value,
+        };
         setInvestmentsStock(updatedInvestmentsStock);
+    };
+
+    const handleMFLumpSumBalLeftChange = (index, value) => {
+        const updatedInvestmentsLumpSum = [...investmentsLumpSum];
+        updatedInvestmentsLumpSum[index] = {
+            ...updatedInvestmentsLumpSum[index],
+            mf_lump_sum_bal_left: value,
+        };
+        setInvestmentsLumpSum(updatedInvestmentsLumpSum);
     };
 
     const onChangeHandler = (event, index) => {
@@ -516,7 +521,7 @@ export function ClientDataForm() {
                                 name="stock_bal_left"
                                 className="form-control"
                                 placeholder="Cash left"
-                                value={investmentsStock[0].stock_bal_left}
+                                value={investmentsStock[0]?.stock_bal_left || ""}
                                 onChange={(e) => handleStockBalLeftChange(0, e.target.value)}
                             />
                         </div>
@@ -525,7 +530,7 @@ export function ClientDataForm() {
                     <InvesmentsMultiple
                         inputFields={investmentsLumpSum}
                         setInputFields={setInvestmentsLumpSum}
-                        type={"lump_sum"}
+                        type="lump_sum"
                     />
                     <div className="row mt-0">
                         <div className="col">
@@ -537,7 +542,7 @@ export function ClientDataForm() {
                                 name="mf_lump_sum_bal_left"
                                 className="form-control"
                                 placeholder="Cash left"
-                                value={investmentsLumpSum[0].mf_lump_sum_bal_left}
+                                value={investmentsLumpSum[0]?.mf_lump_sum_bal_left || ""}
                                 onChange={(e) => handleMFLumpSumBalLeftChange(0, e.target.value)}
                             />
                         </div>
