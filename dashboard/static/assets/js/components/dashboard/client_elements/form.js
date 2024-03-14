@@ -173,7 +173,7 @@ export function ClientDataForm() {
     });
 
 
-    
+
 
     const [stocks_on_hold, setStocks_on_hold] = useState(false);
     const [MF_on_hold, setMF_on_hold] = useState(false);
@@ -259,8 +259,8 @@ export function ClientDataForm() {
         if (value === 'Stocks') {
             const newStocksOnHold = !stocks_on_hold;
             setStocks_on_hold(newStocksOnHold);
-            const updatedFormData = { 
-                ...formData, 
+            const updatedFormData = {
+                ...formData,
                 waiting: {
                     ...formData.waiting,
                     stocks_on_hold: newStocksOnHold
@@ -270,8 +270,8 @@ export function ClientDataForm() {
         } else if (value === 'MF') {
             const newMFOnHold = !MF_on_hold;
             setMF_on_hold(newMFOnHold);
-            const updatedFormData = { 
-                ...formData, 
+            const updatedFormData = {
+                ...formData,
                 waiting: {
                     ...formData.waiting,
                     MF_on_hold: newMFOnHold
@@ -280,7 +280,7 @@ export function ClientDataForm() {
             setFormData(updatedFormData);
         }
     };
-    
+
 
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
@@ -394,7 +394,10 @@ export function ClientDataForm() {
                         />
                     </div>
                     <div>
-
+                        <div className="col-md-6">
+                            {/* Display EmergencyFund component here */}
+                            <EmergencyFund />
+                        </div>
                     </div>
                 </div>
                 {/* Current knowledge about mutual funds */}
