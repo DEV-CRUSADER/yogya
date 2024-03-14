@@ -74,20 +74,103 @@ class Clients(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=True, blank=True)
-    display_name = models.CharField(max_length=100, null=True, blank=True)
-    client_portal_enabled = models.BooleanField(default=False)
+    display_name = models.CharField(max_length=200, null=True, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     email = models.EmailField(null=False, blank=False)
-    phone_number = models.BigIntegerField(null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    pancard = models.CharField(max_length=10, null=True, blank=True, unique=True)
+    salary = models.FloatField(null=True, blank=True)
+    phone_number = models.CharField(null=True, blank=True)
+    current_knowledge = models.CharField(max_length=100, null=True, blank=True)
+    current_occuption = models.CharField(max_length=256, null=True, blank=True)
+    risk_tolerance = models.JSONField(default=dict)
+    emergency_funds = models.FloatField(null=True, blank=True)   # to be changed to money field
+    goals = ArrayField(models.CharField(max_length=200), null=True, blank=True)
+    feedback = models.CharField(max_length=2000, null=True, blank=True)
     business_member = models.OneToOneField('dashboard.BusinessMembers', related_name='client',
                                     on_delete=models.DO_NOTHING, null=True)
     def __str__(self):
-        if self.is_business:
-            return f"{self.company_name}"
-        else:
-            return str(self.user.first_name) + " " + str(self.user.last_name)
+        return str(self.user.first_name) + " " + str(self.user.last_name)
         
+    def total_loan_amount(self):
+        if self.loan_set.exists():
+            return sum(loan.amount for loan in self.loan_set.all())
+        return 0
+    
+    def total_investment_amount(self):
+        if self.investment_set.exists():
+            return sum(investment.amount for investment in self.investment_set.all())
+        return 0
+    
+    def is_waiting(self):
+        return self.waiting_list.exists()
+    
+    def is_blocked(self):
+        return self.blocked_clients.exists()
+
+class Insurance(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    type = models.CharField(max_length=100, null=False, blank=False)
+    annual_premium = models.FloatField(null=False, blank=False)
+    company_name = models.CharField(max_length=100, null=False, blank=False)
+    scheme_name = models.CharField(max_length=100, null=False, blank=False)
+    scheme_type = models.CharField(max_length=100, null=False, blank=False)
+    sum_assured = models.FloatField(null=False, blank=False)
+    client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING, related_name="insurance", null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.scheme_name} ({self.type} - {self.company_name})"
+
+
+class Investment(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    type = models.CharField(max_length=100, null=False, blank=False)
+    amount = models.FloatField(null=False, blank=False)
+    investment_date = models.DateField(null=False, blank=False)
+    scheme_name = models.CharField(max_length=100, null=False, blank=False)
+    debt_quality = models.CharField(max_length=100, null=False, blank=False)
+    fixd_deposit = models.CharField(max_length=100, null=False, blank=False)
+    market_value = models.FloatField(null=False, blank=False)
+    portfolio = models.FloatField(null=False, blank=False)
+    quantity = models.FloatField(null=False, blank=False)
+    client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING, related_name="investment", null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.scheme_name} ({self.type})"
+    
+
+class Loan(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    loan_type = models.CharField(max_length=100, null=False, blank=False)
+    amount = models.FloatField(null=False, blank=False)
+    client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING, related_name="loan", null=True, blank=True)
+
+
+class ClientWaitingList(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING, related_name="waiting_list", null=True, blank=True)
+    status = models.BooleanField(default=True)
+    waiting_type = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return f"{self.client.first_name} - {self.client.last_name}"
+
+
+class BlockedUsers(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="blocked_users", null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.first_name} - {self.user.last_name}"
+
+
+class BlockedClients(BaseModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    pancard = models.CharField(max_length=10, null=True, blank=True, unique=True)
+    number = models.BigIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.pancard} - {self.number}"
+
 
 class Roles(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
