@@ -7,6 +7,17 @@ import { Checkbox, CheckboxGroup } from 'rsuite';
 import { InvesmentsMultiple, Insurance, AnyLoan, EmergencyFund } from "./multipleFiels"
 
 export function ClientDataForm() {
+
+    const handleChange = (key, value) => {
+        setFormData(prevState => ({
+            ...prevState,
+            emergency_funds: {
+                ...prevState.emergency_funds,
+                [key]: value
+            }
+        }));
+    };
+
     const [investmentsStock, setInvestmentsStock] = useState([
         {
             type: "stock",
@@ -163,7 +174,10 @@ export function ClientDataForm() {
             termInsurance,
             otherInsurance,
         ],
-        emergency_funds: {},
+        emergency_funds: {
+            emergency_input_value: "no",
+            address: ""
+        },
         stock_bal_left: "",
         mf_lump_sum_bal_left: "",
         waiting: {
@@ -181,13 +195,13 @@ export function ClientDataForm() {
     // update stocks and MF(Lump Sum) Balance left
     const handleMFLumpSumBalLeftChange = (index, value) => {
         const updatedInvestmentsLumpSum = [...investmentsLumpSum];
-        updatedInvestmentsLumpSum[index].mf_lump_sum_bal_left = value;
+        updatedInvestmentsLumpSum[index].mf_lump_sum_bal_left = value || "";
         setInvestmentsLumpSum(updatedInvestmentsLumpSum);
     };
 
     const handleStockBalLeftChange = (index, value) => {
         const updatedInvestmentsStock = [...investmentsStock];
-        updatedInvestmentsStock[index].stock_bal_left = value;
+        updatedInvestmentsStock[index].stock_bal_left = value || "";
         setInvestmentsStock(updatedInvestmentsStock);
     };
 
@@ -396,7 +410,11 @@ export function ClientDataForm() {
                     <div>
                         <div className="col-md-6">
                             {/* Display EmergencyFund component here */}
-                            <EmergencyFund />
+                            <EmergencyFund
+                                emergency_input_value={formData.emergency_funds.emergency_input_value}
+                                emergencyFundAddress={formData.emergency_funds.address}
+                                onChange={handleChange}
+                            />
                         </div>
                     </div>
                 </div>

@@ -491,38 +491,63 @@ export function AnyLoan({ inputFields, setInputFields }) {
 
 
 // {/* Current Emergency Funds-Cover */}
-function EmergencyFund() {
-    const [showhide, setShowhide] = useState("no");
+export function EmergencyFund({ emergency_input_value, emergencyFundAddress, onChange }) {
+    const handleShowDetailsChange = (e) => {
+        const { value } = e.target;
+        onChange("emergency_input_value", value);
+        // Clear address when showDetails is set to 'no'
+        if (value === 'no') {
+            onChange("address", ""); // Clear address
+        }
+    };
 
-    const handleshow = e => {
-        const getshow = e.target.value;
-        setShowhide(getshow);
-    }
-    return (<React.Fragment>
+    const handleAddressChange = (e) => {
+        onChange("address", e.target.value);
+    };
 
-        <div className="form-group">
-            <label className="form-label">
-                Current Emergency Funds-Cover 6-Months Of Expence Or Not ?
+    return (
+        <div className="form-group mt-3">
+            <label className="form-label fs-5 fw-bold w-150">
+                Current Emergency Funds-Cover 6-Months Of Expense Or Not ?
             </label>
             <div className="col-md-12">
-                <label className="form-label"> Show Details</label>
-                <div className="text-white">
-                    Yes <input type="radio" name="userdetail" value="yes" onClick={handleshow} />
-                    No <input type="radio" name="userdetail" value="no" checked={showhide === 'no'} onClick={handleshow} />
+                <div className="text-dark">
+                    <input
+                        className=""
+                        type="radio"
+                        name="user_input_yes"
+                        value="yes"
+                        checked={emergency_input_value === 'yes'}
+                        onChange={handleShowDetailsChange}
+                    />
+                    Yes
+                    <input
+                        className="ms-3"
+                        type="radio"
+                        name="user_input_no"
+                        value="no"
+                        checked={emergency_input_value === 'no'}
+                        onChange={handleShowDetailsChange}
+                    />
+                    No
                 </div>
             </div>
 
-            {
-                showhide === 'yes' && (
-                    <div className='col-md-12'>
-                        <label className="form-label"> Address</label>
-                        <div className="text-white">
-                            <input type="text" name='address' className='form-control' />
-                        </div>
+            {emergency_input_value === 'yes' && (
+                <div className='col-md-12'>
+                    <label className="form-label"> Address</label>
+                    <div className="text-white">
+                        <input 
+                            className='form-control fs-5'
+                            type="text" 
+                            name='address' 
+                            placeholder="Enter Address"
+                            value={emergencyFundAddress}
+                            onChange={handleAddressChange}
+                        />
                     </div>
-                )}
+                </div>
+            )}
         </div>
-
-    </React.Fragment>);
+    );
 }
-export default EmergencyFund;
