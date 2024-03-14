@@ -4,12 +4,13 @@ import "../../../../../css/dashboard/datePicker.css";
 
 import { Checkbox, CheckboxGroup } from 'rsuite';
 
-import { InvesmentsMultiple, Insurance, AnyLoan } from "./multipleFiels"
+import { InvesmentsMultiple, Insurance, AnyLoan, EmergencyFund } from "./multipleFiels"
 
 export function ClientDataForm() {
     const [investmentsStock, setInvestmentsStock] = useState([
         {
-            date: "",
+            type: "stock",
+            investment_date: "",
             scheme_name: "",
             quantity: "",
             amount: "",
@@ -19,7 +20,8 @@ export function ClientDataForm() {
     ]);
     const [investmentsLumpSum, setInvestmentsLumpSum] = useState([
         {
-            date: "",
+            type: "lump_sum",
+            investment_date: "",
             scheme_name: "",
             amount: "",
             market_value: "",
@@ -28,7 +30,8 @@ export function ClientDataForm() {
     ]);
     const [investmentsSIP, setInvestmentsSIP] = useState([
         {
-            date: "",
+            type: "sip",
+            investment_date: "",
             scheme_name: "",
             amount: "",
             market_value: "",
@@ -37,7 +40,8 @@ export function ClientDataForm() {
     ]);
     const [investmentsFD, setInvestmentsFD] = useState([
         {
-            date: "",
+            type: "fixed_deposit",
+            investment_date: "",
             scheme_name: "",
             fixed_deposit: "",
             amount: "",
@@ -47,7 +51,8 @@ export function ClientDataForm() {
     ]);
     const [investmentsDebt, setInvestmentsDebt] = useState([
         {
-            date: "",
+            type: "debt_quantity",
+            investment_date: "",
             scheme_name: "",
             debt_quantity: "",
             amount: "",
@@ -58,7 +63,8 @@ export function ClientDataForm() {
     ]);
     const [investmentsOthers, setInvestmentsOthers] = useState([
         {
-            date: "",
+            type: "others",
+            investment_date: "",
             scheme_name: "",
             amount: "",
             market_value: "",
@@ -67,6 +73,7 @@ export function ClientDataForm() {
     ]);
     const [healthInsurance, setHealthInsurance] = useState([
         {
+            type: "health",
             company_name: "",
             scheme_name: "",
             scheme_type: "",
@@ -76,6 +83,7 @@ export function ClientDataForm() {
     ]);
     const [termInsurance, setTermInsurance] = useState([
         {
+            type: "term",
             company_name: "",
             scheme_name: "",
             scheme_type: "",
@@ -85,6 +93,7 @@ export function ClientDataForm() {
     ]);
     const [otherInsurance, setOtherInsurance] = useState([
         {
+            type: "other",
             company_name: "",
             scheme_name: "",
             scheme_type: "",
@@ -94,8 +103,8 @@ export function ClientDataForm() {
     ]);
     const [anyLoan, setAnyLoan] = useState([
         {
-            anyLoan: "",
-            loan: "",
+            loan_type: "",
+            amount: "",
         },
     ]);
 
@@ -124,69 +133,136 @@ export function ClientDataForm() {
         first_name: "",
         last_name: "",
         phone_number: "",
-        DOB: "",
+        birthdate: "",
         pancard: "",
         email: "",
         current_occupation: "",
         salary: "",
         current_knowledge: "",
         goals: "",
-        risk_tolarance_low: "",
-        risk_tolarance_mid: "",
-        risk_tolarance_high: "",
-        invesment: {
-            stocks: investmentsStock,
-            lump_sum: investmentsLumpSum,
-            sip: investmentsSIP,
-            fd: investmentsFD,
-            debt: investmentsDebt,
-            others: investmentsOthers,
+        risk_tolarance: {
+            low: "",
+            mid: "",
+            high: "",
         },
-        loan: {},
-        insurance: {
-            healthInsurance: healthInsurance,
-            termInsurance: termInsurance,
-            otherInsurance: otherInsurance,
-        },
+        // invesment: {
+        //     stocks: investmentsStock,
+        //     lump_sum: investmentsLumpSum,
+        //     sip: investmentsSIP,
+        //     fd: investmentsFD,
+        //     debt: investmentsDebt,
+        //     others: investmentsOthers,
+        // },
+        investment: [
+            investmentsStock,
+            investmentsLumpSum,
+            investmentsSIP,
+            investmentsFD,
+            investmentsDebt,
+            investmentsOthers,
+        ],
+        loan: [
+            anyLoan,
+
+        ],
+        insurance: [
+            healthInsurance,
+            termInsurance,
+            otherInsurance,
+        ],
         emergency_funds: {},
         feedback: "",
     });
 
-    useEffect(() => {
-        setFormData({
-            ...formData,
-            invesment: {
-                stocks: investmentsStock,
-                lump_sum: investmentsLumpSum,
-                sip: investmentsSIP,
-                fd: investmentsFD,
-                debt: investmentsDebt,
-                others: investmentsOthers,
-            },
-        })
-    },
-        [investmentsStock, investmentsLumpSum, investmentsSIP,
-            investmentsFD, investmentsDebt, investmentsOthers,])
 
-    useEffect(() => {
-        setFormData({
-            ...formData,
-            insurance: {
-                healthInsurance: healthInsurance,
-                termInsurance: termInsurance,
-                otherInsurance: otherInsurance,
-            },
-        })
-    },
-        [healthInsurance, termInsurance, otherInsurance])
+    // useEffect(() => {
+    //     setFormData({
+    //         ...formData,
+    //         insurance: {
+    //             healthInsurance: healthInsurance,
+    //             termInsurance: termInsurance,
+    //             otherInsurance: otherInsurance,
+    //         },
+    //     })
+    // },
+    //     [healthInsurance, termInsurance, otherInsurance])
+
+    // useEffect(() => {
+    //     setFormData({
+    //         ...formData,
+    //         loan: {
+    //             anyLoan: anyLoan,
+    //         },
+    //     })
+    // }, [anyLoan])
+
+    // const addInvestment = (investmentType, investmentData) => {
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         invesment: [
+    //             ...prevState.invesment,
+    //             {
+    //                 type: investmentType,
+    //                 ...investmentData
+    //             }
+    //         ]
+    //     }));
+    // };
 
     const onChangeHandler = (event) => {
-        setFormData(() => ({
-            ...formData,
-            [event.target.name]: event.target.value,
+        const { name, value } = event.target;
+        // const uppercaseValue = name === "pancard" ? value.toUpperCase() : value;
+        
+        //for investment
+        const updatedInvestments = [...formData.investment];
+        updatedInvestments[index][name] = value;
+        setFormData(prevState => ({
+            ...prevState,
+            investment: updatedInvestments
         }));
-    };
 
+        // For loan
+        const updatedLoan = [...formData.loan];
+        updatedLoan[index][name] = value;
+        setFormData(prevState => ({
+            ...prevState,
+            loan: updatedLoan
+        }));
+
+        // For insurance
+        const updatedInsurance = [...formData.insurance];
+        updatedInsurance[index][name] = value;
+        setFormData(prevState => ({
+            ...prevState,
+            insurance: updatedInsurance
+        }));
+
+        // For risk tolerance inputs, update
+        if (["low", "mid", "high"].includes(name)) {
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                risk_tolarance: {
+                    ...prevFormData.risk_tolarance,
+                    [name]: value
+                }
+            }));
+        }
+        // For DOB, format the date and update
+        if (name === "DOB") {
+            const formattedDate = new Date(value).toISOString().split('T')[0];
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: formattedDate
+            }));
+        }
+        else {
+            // For other inputs, update normally
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value
+            }));
+        }
+    };
     return (
         <div className="w-100 w-sm-100 w-md-75 w-lg-75 w-xl-50">
             <form method="post" action="submit_form" id="client_form">
@@ -237,7 +313,7 @@ export function ClientDataForm() {
                         Date of Birth
                     </label>
                     <br />
-                    <input type="date" name="DOB" value={formData.DOB} onChange={onChangeHandler} className="form-control" />
+                    <input type="date" name="birthdate" value={formData.birthdate} onChange={onChangeHandler} className="form-control" placeholder="yyyy-mm-dd" />
                 </div>
                 {/* Email */}
                 <div className="form-group">
@@ -284,18 +360,23 @@ export function ClientDataForm() {
                     </select>
                 </div>
                 {/* Monthly Salary */}
-                <div className="form-group">
-                    <label className="form-label fs-4 fw-bold">
-                        Monthly Salary (&#8377;)
-                    </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        name="salary"
-                        onChange={onChangeHandler}
-                        value={formData.salary}
-                        placeholder="Your Salary"
-                    />
+                <div className="form-group col">
+                    <div>
+                        <label className="form-label fs-4 fw-bold">
+                            Monthly Salary (&#8377;)
+                        </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            name="salary"
+                            onChange={onChangeHandler}
+                            value={formData.salary}
+                            placeholder="Your Salary"
+                        />
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
                 {/* Current knowledge about mutual funds */}
                 <div className="form-group">
@@ -338,11 +419,10 @@ export function ClientDataForm() {
                                 Low (5-15%)
                             </label>
                             <input
-                                // type="number"
+                                type="number"
                                 className="form-control"
-                                name="risk_tolarance_low"
+                                name="low"
                                 onChange={onChangeHandler}
-                                value={formData.risk_tolarance_low}
                                 placeholder="Enter Number"
                             />
                         </div>
@@ -351,10 +431,10 @@ export function ClientDataForm() {
                                 Mid (15-35%)
                             </label>
                             <input
+                                type="number"
                                 className="form-control "
-                                name="risk_tolarance_mid"
+                                name="mid"
                                 onChange={onChangeHandler}
-                                value={formData.risk_tolarance_mid}
                                 placeholder="Enter Number"
                             />
                         </div>
@@ -363,10 +443,10 @@ export function ClientDataForm() {
                                 High (30-50%)
                             </label>
                             <input
+                                type="number"
                                 className="form-control "
-                                name="risk_tolarance_high"
+                                name="high"
                                 onChange={onChangeHandler}
-                                value={formData.risk_tolarance_high}
                                 placeholder="Enter Number"
                             />
                         </div>
@@ -390,11 +470,13 @@ export function ClientDataForm() {
                     <InvesmentsMultiple
                         inputFields={investmentsLumpSum}
                         setInputFields={setInvestmentsLumpSum}
+                        type="lump_sum"
                     />
                     <label className="fs-5 fw-bold" value="mf">Mutual Funds (SIP)</label>
                     <InvesmentsMultiple
                         inputFields={investmentsSIP}
                         setInputFields={setInvestmentsSIP}
+                        type="sip"
                     />
                     <label className="fs-5 fw-bold" value="fd">Fixed Deposite (FD)</label>
                     <InvesmentsMultiple
@@ -412,6 +494,7 @@ export function ClientDataForm() {
                     <InvesmentsMultiple
                         inputFields={investmentsOthers}
                         setInputFields={setInvestmentsOthers}
+                        type="others"
                     />
                 </div>
 
@@ -436,16 +519,19 @@ export function ClientDataForm() {
                             <Insurance
                                 inputFields={healthInsurance}
                                 setInputFields={setHealthInsurance}
+                                type="health"
                             />
                             <label className="fs-5 fw-bold" value="termInsurance">Term Insurance</label>
                             <Insurance
                                 inputFields={termInsurance}
                                 setInputFields={setTermInsurance}
+                                type="term"
                             />
                             <label className="fs-5 fw-bold" value="otherInsurance">Others</label>
                             <Insurance
                                 inputFields={otherInsurance}
                                 setInputFields={setOtherInsurance}
+                                type="other"
                             />
                         </div>
                     </div>
@@ -457,9 +543,9 @@ export function ClientDataForm() {
                     </label>
                     <textarea
                         className="form-control  "
-                        name="improve"
+                        name="feedback"
                         onChange={onChangeHandler}
-                        value={formData.improve}
+                        value={formData.feedback}
                         placeholder="Your Suggestions"
                     />
                 </div>

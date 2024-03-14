@@ -9,7 +9,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
         setInputFields([
             ...inputFields,
             {
-                date: "",
+                investment_date: "",
                 scheme_name: "",
                 quantity: "",
                 fixed_deposit: "",
@@ -29,8 +29,17 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
     };
     const handleChange = (index, event) => {
         const { name, value } = event.target;
+        let formattedValue = value;
+        if (name === 'investment_date') {
+            // Format the date to yyyy-mm-dd
+            const dateObject = new Date(value);
+            const year = dateObject.getFullYear();
+            let month = (1 + dateObject.getMonth()).toString().padStart(2, '0');
+            let day = dateObject.getDate().toString().padStart(2, '0');
+            formattedValue = `${year}-${month}-${day}`;
+        }
         const list = [...inputFields];
-        list[index][name] = value;
+        list[index][name] = formattedValue;
         setInputFields(list);
         // console.log("Current state:", inputFields);
     };
@@ -66,7 +75,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                             }}
                         >Market Value (&#8377;)
                         </th>
-                        
+
                         <th className="px-1" style={{ width: "113px" }}>
                             {(type === "debt_quantity") && ("Yield")}
                             {(type !== "debt_quantity") && ("Portfolio (%)")}
@@ -76,15 +85,15 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                 </thead>
                 <tbody>
                     {inputFields.map((data, index) => {
-                        const { date, scheme_name, quantity, fixed_deposit, debt_quantity, amount, market_value, debt_yield, portfolio } = data;
+                        const { investment_date, scheme_name, quantity, fixed_deposit, debt_quantity, amount, market_value, debt_yield, portfolio } = data;
                         return (
                             <tr className="my-2" key={index}>
                                 <th className="px-1 pb-1">
                                     <input
                                         type="date"
                                         onChange={(event) => handleChange(index, event)}
-                                        value={date}
-                                        name="date"
+                                        value={investment_date || ''} // Providing empty string as fallback value
+                                        name="investment_date"
                                         className="form-control"
                                         placeholder="Date"
                                     />
@@ -381,22 +390,21 @@ export function AnyLoan({ inputFields, setInputFields }) {
         setInputFields([
             ...inputFields,
             {
-                anyLoan: "",
-                loan: "",
+                loan_type: "",
+                amount: "",
             },
         ]);
     };
     const removeInputFields = (index) => {
-
-        const rows = [...inputFields];
-        rows.splice(index, 1);
-        setInputFields(rows);
+        const updatedInputFields = [...inputFields];
+        updatedInputFields.splice(index, 1);
+        setInputFields(updatedInputFields);
     };
     const handleChange = (index, event) => {
         const { name, value } = event.target;
-        const list = [...inputFields];
-        list[index][name] = value;
-        setInputFields(list);
+        const updatedInputFields = [...inputFields];
+        updatedInputFields[index][name] = value;
+        setInputFields(updatedInputFields);
     };
     return (
         <div className="d-flex justify-content-center align-items-end">
@@ -417,15 +425,15 @@ export function AnyLoan({ inputFields, setInputFields }) {
                 </thead>
                 <tbody>
                     {inputFields.map((data, index) => {
-                        const { loan, anyLoan } = data;
+                        const { loan_type, amount } = data;
                         return (
                             <tr className="my-2" key={index}>
                                 <th className="px-1 pb-1">
                                     <select
                                         className="form-select"
-                                        name="anyLoan"
+                                        name="loan_type"
                                         onChange={(event) => handleChange(index, event)}
-                                        value={anyLoan}
+                                        value={loan_type}
                                     >
                                         <option value="None">None</option>
                                         <option value="home">Home</option>
@@ -439,8 +447,8 @@ export function AnyLoan({ inputFields, setInputFields }) {
                                     <input
                                         type="text"
                                         onChange={(event) => handleChange(index, event)}
-                                        value={loan}
-                                        name="loan"
+                                        value={amount}
+                                        name="amount"
                                         className="form-control"
                                         placeholder="Amount"
                                     />
@@ -483,7 +491,7 @@ export function AnyLoan({ inputFields, setInputFields }) {
 
 
 // {/* Current Emergency Funds-Cover */}
-function Defaulthideshow() {
+function EmergencyFund() {
     const [showhide, setShowhide] = useState("no");
 
     const handleshow = e => {
@@ -517,4 +525,4 @@ function Defaulthideshow() {
 
     </React.Fragment>);
 }
-export default Defaulthideshow;
+export default EmergencyFund;
