@@ -171,7 +171,7 @@ export function ClientDataForm() {
             otherInsurance,
         ],
         emergency_funds: {},
-        feedback: "",
+        // feedback: "",
     });
 
 
@@ -209,32 +209,41 @@ export function ClientDataForm() {
     //     }));
     // };
 
-    const onChangeHandler = (event) => {
+    const onChangeHandler = (event, index) => {
         const { name, value } = event.target;
         // const uppercaseValue = name === "pancard" ? value.toUpperCase() : value;
-        
+
         //for investment
-        const updatedInvestments = [...formData.investment];
-        updatedInvestments[index][name] = value;
         setFormData(prevState => ({
             ...prevState,
-            investment: updatedInvestments
+            investment: formData.investment.map((item, i) => {
+                if (i === index) {
+                    return { ...item, [name]: value };
+                }
+                return item;
+            })
         }));
 
         // For loan
-        const updatedLoan = [...formData.loan];
-        updatedLoan[index][name] = value;
         setFormData(prevState => ({
             ...prevState,
-            loan: updatedLoan
+            loan: formData.loan.map((item, i) => {
+                if (i === index) {
+                    return { ...item, [name]: value };
+                }
+                return item;
+            })
         }));
 
         // For insurance
-        const updatedInsurance = [...formData.insurance];
-        updatedInsurance[index][name] = value;
         setFormData(prevState => ({
             ...prevState,
-            insurance: updatedInsurance
+            insurance: formData.insurance.map((item, i) => {
+                if (i === index) {
+                    return { ...item, [name]: value };
+                }
+                return item;
+            })
         }));
 
         // For risk tolerance inputs, update
@@ -248,7 +257,7 @@ export function ClientDataForm() {
             }));
         }
         // For DOB, format the date and update
-        if (name === "DOB") {
+        if (name === "birthdate") {
             const formattedDate = new Date(value).toISOString().split('T')[0];
             setFormData(prevFormData => ({
                 ...prevFormData,
