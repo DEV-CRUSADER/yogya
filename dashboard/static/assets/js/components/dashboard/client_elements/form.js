@@ -186,6 +186,42 @@ export function ClientDataForm() {
         }
     });
 
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            type: "",
+            investments: [
+                investmentsStock,
+                investmentsLumpSum,
+                investmentsSIP,
+                investmentsFD,
+                investmentsDebt,
+                investmentsOthers,
+            ],
+        })
+    },
+        [investmentsStock, investmentsLumpSum, investmentsSIP,
+            investmentsFD, investmentsDebt, investmentsOthers,])
+
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            loan: [
+                anyLoan,
+            ],
+        })
+    },[anyLoan])
+
+    useEffect(() => {
+        setFormData({
+            ...formData,
+            insurance: [
+                healthInsurance,
+                termInsurance,
+                otherInsurance,
+            ],
+        })
+    },[healthInsurance, termInsurance, otherInsurance])
 
 
 
