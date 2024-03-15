@@ -212,19 +212,15 @@ export function ClientDataForm() {
 
     const onChangeHandler = (event, index) => {
         const { name, value } = event.target;
+        // for salary and phone_number
         const updatedValue = (name === 'salary' || name === 'phone_number') ? parseInt(value, 10) : value;
-    
-    // Convert pancard to uppercase if it's being updated
-    // const updatedValue = name === 'pancard' ? value.toUpperCase() : parsedValue;
-
-    // Update the state accordingly
-    setFormData(prevFormData => {
-        console.log(`Updating ${name} with value:`, updatedValue);
-        return {
-            ...prevFormData,
-            [name]: updatedValue
-        };
-    });
+        setFormData(prevFormData => {
+            console.log(`Updating ${name} with value:`, updatedValue);
+            return {
+                ...prevFormData,
+                [name]: updatedValue
+            };
+        });
         //for investment
         setFormData(prevState => ({
             ...prevState,
