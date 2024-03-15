@@ -1,96 +1,176 @@
 import React, { useState } from "react";
-// import './reactSuit.css';
+import { SideBar } from './sideBar';
 
-
-
-// Function to generate dummy data
 const generateDummyData = (count) => {
     const data = [];
     for (let i = 0; i < count; i++) {
         data.push({
             id: i + 1,
-            firstName: `First Name ${i + 1}`,
-            lastName: `Last Name ${i + 1}`,
-            city: `City ${i + 1}`,
-            email: `email${i + 1}@example.com`
+            fullName: `Full Name ${i + 1}`,
+            phone_no: `Phone Number ${i + 1}`,
+            email: `email${i + 1}@example.com`,
+            pancard: `Pan Card ${i + 1}`,
         });
     }
     return data;
 };
 
-export function TableView() {
-    const [limit, setLimit] = useState(15);
+export function TableView({ expanded }) {
+    const [limit, setLimit] = useState(30);
     const [page, setPage] = useState(1);
     const [tableData, setTableData] = useState(generateDummyData(100));
-
-    // const handleChangeLimit = dataKey => {
-    //     setPage(1);
-    //     setLimit(dataKey);
-    // };
+    const [searchTerm, setSearchTerm] = useState('');
+    const [editedData, setEditedData] = useState(null);
 
     const handleRemove = rowData => {
         const updatedData = tableData.filter(item => item.id !== rowData.id);
         setTableData(updatedData);
     };
 
-    // Filter data based on current page and limit
-    const data = tableData.slice((page - 1) * limit, page * limit);
-    const totalPages = Math.ceil(tableData.length / limit);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditedData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+    const saveEditedData = () => {
 
-    <style>
-        
-    </style>
+        if (!editedData) return; // No data to save
+
+        const newData = tableData.map(item => {
+            if (item.id === editedData.id) {
+                return editedData;
+            }
+            return item;
+        });
+        // Update the state with the new data
+        setTableData(newData);
+        setEditedData(null); // Reset editedData state
+    };
+
+    const handleEdit = (rowData) => {
+        setEditedData(rowData);
+    };
+
+    const tableWidth = expanded ? '100%' : '80%';
+
+    const filteredData = tableData.filter(item =>
+        item.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.phone_no.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.pancard.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(filteredData.length / limit);
 
     return (
-        <div className="container">
-            <table className="table">
-                <thead>
-                    <tr className="">
-                        <th scope="col">Id</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((rowData) => (
-                        <tr key={rowData.id} className={rowData.id % 2 === 0 ? 'table-info' : 'table-success'}>
-                            <td>{rowData.id}</td>
-                            <td>{rowData.firstName}</td>
-                            <td>{rowData.lastName}</td>
-                            <td>{rowData.city}</td>
-                            <td>{rowData.email}</td>
-                            <td>
-                                <button
-                                    onClick={() => handleRemove(rowData)}
-                                    className="btn btn-danger"
-                                >
-                                    Remove
-                                </button>
-                            </td>
+        <div>
+            {/* Modal or edit form for editing */}
+            {editedData && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => setEditedData(null)}>&times;</span>
+                        <h2>Edit Data</h2>
+                        <div>
+                            <label>Full Name:</label>
+                            <input type="text" name="fullName" value={editedData.fullName} onChange={handleInputChange} />
+                        </div>
+                        <div>
+                            <label>Phone Number:</label>
+                            <input type="text" name="phone_no" value={editedData.phone_no} onChange={handleInputChange} />
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input type="text" name="email" value={editedData.email} onChange={handleInputChange} />
+                        </div>
+                        <div>
+                            <label>Pan Card:</label>
+                            <input type="text" name="pancard" value={editedData.pancard} onChange={handleInputChange} />
+                        </div>
+                        <button onClick={saveEditedData}>Save</button>
+                    </div>
+                </div>
+            )}
+    
+            {/* Search bar */}
+            <div className="input-group mb-3">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search..."
+                    aria-label="Search"
+                    aria-describedby="basic-addon2"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div className="input-group-append">
+                    <span className="input-group-text" id="basic-addon2">
+                        <button className="bi bi-search pe-auto"></button>
+                    </span>
+                </div>
+            </div>
+    
+            {/* Table */}
+            <div
+                className="table-container"
+                style={{
+                    maxHeight: '768px',
+                    overflowY: 'auto',
+                    width: tableWidth,
+                }}
+            >
+                <table className="table" style={{ width: '100%' }}>
+                    {/* Table headers */}
+                    <thead>
+                        <tr>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Id</th>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Full Name</th>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Phone Number</th>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Email</th>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Pan Card</th>
+                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div style={{ padding: 15 }}>
-                <nav aria-label="Page navigation example">
-                    <ul className="pagination justify-content-center">
-                        <li className={`page-item ${page === 1 ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => setPage(page - 1)}>Previous</button>
-                        </li>
-                        {Array.from({ length: totalPages }, (_, index) => (
-                            <li key={index} className={`page-item ${page === index + 1 ? 'active' : ''}`}>
-                                <button className="page-link" onClick={() => setPage(index + 1)}>{index + 1}</button>
-                            </li>
+                    </thead>
+    
+                    {/* Table body */}
+                    <tbody>
+                        {filteredData.slice((page - 1) * limit, page * limit).map((rowData) => (
+                            <tr key={rowData.id} className={rowData.id % 2 === 0 ? 'table-info' : 'table-success'}>
+                                <td>{rowData.id}</td>
+                                <td>{rowData.fullName}</td>
+                                <td>{rowData.phone_no}</td>
+                                <td>{rowData.email}</td>
+                                <td>{rowData.pancard}</td>
+                                <td>
+                                    <button onClick={() => handleEdit(rowData)} className="btn text-light me-1" style={{backgroundColor: "var(--secondary-color)"}}>Edit</button>
+                                    <button onClick={() => handleRemove(rowData)} className="btn btn-danger">Remove</button>
+                                </td>
+                            </tr>
                         ))}
-                        <li className={`page-item ${page === totalPages ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => setPage(page + 1)}>Next</button>
-                        </li>
-                    </ul>
-                </nav>
+                    </tbody>
+                </table>
+    
+    
+                {/* Pagination */}
+                <div style={{ padding: '15px' }}>
+                    <nav aria-label="Page navigation example">
+                        <ul className="pagination justify-content-center">
+                            <li className={`page-item ${page === 1 ? 'disabled' : ''}`}>
+                                <button className="page-link" onClick={() => setPage(page - 1)}>Previous</button>
+                            </li>
+                            {Array.from({ length: totalPages }, (_, index) => (
+                                <li key={index} className={`page-item ${page === index + 1 ? 'active' : ''}`}>
+                                    <button className="page-link" onClick={() => setPage(index + 1)}>{index + 1}</button>
+                                </li>
+                            ))}
+                            <li className={`page-item ${page === totalPages || totalPages === 0 ? 'disabled' : ''}`}>
+                                <button className="page-link" onClick={() => setPage(page + 1)}>Next</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     );
-};
+}

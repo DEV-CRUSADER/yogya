@@ -10,19 +10,35 @@ import GearCircleIcon from '@rsuite/icons/legacy/GearCircle';
 export function SideBar() {
     const [expanded, setExpanded] = React.useState(true);
     const [activeKey, setActiveKey] = React.useState('1');
+
+    // Conditionally set the width of the sidebar
+    const sidebarWidth = expanded ? 240 : 56;
+
     return (
         <div
-            className="mt-4"
-            style={{ width: 240 }}>
+            className=""
+            style={{
+                width: sidebarWidth,
+                backgroundColor: 'var(--secondary-color)',
+            }}>
             <Toggle
+                className='mt-3'
                 onChange={setExpanded}
                 checked={expanded}
                 checkedChildren=""
                 unCheckedChildren=""
             />
-            <hr style={{marginBottom: "4px"}}/>
-            <Sidenav expanded={expanded} defaultOpenKeys={['3', '4']} style={{height: "87vh"}}>
-                <Sidenav.Body>
+            {/* <hr style={{marginBottom: "4px"}}/> */}
+            <Sidenav
+                className='mt-4'
+                expanded={expanded}
+                defaultOpenKeys={['3', '4']}
+                style={{
+                    height: "88vh",
+                    // backgroundColor: 'var(--primary-color)',
+                }}
+            >
+                <Sidenav.Body >
                     <Nav activeKey={activeKey} onSelect={setActiveKey}>
                         <Nav.Item eventKey="1" icon={<DashboardIcon />}>
                             Dashboard
@@ -30,19 +46,30 @@ export function SideBar() {
                         <Nav.Item eventKey="2" icon={<GroupIcon />}>
                             User Group
                         </Nav.Item>
-                        <hr />
-                        <Nav.Menu placement="rightStart" eventKey="3" title="Advanced" icon={<MagicIcon />}>
-                            <Nav.Item eventKey="3-1">Geo</Nav.Item>
-                            <Nav.Item eventKey="3-2">Devices</Nav.Item>
-                            <Nav.Item eventKey="3-3">Loyalty</Nav.Item>
-                            <Nav.Item eventKey="3-4">Visit Depth</Nav.Item>
+                        {/* <hr style={{backgroundColor: 'var(--secondary-color)',}}/> */}
+                        <Nav.Menu
+                            placement="rightStart"
+                            eventKey="3" 
+                            title="Advanced"
+                            icon={<MagicIcon />}
+                            style={{ backgroundColor: "white" }}
+                        >
+                            <div className="p-3" style={{
+                                backgroundColor: "",
+                            }}>
+                                <Nav.Item eventKey="3-1">Geo</Nav.Item>
+                                <Nav.Item eventKey="3-2">Devices</Nav.Item>
+                                <Nav.Item eventKey="3-3">Loyalty</Nav.Item>
+                                <Nav.Item eventKey="3-4">Visit Depth</Nav.Item>
+                            </div>
                         </Nav.Menu>
-                        <hr />
+                        {/* <hr /> */}
                         <Nav.Menu
                             placement="rightStart"
                             eventKey="4"
                             title="Settings"
                             icon={<GearCircleIcon />}
+                            style={{ backgroundColor: "white" }}
                         >
                             <Nav.Item eventKey="4-1">Applications</Nav.Item>
                             <Nav.Item eventKey="4-2">Channels</Nav.Item>

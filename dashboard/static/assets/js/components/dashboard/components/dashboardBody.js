@@ -4,15 +4,16 @@ import { TableView } from './table';
 
 
 export function DashboardBody() {
+
+    const [expanded, setExpanded] = useState(true);
+
     return (
         <>
-            <div className="dashboard-body h-100">
+            <div className="dashboard-body ">
                 <div className="d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                        <h5 className=" ms-3">Breadcrum Left</h5>
-                    </div>
-                    <div>
-                        <div className="me-3">
+                    <h4 className="ms-5">List of Clients</h4>
+                    <div className="">
+                        <div className="me-5">
                             <button
                                 className="btn me-3 text-light"
                                 style={{
@@ -32,14 +33,14 @@ export function DashboardBody() {
                         </div>
                     </div>
                 </div>
-                <hr
+                {/* <hr
                     style={{
                         borderColor: 'black',
                         // width: '100%',
                     }}
-                />
-                <div className="ms-3 me-3">
-                    <TableView />
+                /> */}
+                <div className="me-5 ms-5 mt-3">
+                    <TableView expanded={expanded} />
                 </div>
             </div>
         </>
