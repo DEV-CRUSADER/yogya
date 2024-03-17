@@ -65,7 +65,11 @@ export function TableView({ expanded }) {
     const totalPages = Math.ceil(filteredData.length / limit);
 
     return (
-        <div>
+        <div
+            style={{
+                boxShadow: 'rgba(0, 0, 0, 0.56) 0px 15px 70px 3px',
+                borderRadius: '10px',
+            }}>
             {/* Modal or edit form for editing */}
             {editedData && (
                 <div className="modal">
@@ -92,25 +96,27 @@ export function TableView({ expanded }) {
                     </div>
                 </div>
             )}
-    
+
             {/* Search bar */}
-            <div className="input-group mb-3">
+            <div className="input-group">
+                <span className="input-group-text" id="basic-addon2">
+                    <button className="bi bi-search pe-auto"></button>
+                </span>
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Search..."
+                    placeholder="Search for clients...."
                     aria-label="Search"
                     aria-describedby="basic-addon2"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    style={{ borderRadius: '0px 7px 7px 0px' }}
                 />
                 <div className="input-group-append">
-                    <span className="input-group-text" id="basic-addon2">
-                        <button className="bi bi-search pe-auto"></button>
-                    </span>
+
                 </div>
             </div>
-    
+
             {/* Table */}
             <div
                 className="table-container"
@@ -120,38 +126,38 @@ export function TableView({ expanded }) {
                     width: tableWidth,
                 }}
             >
-                <table className="table" style={{ width: '100%' }}>
+                <table className="table table-striped" style={{ width: '100%' }}>
                     {/* Table headers */}
                     <thead>
-                        <tr>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Id</th>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Full Name</th>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Phone Number</th>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Email</th>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Pan Card</th>
-                            <th scope="col" style={{backgroundColor: "#236572"}} className="text-light">Actions</th>
+                        <tr className="position-sticky">
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Id</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Full Name</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Phone Number</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Email</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Pan Card</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Actions</th>
                         </tr>
                     </thead>
-    
+
                     {/* Table body */}
                     <tbody>
                         {filteredData.slice((page - 1) * limit, page * limit).map((rowData) => (
-                            <tr key={rowData.id} className={rowData.id % 2 === 0 ? 'table-info' : 'table-success'}>
+                            <tr key={rowData.id}>
                                 <td>{rowData.id}</td>
                                 <td>{rowData.fullName}</td>
                                 <td>{rowData.phone_no}</td>
                                 <td>{rowData.email}</td>
                                 <td>{rowData.pancard}</td>
                                 <td>
-                                    <button onClick={() => handleEdit(rowData)} className="btn text-light me-1" style={{backgroundColor: "var(--secondary-color)"}}>Edit</button>
+                                    <button onClick={() => handleEdit(rowData)} className="btn text-light me-1" style={{ backgroundColor: "#34b45c" }}>Edit</button>
                                     <button onClick={() => handleRemove(rowData)} className="btn btn-danger">Remove</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-    
-    
+
+
                 {/* Pagination */}
                 <div style={{ padding: '15px' }}>
                     <nav aria-label="Page navigation example">

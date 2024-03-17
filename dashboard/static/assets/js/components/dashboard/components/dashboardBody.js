@@ -15,30 +15,17 @@ export function DashboardBody() {
                     <div className="">
                         <div className="me-5">
                             <button
-                                className="btn me-3 text-light"
+                                className="btn text-light"
                                 style={{
-                                    backgroundColor: 'var(--secondary-color)',
-                                    // borderColor: 'var(--primary-color)',
+                                    backgroundColor: '#34b45c',
+                                    paddingLeft: '20px',
+                                    paddingRight: '20px',
                                 }}
-                            >Primary
-                            </button>
-                            <button
-                                className="btn text-light "
-                                style={{
-                                    backgroundColor: 'var(--secondary-color)',
-                                    // borderColor: 'var(--primary-color)',
-                                }}
-                            >Add Client
+                            > Add Client 
                             </button>
                         </div>
                     </div>
                 </div>
-                {/* <hr
-                    style={{
-                        borderColor: 'black',
-                        // width: '100%',
-                    }}
-                /> */}
                 <div className="me-5 ms-5 mt-3">
                     <TableView expanded={expanded} />
                 </div>

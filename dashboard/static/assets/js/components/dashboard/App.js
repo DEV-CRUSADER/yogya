@@ -10,14 +10,17 @@ export function DashboardHomeView() {
     TabTitle('Yogya | Home')
     return (
         <>
-            <div>
-                <NavBar />
-            </div>
-            <div className='d-flex'>
-                <SideBar />
-                <div className='col'>
-                    <DashboardBody />
+            <div style={{backgroundColor: "#ffffff"}}>
+                <div>
+                    <NavBar />
                 </div>
+                <div className='d-flex'>
+                    <SideBar />
+                    <div className='col'>
+                        <DashboardBody />
+                    </div>
+                </div>
+
             </div>
         </>
     );
