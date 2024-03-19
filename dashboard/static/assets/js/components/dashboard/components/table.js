@@ -36,23 +36,20 @@ export function TableView({ expanded }) {
     };
     const saveEditedData = () => {
 
-        if (!editedData) return; // No data to save
-
+        if (!editedData) return;
         const newData = tableData.map(item => {
             if (item.id === editedData.id) {
                 return editedData;
             }
             return item;
         });
-        // Update the state with the new data
         setTableData(newData);
-        setEditedData(null); // Reset editedData state
+        setEditedData(null);
     };
 
     const handleEdit = (rowData) => {
         setEditedData(rowData);
     };
-
     const tableWidth = expanded ? '100%' : '80%';
 
     const filteredData = tableData.filter(item =>
@@ -61,7 +58,6 @@ export function TableView({ expanded }) {
         item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.pancard.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     const totalPages = Math.ceil(filteredData.length / limit);
 
     return (
@@ -136,6 +132,7 @@ export function TableView({ expanded }) {
                             <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Email</th>
                             <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Pan Card</th>
                             <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">Actions</th>
+                            <th scope="col" style={{ backgroundColor: "#104ccc" }} className="text-light">More</th>
                         </tr>
                     </thead>
 
@@ -151,6 +148,37 @@ export function TableView({ expanded }) {
                                 <td>
                                     <button onClick={() => handleEdit(rowData)} className="btn text-light me-1" style={{ backgroundColor: "#34b45c" }}>Edit</button>
                                     <button onClick={() => handleRemove(rowData)} className="btn btn-danger">Remove</button>
+                                </td>
+                                <td className="">
+                                    <div
+                                        className="dropdown "
+                                        style={{
+                                            maxWidth: "4vw"
+                                        }}
+                                    >
+                                        <button
+                                            className="bi bi-three-dots ms-2 ps-2 pe-2 p-2 text-light"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            style={{
+                                                backgroundColor: "#34b45c",
+                                                borderRadius: "5px",
+                                            }}
+                                        >
+                                        </button>
+                                        <ul className="dropdown-menu pe-auto">
+                                            <li>
+                                                <span className="dropdown-item">
+                                                    <i className="fas fa-pen mx-2"></i> Add to family
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span className="dropdown-item">
+                                                    <i className="fas fa-trash mx-2"></i> Block
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
