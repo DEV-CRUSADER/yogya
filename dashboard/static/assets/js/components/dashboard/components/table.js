@@ -22,6 +22,7 @@ export function TableView({ expanded }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [editedData, setEditedData] = useState(null);
 
+
     const handleRemove = rowData => {
         const updatedData = tableData.filter(item => item.id !== rowData.id);
         setTableData(updatedData);
@@ -60,6 +61,16 @@ export function TableView({ expanded }) {
         item.pancard.toLowerCase().includes(searchTerm.toLowerCase())
     );
     const totalPages = Math.ceil(filteredData.length / limit);
+
+    const [blockedUsers, setBlockedUsers] = useState([]);
+    const handleBlock = (rowData) => {
+        const updatedData = tableData.filter(item => item.id !== rowData.id);
+        setTableData(updatedData);
+        setBlockedUsers(prevBlockedUsers => [...prevBlockedUsers, { fullName: rowData.fullName, pancard: rowData.pancard }]);
+    };
+    useEffect(() => {
+        console.log(blockedUsers);
+    }, [blockedUsers]);
 
     return (
         <div
@@ -147,14 +158,14 @@ export function TableView({ expanded }) {
                                         </button>
                                         <ul className="dropdown-menu pe-auto">
                                             <li>
-                                                <span className="dropdown-item">
+                                                <button className="dropdown-item">
                                                     <i className="fas fa-pen mx-2"></i> Add to family
-                                                </span>
+                                                </button>
                                             </li>
                                             <li>
-                                                <span className="dropdown-item">
+                                                <button className="dropdown-item" onClick={() => handleBlock(rowData)}>
                                                     <i className="fas fa-trash mx-2"></i> Block
-                                                </span>
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
