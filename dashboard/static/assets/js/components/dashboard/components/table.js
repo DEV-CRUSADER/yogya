@@ -73,6 +73,7 @@ export function TableView({ expanded }) {
     }, [blockedUsers]);
 
     return (
+        <>
         <div
             style={{
                 boxShadow: 'rgba(0, 0, 0, 0.56) 0px 15px 70px 3px',
@@ -196,5 +197,6 @@ export function TableView({ expanded }) {
                 </div>
             </div>
         </div>
+        </>
     );
 }
