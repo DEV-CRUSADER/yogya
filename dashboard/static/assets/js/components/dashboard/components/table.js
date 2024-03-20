@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SideBar } from './sideBar';
 
 const generateDummyData = (count) => {
@@ -27,15 +27,15 @@ export function TableView({ expanded }) {
         setTableData(updatedData);
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
+    const handleInputChange = (e, field) => {
+        const { value } = e.target;
         setEditedData(prevData => ({
             ...prevData,
-            [name]: value
+            [field]: value
         }));
     };
-    const saveEditedData = () => {
 
+    const saveEditedData = () => {
         if (!editedData) return;
         const newData = tableData.map(item => {
             if (item.id === editedData.id) {
@@ -48,8 +48,9 @@ export function TableView({ expanded }) {
     };
 
     const handleEdit = (rowData) => {
-        setEditedData(rowData);
+        setEditedData({ ...rowData });
     };
+
     const tableWidth = expanded ? '100%' : '80%';
 
     const filteredData = tableData.filter(item =>
@@ -65,34 +66,8 @@ export function TableView({ expanded }) {
             style={{
                 boxShadow: 'rgba(0, 0, 0, 0.56) 0px 15px 70px 3px',
                 borderRadius: '10px',
-            }}>
-            {/* Modal or edit form for editing */}
-            {editedData && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={() => setEditedData(null)}>&times;</span>
-                        <h2>Edit Data</h2>
-                        <div>
-                            <label>Full Name:</label>
-                            <input type="text" name="fullName" value={editedData.fullName} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Phone Number:</label>
-                            <input type="text" name="phone_no" value={editedData.phone_no} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Email:</label>
-                            <input type="text" name="email" value={editedData.email} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <label>Pan Card:</label>
-                            <input type="text" name="pancard" value={editedData.pancard} onChange={handleInputChange} />
-                        </div>
-                        <button onClick={saveEditedData}>Save</button>
-                    </div>
-                </div>
-            )}
-
+            }}
+        >
             {/* Search bar */}
             <div className="input-group">
                 <span className="input-group-text" id="basic-addon2">
@@ -141,12 +116,16 @@ export function TableView({ expanded }) {
                         {filteredData.slice((page - 1) * limit, page * limit).map((rowData) => (
                             <tr key={rowData.id}>
                                 <td>{rowData.id}</td>
-                                <td>{rowData.fullName}</td>
-                                <td>{rowData.phone_no}</td>
-                                <td>{rowData.email}</td>
-                                <td>{rowData.pancard}</td>
+                                <td>{editedData && editedData.id === rowData.id ? <input value={editedData.fullName} onChange={(e) => handleInputChange(e, 'fullName')} /> : rowData.fullName}</td>
+                                <td>{editedData && editedData.id === rowData.id ? <input value={editedData.phone_no} onChange={(e) => handleInputChange(e, 'phone_no')} /> : rowData.phone_no}</td>
+                                <td>{editedData && editedData.id === rowData.id ? <input value={editedData.email} onChange={(e) => handleInputChange(e, 'email')} /> : rowData.email}</td>
+                                <td>{editedData && editedData.id === rowData.id ? <input value={editedData.pancard} onChange={(e) => handleInputChange(e, 'pancard')} /> : rowData.pancard}</td>
                                 <td>
-                                    <button onClick={() => handleEdit(rowData)} className="btn text-light me-1" style={{ backgroundColor: "#34b45c" }}>Edit</button>
+                                    {editedData && editedData.id === rowData.id ? (
+                                        <button className="btn text-light me-1" style={{ backgroundColor: "#f0ad4e" }} onClick={saveEditedData}>Save</button>
+                                    ) : (
+                                        <button className="btn text-light me-1" style={{ backgroundColor: "#34b45c" }} onClick={() => handleEdit(rowData)}>Edit</button>
+                                    )}
                                     <button onClick={() => handleRemove(rowData)} className="btn btn-danger">Remove</button>
                                 </td>
                                 <td className="">
