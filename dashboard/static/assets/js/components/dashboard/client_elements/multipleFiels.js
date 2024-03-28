@@ -11,11 +11,11 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
             {
                 investment_date: "",
                 scheme_name: "",
-                quantity: "",
+                share_quantity: "",
                 fixed_deposit: "",
                 debt_quantity: "",
                 debt_yield: "",
-                amount: "",
+                invested_amount: "",
                 market_value: "",
                 portfolio: "",
             },
@@ -85,7 +85,7 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                 </thead>
                 <tbody>
                     {inputFields.map((data, index) => {
-                        const { investment_date, scheme_name, quantity, fixed_deposit, debt_quantity, amount, market_value, debt_yield, portfolio } = data;
+                        const { investment_date, scheme_name, share_quantity, fixed_deposit, debt_quantity, invested_amount, market_value, debt_yield, portfolio } = data;
                         return (
                             <tr className="my-2" key={index}>
                                 <th className="px-1 pb-1">
@@ -113,8 +113,8 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                         <input
                                             type="number"
                                             onChange={(event) => handleChange(index, event)}
-                                            value={quantity}
-                                            name="quantity"
+                                            value={share_quantity}
+                                            name="share_quantity"
                                             className="form-control"
                                             placeholder="Quantity"
                                         />
@@ -148,8 +148,8 @@ export function InvesmentsMultiple({ inputFields, setInputFields, type }) {
                                     <input
                                         type="number"
                                         onChange={(event) => handleChange(index, event)}
-                                        value={amount}
-                                        name="amount"
+                                        value={invested_amount}
+                                        name="invested_amount"
                                         className="form-control"
                                         placeholder="Invested Amount"
                                     />
