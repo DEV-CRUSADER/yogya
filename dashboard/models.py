@@ -81,15 +81,14 @@ class Clients(BaseModel):
     salary = models.FloatField(null=True, blank=True)
     phone_number = models.CharField(null=True, blank=True)
     current_knowledge = models.CharField(max_length=100, null=True, blank=True)
-    current_occuption = models.CharField(max_length=256, null=True, blank=True)
+    current_occupation = models.CharField(max_length=256, null=True, blank=True)
     risk_tolerance = models.JSONField(default=dict)
     emergency_funds = models.FloatField(null=True, blank=True)   # to be changed to money field
     goals = ArrayField(models.CharField(max_length=200), null=True, blank=True)
     feedback = models.CharField(max_length=2000, null=True, blank=True)
-    business_member = models.OneToOneField('dashboard.BusinessMembers', related_name='client',
-                                    on_delete=models.DO_NOTHING, null=True)
+    
     def __str__(self):
-        return str(self.user.first_name) + " " + str(self.user.last_name)
+        return str(self.first_name) + " " + str(self.last_name)
         
     def total_loan_amount(self):
         if self.loan_set.exists():
@@ -124,14 +123,14 @@ class Insurance(BaseModel):
 class Investment(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     type = models.CharField(max_length=100, null=False, blank=False)
-    amount = models.FloatField(null=False, blank=False)
-    investment_date = models.DateField(null=False, blank=False)
+    invested_amount = models.FloatField(null=False, blank=False)
+    date = models.DateField(null=False, blank=False)
     scheme_name = models.CharField(max_length=100, null=False, blank=False)
-    debt_quality = models.CharField(max_length=100, null=False, blank=False)
-    fixd_deposit = models.CharField(max_length=100, null=False, blank=False)
+    debt_quantity = models.FloatField(null=False, blank=False)
+    fixed_deposit = models.FloatField(null=False, blank=False)
     market_value = models.FloatField(null=False, blank=False)
     portfolio = models.FloatField(null=False, blank=False)
-    quantity = models.FloatField(null=False, blank=False)
+    share_quantity = models.FloatField(null=False, blank=False)
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING, related_name="investment", null=True, blank=True)
 
     def __str__(self):
