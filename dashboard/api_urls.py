@@ -1,7 +1,8 @@
 from django.urls import path, include
 
-from  dashboard.views.historical_index import HistoricalIndexAPIView
-from  dashboard.views.contact_us.controller import ContactUsView
+from dashboard.views.historical_index import HistoricalIndexAPIView
+from dashboard.views.contact_us.controller import ContactUsView
+from dashboard.views.clients.controller import ClientsAPIView, InsuranceCreateAPIView
 
 from dashboard.views.accounts import SignUpView, LoginView, CheckClientLoginView, \
     LogOutView, ForgotPasswordResetView
@@ -24,4 +25,13 @@ urlpatterns = [
     path('account/check-auth', CheckClientLoginView.get, name="check-auth"),
     path('account/logout', LogOutView.post, name="logout-user"),
     path('account/reset-password', ForgotPasswordResetView.post, name="reset-password"),
+
+    # Client APIs
+    path('client/create', ClientsAPIView.create_client_view, name="create-client"),
+    path('clients/get-clients', ClientsAPIView.get_clients_view, name="get-clients"),
+    path('client/<uuid:client_id>', ClientsAPIView.get_client_view, name="get-client"),
+
+
+    # Client Other Information APIs
+    path('clients/create-insurance', InsuranceCreateAPIView.CreateInsurance, name="create-insurance"),
 ]
