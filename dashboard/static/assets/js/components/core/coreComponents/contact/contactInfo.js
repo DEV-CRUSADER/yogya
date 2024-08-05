@@ -16,12 +16,12 @@ export function ContactInfo() {
     {
       icon: icons.location,
       head: "Our Location",
-      description: "2004-2005 Arihant Market, Ring road, Surat, Gujarat",
+      description: "G-17 Shyam Plaza, VIP Road, Vesu, Surat, Gujarat - 395007",
     },
     {
       icon: icons.mail,
       head: "Email Us",
-      description: "invest@yogyacapital.com",
+      description: "contact@scoopinvestment.com",
     },
   ];
 

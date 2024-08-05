@@ -3,7 +3,7 @@ import { TabTitle } from "../core/scripts/general_function";
 
 
 export function DashboardHomeView()  {
-    TabTitle('Yogya | Home')
+    TabTitle('Scoop Investment | Home')
     return (
         <>
             <div 

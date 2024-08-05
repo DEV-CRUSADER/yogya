@@ -18,7 +18,7 @@ export function PersonHero() {
     {
       id: 3,
       name: "Email",
-      link: "mailto:chirag.jain@yogyacapital.com",
+      link: "mailto:chirag.jain@scoopinvestment.com",
     },
     {
       id: 4,

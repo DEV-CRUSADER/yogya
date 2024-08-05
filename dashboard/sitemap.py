@@ -4,7 +4,7 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
 
-class YogyacapitalSitemap(Sitemap):
+class ScoopInvestmentSitemap(Sitemap):
 
     def items(self):
         return [

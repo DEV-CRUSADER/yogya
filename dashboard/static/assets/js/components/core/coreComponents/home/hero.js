@@ -22,7 +22,7 @@ export function Hero() {
               fontFamily: "DelicateSans"
             }}
           >
-            YOGYA
+            SCOOP
           </h1>
           <h1
             className="text-center"
@@ -31,7 +31,7 @@ export function Hero() {
               fontFamily: "DelicateSans"
             }}
           >
-            CAPITAL
+            INVESTMENT
           </h1>
           <span className="fs-5 py-2 text-white">Your Trust, Our Commitment</span>
         </div>
@@ -52,7 +52,7 @@ export function Hero() {
               color: "var(--white)",
             }}
           >
-            In Yogya capital you are the first priority for us and we are here
+            In Scoop Investment you are the first priority for us and we are here
             to help you to find various ways to achieve your dreams.
           </p>
         </div>

@@ -22,12 +22,12 @@ import dashboard.views.accounts
 from .views import load_404, load_homepage, login_required
 
 from django.contrib.sitemaps.views import sitemap
-from dashboard.sitemap import YogyacapitalSitemap
+from dashboard.sitemap import ScoopInvestmentSitemap
 
 import core.views
 
 sitemaps = {
-    'yogyacapital.com': YogyacapitalSitemap,
+    'scoopinvestment.com': ScoopInvestmentSitemap,
 }
 
 app_name = 'core'
