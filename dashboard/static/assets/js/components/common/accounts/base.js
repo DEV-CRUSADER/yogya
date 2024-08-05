@@ -19,9 +19,9 @@ export function ClientAuthenticationView({ formType }) {
     const location = useLocation();
 
     if (location.pathname === "/register") {
-        TabTitle('Register to Yogya Capital')
+        TabTitle('Register to Scoop Investment')
     } else if (location.pathname === "/login") {
-        TabTitle('Login to Yogya Capital')
+        TabTitle('Login to Scoop Investment')
     } else if (location.pathname === "/password-reset") {
         TabTitle('Reset your password')
     }
@@ -59,7 +59,7 @@ export function ClientAuthenticationView({ formType }) {
                 <img
                     data-aos={(formType === 'login') ? "zoom-in" : "zoom-out"}
                     src={(formType === 'login') ? loginViewImage : registerViewImage}
-                    alt="Register to Yogya Caoital"
+                    alt="Register to Scoop Investment"
                     className="w-100"
                 />
             </div>

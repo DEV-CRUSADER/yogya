@@ -15,7 +15,7 @@ import {
   FaRegEnvelope,
 } from "react-icons/fa";
 import { BsSubstack } from "react-icons/bs";
-
+import { AiOutineX } from "react-icons/ai";
 import { Logo } from "../../common/utils/logo";
 
 import "../../../../../css/footer.css";
@@ -33,7 +33,7 @@ export function Footer() {
     },
     {
       Icon: FaRegEnvelope,
-      link: "mailto:invest@yogyacapital.com"
+      link: "mailto:contact@scoopinvestment.com"
     }
   ]
 
@@ -57,7 +57,7 @@ export function Footer() {
         </div>
         <div className="text-center">
           <span className="fs-6">
-            2004-2005 Arihant Market, Ring road, Surat, Gujarat
+          G-17 Shyam Plaza, VIP Road, Vesu, Surat, Gujarat - 395007
           </span>
         </div>
         <div className="text-center mt-1 d-flex justify-content-center">
@@ -70,7 +70,7 @@ export function Footer() {
           <div className="ps-1">
             <a>
               <FaRegEnvelope />
-              <span className="ps-1">invest@yogyacapital.com</span>
+              <span className="ps-1">contact@scoopinvestment.com</span>
             </a>
           </div>
         </div>
@@ -83,7 +83,7 @@ export function Footer() {
             background: "var(--teritary-color)",
           }}
         >
-          <span className="bottom-footer">www.yogyacapital.com &copy;&nbsp;copyright 2024</span>
+          <span className="bottom-footer">www.scoopinvestment.com &copy;&nbsp;copyright 2024</span>
           <span className="bottom-footer">Privacy policy | T&C</span>
         </div>
       </div>

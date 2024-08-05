@@ -27,7 +27,7 @@ export function Navbar() {
 	}, []);
 
 	if (currentLocation.pathname === "/"){
-		TabTitle("Yogya Capital");
+		TabTitle("Scoop Investment");
 	} else if (currentLocation.pathname === "/resources"){
 		TabTitle("YC | Resources");
 	} else if (currentLocation.pathname === "/mutual-funds"){
@@ -72,7 +72,7 @@ export function Navbar() {
 			label: "Resources",
 		},
 		{
-			to: "https://yogyacapital.substack.com",
+			to: "https://scoopinvestment.substack.com",
 			label: "Blog",
 		},
 		// {
@@ -114,12 +114,12 @@ export function Navbar() {
 							<span style={{
 								fontFamily: "DelicateSans",
 								fontSize: "1.7rem"
-							}}>Yogya</span>
+							}}>SCOOP</span>
 							<span style={{
 								marginTop: "-10px",
 								fontFamily: "DelicateSans",
 								fontSize: "1.3rem"
-							}}>Capital</span>
+							}}>INVESTMENT</span>
 						</div>
 					</Link>
 					<button

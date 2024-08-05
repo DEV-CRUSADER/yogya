@@ -127,10 +127,10 @@ export function SignUp() {
                     <div className="row align-items-center justify-content-center" style={{}}>
                         <div className="col-md-7">
                             <span className="fs-5 fs-sm-5 fs-md-2 fs-lg-2 fs-xl-2 fw-bolder">
-                                SignUp to <strong>Yogya Capital</strong>
+                                SignUp to <strong>Scoop Investment</strong>
                             </span>
                             <p className="mb-4 fs-lg-5">
-                                Welcome to Yogya Capital, it is our pleasure that you here
+                                Welcome to Scoop Investment, it is our pleasure that you here
                                 with us.
                             </p>
                             <form method="post" onSubmit={handleSubmit}>

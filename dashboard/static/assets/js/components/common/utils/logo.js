@@ -12,11 +12,11 @@ export function Logo() {
         >
             <span style={{
                 fontSize: "2rem",
-            }}>Yogya</span>
+            }}>Scoop</span>
             <span style={{
                 fontSize: "1.7rem",
                 marginTop: "-10px",
-            }}>Capital</span>
+            }}>Investment</span>
         </Link>
     );
 }
