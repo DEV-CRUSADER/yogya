@@ -27,7 +27,7 @@ export function Navbar() {
 	}, []);
 
 	if (currentLocation.pathname === "/"){
-		TabTitle("Yogya Capital");
+		TabTitle("Scoop Investment");
 	} else if (currentLocation.pathname === "/resources"){
 		TabTitle("SI | Resources");
 	} else if (currentLocation.pathname === "/mutual-funds"){
