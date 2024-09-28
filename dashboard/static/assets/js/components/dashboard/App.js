@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { TabTitle } from "../core/scripts/general_function";
 
+import TableElement from './next_ui_testing/index';
+
 
 export function DashboardHomeView()  {
-    TabTitle('Scoop Investment | Home')
+    TabTitle('Scoop Investment | Admin Dashboard');
     return (
         <>
             <div 
@@ -11,7 +13,7 @@ export function DashboardHomeView()  {
                     fs-5 fs-md-4 fs-xl-2 fs-xxl-1 fw-bold text-secondary text-uppercase w-100'
                 style={{height: '100vh'}}
             >
-                UNDER DEVELOPMENT
+                <TableElement />
             </div>
         </>
     );
