@@ -1,7 +1,10 @@
 import React from "react";
 
 import chirag from "../../../../../img/chirag.png";
+import {CSS} from "../../../../../../css/home.css"
 import { Profile } from "./profile";
+import theGame from "../../../../../img/skinIntheGame.png";
+import selling from "../../../../../img/misSelling.png";
 
 export function PersonHero() {
   const chiragSocials = [
@@ -45,4 +48,3 @@ export function PersonHero() {
     </div>
   );
 }
-

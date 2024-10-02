@@ -9,18 +9,8 @@ import { NextUIProvider } from "@nextui-org/react";
 
 import { WebLoader } from "./components/common/utils/loader";
 
-const Dashboard = lazy(
-    async () =>
-        await import("./apps/Dashboard").then((module) => ({
-            default: module.Dashboard,
-        }))
-);
-const CoreApp = lazy(
-    async () =>
-        await import("./apps/CoreApp").then((module) => ({
-            default: module.CoreApp,
-        }))
-);
+const DashboardApp = lazy(async () => await  import("./apps/Dashboard").then((module) => ({ default: module.Dashboard })));
+const CoreApp = lazy(async () => await  import("./apps/CoreApp").then((module) => ({ default: module.CoreApp })));
 
 import "aos/dist/aos.css";
 import "../../css/style.css";
@@ -41,7 +31,7 @@ function App() {
                         path="*"
                         element={
                             <React.Suspense fallback={<WebLoader />}>
-                                <Dashboard />
+                                <DashboardApp />
                             </React.Suspense>
                         }
                     />

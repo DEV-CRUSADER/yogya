@@ -9,23 +9,13 @@
  */
 (self["webpackChunkyogya"] = self["webpackChunkyogya"] || []).push([["dashboard_static_assets_js_components_dashboard_App_js"],{
 
-/***/ "./dashboard/static/assets/js/components/core/scripts/general_function.js":
-/*!********************************************************************************!*\
-  !*** ./dashboard/static/assets/js/components/core/scripts/general_function.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   TabTitle: () => (/* binding */ TabTitle)\n/* harmony export */ });\nvar TabTitle = function TabTitle(newTitle) {\n  return document.title = newTitle;\n};\n\n//# sourceURL=webpack://yogya/./dashboard/static/assets/js/components/core/scripts/general_function.js?");
-
-/***/ }),
-
 /***/ "./dashboard/static/assets/js/components/dashboard/App.js":
 /*!****************************************************************!*\
   !*** ./dashboard/static/assets/js/components/dashboard/App.js ***!
   \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   DashboardHomeView: () => (/* binding */ DashboardHomeView)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _core_scripts_general_function__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/scripts/general_function */ \"./dashboard/static/assets/js/components/core/scripts/general_function.js\");\n/* harmony import */ var _next_ui_testing_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./next_ui_testing/index */ \"./dashboard/static/assets/js/components/dashboard/next_ui_testing/index.js\");\n\n\n\nfunction DashboardHomeView() {\n  (0,_core_scripts_general_function__WEBPACK_IMPORTED_MODULE_1__.TabTitle)('Scoop Investment | Admin Dashboard');\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"d-flex justify-content-center align-items-center\\r fs-5 fs-md-4 fs-xl-2 fs-xxl-1 fw-bold text-secondary text-uppercase w-100\",\n    style: {\n      height: '100vh'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_next_ui_testing_index__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null)));\n}\n\n//# sourceURL=webpack://yogya/./dashboard/static/assets/js/components/dashboard/App.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   DashboardHomeView: () => (/* binding */ DashboardHomeView)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _client_elements_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./client_elements/form */ \"./dashboard/static/assets/js/components/dashboard/client_elements/form.js\");\n/* harmony import */ var _next_ui_testing_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./next_ui_testing/index */ \"./dashboard/static/assets/js/components/dashboard/next_ui_testing/index.js\");\n\n\n\n// export function HomeView()  {\n\n\nfunction DashboardHomeView() {\n  TabTitle('Scoop Investment | Admin Dashboard');\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    className: \"d-flex justify-content-center align-items-center\\r fs-5 fs-md-4 fs-xl-2 fs-xxl-1 fw-bold text-secondary text-uppercase w-100\",\n    style: {\n      height: '100vh'\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_next_ui_testing_index__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null)));\n}\n\n//# sourceURL=webpack://yogya/./dashboard/static/assets/js/components/dashboard/App.js?");
 
 /***/ }),
 

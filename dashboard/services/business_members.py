@@ -43,24 +43,7 @@ class BusinessMemberService:
     
 
     @staticmethod
-    def create(created_by_bm=None, create_serializer_data=None, user=None, 
-               is_staff=None, is_client=None, is_owner=None):
-
-        if user is None and create_serializer_data is None:
-            raise Exception("both User and Data cannot be None")
-
-        if user is None:
-            user = get_user_by_email(create_serializer_data["email"])
-            if user is None:
-                user = User.objects.create(first_name=create_serializer_data['first_name'],
-                                           last_name=create_serializer_data.get('last_name', ''),
-                                           email=create_serializer_data['email'],
-                                           phone_number=create_serializer_data.get('phone_number', None))
-            else:
-                user.first_name = create_serializer_data['first_name']
-                user.last_name = create_serializer_data.get('last_name', '')
-                user.phone_number = create_serializer_data.get('phone_number', None)
-                user.save()
+    def create(is_staff=None, is_client=None, is_owner=None, create_serializer_data=None, created_by_bm=None, user=None):
 
         business_members = BusinessMembers.objects.all_with_deleted().filter(user=user)
 
@@ -101,10 +84,7 @@ class BusinessMemberService:
 
         SystemEvent(event_type=EventType.CREATE, entity_name=EntityName.CLIENT, entity_id=business_member.id,
                     business_member_id=created_by_bm.id, metadata={}).create()
-        
-        # mailer.send_mail('send_team_member_invitation_email',
-        #                     invited_by_id=created_by_bm.user_id,
-        #                     new_team_member_id=business_member.id)
+
         return business_member
 
 

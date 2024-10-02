@@ -12,6 +12,8 @@ import 'react-vertical-timeline-component/style.min.css';
 
 import theGame from "../../../../../img/skinIntheGame.png";
 import selling from "../../../../../img/misSelling.png";
+import chirag from "../../../../../img/chirag.png";
+import { Profile } from "./profile";
 
 export function WhyUsSectionWrapper() {
 

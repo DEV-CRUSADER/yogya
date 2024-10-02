@@ -64,7 +64,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
-    'jazzmin',
+    "semantic_admin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,7 +103,9 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'core.custom_exception_handler.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 1
 }
 
 DASHBOARD_TEMPLATES = os.path.join(BASE_DIR, 'dashboard', 'templates')

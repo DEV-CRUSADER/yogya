@@ -22,7 +22,7 @@ export function Hero() {
               fontFamily: "DelicateSans"
             }}
           >
-            SCOOP
+            SCOOP2
           </h1>
           <h1
             className="text-center"

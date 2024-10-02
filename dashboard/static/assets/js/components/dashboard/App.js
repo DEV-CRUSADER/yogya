@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { TabTitle } from "../core/scripts/general_function";
+import { ClientDataForm } from "./client_elements/form"
+
+
+// export function HomeView()  {
 
 import TableElement from './next_ui_testing/index';
 
