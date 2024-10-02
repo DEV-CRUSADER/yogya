@@ -14,7 +14,7 @@ from dashboard.utils import TokenGenerator
 def send_user_verification_email(business_member_id):
     business_member = BusinessMembers.objects.get(pk=business_member_id)
 
-    mail_subject = 'Welcome to Yogya Capital, please verify your email address.'
+    mail_subject = 'Welcome to Scoop Investment, please verify your email address.'
     html_message = render_to_string('emails/signup-verification.html', {
         'user': business_member.user,
         'domain': settings.SITE_URL,
@@ -30,7 +30,7 @@ def send_user_verification_email(business_member_id):
 def send_user_password_reset_email(business_member_id):
     business_member = BusinessMembers.objects.get(pk=business_member_id)
 
-    mail_subject = 'Password reset | Yogya Capital'
+    mail_subject = 'Password reset | Scoop Investment'
     html_message = render_to_string('emails/forgot-password-reset.html', {
         'business_member': business_member,
         'domain': settings.SITE_URL,
@@ -44,7 +44,7 @@ def send_user_password_reset_email(business_member_id):
 
 @shared_task
 def send_contact_us_email(name, email, phone_number, message):
-    mail_subject = 'Contact Us - Yogya Capital'
+    mail_subject = 'Contact Us - Scoop Investment'
     html_message = render_to_string('emails/contact-us.html', {
         'name': name,
         'email': email,

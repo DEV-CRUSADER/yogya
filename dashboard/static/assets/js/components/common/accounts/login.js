@@ -81,10 +81,10 @@ export function Login() {
                 <div className="row align-items-center justify-content-center">
                     <div className="col-md-7 ">
                         <h3>
-                            Login to <strong>Yogya Capital</strong>
+                            Login to <strong>Scoop Investment</strong>
                         </h3>
                         <p className="mb-4">
-                            Welcome to Yogya Capital, it is our pleasure that you here
+                            Welcome to Scoop Investment, it is our pleasure that you here
                             with us.
                         </p>
                         <form method="post" onSubmit={handleSubmit}>

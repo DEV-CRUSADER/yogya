@@ -18,15 +18,20 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
-              modules: true,
+              modules: true, // Keep this if you're using CSS modules
             },
           },
+          "postcss-loader", // Add this line for Tailwind
         ],
         include: /\.module\.css$/,
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader", // Add this line for Tailwind
+        ],
         exclude: /\.module\.css$/,
       },
       {
@@ -36,16 +41,16 @@ module.exports = {
           options: {
             outputPath: "images",
           },
-        }
+        },
       },
       {
-        test: /\.(woff|woff2|ttf)$/,
+        test: /\.(woff|woff2|ttf)$/i,
         use: {
           loader: "file-loader",
           options: {
             outputPath: "fonts",
           },
-        }
+        },
       },
       {
         test: /\.?js$/,

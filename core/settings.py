@@ -33,9 +33,12 @@ ALLOWED_HOSTS = [
     'dashboard.localhost:8000',
 
     '195.35.22.25',
-    'yogyacapital.com',
-    'www.yogyacapital.com',
-    'dashboard.yogyacapital.com',
+    'scoopinvestment.com',
+    'www.scoopinvestment.com',
+    'dashboard.scoopinvestment.com',
+    
+    
+    
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -45,14 +48,14 @@ CSRF_TRUSTED_ORIGINS = [
     "http://dashboard.localhost",
     "http://dashboard.localhost:8000",
     "http://195.35.22.25",
-    "http://yogyacapital.com",
-    "http://www.yogyacapital.com",
-    "http://dashboard.yogyacapital.com",
+    "http://scoopinvestment.com",
+    "http://www.scoopinvestment.com",
+    "http://dashboard.scoopinvestment.com",
 
     "https://195.35.22.25",
-    "https://yogyacapital.com",
-    "https://www.yogyacapital.com",
-    "https://dashboard.yogyacapital.com",
+    "https://scoopinvestment.com",
+    "https://www.scoopinvestment.com",
+    "https://dashboard.scoopinvestment.com",
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -281,11 +284,11 @@ SKIP_OTP = os.getenv('SKIP_OTP', "True") == 'True'
 # JAZZMIN CONFIGURATIONS
 JAZZMIN_SETTINGS = {
     "site_title": "Dashboard",
-    "site_header": "Yogya Capital",
-    "site_brand": "Yogya Capital",
+    "site_header": "Scoop Investment",
+    "site_brand": "Scoop Investment",
     "site_logo_classes": "img-circle",
-    "welcome_sign": "Yogya Capital Admin Portal",
-    "copyright": "&copy; Yogya Capital",
+    "welcome_sign": "Scoop Investment Admin Portal",
+    "copyright": "&copy; Scoop Investment",
     "search_model": ["auth.User", "auth.Group"],
     "usermenu_links": [
         {"model": "auth.user"}

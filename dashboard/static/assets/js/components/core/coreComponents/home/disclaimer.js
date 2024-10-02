@@ -13,7 +13,7 @@ export function Disclaimer() {
         <section className="container text-center">
           <p className="span-0 my-2 fs-1">DISCLAIMER</p>
           <p className="span-1 mb-2">
-            yogyacapital.com an online website of Chirag R Jain who is registered
+            scoopinvestment.com an online website of Chirag R Jain who is registered
             vide ARN-187955 as a AMFI Registered Mutual Fund Distributor.
           </p>
           <span className="span-2">
