@@ -11,6 +11,8 @@ const ContactPageView = lazy(async () => await import("../components/core/App").
 const ClientAuthView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.ClientAuthView })));
 
 
+import { ClientData } from "../components/dashboard/client_elements/form";
+
 export function CoreApp() {
     return (
         <Routes>
