@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaHome, FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons
-import { Link, useLocation } from "react-router-dom"; // Correct import for useLocation
+ // Import icons
+import { FaHome, FaPhoneAlt } from "react-icons/fa";
+import { BsSubstack } from "react-icons/bs";
+import { GrResources } from "react-icons/gr";
+// Correct import for useLocation
+import { Link, useLocation } from "react-router-dom"; 
 import { TabTitle } from "../scripts/general_function";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,11 +14,6 @@ const Navbar = () => {
   const buttonRef = useRef(null); // Ref for the hamburger/close button
 
   const currentLocation = useLocation();
-
-  useEffect(() => {
-    // You can define CheckLogin if needed or remove this effect
-    // CheckLogin();
-  }, []);
 
   useEffect(() => {
     // Dynamically update the page title based on location
@@ -27,21 +27,26 @@ const Navbar = () => {
   }, [currentLocation]);
 
   const nav_links = [
-    {
+  {
       to: "/",
       label: "Home",
+      icon: <FaHome />
     },
-    {
-      to: "/resources",
-      label: "Resources",
-    },
+    // {
+    //   to: "/resources",
+    //   label: "Resources",
+    //   icon: <GrResources />
+
+    // },
     {
       to: "https://scoopinvestment.substack.com",
       label: "Blog",
+      icon: <BsSubstack />
     },
     {
       to: "/contact",
       label: "Contact Us",
+      icon: <FaPhoneAlt />
     },
   ];
 
@@ -79,11 +84,6 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const navigationItems = [
-    { name: "Home", to: "/", icon: <FaHome /> },
-    { name: "Resources", to: "/resources", icon: <FaEnvelope /> },
-    { name: "Contact Us", to: "/contact", icon: <FaPhone /> },
-  ];
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -166,15 +166,15 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {navigationItems.map((item) => (
+        {nav_links.map((item) => (
           <Link
-            key={item.name}
+            key={item.label}
             to={item.to}
             className="text-white flex items-center space-x-3 p-2 rounded-md hover:bg-gray-700 transition-colors duration-300 no-underline"
             onClick={handleLinkClick} // Close menu on link click
           >
             {item.icon} {/* Display the icon */}
-            <span>{item.name}</span>
+            <span>{item.label}</span>
           </Link>
         ))}
 

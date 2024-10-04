@@ -4,7 +4,9 @@ import {
   FaInstagram,
   FaTwitter,
   FaLinkedinIn,
+  FaRegEnvelope,
 } from "react-icons/fa";
+import { BsSubstack } from "react-icons/bs";
 
 
 export const Footer = () => {
