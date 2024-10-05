@@ -1,5 +1,5 @@
+import { HeadingDescription } from "./index";
 import React from "react";
-import HeadingDescription from "./headingDescription";
 
 const FeaturedCases = (props) => {
   return (

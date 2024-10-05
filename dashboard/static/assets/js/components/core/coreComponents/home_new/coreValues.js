@@ -1,11 +1,13 @@
+import { HeadingDescription, Buttons,Cards } from "./index";
 import React from "react";
-import HeadingDescription from "./headingDescription";
-import Cards from "./cards";
-import Buttons from "./buttons";
+
 const coreValues = () => {
   return (
     <div className="flex flex-wrap md:flex-row justify-around m-10 ">
-      <div style={{ wordSpacing: "1px" }} className="flex flex-col justify-center md:w-1/2 max-lg:w-full">
+      <div
+        style={{ wordSpacing: "1px" }}
+        className="flex flex-col justify-center md:w-1/2 max-lg:w-full"
+      >
         <HeadingDescription
           Page="Core Value"
           Heading="Services we serve to all over the world"
@@ -29,7 +31,11 @@ const coreValues = () => {
 
       {/* <div className= */}
 
-      <Cards Classes="grid grid-cols-2 max-sm:grid-cols-1 gap-3" hasBorder={true} Padding={false}/>
+      <Cards
+        Classes="grid grid-cols-2 max-sm:grid-cols-1 gap-3"
+        hasBorder={true}
+        Padding={false}
+      />
       {/* </div> */}
     </div>
   );

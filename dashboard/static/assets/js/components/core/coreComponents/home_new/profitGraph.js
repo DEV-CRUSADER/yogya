@@ -1,5 +1,5 @@
+import { HeadingDescription } from "./index";
 import React from "react";
-import HeadingDescription from "./headingDescription";
 
 const profitGraph = (props) => {
   const feature = [
@@ -33,9 +33,9 @@ const profitGraph = (props) => {
             Heading={props.Heading}
             Description={props.Description}
           />
-          {feature.map((values) => {
+          {feature.map((values,index) => {
             return (
-              <div className="flex w-fit py-2 px-4 mb-5">
+              <div className="flex w-fit py-2 px-4 mb-5" key={index}>
                 <img
                   src={values.logo}
                   alt="secure..."

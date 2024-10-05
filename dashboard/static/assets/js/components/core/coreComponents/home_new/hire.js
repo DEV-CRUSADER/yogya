@@ -1,5 +1,5 @@
 import React from "react";
-import HeadingDescription from "./headingDescription";
+import { HeadingDescription } from "./index";;
 
 const hire = () => {
   const cards = [
@@ -42,7 +42,7 @@ const hire = () => {
   ];
   return (
     <div>
-      <div className="flex flex-col justify-center items-center mb-10">
+      <div className="flex flex-col justify-center items-center mb-10 ">
         <HeadingDescription
           Page="We are hire for"
           Heading="Explore Solutions"
@@ -52,9 +52,9 @@ const hire = () => {
       </div>
       <div className="flex justify-evenly gap-5 flex-wrap">
         <div className="absolute bg-lime-200 h-1/2 w-0.1 left-10"></div>
-        {cards.map((cardData) => {
+        {cards.map((cardData,index) => {
           return (
-            <div className="bg-white p-6 rounded-lg shadow-md max-w-sm">
+            <div className="bg-white p-6 rounded-lg shadow-md max-w-sm" key={index}>
               {/* Image */}
               <div className="h-48 w-full bg-gray-200 rounded-lg mb-4 overflow-hidden">
                 <img

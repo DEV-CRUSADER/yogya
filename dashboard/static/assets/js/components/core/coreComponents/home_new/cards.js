@@ -1,8 +1,13 @@
 import React from "react";
-import Finance from "./images/finance.png";
-import FinanceBrand from "./images/brand.png";
-import FinanceAdvices from "./images/advices.png";
-import ComprehensiveAdvices from "./images/compehensiveAdvices.png";
+
+//TODO: That all imported Images are taken from the undraw.co website
+import {
+  Finance,
+  FinanceBrand,
+  FinanceAdvices,
+  ComprehensiveAdvices,
+  Link,
+} from "./index";
 
 const cards = (props) => {
   const items = [
@@ -36,7 +41,7 @@ const cards = (props) => {
     },
   ];
   return (
-    <div className={props.Classes}>
+    <div className={`wrapper ${props.Classes}`}>
       {items.map((element, index) => {
         return (
           <div
@@ -47,19 +52,19 @@ const cards = (props) => {
                 : ""
             }`}
           >
-            {/* <a href="#"> */}
-            <img
-              className="rounded-t-lg h-28 w-auto object-contain"
-              src={element.Icon}
-              alt={element.Icon_alt_text}
-            />
-            {/* </a> */}
+            <Link to="/">
+              <img
+                className="rounded-t-lg h-28 w-auto object-contain"
+                src={element.Icon}
+                alt={element.Icon_alt_text}
+              />
+            </Link>
             <div className={`${props.Padding ? "p-5" : "px-3 py-2"}`}>
-              {/* <a href="#"> */}
-              <h5 className="mb-2 text-xl font-bold tracking-normal ">
-                {element.Heading}
-              </h5>
-              {/* </a> */}
+              <Link to="/">
+                <h5 className="mb-2 text-xl font-bold tracking-normal ">
+                  {element.Heading}
+                </h5>
+              </Link>
               <p className="mb-3 tracking-wide text-left whitespace-break-spaces">
                 {element.Description}
               </p>

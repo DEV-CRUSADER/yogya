@@ -1,5 +1,5 @@
+import { HeadingDescription } from "./index";
 import React from "react";
-import HeadingDescription from "./headingDescription";
 
 const aboutUs = (props) => {
   return (
@@ -15,7 +15,7 @@ const aboutUs = (props) => {
 
       {/* Text Section */}
       <div className="w-full lg:w-1/2 lg:pl-10">
-      <HeadingDescription
+        <HeadingDescription
           Page={props.Page}
           Heading={props.Heading}
           Description={props.Description}
