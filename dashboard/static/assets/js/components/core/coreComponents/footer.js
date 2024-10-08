@@ -8,26 +8,99 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { Link } from "react-router-dom";
+// import { BsSubstack } from "react-icons/bs";
 
 export const Footer = () => {
   const Our_Services = [
-    "Saving and Strategy",
-    "Life & Health Insurance",
-    "Banking and Financial",
-    "Retirement Planning",
-    "Home and Business Loan",
-    "Business Consultation",
+    {
+      label: "Saving and Strategy",
+      to: "#",
+    },
+    {
+      label: "Life & Health Insurance",
+      to: "#",
+    },
+    {
+      label: "Banking and Financial",
+      to: "#",
+    },
+    {
+      label: "Retirement Planning",
+      to: "#",
+    },
+    {
+      label: "Home and Business Loan",
+      to: "#",
+    },
+    {
+      label: "Business Consultation",
+      to: "#",
+    },
   ];
 
   const Important_Links = [
-    "Home",
-    "About",
-    "Products",
-    "Payment",
-    "Newsletter",
-    "Testimonial",
-    "Privacy",
+    {
+      label: "Home",
+      to: "/",
+    },
+    {
+      label: "About",
+      to: "/about",
+    },
+    {
+      label: "Newsletter",
+      to: "/newsletter",
+    },
+    {
+      label: "Testimonial",
+      to: "/testimonial",
+    },
+    {
+      label: "Privacy",
+      to: "/privacy",
+    },
   ];
+
+  const social_icons = [
+    {
+      label: "Facebook",
+      to: "https://facebook.com",
+      Icon: <FaFacebookF className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Instagram",
+      to: "https://instagram.com",
+      Icon: <FaInstagram className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Twitter",
+      to: "https://twitter.com",
+      Icon: <FaTwitter className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Linkedin",
+      to: "https://linkedin.com",
+      Icon: <FaLinkedinIn className="text-green-500 h-5 w-5" />,
+    },
+  ];
+
+  // const Our_Services = [
+  //   "Saving and Strategy",
+  //   "Life & Health Insurance",
+  //   "Banking and Financial",
+  //   "Retirement Planning",
+  //   "Home and Business Loan",
+  //   "Business Consultation",
+  // ];
+
+  // const Important_Links = [
+  //   "Home",
+  //   "About",
+  //   "Newsletter",
+  //   "Testimonial",
+  //   "Privacy",
+  // ];
 
   return (
     <footer className="bg-gray-100 py-10 mt-10 px-6 w-full">
@@ -46,12 +119,14 @@ export const Footer = () => {
         <div>
           <h2 className="text-lg font-bold mb-3">Our Services</h2>
           <ul className="space-y-2">
-            {Our_Services.map((label, idx) => (
+            {Our_Services.map((item, idx) => (
               <li
-                className="text-gray-600 hover:underline"
-                key={`service-${idx}`}
+                className="text-gray-600 hover:underline "
+                key={`link-${idx}`}
               >
-                {label}
+                <Link to={item.to} target="_blank">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -60,10 +135,15 @@ export const Footer = () => {
         {/* Important Links Section */}
         <div>
           <h2 className="text-lg font-bold mb-3">Important Links</h2>
-          <ul className="space-y-2">
-            {Important_Links.map((label, idx) => (
-              <li className="text-gray-600" key={`link-${idx}`}>
-                {label}
+          <ul className="space-y-3">
+            {Important_Links.map((item, idx) => (
+              <li
+                className="text-gray-600 hover:underline w-fit"
+                key={`link-${idx}`}
+              >
+                <Link to={item.to} target="_blank">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -91,38 +171,19 @@ export const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex space-x-5 mt-10">
-            <a
-              href="https://facebook.com"
-              className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebookF className=" text-green-500 h-5 w-5" />
-            </a>
-            <a
-              href="https://instagram.com"
-              className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className=" text-green-500 h-5 w-5" />
-            </a>
-            <a
-              href="https://twitter.com"
-              className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTwitter className=" text-green-500 h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedinIn className=" text-green-500 h-5 w-5" />
-            </a>
+           
+            {social_icons.map((item, index) => {
+              return (
+                <Link
+                  to={item.to}
+                  key={index}
+                  className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-400"
+                  target="_blank"
+                >
+                  {item.Icon} {/* Corrected to `Icon` */}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

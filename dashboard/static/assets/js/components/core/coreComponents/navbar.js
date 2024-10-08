@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaHome, FaBlog, FaPhone } from "react-icons/fa"; // Import icons
+
+import { FaHome } from "react-icons/fa"; // Import icons
+import { FaPhoneSquareAlt } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom"; // Correct import for useLocation
+
+// Import icons
+import { BsSubstack } from "react-icons/bs";
 import { TabTitle } from "../scripts/general_function";
-import { GrResources } from "react-icons/gr";
-import { IoMdContact } from "react-icons/io";
 import { FaTimes, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
@@ -30,20 +33,20 @@ const Navbar = () => {
       label: "Home",
       Icon: <FaHome className="h-5 w-5" />,
     },
-    {
-      to: "/resources",
-      label: "Resources",
-      Icon: <GrResources className="h-5 w-5" />,
-    },
+    // {
+    //   to: "/resources",
+    //   label: "Resources",
+    //   Icon: <GrResources className="h-5 w-5" />,
+    // },
     {
       to: "https://scoopinvestment.substack.com",
       label: "Blog",
-      Icon: <FaBlog className="h-5 w-5" />,
+      Icon: <BsSubstack className="h-5 w-5" />,
     },
     {
       to: "/contact",
       label: "Contact Us",
-      Icon: <IoMdContact className="h-5 w-5" />,
+      Icon: <FaPhoneSquareAlt className="h-5 w-5" />,
     },
   ];
 
@@ -116,14 +119,16 @@ const Navbar = () => {
               onClick={handleLinkClick}
               target={item.to.startsWith("http") ? "_blank" : ""}
             >
-              {item.Icon}
               <span>{item.label}</span>
             </Link>
           ))}
 
           {/* Login Button */}
-          <Link to="/login">
-            <button className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none">
+          <Link to="/">
+            <button
+              disabled
+              className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none cursor-not-allowed"
+            >
               Login
             </button>
           </Link>
@@ -140,6 +145,7 @@ const Navbar = () => {
         <div className="text-white text-xl font-bold">
           <Link to="/">Company Logo</Link>
         </div>
+
         {nav_links.map((item) => (
           <Link
             key={item.label}
@@ -154,7 +160,10 @@ const Navbar = () => {
 
         {/* Mobile Login Button */}
         <Link to="/login">
-          <button className="absolute bottom-0 px-4 py-2 my-5 w-3/4 items-center bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none">
+          <button
+            disabled
+            className="absolute bottom-0 px-4 py-2 my-5 w-3/4 items-center bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none cursor-not-allowed"
+          >
             Login
           </button>
         </Link>

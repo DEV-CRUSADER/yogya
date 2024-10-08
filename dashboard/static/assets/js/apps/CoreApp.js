@@ -19,22 +19,22 @@ export function CoreApp() {
                         <HomePageView />
                     </Suspense>
                 } />
-                <Route path="/mutual-funds" element={
+                {/* <Route path="/mutual-funds" element={
                     <Suspense fallback={<WebLoader />}>
                         <MutualPageView />
                     </Suspense>
-                } />
-                <Route path="/resources" element={
+                } /> */}
+                {/* <Route path="/resources" element={
                     <Suspense fallback={<WebLoader />}>
                         <ResourcesPageView />
                     </Suspense>
-                } />
+                } /> */}
                 <Route path="/contact" element={
                     <Suspense fallback={<WebLoader />}>
                         <ContactPageView />
                     </Suspense>
                 } />
-                <Route path="/register" element={
+                {/* <Route path="/register" element={
                     <Suspense fallback={<WebLoader />}>
                         <ClientAuthView formType="register" />
                     </Suspense>
@@ -48,7 +48,7 @@ export function CoreApp() {
                     <Suspense fallback={<WebLoader />}>
                         <ClientAuthView formType="password-reset" />
                     </Suspense>
-                } />
+                } /> */}
         </Routes>
     );
 }

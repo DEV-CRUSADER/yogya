@@ -1,4 +1,4 @@
-import { HeadingDescription, Buttons,Cards } from "./index";
+import { HeadingDescription, Buttons, Cards } from "./index";
 import React from "react";
 
 const coreValues = () => {
@@ -22,11 +22,12 @@ const coreValues = () => {
         <p style={{ letterSpacing: "1px" }} className="">
           Lorem ipsum is simply dummy text of the printing and typesetting.
         </p>
-
-        <Buttons
-          success_button_title="Work with Us"
-          More_button_title="See All"
-        />
+        <div className="flex justify-center items-center">
+            <Buttons
+              success_button_title="Work with Us"
+              More_button_title="See All"
+            />
+        </div>
       </div>
 
       {/* <div className= */}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { HeadingDescription } from "./index";
 import React from "react";
 
@@ -33,7 +34,7 @@ const profitGraph = (props) => {
             Heading={props.Heading}
             Description={props.Description}
           />
-          {feature.map((values,index) => {
+          {feature.map((values, index) => {
             return (
               <div className="flex w-fit py-2 px-4 mb-5" key={index}>
                 <img
@@ -49,9 +50,13 @@ const profitGraph = (props) => {
             );
           })}
 
-          <button className="bg-green-500 text-white py-2 px-6 h-12 text-lg font-medium  tracking-wide hover:bg-green-600 transition duration-200 mb-5">
-            Contact US
-          </button>
+          <div className="flex justify-center items-center">
+            <Link to="/">
+              <button className="bg-green-500 text-white py-2 px-6 h-12 text-lg font-medium  tracking-wide hover:bg-green-600 transition duration-200 mb-5">
+                Contact US
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
