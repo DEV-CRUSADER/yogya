@@ -1,13 +1,13 @@
 import { HeadingDescription } from "./index";
 import React from "react";
 
-const aboutUs = (props) => {
+const aboutUs = ({ image, page, heading, description, quoteBox }) => {
   return (
     <div className="flex  flex-wrap-reverse lg:flex-row justify-between m-10 items-center h-full ">
       {/* Image Section */}
       <div className="w-full lg:w-1/2 flex justify-center mb-6 lg:mb-0">
         <img
-          src={props.Image}
+          src={image}
           alt="loading..."
           className="h-auto w-4/5 max-xl:w-full rounded-lg"
         />
@@ -16,14 +16,14 @@ const aboutUs = (props) => {
       {/* Text Section */}
       <div className="w-full lg:w-1/2 lg:pl-10">
         <HeadingDescription
-          Page={props.Page}
-          Heading={props.Heading}
-          Description={props.Description}
+          page={page}
+          heading={heading}
+          description={description}
           center={false}
         />
 
         {/* Quote Box */}
-        {props.QuoteBox ? (
+        {quoteBox ? (
           <div className="flex items-center bg-white shadow-md rounded-lg w-fit my-5 p-6">
             {/* Left Border and Quote Icon */}
             <div className="border-l-4 border-green-400 pl-4 pr-2">

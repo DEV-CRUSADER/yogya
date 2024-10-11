@@ -1,9 +1,9 @@
 import { HeadingDescription } from "./index";
 import React from "react";
 
-const FeaturedCases = (props) => {
+const FeaturedCases = ({ image }) => {
   return (
-    <div className="w-full bg-white py-10">
+    <div className="w-full bg-white py-10 mb-10">
       {/* Section 1: Heading and Description */}
       <div className="flex flex-col justify-center items-center mb-10">
         <HeadingDescription
@@ -42,7 +42,7 @@ const FeaturedCases = (props) => {
         {/* Image Section */}
         <div className="flex-1">
           <img
-            src={props.Image}
+            src={image}
             alt="Featured cases"
             className="rounded-xl w-full h-auto object-cover"
           />

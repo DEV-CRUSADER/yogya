@@ -13,7 +13,10 @@ const Section1 = () => {
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s.
         </p>
-        <Buttons />
+        <Buttons 
+          button1="Get Started"
+          button2={"Learn More"}
+        />
       </div>
 
       {/* Right Section (Image) */}

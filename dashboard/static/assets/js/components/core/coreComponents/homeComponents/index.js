@@ -7,7 +7,6 @@ import AboutUS from "./aboutUS";
 import CoreValuesPart from "./coreValues";
 import ProfitGraph from "./profitGraph";
 import FeaturedCase from "./featuredCases";
-import WeAreHire from "./hire";
 import { Footer } from "../footer";
 import HeadingDescription from "./headingDescription";
 import Buttons from "./buttons";
@@ -31,7 +30,6 @@ export {
   CoreValuesPart,
   ProfitGraph,
   FeaturedCase,
-  WeAreHire,
   Footer,
   HeadingDescription,
   Buttons,

@@ -11,19 +11,15 @@ module.exports = {
     extend: {
       colors: {
         /* main colors */
-        "--main-color": "#c2dae4",
-        "--secondary-color": "#3D7186",
-        "--teritary-color": "#2C5464",
-        "--black": "#000",
-        "--white": "#fff",
-        "--grey": "#808080",
-        "--secondary-text": "#e7e3d4",
-        "--primary-text": "#cfefe7",
-
-        "--secondary-color-alfa-1": " #ffffff80",
+        "main-color": "#c2dae4",
+        "secondary-color": "#3D7186",
+        "teritary-color": "#2C5464",
+        "secondary-text": "#e7e3d4",
+        "primary-text": "#cfefe7",
+        "secondary-color-alfa-1": " #ffffff80",
 
         /* Shadows */
-        "--line-color": "#3d718600",
+        "line-color": "#3d718600",
 
         /* buttons */
         "btn-primary": "#22577a",

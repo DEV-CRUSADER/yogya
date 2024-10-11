@@ -85,7 +85,7 @@ export function ContactForm() {
         d-flex flex-column
       ">
         <div>
-          <label className="fs-5 w-100">
+          <label className="text-lg w-100">
             Name
             <input
               type="text"
@@ -98,7 +98,7 @@ export function ContactForm() {
           </label>
         </div>
         <div>
-          <label className="fs-5 mt-4 w-100">
+          <label className="text-lg mt-4 w-100">
             Email
             <input
               type="email"
@@ -111,7 +111,7 @@ export function ContactForm() {
           </label>
         </div>
         <div>
-          <label className="fs-5 mt-4 w-100">
+          <label className="text-lg mt-4 w-100">
             Phone number
             <input
               type="number"
@@ -125,7 +125,7 @@ export function ContactForm() {
           </label>
         </div>
         <div>
-          <label className="fs-5 mt-4 w-100">
+          <label className="text-lg mt-4 w-100">
             Message
             <textarea
               id="message"

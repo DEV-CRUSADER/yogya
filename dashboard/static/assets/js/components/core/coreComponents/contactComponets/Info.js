@@ -26,7 +26,7 @@ export function ContactInfo() {
   ];
 
   return (
-    <section className="d-flex flex-wrap justify-content-center w-100 w-md-25 w-lg-25">
+    <section className="flex flex-wrap justify-center w-100 w-md-25 w-lg-25">
       {constactDetails.map((item, index) => (
         <ContactCard
           key={index}
@@ -42,12 +42,8 @@ export function ContactInfo() {
 export function ContactCard({ icon, head, description }) {
   return (
     <div
-      className="d-flex flex-column p-4 
-          position-relative justify-content-center 
-          align-items-center m-3 rounded-2 hover-animate-card"
-      style={{
-        width: "300px",
-      }}
+      className="flex flex-col p-4 relative justify-center 
+          items-center m-3 rounded-2 hover-animate-card w-[300px]"
       data-aos="zoom-in"
     >
       <i className={`${icon} fs-3 mb-2 hithere`}></i>

@@ -5,10 +5,7 @@ import { WebLoader } from "../components/common/utils/loader";
 
 // Lazy load the components
 const HomePageView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.HomePageView })));
-const ResourcesPageView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.ResourcesPageView })));
-const MutualPageView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.MutualPageView })));
 const ContactPageView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.ContactPageView })));
-const ClientAuthView = lazy(async () => await import("../components/core/App").then((module) => ({ default: module.ClientAuthView })));
 
 
 export function CoreApp() {

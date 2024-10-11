@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 import { HeadingDescription } from "./index";
 import React from "react";
 
-const profitGraph = (props) => {
+const profitGraph = ({ image, page, heading, description }) => {
   const feature = [
     {
       logo: "https://cdn-icons-png.flaticon.com/128/10568/10568075.png",
-      Heading: "Security",
-      Description: "We offer protection when your customers have financial.",
+      heading: "Security",
+      description: "We offer protection when your customers have financial.",
     },
     {
       logo: "https://cdn-icons-png.flaticon.com/128/9550/9550830.png",
-      Heading: "Flexibility",
-      Description: "Sounding grows in line with your daily sales update.",
+      heading: "Flexibility",
+      description: "Sounding grows in line with your daily sales update.",
     },
   ];
   return (
@@ -21,7 +21,7 @@ const profitGraph = (props) => {
         {/* Image Section */}
         <div className="w-full lg:w-1/2 flex justify-center mb-6 lg:mb-0">
           <img
-            src={props.Image}
+            src={image}
             alt="loading..."
             className="h-auto w-4/5 max-xl:w-full rounded-lg"
           />
@@ -30,9 +30,9 @@ const profitGraph = (props) => {
         {/* Text Section */}
         <div className="w-full lg:w-1/2 lg:pl-10">
           <HeadingDescription
-            Page={props.Page}
-            Heading={props.Heading}
-            Description={props.Description}
+            page={page}
+            heading={heading}
+            description={description}
           />
           {feature.map((values, index) => {
             return (
@@ -43,8 +43,8 @@ const profitGraph = (props) => {
                   className="h-10 w-10 mr-2"
                 />
                 <div className="flex flex-col gap-3 leading-3">
-                  <h5>{values.Heading}</h5>
-                  <p className="leading-5">{values.Description}</p>
+                  <h5>{values.heading}</h5>
+                  <p className="leading-5">{values.description}</p>
                 </div>
               </div>
             );

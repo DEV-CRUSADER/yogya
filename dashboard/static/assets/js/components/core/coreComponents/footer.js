@@ -85,25 +85,9 @@ export const Footer = () => {
     },
   ];
 
-  // const Our_Services = [
-  //   "Saving and Strategy",
-  //   "Life & Health Insurance",
-  //   "Banking and Financial",
-  //   "Retirement Planning",
-  //   "Home and Business Loan",
-  //   "Business Consultation",
-  // ];
-
-  // const Important_Links = [
-  //   "Home",
-  //   "About",
-  //   "Newsletter",
-  //   "Testimonial",
-  //   "Privacy",
-  // ];
 
   return (
-    <footer className="bg-gray-100 py-10 mt-10 px-6 w-full">
+    <footer className="bg-gray-100 py-10 px-6 w-full">
       <div className="max-w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-5 px-10">
         {/* Company Info Section */}
         <div>
@@ -156,16 +140,16 @@ export const Footer = () => {
             <li className="text-gray-600 flex items-center gap-2">
               <FaLocationDot className="h-5 w-5 " />
               <span>
-                123 Main ST #4545, <br /> Herndon VA 22071-2716.
+              G-17 Shyam Plaza, VIP Road,<br/>Vesu, Surat, Gujarat - 395007
               </span>
             </li>
             <li className="text-gray-600 flex items-center gap-2">
               <FaPhoneAlt className="h-5 w-5 " />
-              <span>+123-456-7890</span>
+              <span>+91 75674 73055</span>
             </li>
             <li className="text-gray-600 flex items-center gap-2">
               <MdEmail className="h-5 w-5 " />
-              <span> riponpalbg@gmail.com</span>
+              <span>contact@scoopinvestment.com</span>
             </li>
           </ul>
 
