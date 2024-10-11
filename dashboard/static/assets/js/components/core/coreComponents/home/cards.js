@@ -46,7 +46,7 @@ const cards = (props) => {
         return (
           <div
             key={index}
-            className={`bg-white overflow-hidden w-96 ${
+            className={`bg-white overflow-hidden w-80 ${
               props.hasBorder
                 ? "border border-gray-200 rounded-2xl shadow-lg"
                 : ""

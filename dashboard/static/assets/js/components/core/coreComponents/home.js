@@ -7,7 +7,7 @@ import {
   FeaturedCase,
   WeAreHire,
   Footer,
-} from "./home_new/index.js";
+} from "./home/index.js";
 import React from "react";
 
 const home = () => {

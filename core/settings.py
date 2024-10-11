@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     'dashboard.localhost',
     'dashboard.localhost:8000',
 
-    '195.35.22.25',
+    '192.168.1.20:8000',
+    '192.168.1.20',
     'scoopinvestment.com',
     'www.scoopinvestment.com',
     'dashboard.scoopinvestment.com',
@@ -64,7 +65,6 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -124,14 +124,14 @@ const Navbar = () => {
           ))}
 
           {/* Login Button */}
-          <Link to="/">
+          {/* <Link to="/">
             <button
               disabled
               className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none cursor-not-allowed"
             >
               Login
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -159,14 +159,14 @@ const Navbar = () => {
         ))}
 
         {/* Mobile Login Button */}
-        <Link to="/login">
+        {/* <Link to="/login">
           <button
             disabled
             className="absolute bottom-0 px-4 py-2 my-5 w-3/4 items-center bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 focus:outline-none cursor-not-allowed"
           >
             Login
           </button>
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );
