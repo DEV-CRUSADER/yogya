@@ -1,0 +1,61 @@
+import React from "react";
+
+export const icons = {
+  call: "fa-solid fa-phone",
+  location: "fa-solid fa-location-dot",
+  mail: "fa-solid fa-envelope",
+};
+
+export function ContactInfo() {
+  const constactDetails = [
+    {
+      icon: icons.call,
+      head: "Phone",
+      description: "+91 75674 73055",
+    },
+    {
+      icon: icons.location,
+      head: "Our Location",
+      description: "G-17 Shyam Plaza, VIP Road, Vesu, Surat, Gujarat - 395007",
+    },
+    {
+      icon: icons.mail,
+      head: "Email Us",
+      description: "contact@scoopinvestment.com",
+    },
+  ];
+
+  return (
+    <section className="flex flex-wrap justify-center w-100 w-md-25 w-lg-25">
+      {constactDetails.map((item, index) => (
+        <ContactCard
+          key={index}
+          icon={item.icon}
+          head={item.head}
+          description={item.description}
+        />
+      ))}
+    </section>
+  );
+}
+
+export function ContactCard({ icon, head, description }) {
+  return (
+    <div
+      className="flex flex-col p-4 relative justify-center 
+          items-center m-3 rounded-2 hover-animate-card w-[300px]"
+      data-aos="zoom-in"
+    >
+      <i className={`${icon} fs-3 mb-2 hithere`}></i>
+      <h5>{head}</h5>
+      <p
+        className="text-center mt-3"
+        style={{
+          fontSize: "11px",
+        }}
+      >
+        {description}
+      </p>
+    </div>
+  );
+}

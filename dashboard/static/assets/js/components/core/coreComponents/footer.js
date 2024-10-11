@@ -1,113 +1,176 @@
 import React from "react";
 import {
-  BrowserRouter as BrowserRouter,
-  HashRouter,
-  Route,
-  Link,
-} from "react-router-dom";
-
-// Icons
-import {
-  FaInstagram,
-  FaLinkedinIn,
   FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedinIn,
   FaPhoneAlt,
-  FaRegEnvelope,
 } from "react-icons/fa";
-import { BsSubstack } from "react-icons/bs";
-import { AiOutineX } from "react-icons/ai";
-import { Logo } from "../../common/utils/logo";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { Link } from "react-router-dom";
+// import { BsSubstack } from "react-icons/bs";
 
-import "../../../../../css/footer.css";
-
-export function Footer() {
-
-  const footer_social_links =[
+export const Footer = () => {
+  const Our_Services = [
     {
-      Icon: FaLinkedinIn,
-      link: "https://www.linkedin.com/in/chirag-jain-16334483/",
+      label: "Saving and Strategy",
+      to: "#",
     },
     {
-      Icon: BsSubstack,
-      link: "https://x.com/Chiragjain1097",
+      label: "Life & Health Insurance",
+      to: "#",
     },
     {
-      Icon: FaRegEnvelope,
-      link: "mailto:contact@scoopinvestment.com"
-    }
-  ]
+      label: "Banking and Financial",
+      to: "#",
+    },
+    {
+      label: "Retirement Planning",
+      to: "#",
+    },
+    {
+      label: "Home and Business Loan",
+      to: "#",
+    },
+    {
+      label: "Business Consultation",
+      to: "#",
+    },
+  ];
+
+  const Important_Links = [
+    {
+      label: "Home",
+      to: "/",
+    },
+    {
+      label: "About",
+      to: "/about",
+    },
+    {
+      label: "Newsletter",
+      to: "/newsletter",
+    },
+    {
+      label: "Testimonial",
+      to: "/testimonial",
+    },
+    {
+      label: "Privacy",
+      to: "/privacy",
+    },
+  ];
+
+  const social_icons = [
+    {
+      label: "Facebook",
+      to: "https://facebook.com",
+      Icon: <FaFacebookF className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Instagram",
+      to: "https://instagram.com",
+      Icon: <FaInstagram className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Twitter",
+      to: "https://twitter.com",
+      Icon: <FaTwitter className="text-green-500 h-5 w-5" />,
+    },
+    {
+      label: "Linkedin",
+      to: "https://linkedin.com",
+      Icon: <FaLinkedinIn className="text-green-500 h-5 w-5" />,
+    },
+  ];
 
 
   return (
-    <div className="section">
-      <div
-        className="container-fluid p-0"
-        style={{
-          color: "var(--main-color)",
-        }}
-      >
-        <div className="d-flex justify-content-center ">
-          {
-            footer_social_links.map((social, index) => {
+    <footer className="bg-gray-100 py-10 px-6 w-full">
+      <div className="max-w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-5 px-10">
+        {/* Company Info Section */}
+        <div>
+          <h2 className="text-lg font-bold mb-3">Finance Company</h2>
+          <p className="text-gray-600 mb-5">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s.
+          </p>
+        </div>
+
+        {/* Services Section */}
+        <div>
+          <h2 className="text-lg font-bold mb-3">Our Services</h2>
+          <ul className="space-y-2">
+            {Our_Services.map((item, idx) => (
+              <li
+                className="text-gray-600 hover:underline "
+                key={`link-${idx}`}
+              >
+                <Link to={item.to} target="_blank">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Important Links Section */}
+        <div>
+          <h2 className="text-lg font-bold mb-3">Important Links</h2>
+          <ul className="space-y-3">
+            {Important_Links.map((item, idx) => (
+              <li
+                className="text-gray-600 hover:underline w-fit"
+                key={`link-${idx}`}
+              >
+                <Link to={item.to} target="_blank">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact Section */}
+        <div>
+          <h2 className="text-lg font-bold mb-3">Contact</h2>
+          <ul className="space-y-4 ">
+            <li className="text-gray-600 flex items-center gap-2">
+              <FaLocationDot className="h-5 w-5 " />
+              <span>
+              G-17 Shyam Plaza, VIP Road,<br/>Vesu, Surat, Gujarat - 395007
+              </span>
+            </li>
+            <li className="text-gray-600 flex items-center gap-2">
+              <FaPhoneAlt className="h-5 w-5 " />
+              <span>+91 75674 73055</span>
+            </li>
+            <li className="text-gray-600 flex items-center gap-2">
+              <MdEmail className="h-5 w-5 " />
+              <span>contact@scoopinvestment.com</span>
+            </li>
+          </ul>
+
+          {/* Social Icons */}
+          <div className="flex space-x-5 mt-10">
+           
+            {social_icons.map((item, index) => {
               return (
-                <SocialLink Icon={social.Icon} link={social.link}/>
+                <Link
+                  to={item.to}
+                  key={index}
+                  className="bg-green-100 p-4 rounded-full hover:bg-green-200 transition duration-400"
+                  target="_blank"
+                >
+                  {item.Icon} {/* Corrected to `Icon` */}
+                </Link>
               );
-            })
-          }
-        </div>
-        <div className="text-center">
-          <span className="fs-6">
-          G-17 Shyam Plaza, VIP Road, Vesu, Surat, Gujarat - 395007
-          </span>
-        </div>
-        <div className="text-center mt-1 d-flex justify-content-center">
-          <div className="pe-1">
-            <a>
-              <FaPhoneAlt />
-              <span className="ps-1">+91 75674 73055</span>
-            </a>
+            })}
           </div>
-          <div className="ps-1">
-            <a>
-              <FaRegEnvelope />
-              <span className="ps-1">contact@scoopinvestment.com</span>
-            </a>
-          </div>
-        </div>
-        <div className="d-flex justify-content-center mt-2">
-          <Logo />
-        </div>
-        <div
-          className="py-1 d-flex justify-content-around"
-          style={{
-            background: "var(--teritary-color)",
-          }}
-        >
-          <span className="bottom-footer">www.scoopinvestment.com &copy;&nbsp;copyright 2024</span>
-          <span className="bottom-footer">Privacy policy | T&C</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
-}
-
-
-function SocialLink({ Icon, link }) {
-  return (
-    <Link 
-      className="m-2"
-      to={link}
-      target="_blank"
-    >
-      <Icon
-        className="fs-4 p-2 rounded-circle hover-effect"
-        style={{
-          background: "var(--main-color)",
-          width: "35px",
-          height: "35px",
-          fill: "var(--secondary-color)",
-        }}
-      />
-    </Link>
-  );
-}
+};
