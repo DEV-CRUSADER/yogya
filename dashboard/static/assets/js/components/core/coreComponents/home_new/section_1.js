@@ -1,6 +1,6 @@
 import React from "react";
 import Buttons from "./buttons";
-import "./css/home_new.css";
+import "../../../../../../css/core/home_section_1.css"
 
 const Section1 = () => {
   return (
